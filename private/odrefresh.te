@@ -1,5 +1,5 @@
 # odrefresh
-type odrefresh, domain, coredomain;
+type odrefresh, domain, coredomain, artd_subprocess_type;
 type odrefresh_exec, system_file_type, exec_type, file_type;
 
 # Allow odrefresh to create files and directories for on device signing.
@@ -20,9 +20,6 @@ allow odrefresh apex_art_staging_data_file:file { create_file_perms relabelfrom 
 
 # Run dex2oat in its own sandbox.
 domain_auto_trans(odrefresh, dex2oat_exec, dex2oat)
-
-# Run dexoptanalyzer in its own sandbox.
-domain_auto_trans(odrefresh, dexoptanalyzer_exec, dexoptanalyzer)
 
 # Use devpts and fd from odsign (which exec()'s odrefresh)
 allow odrefresh odsign_devpts:chr_file { read write };
