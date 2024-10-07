@@ -1321,3 +1321,6 @@
 /tmp                                                              shell_data_file
 
 /mnt/pre_reboot_dexopt                                            pre_reboot_dexopt_file
+/system/bin/newfs_msdos                                           fsck_exec
+/system/bin/mediaserverwrapper                                    mediaserverwrapper_exec
+
