@@ -76,10 +76,8 @@ def TestNoUnmappedRmTypes(base_pub_policy, old_pub_policy, mapping):
     return ret
 
 def TestTrebleCompatMapping(base_pub_policy, old_pub_policy, mapping):
-    # TODO(b/295178517): Sepolicy build time test failed for QC libraries
-    # TODO: b/303504299 - treble sepolicy test failed
-    # ret = TestNoUnmappedNewTypes(base_pub_policy, old_pub_policy, mapping)
-    # ret += TestNoUnmappedRmTypes(base_pub_policy, old_pub_policy, mapping)
+    ret = TestNoUnmappedNewTypes(base_pub_policy, old_pub_policy, mapping)
+    ret += TestNoUnmappedRmTypes(base_pub_policy, old_pub_policy, mapping)
     return ""
 
 ###

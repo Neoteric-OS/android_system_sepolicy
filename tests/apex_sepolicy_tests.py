@@ -177,10 +177,9 @@ def check_line(pol: policy.Policy, line: str, rules) -> List[str]:
 
     # check rules
     errors = []
-    # TODO: b/303504299 - treble sepolicy test failed
-    # for matcher, rule in rules:
-    #     if match_path(path, matcher):
-    #         errors.extend(check_rule(pol, path, tcontext, rule))
+    for matcher, rule in rules:
+        if match_path(path, matcher):
+            errors.extend(check_rule(pol, path, tcontext, rule))
 
     return errors
 
