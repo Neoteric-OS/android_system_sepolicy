@@ -427,6 +427,11 @@ se_compat_cil {
     version: "33.0",
 }
 
+se_compat_test {
+    name: "sepolicy_compat_test",
+    defaults: ["se_policy_conf_flags_defaults"],
+}
+
 se_build_files {
     name: "34.0.board.compat.map",
     srcs: ["compat/34.0/34.0.cil"],
