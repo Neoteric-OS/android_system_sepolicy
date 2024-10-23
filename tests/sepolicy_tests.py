@@ -370,6 +370,8 @@ def do_main(libpath):
         results += TestCoredomainViolations(test_policy)
     if options.test is None or "TestViolatorAttributes" in options.test:
         results += TestViolatorAttributes(test_policy)
+    if options.test is None or "TestIsolatedAttributeConsistency" in options.test:
+        results += TestIsolatedAttributeConsistency(test_policy)
 
     # dev type test won't be run as default
     if options.test and "TestDevTypeViolations" in options.test:
