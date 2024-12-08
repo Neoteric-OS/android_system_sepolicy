@@ -308,6 +308,7 @@ var (
 		"inputflinger":                           EXCEPTION_NO_FUZZER,
 		"input_method":                           EXCEPTION_NO_FUZZER,
 		"input":                                  EXCEPTION_NO_FUZZER,
+		"intrusion_detection":                    EXCEPTION_NO_FUZZER,
 		"installd":                               []string{"installd_service_fuzzer"},
 		"iphonesubinfo_msim":                     EXCEPTION_NO_FUZZER,
 		"iphonesubinfo2":                         EXCEPTION_NO_FUZZER,
@@ -513,7 +514,9 @@ var (
 		"wifi":                                   EXCEPTION_NO_FUZZER,
 		"wifinl80211":                            []string{"wificond_service_fuzzer"},
 		"wifiaware":                              EXCEPTION_NO_FUZZER,
+		"wifi_usd":                               EXCEPTION_NO_FUZZER,
 		"wifirtt":                                EXCEPTION_NO_FUZZER,
+		"wifi_mainline_supplicant":               []string{"mainline_supplicant_service_fuzzer"},
 		"window":                                 EXCEPTION_NO_FUZZER,
 		"*":                                      EXCEPTION_NO_FUZZER,
 	}
