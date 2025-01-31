@@ -1,13 +1,13 @@
+# Domain used for overlay_remounter process
+
+# All types must be defined regardless of build variant to ensure
+# policy compilation succeeds with userdebug/user combination at boot
+type overlay_remounter, domain, coredomain;
+
+# File types must be defined for file_contexts.
+type overlay_remounter_exec, system_file_type, exec_type, file_type;
+
 userdebug_or_eng(`
-  # Domain used for overlay_remounter process
-
-  # All types must be defined regardless of build variant to ensure
-  # policy compilation succeeds with userdebug/user combination at boot
-  type overlay_remounter, domain, coredomain;
-
-  # File types must be defined for file_contexts.
-  type overlay_remounter_exec, system_file_type, exec_type, file_type;
-
   domain_auto_trans(overlay_remounter, init_exec, init)
 
   allow overlay_remounter init:process share;
