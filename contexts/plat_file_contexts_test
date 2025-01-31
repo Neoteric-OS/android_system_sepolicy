@@ -1344,6 +1344,8 @@
 /tmp                                                              shell_data_file
 
 /mnt/pre_reboot_dexopt                                            pre_reboot_dexopt_file
+
+/second_stage_resources/overlay_remounter                         overlay_remounter_exec
+
 /system/bin/newfs_msdos                                           fsck_exec
 /system/bin/mediaserverwrapper                                    mediaserverwrapper_exec
-
