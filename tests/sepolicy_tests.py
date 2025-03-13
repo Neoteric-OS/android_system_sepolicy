@@ -216,6 +216,7 @@ def TestIsolatedAttributeConsistency(test_policy):
         "vendor_sysfs_public": ["file", "dir", "lnk_file"],
         "vendor_sysfs_soc": ["dir"],
         "vendor_hal_dspmanager": ["binder", "fd"],
+        "vendor_hal_dspmanager_aidlservice": ["service_manager"],
         "vendor_dspservice":["binder", "fd"],
         "isolated_compute_allowed":["service_manager", "chr_file","file","dir","lnk_file","fd","binder"],
     }
