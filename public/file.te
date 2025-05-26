@@ -662,6 +662,13 @@ starting_at_board_api(202504, `
     type tee_service_contexts_file, system_file_type, file_type;
 ')
 
+# /data/misc/virtualizationservice
+# The type needs to be mlstrustedobject to allow for being accessed from
+# virtualizationmanager, which runs at a more constrained MLS level.
+starting_at_board_api(202604, `
+    type virtualizationservice_data_file, file_type, data_file_type, core_data_file_type, mlstrustedobject;
+')
+
 # system/sepolicy/public is for vendor-facing type and attribute definitions.
 # DO NOT ADD allow, neverallow, or dontaudit statements here.
 # Instead, add such policy rules to system/sepolicy/private/*.te.
