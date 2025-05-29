@@ -5,6 +5,7 @@
 (typeattribute new_objects)
 (typeattributeset new_objects
   ( new_objects
+    gatekeeper_vendor_data_file
     pbtombstone_exec
     prefetch
     usb_disable_when_locked_prop
