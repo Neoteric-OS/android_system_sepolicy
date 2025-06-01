@@ -131,7 +131,7 @@ func (c *cilCompatMap) GenerateAndroidBuildActions(ctx android.ModuleContext) {
 	topHalf := expandTopHalf(ctx)
 	if topHalf.Valid() {
 		out := android.PathForModuleGen(ctx, c.Name())
-		ctx.ModuleBuild(pctx, android.ModuleBuildParams{
+		ctx.Build(pctx, android.BuildParams{
 			Rule:   combineMapsRule,
 			Output: out,
 			Implicits: []android.Path{
