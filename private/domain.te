@@ -2391,3 +2391,10 @@ neverallow domain *:system { kexec_image_load kexec_initramfs_load };
 
 # READING_X509_CERTIFICATE is not used.
 neverallow domain *:system x509_certificate_load;
+
+# attempts to write to /proc/self/fd/FOO, where FOO does not exist,
+# generates SELinux denials prior to being stopped by other parts of
+# the kernel. Disallow such nonsensical allow rules
+neverallow domain proc:filesystem associate;
+neverallow domain domain:dir { write add_name remove_name };
+neverallow domain domain:file create;

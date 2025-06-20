@@ -77,8 +77,8 @@ recovery_only(`
   # Mount filesystems.
   allow recovery rootfs:dir mounton;
   allow recovery tmpfs:dir mounton;
-  allow recovery { fs_type enforce_debugfs_restriction(`-debugfs_type') }:filesystem ~relabelto;
-  allow recovery unlabeled:filesystem ~relabelto;
+  allow recovery { fs_type enforce_debugfs_restriction(`-debugfs_type') }:filesystem ~{ relabelto associate };
+  allow recovery unlabeled:filesystem ~{ relabelto associate };
   allow recovery contextmount_type:filesystem relabelto;
 
   # We may be asked to set an SELinux label for a type not known to the

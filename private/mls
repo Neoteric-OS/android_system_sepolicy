@@ -38,6 +38,16 @@ mlsconstrain unix_stream_socket { connectto }
 	     (l1 eq l2 or t1 == mlstrustedsubject or t2 == mlstrustedsubject);
 
 #
+# vsock_socket constraints
+#
+# To enforce that vsock sockets are self contained in the application's process
+# or can be transferred only to mlstrustedsubject like system server.
+mlsconstrain vsock_socket {
+   ioctl read write create getattr setattr lock relabelfrom relabelto append map
+   bind connect listen accept getopt setopt shutdown recvfrom sendto name_bind
+} (l1 eq l2 or t1 == mlstrustedsubject);
+
+#
 # Directory/file constraints
 #
 

@@ -288,7 +288,7 @@ allowxperm init system_data_root_file:dir ioctl F2FS_IOC_SHUTDOWN;
 allow init {
   fs_type
   enforce_debugfs_restriction(`-debugfs_type')
-}:filesystem ~relabelto;
+}:filesystem ~{ relabelto associate };
 
 # Allow init to mount/unmount debugfs in non-user builds.
 enforce_debugfs_restriction(`
