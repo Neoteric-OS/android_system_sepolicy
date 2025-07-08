@@ -641,6 +641,10 @@ starting_at_board_api(202604, `
     type virtualizationservice_data_file, file_type, data_file_type, core_data_file_type, mlstrustedobject;
 ')
 
+starting_at_board_api(202604, `
+    type sysfs_powercap, fs_type, sysfs_type;
+')
+
 # system/sepolicy/public is for vendor-facing type and attribute definitions.
 # DO NOT ADD allow, neverallow, or dontaudit statements here.
 # Instead, add such policy rules to system/sepolicy/private/*.te.
