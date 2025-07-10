@@ -11,7 +11,10 @@ binder_use(virtualizationmanager)
 # Let virtualizationmanager find and communicate with virtualizationservice.
 allow virtualizationmanager virtualization_service:service_manager find;
 binder_call(virtualizationmanager, virtualizationservice)
+# Let virtualizationmanager find dropbox_service.
 allow virtualizationmanager dropbox_service:service_manager find;
+# Let virtualizationmanager to read /proc/version.
+allow virtualizationmanager proc_version:file r_file_perms;
 
 # Allow calling into the system server to find native services. "permission_service" to check
 # permissions, and "package_native" for staged apex info.

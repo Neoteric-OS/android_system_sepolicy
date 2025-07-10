@@ -47,6 +47,10 @@ allow virtualizationservice permission_service:service_manager find;
 binder_call(virtualizationservice, remote_provisioning_service_server)
 allow virtualizationservice remote_provisioning_service:service_manager find;
 
+# Allow virtualizationservice to retrieve information about IVirtualMachine from virtmgr
+# for accounting purpose
+binder_call(virtualizationservice, virtualizationmanager)
+
 # Allow virtualizationservice to manage VM secrets via Secretkeeper.
 hal_client_domain(virtualizationservice, hal_secretkeeper)
 
