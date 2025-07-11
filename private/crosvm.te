@@ -105,6 +105,7 @@ is_flag_enabled(RELEASE_AVF_SUPPORT_CUSTOM_VM_WITH_PARAVIRTUALIZED_DEVICES, `
   allow crosvm device:dir { read open };
   allow crosvm same_process_hal_file:file { read open getattr map execute };
   allow crosvm gpu_device:chr_file { read write open ioctl map open getattr };
+  allow crosvm gpu_device:dir { search };
   allow crosvm hal_graphics_allocator:fd use;
   allow crosvm hal_graphics_allocator_server:binder call;
   allow crosvm surfaceflinger:fd use;
