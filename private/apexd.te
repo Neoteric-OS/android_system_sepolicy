@@ -57,8 +57,9 @@ allow apexd dev_type:blk_file getattr;
 allow apexd vd_device:blk_file r_file_perms;
 
 # allow apexd to access /dev/block/dm-* (device-mapper entries)
+# setattr for dm_device:blk_file to override mtime
 allow apexd dm_device:chr_file rw_file_perms;
-allow apexd dm_device:blk_file rw_file_perms;
+allow apexd dm_device:blk_file {setattr rw_file_perms};
 
 # sys_admin is required to access the device-mapper and mount
 # dac_override, chown, and fowner are needed for snapshot and restore
