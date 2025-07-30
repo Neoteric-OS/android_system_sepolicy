@@ -81,6 +81,23 @@ allow domain ashmem_device:chr_file { getattr read ioctl lock map append write }
 # This device is used by libcutils, which is accessible to everyone.
 allow domain ashmem_libcutils_device:chr_file rw_file_perms;
 
+# memfds are initially labeled as tmpfs files. Not all processes have access
+# to tmpfs files in general, or tmpfs files associated with specific domains.
+# This is in contrast to ashmem, where all domains could access ashmem fds.
+#
+# To allow for a smoother transition from ashmem to memfd, grant the
+# ability for processes to relabel tmpfs files to ashmem_compat_memfd,
+# which will have similar access control as ashmem. The files are relabeled
+# when allocated by libcutils.
+allow domain tmpfs:file { getattr relabelfrom };
+allow domain ashmem_compat_memfd:file { read write getattr ioctl map relabelto };
+allowxperm domain ashmem_compat_memfd:file ioctl ashmem_ioctls;
+
+# Everyone can allocate memory via libcutils, and therefore will all need
+# access to the file containing the type that libcutils must use for
+# relabeling memfds.
+allow domain ashmem_compat_memfd_context_file:file r_file_perms;
+
 # /dev/binder can be accessed by ... everyone! :)
 allow { domain -hwservicemanager -vndservicemanager } binder_device:chr_file rw_file_perms;
 get_prop({domain -hwservicemanager -vndservicemanager }, servicemanager_prop)
@@ -1276,6 +1293,7 @@ full_treble_only(`
     -vendor_init
   } {
     system_file_type
+    -ashmem_compat_memfd_context_file
     -cgroup_desc_file
     -crash_dump_exec
     -file_contexts_file
