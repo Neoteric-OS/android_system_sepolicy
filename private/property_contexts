@@ -93,6 +93,7 @@ ro.traced.              u:object_r:traced_config_prop:s0
 traced.relay_producer_port u:object_r:traced_config_prop:s0
 persist.heapprofd.enable u:object_r:heapprofd_enabled_prop:s0
 persist.traced_perf.enable u:object_r:traced_perf_enabled_prop:s0
+persist.trusty.coverage.enabled u:object_r:trusty_coverage_prop:s0  exact bool
 uprobestats.start_with_config u:object_r:uprobestats_start_with_config_prop:s0
 persist.vendor.debug.wifi. u:object_r:persist_vendor_debug_wifi_prop:s0
 persist.vendor.overlay.  u:object_r:overlay_prop:s0
@@ -866,8 +867,10 @@ ro.lmk.medium                   u:object_r:lmkd_config_prop:s0 exact int
 ro.lmk.pressure_after_kill_min_score u:object_r:lmkd_config_prop:s0 exact int
 ro.lmk.psi_partial_stall_ms     u:object_r:lmkd_config_prop:s0 exact int
 ro.lmk.psi_complete_stall_ms    u:object_r:lmkd_config_prop:s0 exact int
+ro.lmk.relaxed_available_memory u:object_r:lmkd_config_prop:s0 exact bool
 ro.lmk.stall_limit_critical     u:object_r:lmkd_config_prop:s0 exact int
 ro.lmk.swap_compression_ratio   u:object_r:lmkd_config_prop:s0 exact int
+ro.lmk.swap_compression_ratio_div u:object_r:lmkd_config_prop:s0 exact int
 ro.lmk.swap_free_low_percentage u:object_r:lmkd_config_prop:s0 exact int
 ro.lmk.swap_util_max            u:object_r:lmkd_config_prop:s0 exact int
 ro.lmk.thrashing_limit          u:object_r:lmkd_config_prop:s0 exact int

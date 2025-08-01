@@ -11,6 +11,7 @@
     init_dev_config_exec
     pbtombstone_exec
     prefetch
+    trusty_coverage_prop
     usb_disable_when_locked_prop
     virtualizationservice_data_file
   ))
