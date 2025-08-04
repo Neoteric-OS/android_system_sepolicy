@@ -313,6 +313,9 @@ persist.device_config.memory_safety_native.         u:object_r:device_config_mem
 persist.device_config.tethering_u_or_later_native.  u:object_r:device_config_tethering_u_or_later_native_prop:s0
 persist.device_config.mmd_native.                   u:object_r:device_config_mmd_native_prop:s0
 
+# Properties for configuring native binder stats
+persist.sys.native_binder_stats.                    u:object_r:native_binder_stats_prop:s0
+
 # Prop indicates the apex that bundles input configuration files (*.idc,*.kl,*.kcm)
 input_device.config_file.apex    u:object_r:input_device_config_prop:s0 exact string
 
@@ -1885,3 +1888,6 @@ statsd.config.atoms_in_use_list.version u:object_r:statsd_atoms_list_version_pro
 
 # Properties related to MTE
 ro.arm64.memtag.bootctl_supported u:object_r:arm64_memtag_bootctl_prop:s0 exact bool
+
+# Wallet properties
+ro.gms.wallet.se_capability u:object_r:wallet_prop:s0 exact int

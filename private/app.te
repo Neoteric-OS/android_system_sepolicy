@@ -520,8 +520,9 @@ allow appdomain zygote_tmpfs:file { map read };
 ###
 
 # Superuser capabilities.
-# bluetooth requires net_admin and wake_alarm. network stack app requires net_admin.
-neverallow { appdomain -bluetooth -network_stack } self:capability_class_set *;
+# bluetooth requires net_admin and wake_alarm. network stack app requires net_admin. nfc requires
+# block_suspend.
+neverallow { appdomain -bluetooth -network_stack -nfc } self:capability_class_set *;
 
 # Block device access.
 neverallow appdomain dev_type:blk_file { read write };
