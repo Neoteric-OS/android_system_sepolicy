@@ -813,6 +813,9 @@
 /system_ext/bin/userdata_alias_remove                             userdata_alias_remove_exec
 /system/system_ext/bin/userdata_alias_remove                      userdata_alias_remove_exec
 
+/system_ext/bin/serialservice                                     serialservice_exec
+/system/system_ext/bin/serialservice                              serialservice_exec
+
 /vendor_dlkm                                                      vendor_file
 /vendor_dlkm/does_not_exist                                       vendor_file
 /vendor/vendor_dlkm                                               vendor_file

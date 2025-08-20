@@ -408,6 +408,7 @@ allow system_server {
   servicemanager
   statsd
   surfaceflinger
+  virtualizationservice
   vold
 
   # This list comes from HAL_INTERFACES_OF_INTEREST in
@@ -1746,6 +1747,15 @@ allow system_server {
   odrefresh
   profman
 }:process sigkill;
+
+# Allow system_server to talk to native serial service to read metadata of and open serial ports.
+starting_at_board_api(202602, `
+    allow system_server native_serial_service:service_manager find;
+    binder_call(system_server, serialservice)
+')
+
+# Allow system server to read and write serial devices
+allow system_server { serial_device usb_serial_device }:chr_file { read write };
 
 # Do not allow any domain other than init or system server to get or set the property
 neverallow { domain -init -system_server } crashrecovery_prop:property_service set;

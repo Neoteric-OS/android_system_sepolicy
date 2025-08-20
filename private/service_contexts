@@ -192,6 +192,9 @@ is_flag_enabled(RELEASE_AVF_ENABLE_MICROFUCHSIA, `
     android.system.microfuchsiad              u:object_r:microfuchsia_service:s0
 ')
 ambient_context                           u:object_r:ambient_context_service:s0
+starting_at_board_api(202604, `
+  anomaly_detector                        u:object_r:anomaly_detector_service:s0
+')
 app_binding                               u:object_r:app_binding_service:s0
 app_function                              u:object_r:app_function_service:s0
 app_hibernation                           u:object_r:app_hibernation_service:s0
@@ -359,6 +362,9 @@ midi                                      u:object_r:midi_service:s0
 mmd                                       u:object_r:mmd_service:s0
 mount                                     u:object_r:mount_service:s0
 music_recognition                         u:object_r:music_recognition_service:s0
+starting_at_board_api(202602, `
+    native_serial                         u:object_r:native_serial_service:s0
+')
 nearby                                    u:object_r:nearby_service:s0
 netd                                      u:object_r:netd_service:s0
 netpolicy                                 u:object_r:netpolicy_service:s0
