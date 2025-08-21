@@ -209,6 +209,9 @@ allow appdomain zygote:fd use;
 # Receive and use open file descriptors inherited from app zygote.
 allow appdomain app_zygote:fd use;
 
+# app_zygote creates memfds and shares them via fork(2) or binder IPC
+allow appdomain app_zygote_tmpfs:file { read write getattr map };
+
 # gdbserver for ndk-gdb reads the zygote.
 # valgrind needs mmap exec for zygote
 allow appdomain zygote_exec:file rx_file_perms;

@@ -1625,6 +1625,8 @@ neverallow {
 allow system_server proc_pressure_mem:file rw_file_perms;
 # Read /proc/pressure/cpu and /proc/pressure/io
 allow system_server { proc_pressure_cpu proc_pressure_io }:file r_file_perms;
+# Read /proc/diskstats to help debug IO stalls.
+allow system_server proc_diskstats:file r_file_perms;
 
 # CAP_SYS_RESOURCE was traditionally needed for sensitive /proc/PID
 # file read access. However, that is now unnecessary (b/34951864)
