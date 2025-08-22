@@ -396,12 +396,14 @@ r_dir_file(shell, proc_net_type)
 allow shell {
   proc_asound
   proc_cgroups
+  proc_diskstats
   proc_filesystems
   proc_interrupts
   proc_loadavg # b/124024827
   proc_meminfo
   proc_modules
   proc_pid_max
+  proc_pressure_io
   proc_slabinfo
   proc_stat
   proc_timer
