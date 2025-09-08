@@ -10,6 +10,14 @@ allow bpfloader kmsg_device:chr_file w_file_perms;
 allow bpfloader sysfs_btf:dir search;
 allow bpfloader sysfs_btf:file { getattr read open };
 
+# allow bpfloader to access global symbols from kallsyms
+allow bpfloader proc_kallsyms:file r_file_perms;
+
+# Allow bpfloader to attach BPF programs to tracepoints. Deny read permission so that
+# bpfloader cannot use this access to read perf event data like process stacks.
+allow bpfloader self:perf_event { open write cpu kernel };
+neverallow bpfloader self:perf_event ~{ open write cpu kernel };
+
 # These permissions are required to pin ebpf maps & programs.
 allow bpfloader bpffs_type:dir { add_name create open read remove_name search setattr write };
 allow bpfloader bpffs_type:file { create getattr read rename setattr };
@@ -20,7 +28,7 @@ allow { bpffs_type -fs_bpf } fs_bpf:filesystem associate;
 allow bpfloader self:bpf { map_create map_read map_write prog_load prog_run };
 
 allow bpfloader self:capability { chown sys_admin net_admin };
-allow bpfloader self:global_capability2_class_set { bpf perfmon };
+allow bpfloader self:global_capability2_class_set { bpf perfmon syslog };
 
 allow bpfloader sysfs_fs_fuse_bpf:file r_file_perms;
 

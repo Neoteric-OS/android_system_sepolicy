@@ -151,8 +151,11 @@ allow system_server self:global_capability2_class_set wake_alarm;
 allow system_server self:netlink_netfilter_socket create_socket_perms_no_ioctl;
 
 # Create/use netlink_tcpdiag_socket for looking up connection UIDs for VPN apps.
-allow system_server self:netlink_tcpdiag_socket
-    { create_socket_perms_no_ioctl nlmsg_read nlmsg_write };
+allow system_server self:netlink_tcpdiag_socket create_socket_perms_no_ioctl;
+# For kernel < 6.13
+allow system_server self:netlink_tcpdiag_socket { nlmsg_read nlmsg_write };
+# For kernel >= 6.13
+allow system_server self:netlink_tcpdiag_socket nlmsg;
 
 # Use netlink uevent sockets.
 allow system_server self:netlink_kobject_uevent_socket create_socket_perms_no_ioctl;
@@ -397,6 +400,7 @@ allow system_server {
   composd
   drmserver
   gpuservice
+  idmap
   inputflinger
   keystore
   mediadrmserver
@@ -947,6 +951,8 @@ get_prop(system_server, usb_disable_when_locked_prop)
 
 # Allow system server to read build properties for bootimage partition.
 get_prop(system_server, build_bootimage_prop)
+
+get_prop(system_server, hsum_boot_strategy_prop)
 
 # Create a socket for connections from debuggerd.
 allow system_server system_ndebug_socket:sock_file create_file_perms;
@@ -1705,6 +1711,7 @@ allow system_server binderfs_logs_stats:file r_file_perms;
 userdebug_or_eng(`
     allow system_server binderfs_logs_transactions:file r_file_perms;
 ')
+allow system_server binderfs_logs_transaction_history:file r_file_perms;
 
 # Allow GameManagerService to read and write persist.graphics.game_default_frame_rate.enabled
 set_prop(system_server, game_manager_config_prop)
