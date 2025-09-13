@@ -51,9 +51,9 @@ system_internal_prop(misctrl_prop)
 system_internal_prop(perf_drop_caches_prop)
 system_internal_prop(pm_prop)
 system_internal_prop(prefetch_service_prop)
+system_internal_prop(profcollectd_enabled_prop)
 system_internal_prop(profcollectd_node_id_prop)
 system_internal_prop(radio_cdma_ecm_prop)
-system_internal_prop(remote_prov_prop)
 system_internal_prop(remote_prov_cert_prop)
 system_internal_prop(rollback_test_prop)
 system_internal_prop(setupwizard_prop)
@@ -101,6 +101,7 @@ system_restricted_prop(persist_sysui_builder_extras_prop)
 system_restricted_prop(persist_sysui_ranking_update_prop)
 system_restricted_prop(page_size_prop)
 system_restricted_prop(pm_16kb_app_compat_prop)
+system_restricted_prop(remote_prov_prop)
 system_restricted_prop(service_sf_present_timestamp_prop)
 system_restricted_prop(statsd_atoms_list_version_prop)
 system_restricted_prop(trusty_coverage_prop)
@@ -846,6 +847,13 @@ neverallow {
   -apexd
   -vendor_init
 } apex_ready_prop:file no_rw_file_perms;
+
+neverallow {
+  # Only allow profcollectd to set profcollectd_enabled_prop
+  domain
+  -init
+  -profcollectd
+} profcollectd_enabled_prop:property_service set;
 
 neverallow {
   # Only allow init and profcollectd to access profcollectd_node_id_prop
