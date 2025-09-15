@@ -284,3 +284,5 @@ until_board_api(202604, `type sysfs_usb_pd, fs_type, sysfs_type;')
 until_board_api(202604, `
     type sysfs_powercap, fs_type, sysfs_type;
 ')
+
+type zygote_next_socket, file_type, coredomain_socket;
