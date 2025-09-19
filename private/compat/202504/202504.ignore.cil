@@ -23,6 +23,7 @@
     sysfs_typec
     sysfs_usb_pd
     usb_disable_when_locked_prop
+    usb_userspace_aoa_enabled_prop
     virtualizationservice_data_file
     wallet_prop
     anomaly_detector_service
