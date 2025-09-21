@@ -1821,3 +1821,6 @@ neverallow system_server self:global_capability_class_set sys_module;
 neverallow { domain -system_server -init } appsearch_data_file:file { open read write };
 
 neverallow system_server *:process ptrace;
+
+# Allow system_server to read the userspace AOA enabled property.
+get_prop(system_server, usb_userspace_aoa_enabled_prop)

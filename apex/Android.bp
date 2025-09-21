@@ -170,6 +170,13 @@ filegroup {
 }
 
 filegroup {
+    name: "com.android.npumanager-file_contexts",
+    srcs: [
+        "com.android.npumanager-file_contexts",
+    ],
+}
+
+filegroup {
     name: "com.android.os.statsd-file_contexts",
     srcs: [
         "com.android.os.statsd-file_contexts",
