@@ -40,7 +40,7 @@ type mediametrics_service,      service_manager_type;
 type mediaextractor_service,    service_manager_type;
 type mediadrmserver_service,    service_manager_type;
 type mediatranscoding_service,  app_api_service, service_manager_type;
-starting_at_board_api(202602, `
+starting_at_board_api(202604, `
     type native_serial_service,     service_manager_type;
 ')
 type netd_service,              service_manager_type;

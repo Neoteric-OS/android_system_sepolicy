@@ -429,6 +429,7 @@ allow dumpstate self:netlink_tcpdiag_socket nlmsg_read;
 # For kernel >= 6.13
 allow dumpstate self:netlink_tcpdiag_socket nlmsg;
 allowxperm dumpstate self:netlink_tcpdiag_socket nlmsg SOCK_DIAG_BY_FAMILY;
+allowxperm dumpstate self:netlink_route_socket nlmsg { RTM_GETLINK RTM_GETNEIGH };
 
 # Access /data/tombstones.
 allow dumpstate tombstone_data_file:dir r_dir_perms;
