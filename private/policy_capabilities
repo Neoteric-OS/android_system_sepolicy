@@ -21,3 +21,6 @@ policycap nnp_nosuid_transition;
 
 # Enable per-file labels in functionfs
 policycap functionfs_seclabel;
+
+# Enable extended permissions for netlink sockets.
+policycap netlink_xperm;

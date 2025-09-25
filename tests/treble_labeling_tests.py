@@ -53,14 +53,17 @@ def build_argument_parser():
         dest="platform_apks",
         metavar="FILE",
         help="Path to a file containing a list of platform apks (one per line)",
-        required=True,
     )
     parser.add_argument(
         "--vendor_apks",
         dest="vendor_apks",
         metavar="FILE",
         help="Path to a file containing a list of vendor apks (one per line)",
-        required=True,
+    )
+    parser.add_argument(
+        "--package_list",
+        metavar="FILE",
+        help="Path to 'pm list packages -s -f' output.",
     )
     parser.add_argument(
         "--precompiled_sepolicy_without_vendor",
@@ -105,7 +108,6 @@ def build_argument_parser():
         dest="aapt2_path",
         metavar="FILE",
         help="Path to the aapt2 executable.",
-        required=True,
     )
     parser.add_argument(
         "--tracking_list_file",
@@ -440,10 +442,68 @@ def TestNoCoredomainForAllVendorApps(vendor_apps, seapp_entries, pol,
 
     return ""
 
+def parse_apps_from_package_list(package_list_file):
+    """Parses the output of 'pm list packages -f' into platform and vendor apps.
+    """
+    platform_apps = []
+    vendor_apps = []
+    platform_prefixes = ["/system/", "/system_ext/", "/product/"]
+    vendor_prefixes = ["/vendor/", "/odm/"]
+    exempt_prefixes = ["/apex/", "/data/"]
+    # Example line: package:/system/app/Foo/Foo.apk=com.example.foo
+    line_re = re.compile(r"package:(?P<path>.*?)=(?P<name>.*)")
+
+    error_message = ""
+
+    with open(package_list_file, "r", encoding="utf-8") as f:
+        for line in f:
+            line = line.strip()
+            if not line:
+                continue
+
+            match = line_re.match(line)
+            if not match:
+                error_message += f"Invalid package_list line: '{line}'\n"
+                continue
+
+            path = match.group("path")
+            name = match.group("name")
+            apk_name = os.path.basename(path)
+            app = App(name, apk_name)
+
+            if any(path.startswith(prefix) for prefix in platform_prefixes):
+                platform_apps.append(app)
+            elif any(path.startswith(prefix) for prefix in vendor_prefixes):
+                vendor_apps.append(app)
+            elif any(path.startswith(prefix) for prefix in exempt_prefixes):
+                # we only care about preinstalled apps directly under partitions
+                continue
+            else:
+                error_message += f"Unknown partition for line: '{line}'\n"
+
+    if error_message:
+        sys.exit("Failed to parse package list file\n\n"+error_message)
+
+
+    return platform_apps, vendor_apps
+
 # pylint: disable=redefined-outer-name
 def do_main(libpath):
     parser = build_argument_parser()
     args = parser.parse_args()
+
+    if args.package_list:
+        if args.platform_apks or args.vendor_apks or args.aapt2_path:
+            parser.error("--package_list cannot be used with --platform_apks, "
+                         "--vendor_apks, or --aapt2_path")
+        platform_apps, vendor_apps = parse_apps_from_package_list(
+            args.package_list)
+    else:
+        if not (args.platform_apks and args.vendor_apks and args.aapt2_path):
+            parser.error("When not using --package_list, you must provide all "
+                         " of --platform_apks, --vendor_apks, and --aapt2_path")
+        platform_apps = parse_package_names(args.platform_apks, args.aapt2_path)
+        vendor_apps = parse_package_names(args.vendor_apks, args.aapt2_path)
 
     tracking_list = {}
     if args.tracking_list_file:
@@ -453,9 +513,6 @@ def do_main(libpath):
     pol_without_vendor = policy.Policy(args.precompiled_sepolicy_without_vendor,
                                        None, libpath)
     pol = policy.Policy(args.precompiled_sepolicy, None, libpath)
-
-    platform_apps = parse_package_names(args.platform_apks, args.aapt2_path)
-    vendor_apps = parse_package_names(args.vendor_apks, args.aapt2_path)
 
     platform_seapp_entries = sum([parse_seapp_contexts(path) for path
                                   in args.platform_seapp_contexts], [])
