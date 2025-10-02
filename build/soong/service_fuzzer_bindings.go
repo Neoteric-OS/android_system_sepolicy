@@ -407,6 +407,7 @@ var (
 		"permissionmgr":                          EXCEPTION_NO_FUZZER,
 		"permission_checker":                     EXCEPTION_NO_FUZZER,
 		"persistent_data_block":                  EXCEPTION_NO_FUZZER,
+		"personal_context":                       EXCEPTION_NO_FUZZER,
 		"phone_msim":                             EXCEPTION_NO_FUZZER,
 		"phone1":                                 EXCEPTION_NO_FUZZER,
 		"phone2":                                 EXCEPTION_NO_FUZZER,
