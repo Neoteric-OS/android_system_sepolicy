@@ -51,6 +51,7 @@ neverallow { domain            } bpffs_type:file ~{ create getattr map open read
 neverallow { domain -bpfloader } bpffs_type:file { create map open rename setattr };
 neverallow { domain -bpfloader -gpuservice -lmkd -mediaprovider_app -netd -netutils_wrapper                -system_server                             } fs_bpf:file                { getattr read };
 neverallow { domain -bpfloader                                                                             -system_server -traced_probes              } fs_bpf_cputimeinstate:file { getattr read write };
+neverallow { domain -bpfloader -system_suspend                                                                                                        } fs_bpf_kernelwakelockduration:file { getattr read write };
 neverallow { domain -bpfloader                                                                                                                        } fs_bpf_loader:file         { getattr read };
 neverallow { domain -bpfloader                                                              -network_stack                                            } fs_bpf_net_private:file    { getattr read };
 neverallow { domain -bpfloader                                                              -network_stack -system_server                             } fs_bpf_net_shared:file     { getattr read };

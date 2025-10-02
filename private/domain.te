@@ -545,9 +545,6 @@ get_prop(domain, vendor_socket_hook_prop)
 get_prop(domain, vndk_prop)
 get_prop(domain, vold_status_prop)
 get_prop(domain, vts_config_prop)
-# Allow all processes to read the information for native binder stats
-# configuration.
-get_prop(domain, native_binder_stats_prop)
 
 # Binder cache properties are world-readable
 get_prop(domain, binder_cache_bluetooth_server_prop)
@@ -1661,6 +1658,7 @@ neverallow {
   domain
   userdebug_or_eng(`-domain') # exclude debuggable builds
   -fastbootd
+  -hal_fastboot_server
   -hal_bootctl_server
   -init
   -uncrypt
@@ -2365,4 +2363,3 @@ neverallow domain *:system x509_certificate_load;
 neverallow domain proc:filesystem associate;
 neverallow domain domain:dir { write add_name remove_name };
 neverallow domain domain:file create;
-
