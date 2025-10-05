@@ -413,6 +413,7 @@ var (
 		"phone2":                                 EXCEPTION_NO_FUZZER,
 		"phone":                                  EXCEPTION_NO_FUZZER,
 		"pinner":                                 EXCEPTION_NO_FUZZER,
+		"pmg":                                    EXCEPTION_NO_FUZZER,
 		"powerstats":                             EXCEPTION_NO_FUZZER,
 		"power":                                  EXCEPTION_NO_FUZZER,
 		"print":                                  EXCEPTION_NO_FUZZER,
