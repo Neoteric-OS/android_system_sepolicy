@@ -322,3 +322,10 @@ neverallow all_untrusted_apps domain:anon_inode *;
 
 # Do not allow untrusted app access to hidraw devices.
 neverallow all_untrusted_apps hidraw_device:chr_file *;
+
+# Untrusted apps don't have access to native serial service or serial ports. Otherwise
+# they may circumvent the access control.
+neverallow all_untrusted_apps { serial_device usb_serial_device}:chr_file open;
+starting_at_board_api(202602, `
+    neverallow all_untrusted_apps native_serial_service:service_manager find;
+')

@@ -176,7 +176,11 @@ allow system_server self:socket create_socket_perms_no_ioctl;
 allow system_server self:netlink_route_socket nlmsg_write;
 
 # Use XFRM (IPsec) netlink sockets
-allow system_server self:netlink_xfrm_socket { create_socket_perms_no_ioctl nlmsg_write nlmsg_read };
+allow system_server self:netlink_xfrm_socket create_socket_perms_no_ioctl;
+# For kernel < 6.13
+allow system_server self:netlink_xfrm_socket { nlmsg_read nlmsg_write };
+# For kernel >= 6.13
+allow system_server self:netlink_xfrm_socket nlmsg;
 
 # Kill apps.
 allow system_server appdomain:process { getpgid sigkill signal };
@@ -390,6 +394,7 @@ allow system_server {
   artd
   audioserver
   cameraserver
+  composd
   drmserver
   gpuservice
   inputflinger
@@ -407,6 +412,7 @@ allow system_server {
   servicemanager
   statsd
   surfaceflinger
+  virtualizationservice
   vold
 
   # This list comes from HAL_INTERFACES_OF_INTEREST in
@@ -836,6 +842,7 @@ set_prop(system_server, device_config_tethering_u_or_later_native_prop)
 set_prop(system_server, device_config_mmd_native_prop)
 set_prop(system_server, smart_idle_maint_enabled_prop)
 set_prop(system_server, arm64_memtag_prop)
+set_prop(system_server, native_binder_stats_prop)
 
 # staged flag properties
 set_prop(system_server, next_boot_prop)
@@ -1274,8 +1281,20 @@ with_asan(`
 # allow system_server to read the eBPF maps that stores the traffic stats information and update
 # the map after snapshot is recorded, and to read, update and run the maps and programs used for
 # time in state accounting
-allow system_server { fs_bpf fs_bpf_net_shared fs_bpf_netd_readonly fs_bpf_netd_shared }:dir search;
-allow system_server { fs_bpf fs_bpf_net_shared fs_bpf_netd_readonly fs_bpf_netd_shared }:file { getattr read write };
+allow system_server {
+  fs_bpf
+  fs_bpf_cputimeinstate
+  fs_bpf_net_shared
+  fs_bpf_netd_readonly
+  fs_bpf_netd_shared
+}:dir search;
+allow system_server {
+  fs_bpf
+  fs_bpf_cputimeinstate
+  fs_bpf_net_shared
+  fs_bpf_netd_readonly
+  fs_bpf_netd_shared
+}:file { getattr read write };
 allow system_server bpfloader:bpf prog_run;
 allow system_server self:bpf map_create;
 allow system_server { bpfloader netd network_stack system_server }:bpf { map_read map_write };
@@ -1610,6 +1629,8 @@ neverallow {
 allow system_server proc_pressure_mem:file rw_file_perms;
 # Read /proc/pressure/cpu and /proc/pressure/io
 allow system_server { proc_pressure_cpu proc_pressure_io }:file r_file_perms;
+# Read /proc/diskstats to help debug IO stalls.
+allow system_server proc_diskstats:file r_file_perms;
 
 # CAP_SYS_RESOURCE was traditionally needed for sensitive /proc/PID
 # file read access. However, that is now unnecessary (b/34951864)
@@ -1732,6 +1753,15 @@ allow system_server {
   odrefresh
   profman
 }:process sigkill;
+
+# Allow system_server to talk to native serial service to read metadata of and open serial ports.
+starting_at_board_api(202602, `
+    allow system_server native_serial_service:service_manager find;
+    binder_call(system_server, serialservice)
+')
+
+# Allow system server to read and write serial devices
+allow system_server { serial_device usb_serial_device }:chr_file { read write };
 
 # Do not allow any domain other than init or system server to get or set the property
 neverallow { domain -init -system_server } crashrecovery_prop:property_service set;

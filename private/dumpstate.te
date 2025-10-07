@@ -90,6 +90,9 @@ userdebug_or_eng(`
 ')
 dontaudit dumpstate keystore:process { signal };
 
+# Allow dumpstate to talk to rkp_cert_processor process
+binder_call(dumpstate, rkp_cert_processor)
+
 # For collecting bugreports.
 no_debugfs_restriction(`
   allow dumpstate debugfs_wakeup_sources:file r_file_perms;
@@ -374,6 +377,7 @@ allow dumpstate zygote_exec:file rx_file_perms;
 allow dumpstate bluetooth_data_file:dir search;
 allow dumpstate bluetooth_logs_data_file:dir r_dir_perms;
 allow dumpstate bluetooth_logs_data_file:file r_file_perms;
+allow dumpstate bluetooth_logs_data_file:lnk_file r_file_perms;
 
 # For Nfc
 allow dumpstate nfc_logs_data_file:dir r_dir_perms;
@@ -468,6 +472,9 @@ allow dumpstate {
   -fwk_vold_service
   -default_android_service
 }:service_manager find;
+neverallow dumpstate {
+  vold
+}:binder call;
 # suppress denials for services dumpstate should not be accessing.
 dontaudit dumpstate {
   apex_service
@@ -478,6 +485,9 @@ dontaudit dumpstate {
   vold_service
   fwk_vold_service
 }:service_manager find;
+dontaudit dumpstate {
+  vold
+}:binder call;
 
 # Most of these are neverallowed.
 dontaudit dumpstate hwservice_manager_type:hwservice_manager find;
@@ -517,7 +527,12 @@ allow dumpstate proc_pid_max:file r_file_perms;
 binder_call(dumpstate, installd);
 
 # Allow dumpstate to run ip xfrm policy
-allow dumpstate self:netlink_xfrm_socket { create_socket_perms_no_ioctl nlmsg_read };
+allow dumpstate self:netlink_xfrm_socket create_socket_perms_no_ioctl;
+# For kernel < 6.13
+allow dumpstate self:netlink_xfrm_socket nlmsg_read;
+# For kernel >= 6.13
+allow dumpstate self:netlink_xfrm_socket nlmsg;
+allowxperm dumpstate self:netlink_xfrm_socket nlmsg XFRM_MSG_GETPOLICY;
 
 # Allow dumpstate to run iotop
 allow dumpstate self:netlink_socket create_socket_perms_no_ioctl;

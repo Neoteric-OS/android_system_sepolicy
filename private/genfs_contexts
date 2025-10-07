@@ -137,17 +137,20 @@ genfscon sysfs /class/rfkill/rfkill2/state        u:object_r:sysfs_bluetooth_wri
 genfscon sysfs /class/rfkill/rfkill3/state        u:object_r:sysfs_bluetooth_writable:s0
 genfscon sysfs /class/rtc                         u:object_r:sysfs_rtc:s0
 genfscon sysfs /class/switch                      u:object_r:sysfs_switch:s0
+genfscon sysfs /class/ublk-char/                  u:object_r:sysfs_ublk:s0
 genfscon sysfs /class/wakeup                      u:object_r:sysfs_wakeup:s0
 genfscon sysfs /devices/platform/nfc-power/nfc_power u:object_r:sysfs_nfc_power_writable:s0
 genfscon sysfs /devices/virtual/android_usb     u:object_r:sysfs_android_usb:s0
 genfscon sysfs /devices/virtual/block/            u:object_r:sysfs_devices_block:s0
 genfscon sysfs /devices/virtual/block/dm-       u:object_r:sysfs_dm:s0
 genfscon sysfs /devices/virtual/block/loop       u:object_r:sysfs_loop:s0
+genfscon sysfs /devices/virtual/block/ublk      u:object_r:sysfs_ublk:s0
 genfscon sysfs /devices/virtual/block/zram0     u:object_r:sysfs_zram:s0
 genfscon sysfs /devices/virtual/block/zram1     u:object_r:sysfs_zram:s0
 genfscon sysfs /devices/virtual/block/zram0/uevent    u:object_r:sysfs_zram_uevent:s0
 genfscon sysfs /devices/virtual/block/zram1/uevent    u:object_r:sysfs_zram_uevent:s0
 genfscon sysfs /devices/virtual/misc/hw_random    u:object_r:sysfs_hwrandom:s0
+genfscon sysfs /devices/virtual/misc/ublk-control/ u:object_r:sysfs_ublk:s0
 genfscon sysfs /devices/virtual/net             u:object_r:sysfs_net:s0
 genfscon sysfs /devices/virtual/switch          u:object_r:sysfs_switch:s0
 genfscon sysfs /devices/virtual/wakeup          u:object_r:sysfs_wakeup:s0
@@ -199,6 +202,7 @@ genfscon tracefs /trace                               u:object_r:debugfs_tracing
 genfscon tracefs /per_cpu/cpu                         u:object_r:debugfs_tracing:s0
 
 genfscon tracefs /hyp                                 u:object_r:debugfs_tracing:s0
+genfscon tracefs /hypervisor                          u:object_r:debugfs_tracing:s0
 
 genfscon debugfs /tracing/instances                   u:object_r:debugfs_tracing_instances:s0
 genfscon tracefs /instances                           u:object_r:debugfs_tracing_instances:s0
@@ -217,6 +221,7 @@ genfscon tracefs /printk_formats                      u:object_r:debugfs_tracing
 genfscon tracefs /events/header_page                         u:object_r:debugfs_tracing:s0
 genfscon tracefs /events/f2fs/f2fs_get_data_block/           u:object_r:debugfs_tracing:s0
 genfscon tracefs /events/f2fs/f2fs_iget/                     u:object_r:debugfs_tracing:s0
+genfscon tracefs /events/f2fs/f2fs_set_page_dirty/           u:object_r:debugfs_tracing:s0
 genfscon tracefs /events/f2fs/f2fs_sync_file_enter/          u:object_r:debugfs_tracing:s0
 genfscon tracefs /events/f2fs/f2fs_sync_file_exit/           u:object_r:debugfs_tracing:s0
 genfscon tracefs /events/f2fs/f2fs_write_begin/              u:object_r:debugfs_tracing:s0
@@ -337,6 +342,7 @@ genfscon usbfs / u:object_r:usbfs:s0
 genfscon binfmt_misc / u:object_r:binfmt_miscfs:s0
 
 genfscon bpf / u:object_r:fs_bpf:s0
+genfscon bpf /cputimeinstate u:object_r:fs_bpf_cputimeinstate:s0
 genfscon bpf /loader u:object_r:fs_bpf_loader:s0
 genfscon bpf /memevents u:object_r:fs_bpf_memevents:s0
 genfscon bpf /net_private u:object_r:fs_bpf_net_private:s0

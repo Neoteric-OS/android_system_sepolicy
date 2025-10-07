@@ -12,6 +12,7 @@ neverallow logd {
   -runtime_event_log_tags_file
   # shell_data_file access is needed to dump bugreports
   -shell_data_file
+  -ashmem_compat_memfd
   userdebug_or_eng(`-coredump_file -misc_logd_file')
   with_native_coverage(`-method_trace_data_file')
 }:file { create write append };

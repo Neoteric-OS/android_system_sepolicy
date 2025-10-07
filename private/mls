@@ -54,7 +54,10 @@ mlsconstrain vsock_socket {
 # Create/relabel operations:  Subject must be equivalent to object unless
 # the subject is trusted. Also, files should always be single-level.
 # Do NOT exempt mlstrustedobject types from this constraint.
-mlsconstrain dir_file_class_set { create relabelfrom relabelto }
+mlsconstrain dir_file_class_set { relabelto }
+	     (l2 eq h2 and (l1 eq l2 or t1 == mlstrustedsubject or t2 == ashmem_compat_memfd));
+
+mlsconstrain dir_file_class_set { create relabelfrom }
 	     (l2 eq h2 and (l1 eq l2 or t1 == mlstrustedsubject));
 
 #
