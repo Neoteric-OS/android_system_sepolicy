@@ -605,6 +605,7 @@ allow init {
   sysfs_dm
   sysfs_lru_gen_enabled
   sysfs_pgsize_migration
+  starting_at_board_api(202604, `sysfs_suspend_params')
 }:file w_file_perms;
 
 allow init {

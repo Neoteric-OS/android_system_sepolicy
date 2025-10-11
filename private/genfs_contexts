@@ -189,6 +189,7 @@ genfscon sysfs /module/dm_bufio/parameters/max_age_seconds u:object_r:sysfs_dm_v
 genfscon sysfs /module/dm_verity/parameters/prefetch_cluster u:object_r:sysfs_dm_verity:s0
 genfscon sysfs /module/lowmemorykiller u:object_r:sysfs_lowmemorykiller:s0
 genfscon sysfs /module/tcp_cubic/parameters u:object_r:sysfs_net:s0
+starting_at_board_api(202604, `genfscon sysfs /module/suspend/parameters/pm_fs_abort u:object_r:sysfs_suspend_params:s0')
 genfscon sysfs /module/wlan/parameters/fwpath u:object_r:sysfs_wlan_fwpath:s0
 genfscon sysfs /devices/virtual/timed_output/vibrator/enable u:object_r:sysfs_vibrator:s0
 genfscon sysfs /devices/virtual/misc/uhid u:object_r:sysfs_uhid:s0

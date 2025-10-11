@@ -24,3 +24,5 @@ allow serialservice proc_tty_drivers:file r_file_perms;
 # Read/write serial devices /dev/tty*.
 allow serialservice { serial_device usb_serial_device }:chr_file rw_file_perms;
 
+# Allow serialservice to read USB sysfs to read vid:pid information
+r_dir_file(serialservice, sysfs_usb)
