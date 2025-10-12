@@ -20,6 +20,7 @@
     omapi_service
     serialservice
     serialservice_exec
+    sysfs_suspend_params
     usb_disable_when_locked_prop
     usb_userspace_aoa_enabled_prop
     virtualizationservice_data_file

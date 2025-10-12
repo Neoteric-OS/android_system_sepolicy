@@ -40,6 +40,7 @@ is_flag_enabled(RELEASE_HARDWARE_BLUETOOTH_RANGING_SERVICE, `
 android.hardware.bluetooth.lmp_event.IBluetoothLmpEvent/default      u:object_r:hal_bluetooth_service:s0
 android.hardware.bluetooth.audio.IBluetoothAudioProviderFactory/default u:object_r:hal_audio_service:s0
 android.hardware.bluetooth.socket.IBluetoothSocket/default           u:object_r:hal_bluetooth_service:s0
+android.hardware.bluetooth.socket.IBluetoothSocket/lpp               u:object_r:hal_bluetooth_lpp_service:s0
 android.hardware.bluetooth.gatt.IBluetoothGatt/default               u:object_r:hal_bluetooth_lpp_service:s0
 android.hardware.broadcastradio.IBroadcastRadio/amfm                 u:object_r:hal_broadcastradio_service:s0
 android.hardware.broadcastradio.IBroadcastRadio/dab                  u:object_r:hal_broadcastradio_service:s0
@@ -515,6 +516,7 @@ usagestats                                u:object_r:usagestats_service:s0
 usb                                       u:object_r:usb_service:s0
 user                                      u:object_r:user_service:s0
 uprobestats_service                       u:object_r:uprobestats_service:s0
+uprobestats_bridge_service                u:object_r:uprobestats_bridge_service:s0
 uwb                                       u:object_r:uwb_service:s0
 vcn_management                            u:object_r:vcn_management_service:s0
 vibrator                                  u:object_r:vibrator_service:s0

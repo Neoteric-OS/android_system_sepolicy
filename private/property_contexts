@@ -1613,8 +1613,9 @@ ro.gfx.driver.1          u:object_r:graphics_config_prop:s0 exact string
 ro.gfx.angle.supported   u:object_r:graphics_config_prop:s0 exact bool
 ro.gfx.driver_build_time u:object_r:graphics_config_prop:s0 exact int
 
-graphics.gpu.profiler.support          u:object_r:graphics_config_prop:s0 exact bool
-graphics.gpu.profiler.vulkan_layer_apk u:object_r:graphics_config_prop:s0 exact string
+graphics.gpu.profiler.support              u:object_r:graphics_config_prop:s0 exact bool
+graphics.gpu.profiler.vulkan_layer_apk     u:object_r:graphics_config_prop:s0 exact string
+graphics.gpu.profiler.counter_producer_lib u:object_r:graphics_config_prop:s0 exact string
 persist.graphics.egl             u:object_r:graphics_config_writable_prop:s0 exact string
 
 ro.cpuvulkan.version u:object_r:graphics_config_prop:s0 exact int

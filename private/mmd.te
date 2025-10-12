@@ -42,3 +42,24 @@ binder_call(mmd, statsd)
 # Allow mmd to send dump info to dumpstate.
 allow mmd dumpstate:fd use;
 allow mmd dumpstate:fifo_file { getattr write };
+
+# Allow mmd to issue the zram writeback ioctl.
+allowxperm mmd swap_block_device:blk_file ioctl ZRAM_ANDROID_IOC_PROCESS_WRITEBACK;
+
+# Necessary for zram writeback ioctl.
+allow mmd self:capability sys_nice;
+
+# Allow mmd to use pidfds received from system_server.
+allow mmd system_server:fd use;
+
+# Zram per-process writeback requires write access for files mapped
+# into the target process that are swappable (i.e. shmem). As of
+# kernel 6.17, this check is performed by can_do_file_pageout() in
+# the kernel.
+#
+# Shmem based files include tmpfs as well as some GPU objects
+# accessed via mappings of a GPU device fd.
+allow mmd zygote_tmpfs:file write;
+allow mmd appdomain_tmpfs:file write;
+allow mmd system_server_tmpfs:file write;
+allow mmd gpu_device:chr_file write;
