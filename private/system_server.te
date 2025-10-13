@@ -258,6 +258,10 @@ allow system_server sysfs_cma:file r_file_perms;
 allow system_server sysfs_dmabuf_stats:dir r_dir_perms;
 allow system_server sysfs_dmabuf_stats:file r_file_perms;
 
+# Allow reading DMA-BUF bpf stats from /sys/fs/bpf/dmabuf/
+allow system_server fs_bpf_dmabuf:dir search;
+allow system_server fs_bpf_dmabuf:file { getattr open read };
+
 # Allow ActivityManager to look at the list of DMA-BUF heaps from /dev/dma_heap
 # for dumpsys meminfo
 allow system_server dmabuf_heap_device:dir r_dir_perms;

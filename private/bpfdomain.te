@@ -2,6 +2,7 @@
 neverallow {
   bpfdomain
   -bpfloader
+  -dumpstate
   -netd
   -netutils_wrapper
   -network_stack
@@ -10,6 +11,11 @@ neverallow {
 
 # any domain which uses bpf is a bpfdomain
 neverallow { domain -bpfdomain } *:bpf *;
+# TODO: vendor 'powerstatemanager_service' has fs_bpf:dir search
+neverallow { domain -bpfdomain } { bpffs_type -fs_bpf }:dir search;
+neverallow { domain -bpfdomain } bpffs_type:dir ~{ getattr mounton search };
+neverallow { domain -bpfdomain } bpffs_type:lnk_file *;
+neverallow { domain -bpfdomain } bpffs_type:file *;
 
 allow bpfdomain fs_bpf:dir search;
 

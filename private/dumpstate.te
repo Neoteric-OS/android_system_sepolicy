@@ -1,4 +1,5 @@
 typeattribute dumpstate coredomain;
+typeattribute dumpstate bpfdomain;
 type dumpstate_tmpfs, file_type;
 
 init_daemon_domain(dumpstate)
@@ -101,6 +102,8 @@ no_debugfs_restriction(`
 allow dumpstate dev_type:blk_file getattr;
 allow dumpstate webview_zygote:process signal;
 allow dumpstate sysfs_dmabuf_stats:file r_file_perms;
+allow dumpstate fs_bpf_dmabuf:dir search;
+allow dumpstate fs_bpf_dmabuf:file { getattr open read };
 dontaudit dumpstate update_engine:binder call;
 
 # Read files in /proc

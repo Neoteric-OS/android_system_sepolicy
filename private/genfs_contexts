@@ -347,6 +347,7 @@ genfscon binfmt_misc / u:object_r:binfmt_miscfs:s0
 
 genfscon bpf / u:object_r:fs_bpf:s0
 genfscon bpf /cputimeinstate u:object_r:fs_bpf_cputimeinstate:s0
+genfscon bpf /dmabuf u:object_r:fs_bpf_dmabuf:s0
 genfscon bpf /kernelwakelockduration u:object_r:fs_bpf_kernelwakelockduration:s0
 genfscon bpf /loader u:object_r:fs_bpf_loader:s0
 genfscon bpf /memevents u:object_r:fs_bpf_memevents:s0
@@ -355,5 +356,5 @@ genfscon bpf /net_shared u:object_r:fs_bpf_net_shared:s0
 genfscon bpf /netd_readonly u:object_r:fs_bpf_netd_readonly:s0
 genfscon bpf /netd_shared u:object_r:fs_bpf_netd_shared:s0
 genfscon bpf /tethering u:object_r:fs_bpf_tethering:s0
-genfscon bpf /vendor u:object_r:fs_bpf_vendor:s0
 genfscon bpf /uprobestats u:object_r:fs_bpf_uprobestats:s0
+genfscon bpf /vendor u:object_r:fs_bpf_vendor:s0
