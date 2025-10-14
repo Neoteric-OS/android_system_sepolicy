@@ -48,7 +48,9 @@ neverallow { domain            } bpffs_type:dir ~{ add_name create getattr mount
 neverallow { domain -bpfloader } bpffs_type:dir { add_name create open read remove_name setattr write };
 
 neverallow { domain            } bpffs_type:file ~{ create getattr map open read rename setattr write };
-neverallow { domain -bpfloader } bpffs_type:file { create map open rename setattr };
+neverallow { domain -bpfloader } bpffs_type:file { create map rename setattr };
+neverallow { domain -bpfloader } { bpffs_type -fs_bpf_dmabuf }:file { open };
+neverallow { domain -bpfloader -dumpstate -system_server } bpffs_type:file { open };
 neverallow { domain -bpfloader -gpuservice -lmkd -mediaprovider_app -netd -netutils_wrapper                -system_server                             } fs_bpf:file                { getattr read };
 neverallow { domain -bpfloader                                                                             -system_server -traced_probes              } fs_bpf_cputimeinstate:file { getattr read write };
 neverallow { domain -bpfloader -system_suspend                                                                                                        } fs_bpf_kernelwakelockduration:file { getattr read write };

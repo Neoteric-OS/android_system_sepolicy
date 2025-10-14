@@ -1,9 +1,0 @@
-# pmg memory management daemon
-type pmg, domain;
-typeattribute pmg coredomain;
-type pmg_exec, system_file_type, exec_type, file_type;
-
-init_daemon_domain(pmg)
-
-# Set pmg.enabled_aconfig
-set_prop(pmg, pmg_prop)

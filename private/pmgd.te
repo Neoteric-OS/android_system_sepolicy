@@ -1,0 +1,6 @@
+# process memory guardian daemon
+type pmgd, domain;
+typeattribute pmgd coredomain;
+type pmgd_exec, system_file_type, exec_type, file_type;
+
+init_daemon_domain(pmgd)

@@ -332,7 +332,7 @@
 /system/bin/llkd        u:object_r:llkd_exec:s0
 /system/bin/lmkd        u:object_r:lmkd_exec:s0
 /system/bin/mmd         u:object_r:mmd_exec:s0
-/system/bin/pmg         u:object_r:pmg_exec:s0
+/system/bin/pmgd        u:object_r:pmgd_exec:s0
 /system/bin/usbd   u:object_r:usbd_exec:s0
 /system/bin/inputflinger u:object_r:inputflinger_exec:s0
 /system/bin/logd        u:object_r:logd_exec:s0
