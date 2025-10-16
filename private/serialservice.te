@@ -26,3 +26,6 @@ allow serialservice { serial_device usb_serial_device }:chr_file rw_file_perms;
 
 # Allow serialservice to read USB sysfs to read vid:pid information
 r_dir_file(serialservice, sysfs_usb)
+
+# stat(2) on uevent file under sysfs device folders
+allow serialservice sysfs:file getattr;
