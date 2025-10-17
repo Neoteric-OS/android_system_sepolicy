@@ -244,7 +244,7 @@ def TestIsolatedAttributeConsistency(test_policy):
         "media_variant_prop": ["file"],
         "nnapi_ext_deny_product_prop": ["file"],
         "servicemanager": ["fd"],
-        "sysfs_gpu": ["file"],
+        "sysfs_gpu": ["dir", "file", "lnk_file"],
         "toolbox_exec": ["file"],
         "vendor_sysfs_public": ["file", "dir", "lnk_file"],
         "vendor_sysfs_soc": ["dir"],

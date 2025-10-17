@@ -12,7 +12,7 @@ binder_call(gpuservice, system_server)
 binder_use(gpuservice)
 
 # Access the GPU.
-allow gpuservice gpu_device:chr_file rw_file_perms;
+gpu_sphal_use(gpuservice)
 
 # GPU service will need to load GPU driver, for example Vulkan driver in order
 # to get the capability of the driver.

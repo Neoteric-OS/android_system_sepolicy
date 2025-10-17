@@ -32,10 +32,7 @@ binder_call(bootanim, audioserver)
 
 hwbinder_use(bootanim)
 
-allow bootanim gpu_device:chr_file rw_file_perms;
-allow bootanim gpu_device:dir r_dir_perms;
-allow bootanim sysfs_gpu:file r_file_perms;
-
+gpu_sphal_use(bootanim)
 # /oem access
 allow bootanim oemfs:dir r_dir_perms;
 # boot animations on oem are stored with specific label

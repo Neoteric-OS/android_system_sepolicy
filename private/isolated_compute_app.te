@@ -33,9 +33,7 @@ allow isolated_compute_app { ephemeral_app priv_app untrusted_app_all }:{ tcp_so
 allow isolated_compute_app toolbox_exec:file rx_file_perms;
 
 # Grant GPU access to isolated_compute_app as it is required for acceleration.
-allow isolated_compute_app gpu_device:chr_file rw_file_perms;
-allow isolated_compute_app gpu_device:dir r_dir_perms;
-allow isolated_compute_app sysfs_gpu:file r_file_perms;
+gpu_sphal_use(isolated_compute_app)
 
 
 #####

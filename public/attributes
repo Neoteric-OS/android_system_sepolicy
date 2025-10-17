@@ -479,12 +479,8 @@ expandattribute treble_labeling_violators false;
 attribute mapper_sphal_domain;
 expandattribute mapper_sphal_domain false;
 
-# Domains loading opengl SPHAL
-attribute opengl_sphal_domain;
-expandattribute opengl_sphal_domain false;
-
-# Domains loading vulkan SPHAL
-attribute vulkan_sphal_domain;
-expandattribute vulkan_sphal_domain false;
+# Domains loading GPU SPHAL (OpenGL / Vulkan)
+attribute gpu_sphal_domain;
+expandattribute gpu_sphal_domain false;
 
 ') # starting_at_board_api(202604)

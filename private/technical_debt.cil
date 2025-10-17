@@ -64,3 +64,16 @@
 ;     typeattribute { system_property_type && vendor_property_type } system_and_vendor_property_type;
 (typeattribute system_and_vendor_property_type)
 (typeattributeset system_and_vendor_property_type ((and (system_property_type) (vendor_property_type))))
+
+; Apps, except isolated apps, are clients of OpenGL / Vulkan SPHAL
+; Unfortunately, we can't currently express this in module policy language:
+;     typeattribute { appdomain -isolated_app } gpu_sphal_domain;
+(typeattributeset gpu_sphal_domain ((and (appdomain) ((not (isolated_app))))))
+
+; Graphics and NN HALs are clients of OpenGL / Vulkan SPHAL
+; Unfortunately, we can't currently express this in module policy language:
+;     typeattribute hal_grpahics_allocator gpu_sphal_domain;
+;     ...
+(typeattributeset gpu_sphal_domain (hal_graphics_allocator))
+(typeattributeset gpu_sphal_domain (hal_graphics_composer))
+(typeattributeset gpu_sphal_domain (hal_neuralnetworks))

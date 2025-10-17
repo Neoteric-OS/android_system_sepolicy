@@ -21,5 +21,11 @@ get_prop(hal_camera_default, camerax_extensions_prop);
 allow hal_camera_default dumpstate:fd use;
 allow hal_camera_default dumpstate:fifo_file write;
 
-allow hal_camera_default gpu_device:chr_file rw_file_perms;
-allow hal_camera_default gpu_device:dir r_dir_perms;
+until_board_api(202604, `
+    allow hal_camera_default gpu_device:chr_file rw_file_perms;
+    allow hal_camera_default gpu_device:dir r_dir_perms;
+')
+
+starting_at_board_api(202604, `
+    gpu_sphal_use(hal_camera_default)
+')
