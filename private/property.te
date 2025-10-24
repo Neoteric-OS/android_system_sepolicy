@@ -28,6 +28,7 @@ system_internal_prop(device_config_tethering_u_or_later_native_prop)
 system_internal_prop(dmesgd_start_prop)
 system_internal_prop(fastbootd_protocol_prop)
 system_internal_prop(gsid_prop)
+system_internal_prop(hsum_boot_strategy_prop)
 system_internal_prop(init_mnt_ns_prop)
 system_internal_prop(init_perf_lsm_hooks_prop)
 system_internal_prop(init_service_status_private_prop)
@@ -50,9 +51,9 @@ system_internal_prop(misctrl_prop)
 system_internal_prop(perf_drop_caches_prop)
 system_internal_prop(pm_prop)
 system_internal_prop(prefetch_service_prop)
+system_internal_prop(profcollectd_enabled_prop)
 system_internal_prop(profcollectd_node_id_prop)
 system_internal_prop(radio_cdma_ecm_prop)
-system_internal_prop(remote_prov_prop)
 system_internal_prop(remote_prov_cert_prop)
 system_internal_prop(rollback_test_prop)
 system_internal_prop(setupwizard_prop)
@@ -86,6 +87,7 @@ system_internal_prop(ctl_artd_pre_reboot_prop)
 system_internal_prop(trusty_security_vm_sys_prop)
 system_internal_prop(trusty_widevine_vm_sys_prop)
 system_internal_prop(hint_manager_config_prop)
+system_internal_prop(avf_vm_traced_relay_enabled_prop)
 
 # Properties which can't be written outside system
 system_restricted_prop(binder_cache_adservices_server_prop)
@@ -99,6 +101,7 @@ system_restricted_prop(persist_sysui_builder_extras_prop)
 system_restricted_prop(persist_sysui_ranking_update_prop)
 system_restricted_prop(page_size_prop)
 system_restricted_prop(pm_16kb_app_compat_prop)
+system_restricted_prop(remote_prov_prop)
 system_restricted_prop(service_sf_present_timestamp_prop)
 system_restricted_prop(statsd_atoms_list_version_prop)
 system_restricted_prop(trusty_coverage_prop)
@@ -115,6 +118,7 @@ system_vendor_config_prop(usb_disable_when_locked_prop)
 system_vendor_config_prop(userdata_alias_remove_prop)
 until_board_api(202604, `
     system_vendor_config_prop(wallet_prop)
+    system_vendor_config_prop(usb_userspace_aoa_enabled_prop)
 ')
 
 typeattribute log_prop log_property_type;
@@ -844,6 +848,13 @@ neverallow {
   -apexd
   -vendor_init
 } apex_ready_prop:file no_rw_file_perms;
+
+neverallow {
+  # Only allow profcollectd to set profcollectd_enabled_prop
+  domain
+  -init
+  -profcollectd
+} profcollectd_enabled_prop:property_service set;
 
 neverallow {
   # Only allow init and profcollectd to access profcollectd_node_id_prop

@@ -235,6 +235,7 @@
 /dev/socket/wpa_wlan9                                             wpa_socket
 /dev/socket/zygote                                                zygote_socket
 /dev/socket/zygote_secondary                                      zygote_socket
+/dev/socket/zygote_next                                           zygote_next_socket
 /dev/socket/usap_pool_primary                                     zygote_socket
 /dev/socket/usap_pool_secondary                                   zygote_socket
 /dev/spdif_out                                                    audio_device
@@ -273,6 +274,8 @@
 /dev/uio9                                                         uio_device
 /dev/urandom                                                      random_device
 /dev/usb_accessory                                                usbaccessory_device
+/dev/usb-ffs/aoa/ep1                                              usbaccessory_device
+/dev/usb-ffs/aoa/ep2                                              usbaccessory_device
 /dev/v4l-touch                                                    input_device
 /dev/v4l-touch0                                                   input_device
 /dev/v4l-touch10                                                  input_device
@@ -341,6 +344,7 @@
 /system/bin/bootstat                                              bootstat_exec
 /system/bin/app_process32                                         zygote_exec
 /system/bin/app_process64                                         zygote_exec
+/system/bin/zygote_next                                           zygote_next_exec
 /system/bin/pbtombstone                                           pbtombstone_exec
 /system/bin/servicemanager                                        servicemanager_exec
 /system/bin/surfaceflinger                                        surfaceflinger_exec

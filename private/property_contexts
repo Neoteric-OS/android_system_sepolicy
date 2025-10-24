@@ -62,6 +62,7 @@ persist.nfc.            u:object_r:nfc_prop:s0
 persist.nfc_cfg.        u:object_r:nfc_prop:s0
 persist.debug.          u:object_r:persist_debug_prop:s0
 persist.debug.user_mode_emulation u:object_r:system_user_mode_emulation_prop:s0
+persist.user.hsum_boot_strategy      u:object_r:hsum_boot_strategy_prop:s0
 logd.                   u:object_r:logd_prop:s0
 persist.logd.           u:object_r:logd_prop:s0
 ro.logd.                u:object_r:logd_prop:s0
@@ -73,6 +74,7 @@ persist.log.tag         u:object_r:log_tag_prop:s0
 persist.mmc.            u:object_r:mmc_prop:s0
 persist.netd.stable_secret      u:object_r:netd_stable_secret_prop:s0
 persist.pm.mock-upgrade u:object_r:mock_ota_prop:s0
+persist.profcollectd.enabled    u:object_r:profcollectd_enabled_prop:s0     exact   bool
 persist.profcollectd.node_id    u:object_r:profcollectd_node_id_prop:s0     exact   string
 persist.sys.            u:object_r:system_prop:s0
 persist.sys.safemode    u:object_r:safemode_prop:s0
@@ -87,6 +89,7 @@ persist.service.        u:object_r:system_prop:s0
 persist.service.bdroid. u:object_r:bluetooth_prop:s0
 persist.security.       u:object_r:system_prop:s0
 persist.traced.enable   u:object_r:traced_enabled_prop:s0
+persist.avf_vm.traced_relay.enable.   u:object_r:avf_vm_traced_relay_enabled_prop:s0
 traced.lazy.            u:object_r:traced_lazy_prop:s0
 traced_relay.relay_port u:object_r:traced_relay_relay_port_prop:s0
 ro.traced.              u:object_r:traced_config_prop:s0
@@ -127,6 +130,7 @@ suspend.sleep_time_scale_factor u:object_r:suspend_prop:s0 exact double
 suspend.failed_suspend_backoff_enabled u:object_r:suspend_prop:s0 exact bool
 suspend.short_suspend_backoff_enabled u:object_r:suspend_prop:s0 exact bool
 suspend.disable_sync_on_suspend u:object_r:suspend_prop:s0 exact bool
+suspend.post_resume_min_stay_awake_time_millis u:object_r:suspend_prop:s0 exact uint
 
 # Suspend service debug properties
 suspend.debug.wakestats_log.enabled u:object_r:suspend_debug_prop:s0 exact bool
@@ -680,6 +684,8 @@ bluetooth.core.le_audio.codec_extension_aidl.enabled u:object_r:bluetooth_config
 bluetooth.device.default_name                        u:object_r:bluetooth_config_prop:s0 exact string
 bluetooth.device.class_of_device                     u:object_r:bluetooth_config_prop:s0 exact string
 
+bluetooth.power.suspend.hid_wake_up.enabled          u:object_r:bluetooth_config_prop:s0 exact bool
+
 bluetooth.profile.a2dp.sink.enabled                  u:object_r:bluetooth_config_prop:s0 exact bool
 bluetooth.profile.a2dp.source.enabled                u:object_r:bluetooth_config_prop:s0 exact bool
 bluetooth.profile.asha.central.enabled               u:object_r:bluetooth_config_prop:s0 exact bool
@@ -891,9 +897,10 @@ ro.media.xml_variant.codecs             u:object_r:media_variant_prop:s0 exact s
 ro.media.xml_variant.codecs_performance u:object_r:media_variant_prop:s0 exact string
 ro.media.xml_variant.profiles           u:object_r:media_variant_prop:s0 exact string
 
-ro.minui.default_rotation u:object_r:recovery_config_prop:s0 exact string
-ro.minui.overscan_percent u:object_r:recovery_config_prop:s0 exact int
-ro.minui.pixel_format     u:object_r:recovery_config_prop:s0 exact string
+ro.minui.default_rotation        u:object_r:recovery_config_prop:s0 exact string
+ro.minui.overscan_percent        u:object_r:recovery_config_prop:s0 exact int
+ro.minui.pixel_format            u:object_r:recovery_config_prop:s0 exact string
+ro.minui.no_initial_modset_flush u:object_r:recovery_config_prop:s0 exact bool
 
 ro.oem_unlock_supported u:object_r:oem_unlock_prop:s0 exact int
 
@@ -1616,6 +1623,7 @@ persist.graphics.egl             u:object_r:graphics_config_writable_prop:s0 exa
 ro.cpuvulkan.version u:object_r:graphics_config_prop:s0 exact int
 
 ro.vulkan.apex          u:object_r:graphics_config_prop:s0 exact string
+ro.egl.apex             u:object_r:graphics_config_prop:s0 exact string
 
 # surfaceflinger-settable
 graphics.display.kernel_idle_timer.enabled u:object_r:surfaceflinger_display_prop:s0 exact bool
@@ -1794,6 +1802,9 @@ vibrator.adaptive_haptics.enabled u:object_r:adaptive_haptics_prop:s0 exact stri
 
 # UVC Gadget property
 ro.usb.uvc.enabled      u:object_r:usb_uvc_enabled_prop:s0 exact bool
+
+# Userspace AOA property
+ro.usb.userspace.aoa.enabled      u:object_r:usb_userspace_aoa_enabled_prop:s0 exact bool
 
 # System UI notification properties
 persist.sysui.notification.ranking_update_ashmem u:object_r:persist_sysui_ranking_update_prop:s0 exact bool

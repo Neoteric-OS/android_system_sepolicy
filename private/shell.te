@@ -120,6 +120,9 @@ set_prop(shell, bionic_linker_16kb_app_compat_prop)
 # Allow shell to disable compat in package manager
 set_prop(shell, pm_16kb_app_compat_prop)
 
+# Allow shell to set the system property for HSUM boot strategy.
+set_prop(shell, hsum_boot_strategy_prop)
+
 # Allow shell to get encryption policy of /data/local/tmp/, for CTS
 allowxperm shell shell_data_file:dir ioctl {
   FS_IOC_GET_ENCRYPTION_POLICY
@@ -369,6 +372,9 @@ allow shell {
   -apex_service
   -dnsresolver_service
   -gatekeeper_service
+starting_at_board_api(202604, `
+  -hal_frp_service
+')
   -hal_keymint_service
   -hal_secureclock_service
   -hal_sharedsecret_service
@@ -515,6 +521,9 @@ recovery_only(`
 # Do not allow shell to talk directly to security HAL services other than
 # hal_remotelyprovisionedcomponent_service
 neverallow shell {
+starting_at_board_api(202604, `
+  hal_frp_service
+')
   hal_keymint_service
   hal_secureclock_service
   hal_sharedsecret_service
