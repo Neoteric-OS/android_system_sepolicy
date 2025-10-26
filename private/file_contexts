@@ -332,6 +332,7 @@
 /system/bin/llkd        u:object_r:llkd_exec:s0
 /system/bin/lmkd        u:object_r:lmkd_exec:s0
 /system/bin/mmd         u:object_r:mmd_exec:s0
+/system/bin/mmd_setup   u:object_r:mmd_setup_exec:s0
 /system/bin/pmgd        u:object_r:pmgd_exec:s0
 /system/bin/usbd   u:object_r:usbd_exec:s0
 /system/bin/inputflinger u:object_r:inputflinger_exec:s0
@@ -658,6 +659,7 @@
 /data/user                u:object_r:system_userdir_file:s0
 /data/user_de             u:object_r:system_userdir_file:s0
 /data/storage_area        u:object_r:system_userdir_file:s0
+/data/per_boot/zram       u:object_r:zram_data_file:s0
 
 # Misc data
 /data/misc/adb(/.*)?            u:object_r:adb_keys_file:s0
@@ -779,6 +781,8 @@
 # Iris vendor data file
 /data/vendor_de/[0-9]+/irisdata(/.*)? u:object_r:iris_vendor_data_file:s0
 
+# wifi vendor data file
+/data/vendor_ce/[0-9]+/wifi(/.*)? u:object_r:wifi_vendor_data_file:s0
 # Bootchart data
 /data/bootchart(/.*)?		u:object_r:bootchart_data_file:s0
 

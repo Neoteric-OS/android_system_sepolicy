@@ -29,6 +29,10 @@ allow traced perfetto_traces_data_file:dir rw_dir_perms;
 allow traced perfetto_traces_bugreport_data_file:file create_file_perms;
 allow traced perfetto_traces_bugreport_data_file:dir rw_dir_perms;
 
+# Allow the service to create new files within /data/misc/perfetto-traces/profiling
+allow traced perfetto_traces_profiling_data_file:file create_file_perms;
+allow traced perfetto_traces_profiling_data_file:dir rw_dir_perms;
+
 # Allow traceur to pass open file descriptors to traced, so traced can directly
 # write into the output file without doing roundtrips over IPC.
 allow traced traceur_app:fd use;
@@ -113,6 +117,7 @@ neverallow traced {
   data_file_type
   -perfetto_traces_data_file
   -perfetto_traces_bugreport_data_file
+  -perfetto_traces_profiling_data_file
   -system_data_file
   -system_data_root_file
   -media_userdir_file
@@ -128,6 +133,7 @@ neverallow traced {
   data_file_type
   -perfetto_traces_data_file
   -perfetto_traces_bugreport_data_file
+  -perfetto_traces_profiling_data_file
   -trace_data_file
   with_native_coverage(`-method_trace_data_file')
 }:file ~write;

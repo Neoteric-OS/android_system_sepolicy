@@ -287,4 +287,7 @@ until_board_api(202604, `
     type sysfs_powercap, fs_type, sysfs_type;
 ')
 
+# Type for wifi template file
+type wifi_vendor_data_file, file_type, data_file_type;
+
 type zygote_next_socket, file_type, coredomain_socket;

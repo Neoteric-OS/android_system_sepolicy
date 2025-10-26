@@ -102,7 +102,7 @@ allow {
 } statsd_atoms_list_file:file r_file_perms;
 
 set_prop(statsd, statsd_atoms_list_version_prop)
-get_prop(coredomain, statsd_atoms_list_version_prop)
+get_prop(domain, statsd_atoms_list_version_prop)
 
 # Allow statsd to make binder calls to any binder service.
 binder_call(statsd, appdomain)

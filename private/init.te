@@ -746,8 +746,9 @@ allow init kernel:process { getsched setsched };
 # swapon() needs write access to swap device
 # system/core/fs_mgr/fs_mgr.c - fs_mgr_swapon_all
 allow init swap_block_device:blk_file rw_file_perms;
-# Allow to change group owner and permissions for new swap setup in mmd
-allow init swap_block_device:blk_file setattr;
+# Allow updating zram permissions to grant mmd access. The zram[0-9]* file
+# can be either swap_block_device or ram_device.
+allow init { ram_device swap_block_device }:blk_file setattr;
 
 # Create and access /dev files without a specific type,
 # e.g. /dev/.coldboot_done, /dev/.booting

@@ -1880,6 +1880,7 @@ widevine.liboemcrypto.path          u:object_r:drm_config_prop:s0 exact string
 mmd. u:object_r:mmd_prop:s0
 mmd.zram.enabled u:object_r:mmd_shared_prop:s0 exact bool
 mmd.enabled_aconfig u:object_r:mmd_shared_status_prop:s0 exact bool
+mmd.setup_complete u:object_r:mmd_shared_status_prop:s0 exact bool
 mmd.status. u:object_r:mmd_status_prop:s0
 
 # Properties for USB data protection features
