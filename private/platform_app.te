@@ -12,7 +12,7 @@ net_domain(platform_app)
 bluetooth_domain(platform_app)
 # Read from /data/local/tmp or /data/data/com.android.shell.
 allow platform_app shell_data_file:dir search;
-allow platform_app shell_data_file:file { open getattr read };
+allow platform_app shell_data_file:file { open getattr read map };
 allow platform_app icon_file:file { open getattr read };
 # Populate /data/app/vmdl*.tmp, /data/app-private/vmdl*.tmp files
 # created by system server.

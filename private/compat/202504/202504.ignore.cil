@@ -7,6 +7,7 @@
   ( new_objects
     hal_bluetooth_lpp_service
     hal_frp_service
+    hal_npu_scheduling_service
     init_dev_config
     init_dev_config_exec
     native_serial_service

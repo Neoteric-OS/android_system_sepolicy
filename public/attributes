@@ -483,4 +483,7 @@ expandattribute mapper_sphal_domain false;
 attribute gpu_sphal_domain;
 expandattribute gpu_sphal_domain false;
 
+# NPU Scheduling HAL
+hal_attribute(npu_scheduling);
+
 ') # starting_at_board_api(202604)
