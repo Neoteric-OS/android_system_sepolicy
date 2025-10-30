@@ -73,6 +73,9 @@ android.hardware.media.c2.IComponentStore/software                   u:object_r:
 android.hardware.memtrack.IMemtrack/default                          u:object_r:hal_memtrack_service:s0
 android.hardware.net.nlinterceptor.IInterceptor/default              u:object_r:hal_nlinterceptor_service:s0
 android.hardware.nfc.INfc/default                                    u:object_r:hal_nfc_service:s0
+starting_at_board_api(202604, `
+  android.hardware.npu.IScheduling/default                             u:object_r:hal_npu_scheduling_service:s0
+')
 android.hardware.oemlock.IOemLock/default                            u:object_r:hal_oemlock_service:s0
 android.hardware.power.IPower/default                                u:object_r:hal_power_service:s0
 android.hardware.power.stats.IPowerStats/default                     u:object_r:hal_power_stats_service:s0
@@ -117,6 +120,7 @@ android.hardware.gatekeeper.IGatekeeper/default                      u:object_r:
 android.hardware.security.secureclock.ISecureClock/default             u:object_r:hal_secureclock_service:s0
 android.hardware.security.see.hwcrypto.IHwCryptoKey/default          u:object_r:hal_hwcrypto_service:s0
 android.hardware.security.sharedsecret.ISharedSecret/default             u:object_r:hal_sharedsecret_service:s0
+android.hardware.security.sharedsecret.ISharedSecret/hwcrypto        u:object_r:hal_hwcrypto_service:s0
 android.hardware.sensors.ISensors/default                            u:object_r:hal_sensors_service:s0
 android.hardware.soundtrigger3.ISoundTriggerHw/default               u:object_r:hal_audio_service:s0
 android.hardware.tetheroffload.IOffload/default                      u:object_r:hal_tetheroffload_service:s0
@@ -492,6 +496,7 @@ telephony_ims                             u:object_r:radio_service:s0
 is_flag_enabled(RELEASE_TELEPHONY_MODULE, `
     telephony_phone_number                u:object_r:radio_service:s0
 ')
+talisman                                  u:object_r:talisman_service:s0
 testharness                               u:object_r:testharness_service:s0
 tethering                                 u:object_r:tethering_service:s0
 textclassification                        u:object_r:textclassification_service:s0
