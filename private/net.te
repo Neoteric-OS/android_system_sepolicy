@@ -15,7 +15,7 @@ allow {
   netdomain
   -ephemeral_app
   -mediaprovider
-  -priv_app
+  -priv_app_all
   -sdk_sandbox_all
   -untrusted_app_all
 } self:netlink_route_socket { bind nlmsg_readpriv nlmsg_getneigh };

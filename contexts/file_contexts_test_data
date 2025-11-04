@@ -407,6 +407,7 @@
 /system/bin/mmd_setup                                             mmd_setup_exec
 /system/bin/pmgd                                                  pmgd_exec
 /system/bin/usbd                                                  usbd_exec
+/system/bin/usbauthservice                                        usbauthservice_exec
 /system/bin/inputflinger                                          inputflinger_exec
 /system/bin/logd                                                  logd_exec
 /system/bin/lpdumpd                                               lpdumpd_exec
@@ -956,6 +957,7 @@
 /data/storage_area                                                system_userdir_file
 /data/misc_ce/0/storage_area_keys                                 storage_area_key_file
 /data/userdata_exp.test                                           exp_partition_data_file
+/data/per_boot                                                    per_boot_file
 /data/per_boot/zram                                               zram_data_file
 
 /data/misc/adb                                                    adb_keys_file

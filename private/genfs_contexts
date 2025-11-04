@@ -125,6 +125,7 @@ genfscon cgroup2 / u:object_r:cgroup_v2:s0
 genfscon sysfs / u:object_r:sysfs:s0
 genfscon sysfs /bus/thunderbolt/devices           u:object_r:sysfs_thunderbolt:s0
 genfscon sysfs /bus/usb/devices                   u:object_r:sysfs_usb:s0
+genfscon sysfs /module/usbcore/parameters/authorized_default u:object_r:sysfs_usbcore:s0
 genfscon sysfs /devices/cs_etm                    u:object_r:sysfs_devices_cs_etm:s0
 genfscon sysfs /devices/system/cpu u:object_r:sysfs_devices_system_cpu:s0
 genfscon sysfs /class/android_usb                 u:object_r:sysfs_android_usb:s0

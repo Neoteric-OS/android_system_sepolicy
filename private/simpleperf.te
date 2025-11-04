@@ -10,7 +10,7 @@ define(`simpleperf_profileable_apps', `{
   ephemeral_app
   isolated_app
   platform_app
-  priv_app
+  priv_app_all
   untrusted_app_all
 }')
 

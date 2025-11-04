@@ -32,6 +32,7 @@ allow mmd_setup { ram_device swap_block_device }:blk_file rw_file_perms;
 unix_socket_send(mmd_setup, statsdw, statsd)
 
 # Allow mmd_setup to manage the zram writeback file in /data/per_boot/zram
+allow mmd_setup per_boot_file:dir search;
 allow mmd_setup zram_data_file:dir w_dir_perms;
 allow mmd_setup zram_data_file:file create_file_perms;
 

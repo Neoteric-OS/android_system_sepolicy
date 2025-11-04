@@ -17,6 +17,7 @@ allow profman { artd installd }:fd use;
 # profman needs to read the embedded profile that artd extracts from an APK,
 # which is passed by a memfd.
 allow profman artd_tmpfs:file { getattr read map lock };
+allow profman artd:memfd_file { getattr read map lock };
 
 allow profman user_profile_data_file:file { getattr read write lock map };
 

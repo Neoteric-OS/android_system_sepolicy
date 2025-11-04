@@ -8,7 +8,7 @@ r_dir_file({
   -isolated_app_all
   -network_stack
   -platform_app
-  -priv_app
+  -priv_app_all
   -shell
   -sdk_sandbox_all
   -system_app
@@ -22,7 +22,7 @@ userdebug_or_eng(`
     -isolated_app_all
     -network_stack
     -platform_app
-    -priv_app
+    -priv_app_all
     -shell
     -su
     -sdk_sandbox_all
@@ -212,6 +212,7 @@ allow appdomain app_zygote:fd use;
 
 # app_zygote creates memfds and shares them via fork(2) or binder IPC
 allow appdomain app_zygote_tmpfs:file { read write getattr map };
+allow appdomain app_zygote:memfd_file { read write getattr map };
 
 # gdbserver for ndk-gdb reads the zygote.
 # valgrind needs mmap exec for zygote
@@ -520,10 +521,13 @@ with_asan(`allow appdomain asanwrapper_exec:file rx_file_perms;')
 # Read access to FDs from the DropboxManagerService.
 allow appdomain dropbox_data_file:file { getattr read };
 
-# Read tmpfs types from these processes.
+# Read tmpfs/memfd types from these processes.
 allow appdomain audioserver_tmpfs:file { getattr map read write };
 allow appdomain system_server_tmpfs:file { getattr map read write };
+allow appdomain audioserver:memfd_file { getattr map read write };
+allow appdomain system_server:memfd_file { getattr map read write };
 allow appdomain zygote_tmpfs:file { map read };
+allow appdomain zygote:memfd_file { map read };
 
 ###
 ### Neverallow rules

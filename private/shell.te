@@ -249,6 +249,7 @@ allow shell shell_key:keystore2_key { delete rebind use get_info update };
 # As this is test-only functionality, limit the use to debuggable builds
 userdebug_or_eng(`
   allow shell appdomain_tmpfs:file open;
+  allow shell appdomain:memfd_file open;
 ')
 
 # Allow shell to write db.log.detailed, db.log.slow_query_threshold*
