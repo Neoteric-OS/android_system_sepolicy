@@ -19,6 +19,7 @@
     omapi
     omapi_exec
     omapi_service
+    npu_service
     serialservice
     serialservice_exec
     sysfs_suspend_params

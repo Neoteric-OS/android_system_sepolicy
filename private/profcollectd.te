@@ -42,8 +42,9 @@ userdebug_or_eng(`
   # Allow profcollectd to ptrace.
   allow profcollectd self:global_capability_class_set sys_ptrace;
 
-  # Allow profcollectd to read its system properties.
+  # Allow profcollectd to read/write its system properties.
   get_prop(profcollectd, device_config_profcollect_native_boot_prop)
+  set_prop(profcollectd, device_config_profcollect_native_boot_prop)
   set_prop(profcollectd, profcollectd_enabled_prop)
   set_prop(profcollectd, profcollectd_node_id_prop)
 
@@ -67,4 +68,8 @@ userdebug_or_eng(`
 
   # Allow profcollectd to read kernel build id.
   allow profcollectd sysfs_kernel_notes:file r_file_perms;
+
+  # Allow profcollectd to read profcollect_native_boot device configs.
+  allow profcollectd device_config_service:service_manager find;
+  allow system_server profcollectd:fifo_file write;
 ')

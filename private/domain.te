@@ -90,8 +90,9 @@ allow domain ashmem_libcutils_device:chr_file rw_file_perms;
 # which will have similar access control as ashmem. The files are relabeled
 # when allocated by libcutils.
 allow domain tmpfs:file { getattr relabelfrom };
-allow domain ashmem_compat_memfd:file { read write getattr ioctl map relabelto };
-allowxperm domain ashmem_compat_memfd:file ioctl ashmem_ioctls;
+allow domain ashmem_compat_memfd:file { read write getattr map relabelto };
+
+allow domain self:memfd_file { create read write getattr map };
 
 # Everyone can allocate memory via libcutils, and therefore will all need
 # access to the file containing the type that libcutils must use for
@@ -551,19 +552,6 @@ get_prop(domain, binder_cache_bluetooth_server_prop)
 get_prop(domain, binder_cache_system_server_prop)
 get_prop(domain, binder_cache_telephony_server_prop)
 
-# Binderfs logs contain sensitive information about other processes.
-neverallow {
-    domain
-    -init
-    -vendor_init
-    userdebug_or_eng(`-dumpstate')
-    userdebug_or_eng(`-system_server')
-} binderfs_logs_transactions:file no_rw_file_perms;
-
-# Binderfs transaction history is less sensitive than transactions, but it
-# still contains global information about the system.
-neverallow { domain -dumpstate -init -vendor_init -system_server } binderfs_logs_transaction_history:file no_rw_file_perms;
-
 # Needed for loading kernel modules.
 # TODO(384942085): Reduce the scope.
 is_flag_disabled(RELEASE_SEPOLICY_RESTRICT_KERNEL_KEYRING_SEARCH, `
@@ -734,6 +722,17 @@ neverallow * vendor_init:binder *;
 # Binderfs logs contain sensitive information about other processes.
 neverallow { domain -dumpstate -init -vendor_init userdebug_or_eng(`-domain') } { binderfs_logs binderfs_logs_proc }:file no_rw_file_perms;
 neverallow { domain -dumpstate -init -vendor_init -system_server } binderfs_logs_stats:file no_rw_file_perms;
+neverallow {
+    domain
+    -init
+    -vendor_init
+    userdebug_or_eng(`-dumpstate')
+    userdebug_or_eng(`-system_server')
+} binderfs_logs_transactions:file no_rw_file_perms;
+
+# Binderfs transaction history is less sensitive than transactions, but it
+# still contains global information about the system.
+neverallow { domain -dumpstate -init -vendor_init -system_server } binderfs_logs_transaction_history:file no_rw_file_perms;
 
 # Don't allow raw read/write/open access to block_device
 # Rather force a relabel to a more specific type
@@ -1648,6 +1647,28 @@ neverallow {
   -untrusted_app_27
 } ashmem_device:chr_file open;
 
+neverallow {
+  domain
+  -untrusted_app_25
+  -untrusted_app_27
+  -untrusted_app_29
+  -untrusted_app_30
+  -untrusted_app_32
+  -untrusted_app_36
+  -priv_app_36
+} ashmem_compat_memfd:file ioctl;
+
+neverallow {
+  domain
+  -untrusted_app_25
+  -untrusted_app_27
+  -untrusted_app_29
+  -untrusted_app_30
+  -untrusted_app_32
+  -untrusted_app_36
+  -priv_app_36
+} domain:memfd_file ioctl;
+
 neverallow { domain -traced_probes -init -vendor_init } debugfs_tracing_printk_formats:file *;
 
 # No domains other than a select few can access the misc_block_device. This
@@ -1688,7 +1709,7 @@ neverallow {
 } self:global_capability_class_set sys_ptrace;
 
 # Limit ability to generate hardware unique device ID attestations to priv_apps
-neverallow { domain -priv_app -gmscore_app } *:keystore2_key gen_unique_id;
+neverallow { domain -priv_app_all -gmscore_app } *:keystore2_key gen_unique_id;
 neverallow { domain -system_server } *:keystore2_key use_dev_id;
 neverallow { domain -system_server } keystore:keystore2 { clear_ns lock reset unlock };
 
@@ -1862,7 +1883,7 @@ neverallow {
   -system_server
   -apexd
   -installd
-  -priv_app
+  -priv_app_all
   -virtualizationmanager
   -update_provider # WARNING: USING THIS ATTRIBUTE WILL CAUSE CTS TO FAIL!
 } staging_data_file:dir *;
@@ -1875,7 +1896,7 @@ neverallow {
   -adbd
   -kernel
   -installd
-  -priv_app
+  -priv_app_all
   -shell
   -virtualizationmanager
   -crosvm
@@ -2308,7 +2329,7 @@ neverallow {
 neverallow {
   isolated_app_all
   ephemeral_app
-  priv_app
+  priv_app_all
   sdk_sandbox_all
   untrusted_app_all
 } system_app_data_file:dir_file_class_set { create unlink open };

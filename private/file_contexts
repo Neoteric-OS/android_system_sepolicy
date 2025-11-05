@@ -335,6 +335,7 @@
 /system/bin/mmd_setup   u:object_r:mmd_setup_exec:s0
 /system/bin/pmgd        u:object_r:pmgd_exec:s0
 /system/bin/usbd   u:object_r:usbd_exec:s0
+/system/bin/usbauthservice   u:object_r:usbauthservice_exec:s0
 /system/bin/inputflinger u:object_r:inputflinger_exec:s0
 /system/bin/logd        u:object_r:logd_exec:s0
 /system/bin/lpdumpd        u:object_r:lpdumpd_exec:s0
@@ -659,6 +660,7 @@
 /data/user                u:object_r:system_userdir_file:s0
 /data/user_de             u:object_r:system_userdir_file:s0
 /data/storage_area        u:object_r:system_userdir_file:s0
+/data/per_boot(/.*)?      u:object_r:per_boot_file:s0
 /data/per_boot/zram       u:object_r:zram_data_file:s0
 
 # Misc data

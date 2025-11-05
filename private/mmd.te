@@ -61,3 +61,7 @@ allow mmd zygote_tmpfs:file write;
 allow mmd appdomain_tmpfs:file write;
 allow mmd system_server_tmpfs:file write;
 allow mmd gpu_device:chr_file write;
+allow mmd zygote:memfd_file write;
+allow mmd appdomain:memfd_file write;
+allow mmd system_server:memfd_file write;
+allow mmd gpu_device:memfd_file write;

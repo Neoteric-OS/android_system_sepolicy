@@ -657,6 +657,8 @@ starting_at_board_api(202604, `type sysfs_thunderbolt, fs_type, sysfs_type;')
 starting_at_board_api(202604, `type sysfs_typec, fs_type, sysfs_type;')
 # /sys/class/usb_power_delivery
 starting_at_board_api(202604, `type sysfs_usb_pd, fs_type, sysfs_type;')
+# /sys/modules/usbcore
+starting_at_board_api(202604, `type sysfs_usbcore, fs_type, sysfs_type;')
 
 # system/sepolicy/public is for vendor-facing type and attribute definitions.
 # DO NOT ADD allow, neverallow, or dontaudit statements here.

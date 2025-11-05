@@ -310,7 +310,11 @@ full_treble_only(`hal_client_domain(vold, hal_bootctl)')
 
 # Access userdata block device.
 allow vold userdata_block_device:blk_file rw_file_perms;
-allowxperm vold userdata_block_device:blk_file ioctl BLKSECDISCARD;
+allowxperm vold userdata_block_device:blk_file ioctl {
+    BLKCRYPTOGENERATEKEY
+    BLKCRYPTOPREPAREKEY
+    BLKSECDISCARD
+};
 
 # Access zoned block device.
 allow vold zoned_block_device:blk_file rw_file_perms;

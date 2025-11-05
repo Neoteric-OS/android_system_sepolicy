@@ -24,6 +24,8 @@ type_transition system_server system_data_file:sock_file system_unsolzygote_sock
 
 allow system_server zygote_tmpfs:file { map read write };
 allow system_server appdomain_tmpfs:file { getattr map read write };
+allow system_server zygote:memfd_file { map read write };
+allow system_server appdomain:memfd_file { getattr map read write };
 
 # For Incremental Service to check if incfs is available
 allow system_server proc_filesystems:file r_file_perms;
@@ -513,9 +515,6 @@ allow system_server sysfs_uhid:file rw_file_perms;
 
 # TODO: Remove when HALs are forced into separate processes
 allow system_server sysfs_vibrator:file { write append };
-
-# TODO: added to match above sysfs rule. Remove me?
-allow system_server sysfs_usb:file w_file_perms;
 
 # Access devices.
 allow system_server device:dir r_dir_perms;
@@ -1528,10 +1527,12 @@ neverallow system_server { ashmem_device ashmem_libcutils_device }:chr_file exec
 
 # TODO: deal with tmpfs_domain pub/priv split properly
 neverallow system_server system_server_tmpfs:file execute;
+neverallow system_server system_server:memfd_file execute;
 
 # Resources handed off by system_server_startup
 allow system_server system_server_startup:fd use;
 allow system_server system_server_startup_tmpfs:file { read write map };
+allow system_server system_server_startup:memfd_file { read write map };
 allow system_server system_server_startup:unix_dgram_socket write;
 
 # Allow system server to communicate to apexd
@@ -1787,6 +1788,9 @@ allow system_server {
 allow system_server native_serial_service:service_manager find;
 binder_call(system_server, serialservice)
 
+allow system_server usb_auth_service:service_manager find;
+binder_call(system_server, usbauthservice)
+
 # Allow system_server to talk to NPU scheduling service
 starting_at_board_api(202604, `
   hal_client_domain(system_server, hal_npu_scheduling)
@@ -1831,3 +1835,6 @@ get_prop(system_server, usb_userspace_aoa_enabled_prop)
 
 # Allow system_server to read the remote_provisioning.*.rkp_only property;
 get_prop(system_server,remote_prov_prop)
+
+# Read /proc/swaps for debugging and meminfo-related utilities.
+allow system_server proc_swaps:file { read open getattr };
