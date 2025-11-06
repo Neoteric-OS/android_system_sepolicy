@@ -104,6 +104,7 @@ func (m *versionedPolicy) GenerateAndroidBuildActions(ctx android.ModuleContext)
 
 	out := pathForModuleOut(ctx, stem)
 	rule := android.NewRuleBuilder(pctx, ctx)
+	rule.SandboxDisabled()
 
 	if proptools.String(m.properties.Base) == "" {
 		ctx.PropertyErrorf("base", "must be specified")

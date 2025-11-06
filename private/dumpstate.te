@@ -152,7 +152,7 @@ allow dumpstate perfetto_traces_bugreport_data_file:file { r_file_perms unlink }
 # zip file. These rules are to allow perfetto.te to inherit dumpstate's
 # /dev/null.
 allow perfetto dumpstate_tmpfs:file rw_file_perms;
-allow perfetto dumpstate:memfd_file { getattr open read lock map watch watch_reads write append };
+allow perfetto dumpstate:memfd_file rw_no_ioctl_file_perms;
 allow perfetto dumpstate:fd use;
 
 # system_dlkm_file for /system_dlkm partition
@@ -579,13 +579,19 @@ allow dumpstate snapshotctl_log_data_file:file r_file_perms;
 
 # Allow access to /dev/binderfs/binder_logs
 allow dumpstate binderfs_logs:dir r_dir_perms;
-allow dumpstate binderfs_logs:file r_file_perms;
-allow dumpstate binderfs_logs_proc:file r_file_perms;
-allow dumpstate binderfs_logs_stats:file r_file_perms;
 userdebug_or_eng(`
-    allow dumpstate binderfs_logs_transactions:file r_file_perms;
+  allow dumpstate {
+    binderfs_logs
+    binderfs_logs_proc
+    binderfs_logs_transactions
+  }:file r_file_perms;
 ')
-dontaudit dumpstate binderfs_logs_transactions:file r_file_perms;
+dontaudit dumpstate {
+  binderfs_logs
+  binderfs_logs_proc
+  binderfs_logs_transactions
+}:file r_file_perms;
+allow dumpstate binderfs_logs_stats:file r_file_perms;
 allow dumpstate binderfs_logs_transaction_history:file r_file_perms;
 
 use_apex_info(dumpstate)

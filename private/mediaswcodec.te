@@ -24,6 +24,8 @@ allow mediaswcodec dmabuf_system_heap_device:chr_file r_file_perms;
 allow mediaswcodec dmabuf_system_secure_heap_device:chr_file r_file_perms;
 gpu_sphal_use(mediaswcodec)
 
+allow mediaswcodec appdomain:memfd_file { getattr read write map };
+
 ###
 ### Neverallow rules
 ###

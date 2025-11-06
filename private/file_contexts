@@ -103,6 +103,7 @@
 /dev/binder		u:object_r:binder_device:s0
 /dev/block(/.*)?	u:object_r:block_device:s0
 /dev/block/by-name/zoned_device	u:object_r:zoned_block_device:s0
+/dev/block/mapper/.*\.apex	u:object_r:apex_dm_device:s0
 /dev/block/dm-[0-9]+	u:object_r:dm_device:s0
 /dev/block/ublkb[0-9]+	u:object_r:ublk_block_device:s0
 /dev/block/loop[0-9]*	u:object_r:loop_device:s0
@@ -384,7 +385,6 @@
 /system/etc/perfetto(/.*)?              u:object_r:system_perfetto_config_file:s0
 /system/etc/seccomp_policy(/.*)?        u:object_r:system_seccomp_policy_file:s0
 /system/etc/security/cacerts(/.*)?      u:object_r:system_security_cacerts_file:s0
-/system/etc/selinux/ashmem_compat_memfd_context\.txt       u:object_r:ashmem_compat_memfd_context_file:s0
 /system/etc/selinux/mapping/[0-9]+\.[0-9]+(\.compat)?\.cil       u:object_r:sepolicy_file:s0
 /system/etc/selinux/plat_mac_permissions\.xml u:object_r:mac_perms_file:s0
 /system/etc/selinux/plat_property_contexts  u:object_r:property_contexts_file:s0
@@ -599,6 +599,7 @@
 /data/userdata_exp\.[^/]+ u:object_r:exp_partition_data_file:s0
 /data/system/environ(/.*)? u:object_r:environ_system_data_file:s0
 /data/system/packages\.list u:object_r:packages_list_file:s0
+/data/system/users/user\.list u:object_r:user_list_data_file:s0
 /data/system/game_mode_intervention\.list u:object_r:game_mode_intervention_list_file:s0
 /data/unencrypted(/.*)?         u:object_r:unencrypted_data_file:s0
 /data/backup(/.*)?		u:object_r:backup_data_file:s0
