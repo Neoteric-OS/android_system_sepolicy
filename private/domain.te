@@ -26,7 +26,7 @@ allow domain proc:dir r_dir_perms;
 allow domain proc_net_type:dir search;
 r_dir_file(domain, self)
 allow domain self:{ fifo_file file } rw_file_perms;
-allow domain self:unix_dgram_socket { create_socket_perms sendto };
+allow { domain -pcc_component } self:unix_dgram_socket { create_socket_perms sendto };
 allow domain self:unix_stream_socket { create_stream_socket_perms connectto };
 
 # Inherit or receive open files from others.
@@ -81,23 +81,7 @@ allow domain ashmem_device:chr_file { getattr read ioctl lock map append write }
 # This device is used by libcutils, which is accessible to everyone.
 allow domain ashmem_libcutils_device:chr_file rw_file_perms;
 
-# memfds are initially labeled as tmpfs files. Not all processes have access
-# to tmpfs files in general, or tmpfs files associated with specific domains.
-# This is in contrast to ashmem, where all domains could access ashmem fds.
-#
-# To allow for a smoother transition from ashmem to memfd, grant the
-# ability for processes to relabel tmpfs files to ashmem_compat_memfd,
-# which will have similar access control as ashmem. The files are relabeled
-# when allocated by libcutils.
-allow domain tmpfs:file { getattr relabelfrom };
-allow domain ashmem_compat_memfd:file { read write getattr map relabelto };
-
 allow domain self:memfd_file { create read write getattr map };
-
-# Everyone can allocate memory via libcutils, and therefore will all need
-# access to the file containing the type that libcutils must use for
-# relabeling memfds.
-allow domain ashmem_compat_memfd_context_file:file r_file_perms;
 
 # /dev/binder can be accessed by ... everyone! :)
 allow { domain -hwservicemanager -vndservicemanager } binder_device:chr_file rw_file_perms;
@@ -541,7 +525,7 @@ get_prop(domain, socket_hook_prop)
 get_prop(domain, surfaceflinger_prop)
 get_prop(domain, telephony_status_prop)
 get_prop(domain, timezone_prop)
-get_prop({domain -untrusted_app_all -isolated_app_all -ephemeral_app -app_zygote },  userdebug_or_eng_prop)
+get_prop({domain -untrusted_app_all -isolated_app_all -ephemeral_app -app_zygote -pcc_component },  userdebug_or_eng_prop)
 get_prop(domain, vendor_socket_hook_prop)
 get_prop(domain, vndk_prop)
 get_prop(domain, vold_status_prop)
@@ -720,7 +704,13 @@ neverallow * init:binder *;
 neverallow * vendor_init:binder *;
 
 # Binderfs logs contain sensitive information about other processes.
-neverallow { domain -dumpstate -init -vendor_init userdebug_or_eng(`-domain') } { binderfs_logs binderfs_logs_proc }:file no_rw_file_perms;
+neverallow {
+    domain
+    -init
+    -vendor_init
+    userdebug_or_eng(`-domain')
+    userdebug_or_eng(`-dumpstate')
+} { binderfs_logs binderfs_logs_proc }:file no_rw_file_perms;
 neverallow { domain -dumpstate -init -vendor_init -system_server } binderfs_logs_stats:file no_rw_file_perms;
 neverallow {
     domain
@@ -1291,7 +1281,6 @@ full_treble_only(`
     -vendor_init
   } {
     system_file_type
-    -ashmem_compat_memfd_context_file
     -cgroup_desc_file
     -crash_dump_exec
     -file_contexts_file
@@ -1654,19 +1643,8 @@ neverallow {
   -untrusted_app_29
   -untrusted_app_30
   -untrusted_app_32
-  -untrusted_app_36
-  -priv_app_36
-} ashmem_compat_memfd:file ioctl;
-
-neverallow {
-  domain
-  -untrusted_app_25
-  -untrusted_app_27
-  -untrusted_app_29
-  -untrusted_app_30
-  -untrusted_app_32
-  -untrusted_app_36
-  -priv_app_36
+  -untrusted_app
+  -priv_app
 } domain:memfd_file ioctl;
 
 neverallow { domain -traced_probes -init -vendor_init } debugfs_tracing_printk_formats:file *;
@@ -1709,7 +1687,7 @@ neverallow {
 } self:global_capability_class_set sys_ptrace;
 
 # Limit ability to generate hardware unique device ID attestations to priv_apps
-neverallow { domain -priv_app_all -gmscore_app } *:keystore2_key gen_unique_id;
+neverallow { domain -priv_app -gmscore_app } *:keystore2_key gen_unique_id;
 neverallow { domain -system_server } *:keystore2_key use_dev_id;
 neverallow { domain -system_server } keystore:keystore2 { clear_ns lock reset unlock };
 
@@ -1883,7 +1861,7 @@ neverallow {
   -system_server
   -apexd
   -installd
-  -priv_app_all
+  -priv_app
   -virtualizationmanager
   -update_provider # WARNING: USING THIS ATTRIBUTE WILL CAUSE CTS TO FAIL!
 } staging_data_file:dir *;
@@ -1896,7 +1874,7 @@ neverallow {
   -adbd
   -kernel
   -installd
-  -priv_app_all
+  -priv_app
   -shell
   -virtualizationmanager
   -crosvm
@@ -2329,7 +2307,8 @@ neverallow {
 neverallow {
   isolated_app_all
   ephemeral_app
-  priv_app_all
+  pcc_component
+  priv_app
   sdk_sandbox_all
   untrusted_app_all
 } system_app_data_file:dir_file_class_set { create unlink open };

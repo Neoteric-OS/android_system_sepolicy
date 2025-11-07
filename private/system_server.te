@@ -461,6 +461,8 @@ allow system_server audioserver:udp_socket rw_socket_perms;
 allow system_server mediaserver:tcp_socket rw_socket_perms;
 allow system_server mediaserver:udp_socket rw_socket_perms;
 
+allow system_server audioserver:memfd_file { getattr read write map };
+
 # Use sockets received over binder from various services.
 allow system_server mediadrmserver:tcp_socket rw_socket_perms;
 allow system_server mediadrmserver:udp_socket rw_socket_perms;
@@ -1512,7 +1514,7 @@ neverallow system_server data_file_type:file no_x_file_perms;
 # The system_server may need to read from vd_device and dm_device if it uses
 # apexes mapped as block devices.
 neverallow system_server { dev_type -frp_block_device }:blk_file no_w_file_perms;
-neverallow system_server { dev_type -frp_block_device -vd_device -dm_device }:blk_file r_file_perms;
+neverallow system_server { dev_type -frp_block_device -vd_device -apex_dm_device }:blk_file r_file_perms;
 
 # system_server should never use JIT functionality
 # See https://googleprojectzero.blogspot.com/2016/12/bitunmap-attacking-android-ashmem.html
@@ -1546,7 +1548,8 @@ allow system_server apex_mnt_dir:dir r_dir_perms;
 allow system_server apex_info_file:file r_file_perms;
 
 # Allow system_server read APEX file mapped as device-mapper device
-allow system_server dm_device:blk_file r_file_perms;
+allow system_server apex_dm_device:blk_file r_file_perms;
+
 # and read the device mapper name from sysfs
 allow system_server sysfs_dm:file r_file_perms;
 
@@ -1769,6 +1772,7 @@ allow system_server pre_reboot_dexopt_file:dir { getattr search };
 # system_server needs to copy the new service-art.jar to a memfd and reopen it with the path
 # /proc/self/fd/<fd> with a classloader.
 allow system_server system_server_tmpfs:file open;
+allow system_server system_server:memfd_file open;
 
 # Allow system_server to read from postinstall scripts through STDIN, to check if the
 # otapreopt_script is still alive.

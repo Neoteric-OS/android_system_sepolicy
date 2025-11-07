@@ -93,7 +93,7 @@ neverallow {
   -traced    # For write_into_file traces.
   -dumpstate # For attaching traces to bugreports.
   -incidentd # For receiving reported traces. TODO(lalitm): remove this.
-  -priv_app_all  # For stating traces for bug-report UI.
+  -priv_app  # For stating traces for bug-report UI.
   -system_server # For accessing traces started by profiling apis.
   -trace_redactor # For accessing traces to be redacted.
 } perfetto_traces_data_file:dir *;

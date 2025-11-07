@@ -47,6 +47,7 @@ selinux_check_access(app_zygote)
 
 # Read and inspect temporary files managed by zygote.
 allow app_zygote zygote_tmpfs:file { read getattr };
+allow app_zygote zygote:memfd_file { read getattr };
 
 ######
 ###### Policy below is shared with regular zygote-spawned apps

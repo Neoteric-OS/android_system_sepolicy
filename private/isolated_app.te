@@ -14,7 +14,7 @@ allow isolated_app webviewupdate_service:service_manager find;
 
 # Allow access to network sockets received over IPC. New socket creation is not
 # permitted.
-allow isolated_app { ephemeral_app priv_app_all untrusted_app_all }:{ tcp_socket udp_socket } { rw_socket_perms_no_ioctl };
+allow isolated_app { ephemeral_app priv_app untrusted_app_all }:{ tcp_socket udp_socket } { rw_socket_perms_no_ioctl };
 
 # b/32896414: Allow accessing sdcard file descriptors passed to isolated_apps
 # by other processes. Open should never be allowed, and is blocked by

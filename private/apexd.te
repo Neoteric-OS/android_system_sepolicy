@@ -57,9 +57,10 @@ allow apexd dev_type:blk_file getattr;
 allow apexd vd_device:blk_file r_file_perms;
 
 # allow apexd to access /dev/block/dm-* (device-mapper entries)
-# setattr for dm_device:blk_file to override mtime
+# setattr for apex_dm_device:blk_file to override mtime on creation
 allow apexd dm_device:chr_file rw_file_perms;
-allow apexd dm_device:blk_file {setattr rw_file_perms};
+allow apexd dm_device:blk_file rw_file_perms;
+allow apexd apex_dm_device:blk_file {setattr rw_file_perms};
 
 # sys_admin is required to access the device-mapper and mount
 # dac_override, chown, and fowner are needed for snapshot and restore
@@ -247,3 +248,18 @@ neverallow { domain -init -apexd -keystore -system_server -update_engine -update
 neverallow { domain -init -apexd -keystore -system_server -servicemanager -update_engine -update_provider } apexd:binder call;
 
 neverallow { domain userdebug_or_eng(`-crash_dump') } apexd:process ptrace;
+
+neverallow { domain -apexd } apex_dm_device:blk_file write;
+neverallow { domain -apexd -ueventd } apex_dm_device:blk_file no_w_file_perms;
+neverallow {
+  domain
+  -adbd
+  -apexd
+  -crosvm
+  -init
+  -priv_app
+  -shell
+  -system_app
+  -system_server
+  -virtualizationmanager
+} apex_dm_device:blk_file read;

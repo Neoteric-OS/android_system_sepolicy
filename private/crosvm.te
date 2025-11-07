@@ -50,6 +50,9 @@ allow crosvm {
   is_flag_enabled(RELEASE_AVF_ENABLE_EARLY_VM, `vm_data_file')
 }:file { getattr read ioctl lock };
 
+# Updated APEXes are accessed via apex_dm_device
+allow crosvm apex_dm_device:blk_file r_file_perms;
+
 # Allow searching the directory where the composite disk images are.
 allow crosvm {
     virtualizationservice_data_file

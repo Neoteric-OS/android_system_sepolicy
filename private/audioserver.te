@@ -86,6 +86,9 @@ allow audioserver hal_audio_server:process signal;
 allow audioserver sensorservice_service:service_manager find;
 allow audioserver system_server:unix_stream_socket { read write };
 
+allow audioserver system_server:memfd_file { getattr map read write };
+allow audioserver appdomain:memfd_file { getattr map read write };
+
 # Allow using wake locks
 wakelock_use(audioserver)
 

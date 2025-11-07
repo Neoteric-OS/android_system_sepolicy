@@ -63,6 +63,9 @@ allow virtualizationmanager apex_info_file:file r_file_perms;
 allow virtualizationmanager apex_data_file:dir search;
 allow virtualizationmanager staging_data_file:file r_file_perms;
 allow virtualizationmanager staging_data_file:dir search;
+# data APEXes are moved to device-mapped block files
+allow virtualizationmanager apex_dm_device:blk_file r_file_perms;
+allow virtualizationmanager block_device:dir r_dir_perms;
 
 # Run derive_classpath in our domain
 allow virtualizationmanager derive_classpath_exec:file rx_file_perms;

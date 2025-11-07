@@ -5,6 +5,8 @@ tmpfs_domain(mediaserver)
 allow mediaserver appdomain_tmpfs:file { getattr map read write };
 allow mediaserver appdomain:memfd_file { getattr map read write };
 
+allow mediaserver audioserver:memfd_file { getattr map read write };
+
 # allocate and use graphic buffers
 hal_client_domain(mediaserver, hal_graphics_allocator)
 hal_client_domain(mediaserver, hal_configstore)

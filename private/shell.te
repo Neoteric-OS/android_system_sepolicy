@@ -165,6 +165,8 @@ allow shell vendor_apex_metadata_file:dir r_dir_perms;
 # Allow shell to read updated APEXes under /data/apex
 allow shell apex_data_file:dir search;
 allow shell staging_data_file:file r_file_perms;
+# data APEXes are moved to device-mapped block files
+allow shell apex_dm_device:blk_file r_file_perms;
 
 # Set properties.
 set_prop(shell, shell_prop)
@@ -551,7 +553,7 @@ neverallow shell {
 }:chr_file ~getattr;
 
 # Limit shell to only getattr on blk devices for host side tests.
-neverallow shell dev_type:blk_file ~getattr;
+neverallow shell {dev_type -apex_dm_device}:blk_file ~getattr;
 
 # b/30861057: Shell access to existing input devices is an abuse
 # vector. The shell user can inject events that look like they
