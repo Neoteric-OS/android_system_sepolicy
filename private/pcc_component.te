@@ -16,6 +16,10 @@ allow pcc_component { sdcard_type fuse }:file { read getattr write append ioctl 
 allow pcc_component media_rw_data_file:file { read getattr };
 allow pcc_component { sdcard_type fuse media_rw_data_file }:dir { open search read };
 
+# Required to read CTS tests data from the shell_data_file location.
+allow pcc_component shell_data_file:file r_file_perms;
+allow pcc_component shell_data_file:dir r_dir_perms;
+
 # Some apps ship with shared libraries and binaries that they write out
 # to their sandbox directory and then execute.
 allow pcc_component privapp_data_file:file { r_file_perms execute };
