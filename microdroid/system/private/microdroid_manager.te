@@ -17,6 +17,31 @@ allow microdroid_manager vd_device:blk_file rw_file_perms;
 # microdroid_manager verifies DM-verity mounted APK payload
 allow microdroid_manager dm_device:blk_file r_file_perms;
 
+# Allow microdroid_manager to set up loop-back devices.
+allow microdroid_manager loop_control_device:chr_file rw_file_perms;
+allow microdroid_manager loop_device:blk_file rw_file_perms;
+allowxperm microdroid_manager loop_device:blk_file ioctl {
+  LOOP_CLR_FD
+  LOOP_CONFIGURE
+  LOOP_CTL_GET_FREE
+};
+
+# Allow microdroid_manager to create dm-crypt devices.
+allow microdroid_manager dm_device:chr_file rw_file_perms;
+allow microdroid_manager dm_device:blk_file rw_file_perms;
+allow microdroid_manager self:global_capability_class_set sys_admin;
+
+# Allow microdroid_manager to mount encrypted assets.
+allow microdroid_manager tmpfs:dir { create mounton add_name write };
+allow microdroid_manager labeledfs:filesystem { relabelfrom };
+allow microdroid_manager encrypted_assets_fs:filesystem { mount unmount relabelfrom relabelto };
+allow microdroid_manager encrypted_assets_file:dir { create mounton };
+
+# Allow microdroid_manager to read the status of netlink sockets and determine whether ueventd is
+# ready for processing the mount events.
+# TODO(b/455543595): Have a better ueventd readiness signal to eliminate procfs parsing.
+r_dir_file(microdroid_manager, proc_net_type)
+
 # microdroid_manager can query AVF flags in the device tree
 r_dir_file(microdroid_manager, proc_dt_avf)
 r_dir_file(microdroid_manager, sysfs_dt_avf)
@@ -97,6 +122,7 @@ set_prop(microdroid_manager, ctl_apexd_vm_prop)
 set_prop(microdroid_manager, ctl_apkdmverity_prop)
 set_prop(microdroid_manager, ctl_authfs_prop)
 set_prop(microdroid_manager, ctl_seriallogging_prop)
+set_prop(microdroid_manager, ctl_ueventd_prop)
 set_prop(microdroid_manager, ctl_zipfuse_prop)
 
 # Allow microdroid_manager to set servicemanager.ready once it starts the IServiceManager service
@@ -171,6 +197,10 @@ get_prop(microdroid_manager, microdroid_encrypted_store_status_prop);
 # Allow microdroid_manager to listen for the microdroid_manager.encrypted_store.setup sysprop, so
 # that it can setup encrypted store per payload request.
 get_prop(microdroid_manager, microdroid_encrypted_store_setup_prop);
+
+# Allow microdroid_manager to read the service status, so it can determine whether
+# ueventd is running.
+get_prop(microdroid_manager, init_service_status_private_prop);
 
 # Allow microdroid_manager to read /proc/*/maps for dump
 r_dir_file(microdroid_manager, domain)
