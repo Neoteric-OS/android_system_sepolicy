@@ -30,6 +30,7 @@
 # user=_app will match any regular app process.
 # user=_isolated will match any isolated service process.
 # user=_sdksandbox will match sdk sandbox process for an app.
+# user=_pcc_components will match pcc component processes for an app.
 # Other values of user are matched against the name associated with the process
 # UID.
 # seinfo= matches aginst the seinfo tag for the app, determined from
@@ -214,3 +215,4 @@ user=_app fromRunAs=true domain=runas_app levelFrom=user
 user=_app isPrivApp=true name=com.android.virtualization.terminal domain=vmlauncher_app type=privapp_data_file levelFrom=all
 user=_app isPrivApp=true name=com.android.virtualization.terminal:* domain=vmlauncher_app type=privapp_data_file levelFrom=all
 user=_app isPrivApp=true name=com.google.android.adservices.api domain=adservices type=privapp_data_file levelFrom=all
+user=_pcc_components domain=pcc_component levelFrom=all

@@ -522,6 +522,7 @@ get_prop(domain, property_service_version_prop)
 get_prop(domain, service_sf_present_timestamp_prop)
 get_prop(domain, soc_prop)
 get_prop(domain, socket_hook_prop)
+get_prop(domain, strongbox_prop)
 get_prop(domain, surfaceflinger_prop)
 get_prop(domain, telephony_status_prop)
 get_prop(domain, timezone_prop)
@@ -711,6 +712,7 @@ neverallow {
     userdebug_or_eng(`-domain')
     userdebug_or_eng(`-dumpstate')
 } { binderfs_logs binderfs_logs_proc }:file no_rw_file_perms;
+neverallow { domain -dumpstate -init -vendor_init } binderfs_logs_state_hashed:file no_rw_file_perms;
 neverallow { domain -dumpstate -init -vendor_init -system_server } binderfs_logs_stats:file no_rw_file_perms;
 neverallow {
     domain
@@ -2005,6 +2007,7 @@ neverallow {
 define(`dac_override_allowed', `{
   apexd
   artd
+  casefolding_remover
   dnsmasq
   dumpstate
   init

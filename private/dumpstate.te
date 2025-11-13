@@ -591,6 +591,7 @@ dontaudit dumpstate {
   binderfs_logs_proc
   binderfs_logs_transactions
 }:file r_file_perms;
+allow dumpstate binderfs_logs_state_hashed:file r_file_perms;
 allow dumpstate binderfs_logs_stats:file r_file_perms;
 allow dumpstate binderfs_logs_transaction_history:file r_file_perms;
 
