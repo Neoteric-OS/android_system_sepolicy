@@ -405,6 +405,9 @@ allow shell hwservicemanager:hwservice_manager list;
 # allow shell to look through /proc/ for lsmod, ps, top, netstat, vmstat.
 r_dir_file(shell, proc_net_type)
 
+# allow shell to query the network links via netlink.
+allowxperm shell self:netlink_route_socket nlmsg RTM_GETLINK;
+
 allow shell {
   proc_asound
   proc_cgroups

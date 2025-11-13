@@ -1102,6 +1102,7 @@ ro.build.characteristics                  u:object_r:build_prop:s0 exact string
 ro.build.date                             u:object_r:build_prop:s0 exact string
 ro.build.date.utc                         u:object_r:build_prop:s0 exact int
 ro.build.description                      u:object_r:build_prop:s0 exact string
+ro.build.device_family                    u:object_r:build_prop:s0 exact string
 ro.build.display.id                       u:object_r:build_prop:s0 exact string
 ro.build.flavor                           u:object_r:build_prop:s0 exact string
 ro.build.host                             u:object_r:build_prop:s0 exact string
@@ -1114,6 +1115,7 @@ ro.build.user                             u:object_r:build_prop:s0 exact string
 ro.build.version.all_codenames            u:object_r:build_prop:s0 exact string
 ro.build.version.base_os                  u:object_r:build_prop:s0 exact string
 ro.build.version.codename                 u:object_r:build_prop:s0 exact string
+ro.build.version.emergency_base_os        u:object_r:build_prop:s0 exact string
 ro.build.version.incremental              u:object_r:build_prop:s0 exact string
 ro.build.version.min_supported_target_sdk u:object_r:build_prop:s0 exact int
 ro.build.version.preview_sdk              u:object_r:build_prop:s0 exact int
