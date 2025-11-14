@@ -76,6 +76,10 @@ userdebug_or_eng(`
   allow audioserver su:unix_stream_socket { read write };
 ')
 
+# Allow access to health and power stats for battery and power analysis.
+hal_client_domain(audioserver, hal_health)
+hal_client_domain(audioserver, hal_power_stats)
+
 # Allow write access to log tag property
 set_prop(audioserver, log_tag_prop);
 

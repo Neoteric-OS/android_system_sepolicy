@@ -123,6 +123,9 @@ set_prop(shell, pm_16kb_app_compat_prop)
 # Allow shell to set the system property for HSUM boot strategy.
 set_prop(shell, hsum_boot_strategy_prop)
 
+# Allow shell to set the casefolding override property
+set_prop(shell, casefolding_override_prop)
+
 # Allow shell to get encryption policy of /data/local/tmp/, for CTS
 allowxperm shell shell_data_file:dir ioctl {
   FS_IOC_GET_ENCRYPTION_POLICY
@@ -401,6 +404,9 @@ allow shell hwservicemanager:hwservice_manager list;
 
 # allow shell to look through /proc/ for lsmod, ps, top, netstat, vmstat.
 r_dir_file(shell, proc_net_type)
+
+# allow shell to query the network links via netlink.
+allowxperm shell self:netlink_route_socket nlmsg RTM_GETLINK;
 
 allow shell {
   proc_asound

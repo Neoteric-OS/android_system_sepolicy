@@ -187,6 +187,7 @@ var (
 		"android.hardware.automotive.evs.IEvsEnumerator/default":         EXCEPTION_NO_FUZZER,
 		"android.os.UpdateEngineService":                                 []string{"update_engine_service_fuzzer"},
 		"android.os.UpdateEngineStableService":                           []string{"update_engine_service_fuzzer"},
+		"android.os.casefoldingremover":                                  EXCEPTION_NO_FUZZER,
 		"android.frameworks.automotive.display.ICarDisplayProxy/default": EXCEPTION_NO_FUZZER,
 		"android.security.apc":                                           EXCEPTION_NO_FUZZER,
 		"android.security.authorization":                                 []string{"authorization_service_fuzzer"},

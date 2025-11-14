@@ -5,6 +5,7 @@
 (typeattribute new_objects)
 (typeattributeset new_objects
   ( new_objects
+    binderfs_logs_state_hashed
     hal_bluetooth_lpp_service
     hal_frp_service
     hal_npu_scheduling_service

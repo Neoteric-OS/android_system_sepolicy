@@ -501,6 +501,7 @@
 /system/bin/trace_redactor                                        trace_redactor_exec
 /system/bin/bert_collector                                        bert_collector_exec
 /system/bin/omapi                                                 omapi_exec
+/system/bin/casefolding_remover                                   casefolding_remover_exec
 
 /vendor                                                           vendor_file
 /vendor/does_not_exist                                            vendor_file
@@ -927,6 +928,7 @@
 /data/media/test                                                  media_rw_data_file
 /data/mediadrm                                                    media_data_file
 /data/mediadrm/test                                               media_data_file
+/data/media_temp                                                  media_userdir_file
 /data/nativetest                                                  nativetest_data_file
 /data/nativetest/test                                             nativetest_data_file
 /data/nativetest64                                                nativetest_data_file

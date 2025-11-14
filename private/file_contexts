@@ -637,6 +637,7 @@
 /data/local/tmp/ltp(/.*)?   u:object_r:nativetest_data_file:s0
 /data/local/traces(/.*)?	u:object_r:trace_data_file:s0
 /data/media             u:object_r:media_userdir_file:s0
+/data/media_temp        u:object_r:media_userdir_file:s0
 /data/media/.*          u:object_r:media_rw_data_file:s0
 /data/mediadrm(/.*)?	u:object_r:media_data_file:s0
 /data/nativetest(/.*)?	u:object_r:nativetest_data_file:s0
@@ -980,3 +981,7 @@
 #############################
 # For overlays
 /second_stage_resources/overlay_remounter u:object_r:overlay_remounter_exec:s0
+
+#############################
+# For casefolding_remover
+/system/bin/casefolding_remover u:object_r:casefolding_remover_exec:s0
