@@ -4,8 +4,10 @@ type authentication_policy_service,  app_api_service, system_api_service, system
 
 type attention_service,              system_server_service, service_manager_type;
 type bg_install_control_service,     system_api_service, system_server_service, service_manager_type;
+type binder_stats_consumer_service,  system_server_service, service_manager_type;
 type compos_service,                 service_manager_type;
 type communal_service,               app_api_service, system_server_service, service_manager_type;
+type content_restriction_service,    app_api_service, ephemeral_app_api_service, system_server_service, service_manager_type;
 type dynamic_system_service,         system_api_service, system_server_service, service_manager_type;
 type feature_flags_service,          app_api_service, system_server_service, service_manager_type;
 type fwk_devicestate_service, system_server_service, service_manager_type;
@@ -16,6 +18,7 @@ type logd_service,                   service_manager_type;
 type mediatuner_service,             app_api_service, service_manager_type;
 type mmd_service,                    service_manager_type;
 type on_device_intelligence_service, app_api_service, system_server_service, service_manager_type, isolated_compute_allowed_service;
+type omapi_service,                  service_manager_type;
 type pcc_sandbox_service,            app_api_service, system_server_service, service_manager_type;
 type profcollectd_service,           service_manager_type;
 type protolog_configuration_service, app_api_service, system_api_service, system_server_service, service_manager_type, ephemeral_app_api_service;
@@ -70,6 +73,10 @@ type theme_service,                     system_server_service, service_manager_t
 
 until_board_api(202604, `
 type hal_bluetooth_lpp_service, protected_service, hal_service_type, service_manager_type;
+')
+
+until_board_api(202604, `
+    type native_serial_service,         service_manager_type;
 ')
 
 ###

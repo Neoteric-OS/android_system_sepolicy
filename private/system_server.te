@@ -1783,10 +1783,8 @@ allow system_server {
 }:process sigkill;
 
 # Allow system_server to talk to native serial service to read metadata of and open serial ports.
-starting_at_board_api(202602, `
-    allow system_server native_serial_service:service_manager find;
-    binder_call(system_server, serialservice)
-')
+allow system_server native_serial_service:service_manager find;
+binder_call(system_server, serialservice)
 
 # Allow system server to read and write serial devices
 allow system_server { serial_device usb_serial_device }:chr_file { read write };
@@ -1824,3 +1822,6 @@ neverallow system_server *:process ptrace;
 
 # Allow system_server to read the userspace AOA enabled property.
 get_prop(system_server, usb_userspace_aoa_enabled_prop)
+
+# Allow system_server to read the remote_provisioning.*.rkp_only property;
+get_prop(system_server,remote_prov_prop)

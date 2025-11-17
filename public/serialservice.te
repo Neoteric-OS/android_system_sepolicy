@@ -1,6 +1,6 @@
 # Native serial service that interacts with kernel interfaces to support wired serial ports
 
-starting_at_board_api(202602, `
+starting_at_board_api(202604, `
     type serialservice, domain;
 ')
 
