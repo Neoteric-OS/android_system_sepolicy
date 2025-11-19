@@ -17,3 +17,6 @@ allow hal_usb_gadget_server proc_interrupts:file r_file_perms;
 
 # Read access to ro.usb.uvc.enabled
 get_prop(hal_usb_gadget_server, usb_uvc_enabled_prop)
+
+# Read access to ro.usb.userspace.aoa.enabled
+get_prop(hal_usb_gadget_server, usb_userspace_aoa_enabled_prop)

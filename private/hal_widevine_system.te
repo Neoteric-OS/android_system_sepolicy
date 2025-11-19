@@ -15,5 +15,5 @@ allow hal_widevine_system accessor_trusty_widevine_comm_service:service_manager 
 allow hal_widevine_system trusty_widevine_comm_service:service_manager { find };
 
 # allow hal_widevine_system to use file descriptors from early_virtmgr
-allow hal_widevine_system early_virtmgr:fd { use };
-allow hal_widevine_system early_virtmgr:vsock_socket { getattr getopt read write };
+allow hal_widevine_system early_virtmgr_domain:fd { use };
+allow hal_widevine_system early_virtmgr_domain:vsock_socket { getattr getopt read write };

@@ -5,6 +5,7 @@ package selinux
 import (
 	"bytes"
 	"github.com/google/blueprint/gobtools"
+	"github.com/google/blueprint/proptools"
 )
 
 // begin of cil_compat_map.go
@@ -19,6 +20,15 @@ func (r CilCompatMapGeneratorInfo) Encode(ctx gobtools.EncContext, buf *bytes.Bu
 		return err
 	}
 	return err
+}
+
+func (r CilCompatMapGeneratorInfo) CustomHash(hasher *proptools.Hasher) error {
+	hasher.WriteString(":selinux.CilCompatMapGeneratorInfo")
+	hasher.WriteInt(1)
+	if err := r.GeneratedMapFile.CustomHash(hasher); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (r *CilCompatMapGeneratorInfo) Decode(ctx gobtools.EncContext, buf *bytes.Reader) error {
@@ -63,6 +73,18 @@ func (r flagsInfo) Encode(ctx gobtools.EncContext, buf *bytes.Buffer) error {
 		}
 	}
 	return err
+}
+
+func (r flagsInfo) CustomHash(hasher *proptools.Hasher) error {
+	hasher.WriteString(":selinux.flagsInfo")
+	hasher.WriteInt(1)
+	hasher.WriteString(":.[]string")
+	hasher.WriteInt(len(r.Flags))
+	for val1 := 0; val1 < len(r.Flags); val1++ {
+		hasher.WriteString(":.string")
+		hasher.WriteString(r.Flags[val1])
+	}
+	return nil
 }
 
 func (r *flagsInfo) Decode(ctx gobtools.EncContext, buf *bytes.Reader) error {
@@ -113,6 +135,25 @@ func (r buildFlagsInfo) Encode(ctx gobtools.EncContext, buf *bytes.Buffer) error
 		}
 	}
 	return err
+}
+
+func (r buildFlagsInfo) CustomHash(hasher *proptools.Hasher) error {
+	hasher.WriteString(":selinux.buildFlagsInfo")
+	hasher.WriteInt(1)
+	hasher.WriteString(":.map[string]string")
+	hasher.WriteInt(len(r.BuildFlags))
+	val1 := make([]string, 0, len(r.BuildFlags))
+	for val3 := range r.BuildFlags {
+		val1 = append(val1, val3)
+	}
+	proptools.SortOrdered(val1)
+	for _, val2 := range val1 {
+		hasher.WriteString(":.string")
+		hasher.WriteString(val2)
+		hasher.WriteString(":.string")
+		hasher.WriteString(r.BuildFlags[val2])
+	}
+	return nil
 }
 
 func (r *buildFlagsInfo) Decode(ctx gobtools.EncContext, buf *bytes.Reader) error {

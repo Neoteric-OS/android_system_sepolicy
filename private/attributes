@@ -23,6 +23,11 @@ attribute adbd_common;
 attribute update_provider;
 expandattribute update_provider false;
 
+# Temporary attribute to allow the app-based or native service implementation
+# of the OMAPI services. Remove once the RELEASE_NATIVE_OMAPI flag is cleaned
+# up and the app-based implementation is removed.
+attribute omapi_server;
+
 until_board_api(202604, `
 attribute treble_labeling_violators;
 expandattribute treble_labeling_violators false;
@@ -35,3 +40,8 @@ expandattribute gpu_sphal_domain false;
 
 hal_attribute(bluetooth_lpp);
 ') # until_board_api(202604)
+
+until_board_api(202604, `
+attribute virtualizationmanager_domain;
+attribute early_virtmgr_domain;
+# ') # starting_at_board_api(202604)

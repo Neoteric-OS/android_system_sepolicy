@@ -19,7 +19,7 @@
     trusty_coverage_prop
     omapi
     omapi_exec
-    omapi_service
+    omapi_server
     npu_service
     serialservice
     serialservice_exec
@@ -30,5 +30,6 @@
     wallet_prop
     anomaly_detector_service
     remote_prov_prop
-    wifi_vendor_data_file
+    wifi_vendor_user_data_file
+    wpa_user_data_file
   ))
