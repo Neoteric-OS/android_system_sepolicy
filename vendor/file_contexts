@@ -167,6 +167,9 @@ starting_at_board_api(202604, `
 #
 /data/vendor/wifi/hostapd(/.*)?                                               u:object_r:hostapd_data_file:s0
 /data/vendor/wifi/wpa(/.*)?                                                   u:object_r:wpa_data_file:s0
+starting_at_board_api(202604, `
+/data/vendor_ce/[0-9]+/wifi/wpa(/.*)?                                         u:object_r:wpa_user_data_file:s0
+') # starting_at_board_api(202604)
 
 #############################
 # Vendor libraries loaded from SP-HAL (former VNDK-SP)

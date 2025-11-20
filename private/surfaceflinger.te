@@ -71,6 +71,8 @@ get_prop(surfaceflinger, device_config_surface_flinger_native_boot_prop)
 # Use open files supplied by an app.
 allow surfaceflinger appdomain:fd use;
 allow surfaceflinger { app_data_file privapp_data_file }:file { read write };
+# lut_shared_mem buffer access
+allow surfaceflinger appdomain:memfd_file { getattr map read write };
 
 # Allow writing surface traces to /data/misc/wmtrace.
 userdebug_or_eng(`

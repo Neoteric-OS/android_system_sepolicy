@@ -261,5 +261,5 @@ neverallow {
   -shell
   -system_app
   -system_server
-  -virtualizationmanager
+  -virtualizationmanager_domain
 } apex_dm_device:blk_file read;

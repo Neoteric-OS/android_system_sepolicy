@@ -1162,8 +1162,8 @@
 /data/vendor_ce/99/facedata/test                                  face_vendor_data_file
 /data/vendor_de/0/irisdata                                        iris_vendor_data_file
 /data/vendor_de/99/irisdata/test                                  iris_vendor_data_file
-/data/vendor_ce/0/wifi                                            wifi_vendor_data_file
-/data/vendor_ce/99/wifi/test                                      wifi_vendor_data_file
+/data/vendor_ce/0/wifi                                            wifi_vendor_user_data_file
+/data/vendor_ce/99/wifi/test                                      wifi_vendor_user_data_file
 /data/bootchart                                                   bootchart_data_file
 /data/bootchart/test                                              bootchart_data_file
 

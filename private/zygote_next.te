@@ -25,3 +25,5 @@ selinux_check_access(zygote_next)
 
 allow zygote_next self:process setcurrent;
 allow zygote_next isolated_app:process dyntransition;
+
+set_prop(zygote_next, zygote_zygote_next_server_status_prop)

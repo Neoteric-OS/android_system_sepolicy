@@ -26,7 +26,7 @@ allow domain proc:dir r_dir_perms;
 allow domain proc_net_type:dir search;
 r_dir_file(domain, self)
 allow domain self:{ fifo_file file } rw_file_perms;
-allow { domain -pcc_component } self:unix_dgram_socket { create_socket_perms sendto };
+allow domain self:unix_dgram_socket { create_socket_perms sendto };
 allow domain self:unix_stream_socket { create_stream_socket_perms connectto };
 
 # Inherit or receive open files from others.
@@ -942,8 +942,8 @@ full_treble_only(`
     -mediametrics_service
     -mediaserver_service
     -nfc_service
-    -omapi_service
     -radio_service
+    -secure_element_service
     -virtual_touchpad_service
     -vr_manager_service
     userdebug_or_eng(`-hal_face_service')
@@ -1217,7 +1217,7 @@ full_treble_only(`
         -shell_exec
         -toolbox_exec
         -virtualizationmanager_exec
-        is_flag_enabled(RELEASE_AVF_ENABLE_EARLY_VM, `-early_virtmgr_exec')
+        -early_virtmgr_exec
     }:file { entrypoint execute execute_no_trans };
 ')
 
@@ -1305,7 +1305,7 @@ full_treble_only(`
     -shell_exec
     -toolbox_exec
     -virtualizationmanager_exec
-    is_flag_enabled(RELEASE_AVF_ENABLE_EARLY_VM, `-early_virtmgr_exec')
+    -early_virtmgr_exec
   }:file *;
 ')
 
@@ -1864,7 +1864,7 @@ neverallow {
   -apexd
   -installd
   -priv_app
-  -virtualizationmanager
+  -virtualizationmanager_domain
   -update_provider # WARNING: USING THIS ATTRIBUTE WILL CAUSE CTS TO FAIL!
 } staging_data_file:dir *;
 neverallow {
@@ -1878,7 +1878,7 @@ neverallow {
   -installd
   -priv_app
   -shell
-  -virtualizationmanager
+  -virtualizationmanager_domain
   -crosvm
   -update_provider # WARNING: USING THIS ATTRIBUTE WILL CAUSE CTS TO FAIL!
 } staging_data_file:file *;
@@ -2159,8 +2159,8 @@ full_treble_only(`
     # TODO(b/37168747): clean up fwk access to /vendor
     -crash_dump
     -crosvm # loads vendor-specific disk images
-    -virtualizationmanager # loads vendor-specific disk images
-    -early_virtmgr # loads vendor-specific disk images
+    -virtualizationmanager_domain # loads vendor-specific disk images
+    -early_virtmgr_domain # loads vendor-specific disk images
     -init # starts vendor executables
     -kernel # loads /vendor/firmware
     -heapprofd
@@ -2339,8 +2339,8 @@ neverallow {
     domain
 
     # these are expected
-    is_flag_enabled(RELEASE_AVF_ENABLE_EARLY_VM, `-early_virtmgr')
-    -virtualizationmanager
+    -early_virtmgr_domain
+    -virtualizationmanager_domain
     -virtualizationservice
     -adbd_common # maybe should move to emulator/virtual device specific policy
     -traced # traced listens to connections from guest VMs

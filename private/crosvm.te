@@ -20,14 +20,14 @@ tmpfs_domain(crosvm)
 
 # Let crosvm receive file descriptors from VirtualizationService.
 allow crosvm {
-  virtualizationmanager
-  is_flag_enabled(RELEASE_AVF_ENABLE_EARLY_VM, `early_virtmgr')
+  virtualizationmanager_domain
+  is_flag_enabled(RELEASE_AVF_ENABLE_EARLY_VM, `early_virtmgr_domain')
 }:fd use;
 
 # Allow sending VirtualizationService the failure reason and console/log from the VM via pipe.
 allow crosvm {
-  virtualizationmanager
-  is_flag_enabled(RELEASE_AVF_ENABLE_EARLY_VM, `early_virtmgr')
+  virtualizationmanager_domain
+  is_flag_enabled(RELEASE_AVF_ENABLE_EARLY_VM, `early_virtmgr_domain')
 }:fifo_file write;
 
 # Let crosvm read the composite disk images (virtualizationservice_data_file), APEXes
@@ -76,8 +76,8 @@ allow crosvm self:global_capability_class_set { ipc_owner sys_nice };
 #   accept: listener socket accepting new connection
 # Note that the open permission is not given as the socket is passed by FD.
 allow crosvm {
-  virtualizationmanager
-  is_flag_enabled(RELEASE_AVF_ENABLE_EARLY_VM, `early_virtmgr')
+  virtualizationmanager_domain
+  is_flag_enabled(RELEASE_AVF_ENABLE_EARLY_VM, `early_virtmgr_domain')
 }:unix_stream_socket { accept read write getattr getopt };
 
 # Let crosvm open test artifacts under /data/local/tmp with file path. (e.g. custom pvmfw.img)
@@ -152,12 +152,12 @@ dontaudit crosvm self:netlink_generic_socket create_socket_perms_no_ioctl;
 # when the vm is created by the `vm` tool) and handed over to crosvm as FD.
 allow crosvm shell_data_file:file write;
 
-# crosvm tries to read serial device, including the write-only pipe from virtualizationmanager (to
+# crosvm tries to read serial device, including the write-only pipe from virtualizationmanager_domain (to
 # forward console/log to the host logcat).
 # crosvm only needs write permission, so dontaudit read
 dontaudit crosvm {
-  virtualizationmanager
-  is_flag_enabled(RELEASE_AVF_ENABLE_EARLY_VM, `early_virtmgr')
+  virtualizationmanager_domain
+  is_flag_enabled(RELEASE_AVF_ENABLE_EARLY_VM, `early_virtmgr_domain')
 }:fifo_file { read getattr };
 
 # Required for crosvm to start gdb-server to enable debugging of guest kernel.
@@ -170,7 +170,7 @@ allow crosvm node:tcp_socket node_bind;
 allow crosvm vfio_device:chr_file rw_file_perms;
 allow crosvm vfio_device:dir r_dir_perms;
 
-# Allow crosvm to access VM DTBO via a file created by virtualizationmanager.
+# Allow crosvm to access VM DTBO via a file created by virtualizationmanager_domain.
 allow crosvm virtualizationservice_data_file:file read;
 
 is_flag_enabled(RELEASE_AVF_ENABLE_NETWORK, `
@@ -232,14 +232,14 @@ neverallow crosvm {
   -shell_data_file
 }:file read;
 
-# Only virtualizationmanager can run crosvm
+# Only virtualizationmanager_domain can run crosvm
 # Allow vmlauncher app to launch crosvm for virtiofs
 neverallow {
   domain
   -crosvm
-  -virtualizationmanager
+  -virtualizationmanager_domain
   -vmlauncher_app
   userdebug_or_eng(`-overlay_remounter')
 
-  is_flag_enabled(RELEASE_AVF_ENABLE_EARLY_VM, `-early_virtmgr')
+  is_flag_enabled(RELEASE_AVF_ENABLE_EARLY_VM, `-early_virtmgr_domain')
 } crosvm_exec:file no_x_file_perms;

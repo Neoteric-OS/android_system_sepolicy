@@ -785,8 +785,8 @@
 # Iris vendor data file
 /data/vendor_de/[0-9]+/irisdata(/.*)? u:object_r:iris_vendor_data_file:s0
 
-# wifi vendor data file
-/data/vendor_ce/[0-9]+/wifi(/.*)? u:object_r:wifi_vendor_data_file:s0
+# wifi vendor user data file
+/data/vendor_ce/[0-9]+/wifi(/.*)? u:object_r:wifi_vendor_user_data_file:s0
 # Bootchart data
 /data/bootchart(/.*)?		u:object_r:bootchart_data_file:s0
 

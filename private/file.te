@@ -62,6 +62,9 @@ type sdk_sandbox_system_data_file, file_type, data_file_type, core_data_file_typ
 # /data/misc_{ce/de}/<user>/sdksandbox/<app-name>/* subdirectory for sdk sandbox processes
 type sdk_sandbox_data_file, file_type, data_file_type, core_data_file_type, app_data_file_type;
 
+# /data/data/{app-name}-pcc data directory for a pcc component belonging to {app-name}
+type pcc_data_file, file_type, data_file_type, core_data_file_type, app_data_file_type;
+
 # /sys/kernel/debug/kcov for coverage guided kernel fuzzing in userdebug builds.
 type debugfs_kcov, fs_type, debugfs_type;
 
@@ -284,9 +287,11 @@ until_board_api(202604, `
     type sysfs_powercap, fs_type, sysfs_type;
 ')
 
-# Type for wifi template file
-type wifi_vendor_data_file, file_type, data_file_type;
-
+# /data/vendor_ce/[0-9]+/wifi/
+until_board_api(202604, `
+type wifi_vendor_user_data_file, file_type, data_file_type;
+type wpa_user_data_file, file_type, data_file_type;
+')
 type zygote_next_socket, file_type, coredomain_socket;
 
 until_board_api(202604, `type sysfs_block, fs_type, sysfs_type;')

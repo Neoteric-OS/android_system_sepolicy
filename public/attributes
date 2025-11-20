@@ -487,3 +487,10 @@ expandattribute gpu_sphal_domain false;
 hal_attribute(npu_scheduling);
 
 ') # starting_at_board_api(202604)
+
+starting_at_board_api(202604, `
+attribute virtualizationmanager_domain;
+expandattribute virtualizationmanager_domain false;
+attribute early_virtmgr_domain;
+expandattribute early_virtmgr_domain false;
+') # starting_at_board_api(202604)
