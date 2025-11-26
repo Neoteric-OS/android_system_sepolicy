@@ -1,6 +1,9 @@
 # Define the domain for the mmd_setup service
-type mmd_setup, domain;
-typeattribute mmd_setup coredomain;
+until_board_api(202604, `
+    # define also in private to simplify rules around this type
+    type mmd_setup, domain;
+    typeattribute mmd_setup coredomain;
+')
 type mmd_setup_exec, system_file_type, exec_type, file_type;
 type zram_data_file, file_type, data_file_type, core_data_file_type;
 

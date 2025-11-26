@@ -19,7 +19,7 @@
     trusty_coverage_prop
     omapi
     omapi_exec
-    omapi_server
+    omapi_service
     npu_service
     serialservice
     serialservice_exec
@@ -32,4 +32,5 @@
     remote_prov_prop
     wifi_vendor_user_data_file
     wpa_user_data_file
+    mmd_setup
   ))

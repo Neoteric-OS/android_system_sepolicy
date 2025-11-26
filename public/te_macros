@@ -739,11 +739,9 @@ define(`use_credstore', `
 # use_omapi(domain)
 # Ability to use omapi.
 define(`use_omapi', `
-  starting_at_board_api(202604, `
-  allow $1 secure_element_service:service_manager find;
+  allow $1 omapi_service:service_manager find;
   binder_call($1, omapi)
   binder_call(omapi, $1)
-  ')
 ')
 
 ###########################################

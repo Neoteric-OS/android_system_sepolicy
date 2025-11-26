@@ -1,9 +1,9 @@
 # secure element subsystem
 typeattribute secure_element coredomain;
-typeattribute secure_element omapi_server;
 app_domain(secure_element)
 
 binder_service(secure_element)
+add_service(secure_element, secure_element_service)
 
 allow secure_element app_api_service:service_manager find;
 hal_client_domain(secure_element, hal_secure_element)
