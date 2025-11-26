@@ -914,6 +914,8 @@ ro.recovery.usb.vid          u:object_r:recovery_usb_config_prop:s0 exact string
 ro.recovery.usb.adb.pid      u:object_r:recovery_usb_config_prop:s0 exact string
 ro.recovery.usb.fastboot.pid u:object_r:recovery_usb_config_prop:s0 exact string
 
+ro.recovery.ui.graphics_timeout_ms      u:object_r:recovery_config_prop:s0 exact int
+
 ro.storage_manager.enabled     u:object_r:storagemanager_config_prop:s0 exact bool
 ro.storage_manager.show_opt_in u:object_r:storagemanager_config_prop:s0 exact bool
 
@@ -1901,6 +1903,7 @@ mmd.zram.enabled u:object_r:mmd_shared_prop:s0 exact bool
 mmd.enabled_aconfig u:object_r:mmd_shared_status_prop:s0 exact bool
 mmd.setup_complete u:object_r:mmd_shared_status_prop:s0 exact bool
 mmd.status. u:object_r:mmd_status_prop:s0
+mmd.zram.writeback.nr_tags u:object_r:mmd_config_prop:s0
 
 # Properties for USB data protection features
 ro.usb.data_protection.disable_when_locked.supported u:object_r:usb_disable_when_locked_prop:s0 exact bool

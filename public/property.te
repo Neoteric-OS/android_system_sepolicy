@@ -209,6 +209,7 @@ system_vendor_config_prop(trusty_security_vm_sys_vendor_prop)
 starting_at_board_api(202604, `
     system_vendor_config_prop(wallet_prop)
     system_vendor_config_prop(usb_userspace_aoa_enabled_prop)
+    system_vendor_config_prop(mmd_config_prop)
 ')
 
 # Properties with no restrictions

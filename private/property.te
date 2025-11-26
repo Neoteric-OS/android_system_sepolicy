@@ -125,6 +125,7 @@ system_vendor_config_prop(userdata_alias_remove_prop)
 until_board_api(202604, `
     system_vendor_config_prop(wallet_prop)
     system_vendor_config_prop(usb_userspace_aoa_enabled_prop)
+    system_vendor_config_prop(mmd_config_prop)
 ')
 
 typeattribute log_prop log_property_type;

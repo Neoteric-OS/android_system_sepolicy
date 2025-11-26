@@ -25,6 +25,7 @@ allow mediaprovider_app drmserver_service:service_manager find;
 
 # Talk to the MediaServer service
 allow mediaprovider_app mediaserver_service:service_manager find;
+allow mediaprovider_app mediaserver:memfd_file { getattr read write map };
 
 # Talk to the AudioServer service
 allow mediaprovider_app audioserver_service:service_manager find;

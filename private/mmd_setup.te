@@ -13,6 +13,7 @@ init_daemon_domain(mmd_setup)
 # Read mmd settings properties
 get_prop(mmd_setup, mmd_prop)
 get_prop(mmd_setup, mmd_shared_prop)
+get_prop(mmd_setup, mmd_config_prop)
 get_prop(mmd_setup, device_config_mmd_native_prop)
 
 # Write mmd setup related properties

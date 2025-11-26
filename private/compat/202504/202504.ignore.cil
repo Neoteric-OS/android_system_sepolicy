@@ -11,6 +11,7 @@
     hal_npu_scheduling_service
     init_dev_config
     init_dev_config_exec
+    mmd_config_prop
     native_serial_service
     pbtombstone_exec
     personal_context_service
