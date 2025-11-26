@@ -342,6 +342,7 @@ allow {
   -webview_zygote
   -vendor_init
   -app_zygote
+  -native_app_zygote
   -isolated_app_all
   -hal_configstore_server
 } binder_stats_consumer_service:service_manager find;
@@ -351,6 +352,7 @@ allow {
   -webview_zygote
   -vendor_init
   -app_zygote
+  -native_app_zygote
   -isolated_app_all
   -hal_configstore_server
 } system_server:binder call;
@@ -413,6 +415,7 @@ define(`dumpable_domain',`{
 can_profile_heap({
   dumpable_domain
   -app_zygote
+  -native_app_zygote
   -hal_configstore_server
   -logpersist
   -recovery
@@ -426,6 +429,7 @@ can_profile_heap({
 can_profile_perf({
   dumpable_domain
   -app_zygote
+  -native_app_zygote
   -hal_configstore_server
   -webview_zygote
   -zygote
@@ -565,6 +569,7 @@ allow {
   -init
   -vendor_init
   -app_zygote
+  -native_app_zygote
   -webview_zygote
   -system_server
   -artd
@@ -1316,6 +1321,7 @@ neverallow { domain -system_server } zygote_socket:sock_file write;
 neverallow { domain -system_server -webview_zygote -app_zygote } webview_zygote:unix_stream_socket connectto;
 neverallow { domain -system_server } webview_zygote:sock_file write;
 neverallow { domain -system_server } app_zygote:sock_file write;
+neverallow { domain -system_server } native_app_zygote:sock_file write;
 
 neverallow domain tombstoned_crash_socket:unix_stream_socket connectto;
 
@@ -1446,6 +1452,7 @@ neverallow {
   -simpleperf_app_runner
   -runas
   -app_zygote
+  -native_app_zygote
   -webview_zygote
   -zygote
 } {
@@ -1459,6 +1466,7 @@ neverallow {
   -simpleperf_app_runner
   -runas
   -app_zygote
+  -native_app_zygote
   -webview_zygote
   -zygote
   -zygote_next
@@ -1744,6 +1752,7 @@ neverallow {
   -adbd
   -appdomain
   -app_zygote
+  -native_app_zygote
   -artd # compile secondary dex files
   -installd
   -profman
@@ -1751,6 +1760,7 @@ neverallow {
   -runas
   -system_server
   -zygote
+  -zygote_next
 } {
   privapp_data_file
   app_data_file
@@ -1769,6 +1779,7 @@ is_flag_enabled(RELEASE_UNLOCKED_STORAGE_API, `
     -vold # encryption of storage area directories
     -vold_prepare_subdirs # creation of storage area directories
     -zygote
+    -zygote_next
   } { storage_area_dir storage_area_app_dir }:dir *;
 ')
 
@@ -1916,6 +1927,7 @@ neverallow {
     userdebug_or_eng(`-su')
     -system_server_startup # for memfd backed executable regions
     -app_zygote
+    -native_app_zygote
     -webview_zygote
     -zygote
     userdebug_or_eng(`-mediaextractor')

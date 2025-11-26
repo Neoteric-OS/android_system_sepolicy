@@ -9,6 +9,7 @@
     hal_bluetooth_lpp_service
     hal_frp_service
     hal_npu_scheduling_service
+    hal_timestamp_service
     init_dev_config
     init_dev_config_exec
     mmd_config_prop
@@ -34,4 +35,5 @@
     wifi_vendor_user_data_file
     wpa_user_data_file
     mmd_setup
+    contextual_mode_service
   ))

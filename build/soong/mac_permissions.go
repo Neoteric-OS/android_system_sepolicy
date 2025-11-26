@@ -74,7 +74,7 @@ func getAllKeyPaths(ctx android.ModuleContext, dir android.SourcePath) android.P
 }
 
 func (m *macPermissionsModule) DepsMutator(ctx android.BottomUpMutatorContext) {
-	// do nothing
+	android.AddHostToolDependencies(ctx, "insertkeys")
 }
 
 func (m *macPermissionsModule) stem() string {

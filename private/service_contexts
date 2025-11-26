@@ -150,6 +150,9 @@ android.hardware.secure_element.ISecureElement/SIM2                  u:object_r:
 android.hardware.secure_element.ISecureElement/SIM3                  u:object_r:hal_secure_element_service:s0
 android.hardware.security.secretkeeper.ISecretkeeper/default         u:object_r:hal_secretkeeper_service:s0
 android.hardware.security.secretkeeper.ISecretkeeper/nonsecure       u:object_r:hal_secretkeeper_service:s0
+starting_at_board_api(202604, `
+android.hardware.security.timestamp.ITimeStamper/default         u:object_r:hal_timestamp_service:s0
+')
 android.hardware.virtualization.capabilities.IVmCapabilitiesService/default u:object_r:hal_vm_capabilities_service:s0
 android.hardware.virtualization.capabilities.IVmCapabilitiesService/noop u:object_r:hal_vm_capabilities_service:s0
 android.system.keystore2.IKeystoreService/default                    u:object_r:keystore_service:s0
@@ -266,6 +269,7 @@ content_capture                           u:object_r:content_capture_service:s0
 content_suggestions                       u:object_r:content_suggestions_service:s0
 content_restriction                       u:object_r:content_restriction_service:s0
 contexthub                                u:object_r:contexthub_service:s0
+contextual_mode                           u:object_r:contextual_mode_service:s0
 contextual_search                         u:object_r:contextual_search_service:s0
 country_detector                          u:object_r:country_detector_service:s0
 coverage                                  u:object_r:coverage_service:s0
