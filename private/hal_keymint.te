@@ -2,6 +2,10 @@ binder_call(hal_keymint_client, hal_keymint_server)
 
 hal_attribute_service(hal_keymint, hal_keymint_service)
 hal_attribute_service(hal_keymint, hal_remotelyprovisionedcomponent_service)
+starting_at_board_api(202604, `
+  hal_attribute_service(hal_keymint, hal_timestamp_service)
+')
+
 binder_call(hal_keymint_server, servicemanager)
 
 allow { hal_keymint_server -coredomain } tee_device:chr_file rw_file_perms;

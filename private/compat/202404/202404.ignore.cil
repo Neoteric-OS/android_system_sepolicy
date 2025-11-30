@@ -19,6 +19,7 @@
     fwk_vold_service
     hal_hwcrypto_service
     hal_mediaquality_service
+    hal_timestamp_service
     hal_vm_capabilities_service
     intrusion_detection_service
     media_quality_service

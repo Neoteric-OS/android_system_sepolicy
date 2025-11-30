@@ -3,6 +3,7 @@ type ambient_context_service,        app_api_service, system_server_service, ser
 type authentication_policy_service,  app_api_service, system_api_service, system_server_service, service_manager_type;
 
 type casefolding_remover_service,    service_manager_type;
+type contextual_mode_service,        app_api_service, system_server_service, service_manager_type;
 type attention_service,              system_server_service, service_manager_type;
 type bg_install_control_service,     system_api_service, system_server_service, service_manager_type;
 type binder_stats_consumer_service,  system_server_service, service_manager_type;
@@ -19,6 +20,7 @@ type logd_service,                   service_manager_type;
 type mediatuner_service,             app_api_service, service_manager_type;
 type mmd_service,                    service_manager_type;
 type on_device_intelligence_service, app_api_service, system_server_service, service_manager_type, isolated_compute_allowed_service;
+type omapi_service,                  service_manager_type;
 type pcc_sandbox_service,            app_api_service, system_server_service, service_manager_type;
 type personal_context_service,       app_api_service, ephemeral_app_api_service, system_server_service, service_manager_type;
 type profcollectd_service,           service_manager_type;
@@ -75,7 +77,7 @@ is_flag_enabled(RELEASE_RANGING_STACK, `
     type ranging_service, app_api_service, system_server_service, service_manager_type;
 ')
 
-type theme_service,                     system_server_service, service_manager_type;
+type theme_service,                     app_api_service, system_server_service, service_manager_type;
 
 until_board_api(202604, `
 type hal_bluetooth_lpp_service, protected_service, hal_service_type, service_manager_type;

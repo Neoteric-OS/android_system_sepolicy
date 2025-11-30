@@ -534,6 +534,8 @@ allow appdomain mediaswcodec:memfd_file { getattr map read write };
 allow appdomain cameraserver:memfd_file { getattr map read write };
 # MediaBufferGroup access
 allow appdomain mediaextractor:memfd_file { getattr map read write };
+# MetadataRetrieverClient access
+allow appdomain mediaserver:memfd_file { getattr map read write };
 
 ###
 ### Neverallow rules

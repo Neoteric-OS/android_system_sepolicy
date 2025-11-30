@@ -82,7 +82,13 @@ func (m *versionedPolicy) installable() bool {
 }
 
 func (m *versionedPolicy) DepsMutator(ctx android.BottomUpMutatorContext) {
-	// do nothing
+	android.AddHostToolDependencies(ctx, "version_policy")
+	if len(m.properties.Filter_out) > 0 {
+		android.AddHostToolDependencies(ctx, "build_sepolicy")
+	}
+	if len(m.properties.Dependent_cils) > 0 {
+		android.AddHostToolDependencies(ctx, "secilc")
+	}
 }
 
 func (m *versionedPolicy) GenerateAndroidBuildActions(ctx android.ModuleContext) {
