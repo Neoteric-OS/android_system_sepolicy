@@ -45,7 +45,7 @@ allow mmd_setup loop_control_device:chr_file rw_file_perms;
 allow mmd_setup loop_device:blk_file rw_file_perms;
 allowxperm mmd_setup loop_device:blk_file ioctl LOOP_CONFIGURE;
 allow mmd_setup sysfs_loop:dir search;
-allow mmd_setup sysfs_loop:file w_file_perms;
+allow mmd_setup sysfs_loop:file rw_file_perms;
 allow mmd_setup sysfs_dm:dir r_dir_perms;
 
 # Read underlying block device queue depth to configure zram writeback.

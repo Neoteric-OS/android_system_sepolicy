@@ -500,6 +500,7 @@ r_dir_file(system_server, sysfs_usb_pd)
 allow system_server sysfs_usb_pd:file r_file_perms;
 
 # Read/write to usb for port mapping and authorization
+# Also used by UsbDeviceManager for android_kernel_aoa_enabled switch
 r_dir_file(system_server, sysfs_usb)
 allow system_server sysfs_usb:file rw_file_perms;
 
