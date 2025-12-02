@@ -36,6 +36,7 @@ userdebug_or_eng(`
   allow domain su:fd use;
   allow domain su:unix_stream_socket { connectto getattr getopt read write shutdown };
   allow domain su:unix_dgram_socket sendto;
+  allow domain su:memfd_file { getattr read write map };
 
   allow { domain -init } su:binder { call transfer };
 
@@ -947,8 +948,8 @@ full_treble_only(`
     -mediametrics_service
     -mediaserver_service
     -nfc_service
-    -omapi_service
     -radio_service
+    -secure_element_service
     -virtual_touchpad_service
     -vr_manager_service
     userdebug_or_eng(`-hal_face_service')
@@ -2351,6 +2352,7 @@ neverallow {
     domain
 
     # these are expected
+    is_flag_enabled(RELEASE_AISEAL_FRAMEWORK, `-aisealhostservice')
     -early_virtmgr_domain
     -virtualizationmanager_domain
     -virtualizationservice

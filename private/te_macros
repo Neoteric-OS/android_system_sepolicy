@@ -73,4 +73,19 @@ hal_client_domain($1_early_virtmgr, hal_secretkeeper)
 ') # early_virtmgr_use
 ') # starting_at_board_api
 
+####################################
+# aiseal_use(domain)
+# Allow domain to use AiSeal host service to manage AiSeal VMs and communicate
+# with its tenants.
+define(`aiseal_use', `
+# Allow domain to find AiSeal service.
+allow $1 aiseal_host_service:service_manager find;
+binder_call($1, aisealhostservice)
+# Allow host application that owns the tenant in AiSeal VM to read/write
+# vsock created by aisealhostservice. Notice that we do not grant permission
+# to create a vsock; the client can only use established vsock connections
+# provided by AiSeal.
+allow $1 aisealhostservice:vsock_socket { getattr getopt read write };
+')
+
 divert(0)

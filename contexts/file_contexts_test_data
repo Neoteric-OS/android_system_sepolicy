@@ -499,6 +499,7 @@
 /system/bin/android.automotive.evs.manager@1.99                   evsmanagerd_exec
 /system/bin/uprobestats                                           uprobestats_exec
 /system/bin/trace_redactor                                        trace_redactor_exec
+/system/bin/aisealhostservice                                     aisealhostservice_exec
 /system/bin/bert_collector                                        bert_collector_exec
 /system/bin/omapi                                                 omapi_exec
 /system/bin/casefolding_remover                                   casefolding_remover_exec
@@ -1121,6 +1122,8 @@
 /data/misc/update_engine_log/test                                 update_engine_log_data_file
 /data/misc/snapuserd_log                                          snapuserd_log_data_file
 /data/misc/snapuserd_log/test                                     snapuserd_log_data_file
+/data/system/aiseal                                               aiseal_data_file
+/data/system/aiseal/test                                          aiseal_data_file
 /data/system/dropbox                                              dropbox_data_file
 /data/system/dropbox/test                                         dropbox_data_file
 /data/system/heapdump                                             heapdump_data_file
