@@ -32,12 +32,14 @@ allow crosvm {
 
 # Let crosvm read the composite disk images (virtualizationservice_data_file), APEXes
 # (staging_data_file), APKs (apk_data_file and shell_data_file where the latter is for test apks in
-# /data/local/tmp), instance.img (app_data_file), and microdroid vendor image (vendor_microdroid_file).
+# /data/local/tmp), instance.img (app_data_file, privapp_data_file and aiseal_data_file), and
+# microdroid vendor image (vendor_microdroid_file).
 # Allow crosvm to read the instance image of the service VM saved in apex_virt_data_file.
 # Note that the open permission is not given as the files are passed as file descriptors.
 allow crosvm {
   virtualizationservice_data_file
   staging_data_file
+  aiseal_data_file
   apk_data_file
   app_data_file
   privapp_data_file
@@ -90,6 +92,7 @@ userdebug_or_eng(`
 # mutable disks.
 allow crosvm {
   virtualizationservice_data_file
+  aiseal_data_file
   app_data_file
   privapp_data_file
   apex_compos_data_file
@@ -196,6 +199,7 @@ r_dir_file(crosvm, nativetest_data_file)
 neverallow crosvm {
   virtualizationservice_data_file
   staging_data_file
+  aiseal_data_file
   apk_data_file
   app_data_file
   privapp_data_file

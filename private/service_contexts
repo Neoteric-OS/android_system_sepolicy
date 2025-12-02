@@ -173,6 +173,9 @@ aidl_lazy_test_1                          u:object_r:aidl_lazy_test_service:s0
 aidl_lazy_test_2                          u:object_r:aidl_lazy_test_service:s0
 aidl_lazy_test_quit                       u:object_r:aidl_lazy_test_service:s0
 aidl_lazy_cb_test                         u:object_r:aidl_lazy_test_service:s0
+is_flag_enabled(RELEASE_AISEAL_FRAMEWORK, `
+    aiseal_host                       u:object_r:aiseal_host_service:s0
+')
 alarm                                     u:object_r:alarm_service:s0
 android.hardware.automotive.evs.IEvsEnumerator/default u:object_r:evsmanagerd_service:s0
 android.os.UpdateEngineService            u:object_r:update_engine_service:s0
@@ -197,6 +200,7 @@ android.os.IAccessor/ICommService/widevine_vm_widevine u:object_r:accessor_trust
 android.widevine.trusty.commservice.ICommService/widevine_vm u:object_r:trusty_widevine_comm_service:s0
 android.os.IAccessor/IKeyMintProvisioningService/security_vm_keymint u:object_r:accessor_trusty_keymint_provisioning_service:s0
 com.android.trusty.rust.KeyMintProvisioningService.V1 u:object_r:accessor_trusty_keymint_provisioning_service:s0
+android.os.IAccessor/IProvisioning/security_vm_keymint u:object_r:accessor_trusty_keymint_provisioning_thal_service:s0
 
 is_flag_enabled(RELEASE_AVF_ENABLE_DEVICE_ASSIGNMENT, `
     android.system.virtualizationservice_internal.IVfioHandler u:object_r:vfio_handler_service:s0

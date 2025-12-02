@@ -54,6 +54,7 @@ allow virtualizationmanager_domain apk_data_file:file { getattr read };
 
 # Write access is needed for mutable partitions like instance.img
 allow virtualizationmanager_domain {
+  aiseal_data_file
   app_data_file
   apex_compos_data_file
   apex_virt_data_file

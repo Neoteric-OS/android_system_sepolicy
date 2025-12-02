@@ -5,6 +5,8 @@
 (typeattribute new_objects)
 (typeattributeset new_objects
   ( new_objects
+    aisealhostservice
+    aiseal_data_file
     binderfs_logs_state_hashed
     hal_bluetooth_lpp_service
     hal_frp_service
@@ -21,7 +23,7 @@
     trusty_coverage_prop
     omapi
     omapi_exec
-    omapi_service
+    omapi_server
     npu_service
     serialservice
     serialservice_exec

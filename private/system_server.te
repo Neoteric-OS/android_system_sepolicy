@@ -1801,6 +1801,11 @@ binder_call(system_server, serialservice)
 allow system_server usb_auth_service:service_manager find;
 binder_call(system_server, usbauthservice)
 
+# Allow system_server to access AiSeal VM
+is_flag_enabled(RELEASE_AISEAL_FRAMEWORK, `
+    aiseal_use(system_server)
+')
+
 # Allow system_server to talk to NPU scheduling service
 starting_at_board_api(202604, `
   hal_client_domain(system_server, hal_npu_scheduling)
