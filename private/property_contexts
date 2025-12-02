@@ -348,6 +348,10 @@ persist.apexd.          u:object_r:apexd_prop:s0
 persist.vendor.apex.    u:object_r:apexd_select_prop:s0
 ro.boot.vendor.apex.    u:object_r:apexd_select_prop:s0
 
+# Property that indicates if a preinstalled erofs apex can be file-backed mount.
+# The property is set by apexd at runtime after test mounting.
+apexd.config.runtime.erofs_file_backed_mount       u:object_r:apexd_private_prop:s0 exact bool
+
 # Property that indicates if an apex is ready: apex.<apex-name>.ready
 apex.                   u:object_r:apex_ready_prop:s0 prefix bool
 
@@ -864,6 +868,7 @@ hypervisor.virtualizationmanager.dump_device_tree u:object_r:hypervisor_virtuali
 # hypervisor.*: configured by the vendor to advertise capabilities of their
 # hypervisor to virtualizationservice.
 hypervisor.memory_reclaim.supported u:object_r:hypervisor_restricted_prop:s0 exact bool
+hypervisor.memory_share.supported u:object_r:hypervisor_restricted_prop:s0 exact bool
 
 ro.config.per_app_memcg         u:object_r:lmkd_config_prop:s0 exact bool
 ro.lmk.critical                 u:object_r:lmkd_config_prop:s0 exact int
