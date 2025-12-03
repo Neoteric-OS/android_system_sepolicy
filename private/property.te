@@ -105,7 +105,7 @@ system_restricted_prop(persist_sysui_ranking_update_prop)
 system_restricted_prop(page_size_prop)
 system_restricted_prop(pm_16kb_app_compat_prop)
 until_board_api(202604, `
-    system_restricted_prop(remote_prov_prop)
+    system_public_prop(remote_prov_prop)
 ')
 system_restricted_prop(service_sf_present_timestamp_prop)
 system_restricted_prop(statsd_atoms_list_version_prop)
@@ -814,6 +814,7 @@ neverallow {
   -shell
   -system_server
   -rkpdapp
+  -vendor_init
 } remote_prov_prop:property_service set;
 
 neverallow {
