@@ -40,6 +40,7 @@ is_flag_enabled(RELEASE_HARDWARE_BLUETOOTH_RANGING_SERVICE, `
 android.hardware.bluetooth.lmp_event.IBluetoothLmpEvent/default      u:object_r:hal_bluetooth_service:s0
 android.hardware.bluetooth.audio.IBluetoothAudioProviderFactory/default u:object_r:hal_audio_service:s0
 android.hardware.bluetooth.socket.IBluetoothSocket/default           u:object_r:hal_bluetooth_service:s0
+android.hardware.bluetooth.socket.IBluetoothSocket/lpp               u:object_r:hal_bluetooth_lpp_service:s0
 android.hardware.bluetooth.gatt.IBluetoothGatt/default               u:object_r:hal_bluetooth_lpp_service:s0
 android.hardware.broadcastradio.IBroadcastRadio/amfm                 u:object_r:hal_broadcastradio_service:s0
 android.hardware.broadcastradio.IBroadcastRadio/dab                  u:object_r:hal_broadcastradio_service:s0
@@ -182,8 +183,11 @@ android.system.composd                    u:object_r:compos_service:s0
 android.system.virtualizationservice      u:object_r:virtualization_service:s0
 android.os.IAccessor/ICommService/security_vm_keymint u:object_r:accessor_trusty_keymint_comm_service:s0
 android.trusty.commservice.ICommService/security_vm_keymint u:object_r:trusty_keymint_comm_service:s0
+android.os.IAccessor/IGatekeeper/security_vm_gatekeeper u:object_r:accessor_trusty_gatekeeper_service:s0
+android.os.IAccessor/sharedsecret/security_vm_shared_secret u:object_r:accessor_trusty_hwcrypto_sharedsecret_service:s0
 android.os.IAccessor/ICommService/widevine_vm_widevine u:object_r:accessor_trusty_widevine_comm_service:s0
 android.widevine.trusty.commservice.ICommService/widevine_vm u:object_r:trusty_widevine_comm_service:s0
+android.os.IAccessor/IKeyMintProvisioningService/security_vm_keymint u:object_r:accessor_trusty_keymint_provisioning_service:s0
 
 is_flag_enabled(RELEASE_AVF_ENABLE_DEVICE_ASSIGNMENT, `
     android.system.virtualizationservice_internal.IVfioHandler u:object_r:vfio_handler_service:s0
@@ -397,6 +401,7 @@ permission                                u:object_r:permission_service:s0
 permissionmgr                             u:object_r:permissionmgr_service:s0
 permission_checker                        u:object_r:permission_checker_service:s0
 persistent_data_block                     u:object_r:persistent_data_block_service:s0
+personal_context                          u:object_r:personal_context_service:s0
 phone_msim                                u:object_r:radio_service:s0
 phone1                                    u:object_r:radio_service:s0
 phone2                                    u:object_r:radio_service:s0
@@ -513,9 +518,8 @@ uri_grants                                u:object_r:uri_grants_service:s0
 usagestats                                u:object_r:usagestats_service:s0
 usb                                       u:object_r:usb_service:s0
 user                                      u:object_r:user_service:s0
-starting_at_board_api(202604, `
-    uprobestats_service                   u:object_r:uprobestats_service:s0
-')
+uprobestats_service                       u:object_r:uprobestats_service:s0
+uprobestats_bridge_service                u:object_r:uprobestats_bridge_service:s0
 uwb                                       u:object_r:uwb_service:s0
 vcn_management                            u:object_r:vcn_management_service:s0
 vibrator                                  u:object_r:vibrator_service:s0

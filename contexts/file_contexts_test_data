@@ -404,6 +404,8 @@
 /system/bin/llkd                                                  llkd_exec
 /system/bin/lmkd                                                  lmkd_exec
 /system/bin/mmd                                                   mmd_exec
+/system/bin/mmd_setup                                             mmd_setup_exec
+/system/bin/pmgd                                                  pmgd_exec
 /system/bin/usbd                                                  usbd_exec
 /system/bin/inputflinger                                          inputflinger_exec
 /system/bin/logd                                                  logd_exec
@@ -954,6 +956,7 @@
 /data/storage_area                                                system_userdir_file
 /data/misc_ce/0/storage_area_keys                                 storage_area_key_file
 /data/userdata_exp.test                                           exp_partition_data_file
+/data/per_boot/zram                                               zram_data_file
 
 /data/misc/adb                                                    adb_keys_file
 /data/misc/adb/test                                               adb_keys_file
@@ -1154,7 +1157,8 @@
 /data/vendor_ce/99/facedata/test                                  face_vendor_data_file
 /data/vendor_de/0/irisdata                                        iris_vendor_data_file
 /data/vendor_de/99/irisdata/test                                  iris_vendor_data_file
-
+/data/vendor_ce/0/wifi                                            wifi_vendor_data_file
+/data/vendor_ce/99/wifi/test                                      wifi_vendor_data_file
 /data/bootchart                                                   bootchart_data_file
 /data/bootchart/test                                              bootchart_data_file
 

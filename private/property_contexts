@@ -317,9 +317,6 @@ persist.device_config.memory_safety_native.         u:object_r:device_config_mem
 persist.device_config.tethering_u_or_later_native.  u:object_r:device_config_tethering_u_or_later_native_prop:s0
 persist.device_config.mmd_native.                   u:object_r:device_config_mmd_native_prop:s0
 
-# Properties for configuring native binder stats
-persist.sys.native_binder_stats.                    u:object_r:native_binder_stats_prop:s0
-
 # Prop indicates the apex that bundles input configuration files (*.idc,*.kl,*.kcm)
 input_device.config_file.apex    u:object_r:input_device_config_prop:s0 exact string
 
@@ -1616,8 +1613,9 @@ ro.gfx.driver.1          u:object_r:graphics_config_prop:s0 exact string
 ro.gfx.angle.supported   u:object_r:graphics_config_prop:s0 exact bool
 ro.gfx.driver_build_time u:object_r:graphics_config_prop:s0 exact int
 
-graphics.gpu.profiler.support          u:object_r:graphics_config_prop:s0 exact bool
-graphics.gpu.profiler.vulkan_layer_apk u:object_r:graphics_config_prop:s0 exact string
+graphics.gpu.profiler.support              u:object_r:graphics_config_prop:s0 exact bool
+graphics.gpu.profiler.vulkan_layer_apk     u:object_r:graphics_config_prop:s0 exact string
+graphics.gpu.profiler.counter_producer_lib u:object_r:graphics_config_prop:s0 exact string
 persist.graphics.egl             u:object_r:graphics_config_writable_prop:s0 exact string
 
 ro.cpuvulkan.version u:object_r:graphics_config_prop:s0 exact int
@@ -1882,6 +1880,7 @@ widevine.liboemcrypto.path          u:object_r:drm_config_prop:s0 exact string
 mmd. u:object_r:mmd_prop:s0
 mmd.zram.enabled u:object_r:mmd_shared_prop:s0 exact bool
 mmd.enabled_aconfig u:object_r:mmd_shared_status_prop:s0 exact bool
+mmd.setup_complete u:object_r:mmd_shared_status_prop:s0 exact bool
 mmd.status. u:object_r:mmd_status_prop:s0
 
 # Properties for USB data protection features

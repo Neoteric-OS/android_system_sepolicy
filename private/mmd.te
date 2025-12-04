@@ -15,7 +15,7 @@ get_prop(mmd, device_config_mmd_native_prop)
 add_service(mmd, mmd_service)
 binder_use(mmd)
 
-# Read /proc/swaps
+# Read /proc/swaps to check if swap is active.
 allow mmd proc_swaps:file r_file_perms;
 
 # zram sysfs access
@@ -25,12 +25,10 @@ allow mmd sysfs_zram:file rw_file_perms;
 # procfs
 allow mmd proc_meminfo:file r_file_perms;
 
-# mkswap /dev/block/zram command
+# Access to zram block device. The zram[0-9]* file itself
+# can be either swap_block_device or ram_device.
 allow mmd block_device:dir search;
-allow mmd swap_block_device:blk_file rw_file_perms;
-
-# swapon syscall
-allow mmd self:capability sys_admin;
+allow mmd { ram_device swap_block_device }:blk_file rw_file_perms;
 
 # Allow mmd to write to statsd socket.
 unix_socket_send(mmd, statsdw, statsd)
@@ -42,3 +40,24 @@ binder_call(mmd, statsd)
 # Allow mmd to send dump info to dumpstate.
 allow mmd dumpstate:fd use;
 allow mmd dumpstate:fifo_file { getattr write };
+
+# Allow mmd to issue the zram writeback ioctl.
+allowxperm mmd { ram_device swap_block_device }:blk_file ioctl ZRAM_ANDROID_IOC_PROCESS_WRITEBACK;
+
+# Necessary for zram writeback ioctl.
+allow mmd self:capability sys_nice;
+
+# Allow mmd to use pidfds received from system_server.
+allow mmd system_server:fd use;
+
+# Zram per-process writeback requires write access for files mapped
+# into the target process that are swappable (i.e. shmem). As of
+# kernel 6.17, this check is performed by can_do_file_pageout() in
+# the kernel.
+#
+# Shmem based files include tmpfs as well as some GPU objects
+# accessed via mappings of a GPU device fd.
+allow mmd zygote_tmpfs:file write;
+allow mmd appdomain_tmpfs:file write;
+allow mmd system_server_tmpfs:file write;
+allow mmd gpu_device:chr_file write;

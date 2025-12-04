@@ -42,6 +42,10 @@ allow statsd uprobestats_configs_data_file:file create_file_perms;
 # Allow statsd to trigger uprobestats via property.
 set_prop(statsd, uprobestats_start_with_config_prop);
 
+# Allow statsd to trigger uprobestats via binder call.
+allow statsd uprobestats_service:service_manager find;
+binder_call(statsd, uprobestats)
+
 # Allow statsd to use io_uring
 io_uring_use(statsd)
 
@@ -98,7 +102,7 @@ allow {
 } statsd_atoms_list_file:file r_file_perms;
 
 set_prop(statsd, statsd_atoms_list_version_prop)
-get_prop(coredomain, statsd_atoms_list_version_prop)
+get_prop(domain, statsd_atoms_list_version_prop)
 
 # Allow statsd to make binder calls to any binder service.
 binder_call(statsd, appdomain)

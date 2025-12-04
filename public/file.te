@@ -121,6 +121,7 @@ type sysfs_net, fs_type, sysfs_type;
 type sysfs_power, fs_type, sysfs_type;
 type sysfs_rtc, fs_type, sysfs_type;
 type sysfs_mem_sleep, fs_type, sysfs_type;
+starting_at_board_api(202604, `type sysfs_suspend_params, fs_type, sysfs_type;')
 type sysfs_suspend_stats, fs_type, sysfs_type;
 type sysfs_switch, fs_type, sysfs_type;
 type sysfs_sync_on_suspend, fs_type, sysfs_type;

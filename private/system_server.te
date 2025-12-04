@@ -258,6 +258,10 @@ allow system_server sysfs_cma:file r_file_perms;
 allow system_server sysfs_dmabuf_stats:dir r_dir_perms;
 allow system_server sysfs_dmabuf_stats:file r_file_perms;
 
+# Allow reading DMA-BUF bpf stats from /sys/fs/bpf/dmabuf/
+allow system_server fs_bpf_dmabuf:dir search;
+allow system_server fs_bpf_dmabuf:file { getattr open read };
+
 # Allow ActivityManager to look at the list of DMA-BUF heaps from /dev/dma_heap
 # for dumpsys meminfo
 allow system_server dmabuf_heap_device:dir r_dir_perms;
@@ -516,9 +520,7 @@ allow system_server sysfs_usb:file w_file_perms;
 # Access devices.
 allow system_server device:dir r_dir_perms;
 allow system_server mdns_socket:sock_file rw_file_perms;
-allow system_server gpu_device:chr_file rw_file_perms;
-allow system_server gpu_device:dir r_dir_perms;
-allow system_server sysfs_gpu:file r_file_perms;
+gpu_sphal_use(system_server)
 allow system_server input_device:dir r_dir_perms;
 allow system_server input_device:chr_file rw_file_perms;
 allow system_server tty_device:chr_file rw_file_perms;
@@ -864,7 +866,6 @@ set_prop(system_server, device_config_tethering_u_or_later_native_prop)
 set_prop(system_server, device_config_mmd_native_prop)
 set_prop(system_server, smart_idle_maint_enabled_prop)
 set_prop(system_server, arm64_memtag_prop)
-set_prop(system_server, native_binder_stats_prop)
 
 # staged flag properties
 set_prop(system_server, next_boot_prop)

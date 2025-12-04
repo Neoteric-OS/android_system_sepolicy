@@ -20,6 +20,7 @@ type mmd_service,                    service_manager_type;
 type on_device_intelligence_service, app_api_service, system_server_service, service_manager_type, isolated_compute_allowed_service;
 type omapi_service,                  service_manager_type;
 type pcc_sandbox_service,            app_api_service, system_server_service, service_manager_type;
+type personal_context_service,       app_api_service, ephemeral_app_api_service, system_server_service, service_manager_type;
 type profcollectd_service,           service_manager_type;
 type protolog_configuration_service, app_api_service, system_api_service, system_server_service, service_manager_type, ephemeral_app_api_service;
 type resolver_service,               system_server_service, service_manager_type;
@@ -41,8 +42,11 @@ type transparency_service,          system_server_service, service_manager_type;
 
 type accessor_trusty_keymint_comm_service, service_manager_type;
 type trusty_keymint_comm_service, service_manager_type;
+type accessor_trusty_gatekeeper_service, service_manager_type;
+type accessor_trusty_hwcrypto_sharedsecret_service, service_manager_type;
 type accessor_trusty_widevine_comm_service, service_manager_type;
 type trusty_widevine_comm_service, service_manager_type;
+type accessor_trusty_keymint_provisioning_service, service_manager_type;
 
 is_flag_enabled(RELEASE_AVF_ENABLE_DEVICE_ASSIGNMENT, `
     type vfio_handler_service,          service_manager_type;
@@ -62,7 +66,8 @@ type uce_service,                      service_manager_type;
 type wearable_sensing_service,         app_api_service, system_server_service, service_manager_type;
 type wifi_mainline_supplicant_service, service_manager_type;
 type dynamic_instrumentation_service,  app_api_service, system_server_service, service_manager_type;
-type uprobestats_service,              system_server_service, service_manager_type;
+type uprobestats_service,              service_manager_type;
+type uprobestats_bridge_service,       system_server_service, service_manager_type;
 type advanced_protection_service,      app_api_service, system_server_service, service_manager_type;
 
 is_flag_enabled(RELEASE_RANGING_STACK, `

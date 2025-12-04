@@ -29,6 +29,10 @@ allow toolbox swap_block_device:blk_file rw_file_perms;
 allow toolbox system_data_root_file:dir { remove_name write };
 allow toolbox system_data_file:dir { rmdir rw_dir_perms };
 allow toolbox system_data_file:file { getattr unlink };
+# When init.rc rm -rf's /data/per_boot at boot, toolbox needs
+# to be able to transitively delete mmd's /data/per_boot/zram
+# directory if it present.
+allow toolbox zram_data_file:dir { rmdir r_dir_perms };
 
 # chattr +F /data/media in init
 allow toolbox media_userdir_file:dir { r_dir_perms setattr };

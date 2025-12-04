@@ -29,3 +29,13 @@ neverallow {
 # Allow rootfs so prefetch can walk through directory tree and
 # create a map of inodes -> file path.
 allow prefetch rootfs:dir { open read search getattr };
+
+# Ignore denies of reading files in /product/etc/selinux/
+dontaudit prefetch file_contexts_file:file r_file_perms;
+dontaudit prefetch hwservice_contexts_file:file r_file_perms;
+dontaudit prefetch keystore2_key_contexts_file:file r_file_perms;
+dontaudit prefetch mac_perms_file:file r_file_perms;
+dontaudit prefetch property_contexts_file:file r_file_perms;
+dontaudit prefetch seapp_contexts_file:file r_file_perms;
+dontaudit prefetch service_contexts_file:file r_file_perms;
+dontaudit prefetch tee_service_contexts_file:file r_file_perms;

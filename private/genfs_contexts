@@ -189,6 +189,7 @@ genfscon sysfs /module/dm_bufio/parameters/max_age_seconds u:object_r:sysfs_dm_v
 genfscon sysfs /module/dm_verity/parameters/prefetch_cluster u:object_r:sysfs_dm_verity:s0
 genfscon sysfs /module/lowmemorykiller u:object_r:sysfs_lowmemorykiller:s0
 genfscon sysfs /module/tcp_cubic/parameters u:object_r:sysfs_net:s0
+starting_at_board_api(202604, `genfscon sysfs /module/suspend/parameters/pm_fs_abort u:object_r:sysfs_suspend_params:s0')
 genfscon sysfs /module/wlan/parameters/fwpath u:object_r:sysfs_wlan_fwpath:s0
 genfscon sysfs /devices/virtual/timed_output/vibrator/enable u:object_r:sysfs_vibrator:s0
 genfscon sysfs /devices/virtual/misc/uhid u:object_r:sysfs_uhid:s0
@@ -346,6 +347,8 @@ genfscon binfmt_misc / u:object_r:binfmt_miscfs:s0
 
 genfscon bpf / u:object_r:fs_bpf:s0
 genfscon bpf /cputimeinstate u:object_r:fs_bpf_cputimeinstate:s0
+genfscon bpf /dmabuf u:object_r:fs_bpf_dmabuf:s0
+genfscon bpf /kernelwakelockduration u:object_r:fs_bpf_kernelwakelockduration:s0
 genfscon bpf /loader u:object_r:fs_bpf_loader:s0
 genfscon bpf /memevents u:object_r:fs_bpf_memevents:s0
 genfscon bpf /net_private u:object_r:fs_bpf_net_private:s0
@@ -353,5 +356,5 @@ genfscon bpf /net_shared u:object_r:fs_bpf_net_shared:s0
 genfscon bpf /netd_readonly u:object_r:fs_bpf_netd_readonly:s0
 genfscon bpf /netd_shared u:object_r:fs_bpf_netd_shared:s0
 genfscon bpf /tethering u:object_r:fs_bpf_tethering:s0
-genfscon bpf /vendor u:object_r:fs_bpf_vendor:s0
 genfscon bpf /uprobestats u:object_r:fs_bpf_uprobestats:s0
+genfscon bpf /vendor u:object_r:fs_bpf_vendor:s0
