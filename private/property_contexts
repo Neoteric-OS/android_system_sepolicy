@@ -452,6 +452,7 @@ ro.af.client_heap_size_kbyte     u:object_r:audio_config_prop:s0 exact int
 ro.audio.flinger_standbytime_ms  u:object_r:audio_config_prop:s0 exact int
 
 audio.camerasound.force         u:object_r:audio_config_prop:s0 exact bool
+audio.camerasound.locale.enabled  u:object_r:audio_config_prop:s0 exact bool
 audio.deep_buffer.media         u:object_r:audio_config_prop:s0 exact bool
 audio.offload.video             u:object_r:audio_config_prop:s0 exact bool
 audio.offload.min.duration.secs u:object_r:audio_config_prop:s0 exact int
