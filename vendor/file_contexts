@@ -165,6 +165,7 @@ starting_at_board_api(202604, `
 #############################
 # Data files
 #
+/data/vendor/gatekeeper(/.*)?                                                 u:object_r:gatekeeper_vendor_data_file:s0
 /data/vendor/wifi/hostapd(/.*)?                                               u:object_r:hostapd_data_file:s0
 /data/vendor/wifi/wpa(/.*)?                                                   u:object_r:wpa_data_file:s0
 starting_at_board_api(202604, `

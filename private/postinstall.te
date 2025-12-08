@@ -31,6 +31,10 @@ recovery_only(`
 binder_use(postinstall)
 binder_call(postinstall, system_server)
 
+# Allow postinstall scripts to trigger f2fs garbage collection
+allow postinstall sysfs_fs_f2fs:file rw_file_perms;
+allow postinstall sysfs_fs_f2fs:dir r_dir_perms;
+
 ###
 ### Neverallow rules
 ###

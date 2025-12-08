@@ -185,5 +185,11 @@ allow virtualizationmanager_domain tee_service_contexts_file:file r_file_perms;
 # tee services.
 selinux_check_access(virtualizationmanager_domain)
 
+# virtmanager gets the vm_fd from crosvm.
+# Ideally we would want vm_fd to have it's own domain, but unfortunately currently the vm_fd created
+# by kernel is not selinux aware.
+# TODO(b/466052172): change to the specific vm_fd domain once it's possible.
+allow virtualizationmanager_domain crosvm:fd use;
+
 # don't let virtmgr give root privileges to itself
 neverallow virtualizationmanager_domain self:global_capability_class_set *;

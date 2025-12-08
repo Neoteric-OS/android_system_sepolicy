@@ -109,12 +109,14 @@ type apex_tethering_data_file, file_type, data_file_type, core_data_file_type, a
 # /data/misc/apexdata/com.android.uwb
 type apex_uwb_data_file, file_type, data_file_type, core_data_file_type, apex_data_file_type;
 
+# /data/misc/apexdata/com.android.wifi
+type apex_wifi_data_file, file_type, data_file_type, core_data_file_type, apex_data_file_type;
+
 # legacy labels for various /data/misc[_ce|_de]/*/apexdata directories - retained
 # for backward compatibility b/217581286
 type apex_appsearch_data_file, file_type, data_file_type, core_data_file_type, apex_data_file_type;
 type apex_permission_data_file, file_type, data_file_type, core_data_file_type, apex_data_file_type;
 type apex_scheduling_data_file, file_type, data_file_type, core_data_file_type, apex_data_file_type;
-type apex_wifi_data_file, file_type, data_file_type, core_data_file_type, apex_data_file_type;
 
 # Label for AppSearch data files
 # https://developer.android.com/develop/ui/views/search/appsearch
@@ -193,9 +195,6 @@ type aconfigd_mainline_socket, file_type, coredomain_socket,  mlstrustedobject;
 
 # Type for /(system|system_ext|product)/etc/aconfig
 type system_aconfig_storage_file, system_file_type, file_type;
-
-# Type for Gatekeeper file
-type gatekeeper_vendor_data_file, file_type, data_file_type;
 
 # Type for /vendor/etc/aconfig
 type vendor_aconfig_storage_file, vendor_file_type, file_type;

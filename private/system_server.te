@@ -555,6 +555,7 @@ allow system_server ota_package_file:file create_file_perms;
 allow system_server system_data_file:dir create_dir_perms;
 allow system_server system_data_file:notdevfile_class_set create_file_perms;
 allow system_server packages_list_file:file create_file_perms;
+allow system_server user_list_data_file:file create_file_perms;
 allow system_server game_mode_intervention_list_file:file create_file_perms;
 allow system_server keychain_data_file:dir create_dir_perms;
 allow system_server keychain_data_file:file create_file_perms;
@@ -1234,7 +1235,7 @@ allow system_server toolbox_exec:file rx_file_perms;
 allow system_server pbtombstone_exec:file rx_file_perms;
 
 # Allow system process to setup fs-verity
-allowxperm system_server { apk_data_file apk_tmp_file system_data_file apex_system_server_data_file }:file ioctl FS_IOC_ENABLE_VERITY;
+allowxperm system_server { apk_data_file apk_tmp_file system_data_file apex_system_server_data_file apex_wifi_data_file}:file ioctl FS_IOC_ENABLE_VERITY;
 
 # Allow system process to measure fs-verity for apps, including those being installed
 allowxperm system_server { apk_data_file apk_tmp_file }:file ioctl FS_IOC_MEASURE_VERITY;
@@ -1593,18 +1594,18 @@ allow system_server apex_tethering_data_file:dir create_dir_perms;
 allow system_server apex_tethering_data_file:file create_file_perms;
 allow system_server apex_uwb_data_file:dir create_dir_perms;
 allow system_server apex_uwb_data_file:file create_file_perms;
+allow system_server apex_wifi_data_file:dir create_dir_perms;
+allow system_server apex_wifi_data_file:file create_file_perms;
 # Legacy labels that we still need to support (b/217581286)
 allow system_server {
   apex_appsearch_data_file
   apex_permission_data_file
   apex_scheduling_data_file
-  apex_wifi_data_file
 }:dir create_dir_perms;
 allow system_server {
   apex_appsearch_data_file
   apex_permission_data_file
   apex_scheduling_data_file
-  apex_wifi_data_file
 }:file create_file_perms;
 
 # Broadcast AppSearch memory

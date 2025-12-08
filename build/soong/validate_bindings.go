@@ -62,6 +62,10 @@ func fuzzerBindingsTestFactory() android.Module {
 	return m
 }
 
+func (m *fuzzerBindingsTestModule) DepsMutator(ctx android.BottomUpMutatorContext) {
+	android.AddHostToolDependencies(ctx, m.tool)
+}
+
 func (m *fuzzerBindingsTestModule) GenerateAndroidBuildActions(ctx android.ModuleContext) {
 	tool := m.tool
 	if tool != "fuzzer_bindings_check" {
