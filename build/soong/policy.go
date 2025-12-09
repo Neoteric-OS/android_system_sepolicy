@@ -302,6 +302,7 @@ func (c *policyConf) transformPolicyToConf(ctx android.ModuleContext) android.Ou
 
 func (c *policyConf) DepsMutator(ctx android.BottomUpMutatorContext) {
 	c.flagDeps(ctx)
+	android.AddHostToolDependencies(ctx, "sepolicy_filter_neverallow")
 }
 
 func (c *policyConf) GenerateAndroidBuildActions(ctx android.ModuleContext) {
@@ -440,6 +441,10 @@ func (c *policyCil) compileConfToCil(ctx android.ModuleContext, conf android.Pat
 	return cil
 }
 
+func (c *policyCil) DepsMutator(ctx android.BottomUpMutatorContext) {
+	android.AddHostToolDependencies(ctx, "checkpolicy", "build_sepolicy", "secilc")
+}
+
 func (c *policyCil) GenerateAndroidBuildActions(ctx android.ModuleContext) {
 	if proptools.String(c.properties.Src) == "" {
 		ctx.PropertyErrorf("src", "must be specified")
@@ -528,6 +533,10 @@ func (c *policyBinary) Installable() bool {
 
 func (c *policyBinary) stem() string {
 	return proptools.StringDefault(c.properties.Stem, c.Name())
+}
+
+func (c *policyBinary) DepsMutator(ctx android.BottomUpMutatorContext) {
+	android.AddHostToolDependencies(ctx, "secilc", "sepolicy-analyze")
 }
 
 func (c *policyBinary) GenerateAndroidBuildActions(ctx android.ModuleContext) {

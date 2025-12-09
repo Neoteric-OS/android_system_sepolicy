@@ -449,7 +449,6 @@ def parse_apps_from_package_list(package_list_file):
     vendor_apps = []
     platform_prefixes = ["/system/", "/system_ext/", "/product/"]
     vendor_prefixes = ["/vendor/", "/odm/"]
-    exempt_prefixes = ["/apex/", "/data/"]
     # Example line: package:/system/app/Foo/Foo.apk=com.example.foo
     line_re = re.compile(r"package:(?P<path>.*?)=(?P<name>.*)")
 
@@ -475,11 +474,11 @@ def parse_apps_from_package_list(package_list_file):
                 platform_apps.append(app)
             elif any(path.startswith(prefix) for prefix in vendor_prefixes):
                 vendor_apps.append(app)
-            elif any(path.startswith(prefix) for prefix in exempt_prefixes):
-                # we only care about preinstalled apps directly under partitions
-                continue
             else:
-                error_message += f"Unknown partition for line: '{line}'\n"
+                # we only care about preinstalled apps directly under standard
+                # partitions, because only standard partitions can define
+                # SELinux policy rules.
+                continue
 
     if error_message:
         sys.exit("Failed to parse package list file\n\n"+error_message)

@@ -37,6 +37,7 @@ allow vold_prepare_subdirs {
     vold_data_file
     wifi_vendor_user_data_file
     wpa_user_data_file
+    apex_wifi_data_file
 }:dir { create_dir_perms relabelto };
 allow vold_prepare_subdirs {
     apex_data_file_type
@@ -56,6 +57,7 @@ allow vold_prepare_subdirs {
     vold_data_file
     wifi_vendor_user_data_file
     wpa_user_data_file
+    apex_wifi_data_file
 }:file { getattr unlink };
 allow vold_prepare_subdirs apex_mnt_dir:dir { open read };
 allow vold_prepare_subdirs mnt_expand_file:dir search;
@@ -98,7 +100,6 @@ allow vold_prepare_subdirs {
   apex_permission_data_file
   apex_scheduling_data_file
   apex_tethering_data_file
-  apex_wifi_data_file
 }:dir relabelfrom;
 
 # /data/misc is unlabeled during early boot.
