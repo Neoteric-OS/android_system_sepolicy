@@ -35,6 +35,9 @@ allow native_app_zygote pmsg_device:chr_file getattr;
 get_prop(native_app_zygote, device_config_runtime_native_prop)
 get_prop(native_app_zygote, device_config_runtime_native_boot_prop)
 
+# Send unsolicited message to system_server
+unix_socket_send(native_app_zygote, system_unsolzygote, system_server)
+
 #####
 ##### Neverallow
 #####

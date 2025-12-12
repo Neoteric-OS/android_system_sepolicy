@@ -53,3 +53,6 @@ allow zygote_next self:global_capability_class_set sys_nice;
 # The only way to enter native_app_zygote is for the zygote_next to fork a new
 # native_app_zygote child.
 neverallow { domain -zygote_next } native_app_zygote:process { dyntransition transition };
+
+# Send unsolicited message to system_server
+unix_socket_send(zygote_next, system_unsolzygote, system_server)

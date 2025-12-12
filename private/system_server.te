@@ -1464,6 +1464,8 @@ neverallow {
   -zygote
   -app_zygote
   -webview_zygote
+  -zygote_next
+  -native_app_zygote
 } system_unsolzygote_socket:sock_file { open write };
 
 # Only allow init, system_server, flags_health_check to set properties for server configurable flags

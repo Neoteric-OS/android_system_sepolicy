@@ -12,6 +12,9 @@ init_daemon_domain(pmgd)
 allow pmgd cgroup_v2:dir r_dir_perms;
 allow pmgd cgroup_v2:file rw_file_perms;
 
+# Allow pmgd to write to statsd socket.
+unix_socket_send(pmgd, statsdw, statsd)
+
 # Allow procfs access so pmgd can find the system_server process.
 r_dir_file(pmgd, system_server)
 dontaudit pmgd domain:dir { open search read getattr };

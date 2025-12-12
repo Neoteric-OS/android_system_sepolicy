@@ -581,7 +581,7 @@ def do_main(libpath):
         sys.exit(1)
 
 if __name__ == '__main__':
-    with tempfile.TemporaryDirectory() as temp_dir:
+    with tempfile.TemporaryDirectory(ignore_cleanup_errors=True) as temp_dir:
         libname = "libsepolwrap" + SHARED_LIB_EXTENSION
         libpath = os.path.join(temp_dir, libname)
         with open(libpath, "wb") as lib:
