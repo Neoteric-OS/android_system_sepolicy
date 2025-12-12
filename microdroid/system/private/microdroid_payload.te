@@ -22,7 +22,7 @@ get_prop(microdroid_payload, servicemanager_prop)
 allow microdroid_payload microdroid_manager:vsock_socket { read write };
 
 # Write to /dev/kmsg.
-allow microdroid_payload kmsg_device:chr_file rw_file_perms;
+allow microdroid_payload kmsg_device:chr_file w_file_perms;
 
 # Read from console. Note that both /dev/kmsg and /dev/console are backed
 # by the same file in the host.

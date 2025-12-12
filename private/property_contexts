@@ -1626,6 +1626,7 @@ ro.opengles.version u:object_r:graphics_config_prop:s0 exact int
 
 ro.egl.blobcache.multifile       u:object_r:graphics_config_prop:s0 exact bool
 ro.egl.blobcache.multifile_limit u:object_r:graphics_config_prop:s0 exact int
+ro.egl.blobcache.multifile_entry_limit u:object_r:graphics_config_prop:s0 exact int
 
 ro.gfx.driver.0          u:object_r:graphics_config_prop:s0 exact string
 ro.gfx.driver.1          u:object_r:graphics_config_prop:s0 exact string
