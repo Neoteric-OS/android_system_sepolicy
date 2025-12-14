@@ -1000,14 +1000,14 @@ define(`system_public_prop', `define_prop($1, system, public)')
 
 ###########################################
 # system_vendor_config_prop(name)
-# Define a /system-owned property which can only be written by vendor_init
-# This is a macro for vendor-specific configuration properties which is meant
-# to be set once from vendor_init.
+# Define a /system-owned property which can only be written by vendor processes
+# (either vendor_init or init_dev_config). This is a macro for vendor-specific
+# configuration properties which is meant to be set once.
 #
 define(`system_vendor_config_prop', `
   system_public_prop($1)
   set_prop(vendor_init, $1)
-  neverallow { domain -init -vendor_init } $1:property_service set;
+  neverallow { domain -init -vendor_init starting_at_board_api(202604, `-init_dev_config') } $1:property_service set;
 ')
 
 ###########################################

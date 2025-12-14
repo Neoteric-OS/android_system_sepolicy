@@ -8,3 +8,7 @@ use_bootstrap_libs(init_dev_config)
 
 set_prop(init_dev_config, apexd_select_prop)
 set_prop(init_dev_config, media_variant_prop)
+
+starting_at_board_api(202604, `
+    set_prop(init_dev_config, telephony_config_prop)
+')
