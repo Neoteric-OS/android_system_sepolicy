@@ -337,5 +337,5 @@ neverallow all_untrusted_apps hidraw_device:chr_file *;
 
 # Untrusted apps don't have access to native serial service or serial ports. Otherwise
 # they may circumvent the access control.
-neverallow all_untrusted_apps { serial_device usb_serial_device}:chr_file open;
+neverallow all_untrusted_apps { serial_device usb_serial_device usbaccessory_device }:{ chr_file file } open;
 neverallow all_untrusted_apps native_serial_service:service_manager find;
