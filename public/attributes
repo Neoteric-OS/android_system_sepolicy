@@ -215,6 +215,11 @@ attribute isolated_compute_allowed_service;
 # All device types that would be allowed for isolated_compute_app.
 attribute isolated_compute_allowed_device;
 
+starting_at_board_api(202604, `
+# All property types that would be allowed for isolated_compute_app.
+attribute isolated_compute_allowed_property_type;
+')  # starting_at_board_api(202604)
+
 # All domains used for apps with network access.
 attribute netdomain;
 

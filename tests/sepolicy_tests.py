@@ -214,6 +214,48 @@ def TestViolatorAttributes(test_policy):
     return ret
 
 
+def TestIsolatedComputeAllowedPropertySubset(test_policy):
+    # Properties granted for isolated_compute_allowed should also be readable
+    # by `untrusted_app`
+    ret = ""
+
+    # Check if the attribute exists in the policy (it might be empty/unused)
+    allAttributes = test_policy.pol.GetAllTypes(isAttr=True)
+    if "isolated_compute_allowed_property_type" not in allAttributes:
+        return ret
+
+    # Permission granted for `get_prop`
+    allowedPerms = {"getattr", "open", "read", "map"}
+
+    violatingTypes = []
+    for typeName in test_policy.pol.QueryTypeAttribute(
+            Type="isolated_compute_allowed_property_type", IsAttr=True):
+
+        grantedPerms = set()
+        for rule in test_policy.pol.QueryExpandedTERule(
+            scontext={"untrusted_app"},
+            tcontext={typeName},
+            tclass={"file"},
+        ):
+            grantedPerms.update(rule.perms)
+
+        missingPerms = allowedPerms.difference(grantedPerms)
+        if missingPerms:
+            violatingTypes.append(
+                f"{typeName} (missing: {', '.join(missingPerms)})")
+
+    if violatingTypes:
+        ret += "The following property types are in "
+        ret += "'isolated_compute_allowed_property_type' but are NOT readable "
+        ret += "by 'untrusted_app'.\n"
+        ret += "To ensure safety, only properties accessible to untrusted "
+        ret += "apps should be exposed to isolated_compute_app.\n"
+        ret += "Violators:\n"
+        ret += "\n".join(violatingTypes) + "\n"
+
+    return ret
+
+
 def TestIsolatedAttributeConsistency(test_policy):
     permissionAllowList = {
         # access given from technical_debt.cil
@@ -270,13 +312,20 @@ def TestIsolatedAttributeConsistency(test_policy):
 
     def checkIsolatedComputeAllowed(tctx, tclass):
         # check if the permission is in isolated_compute_allowed
-        allowedMemberTypes = test_policy.pol.QueryTypeAttribute(
-            Type="isolated_compute_allowed_service", IsAttr=True
-        ).union(
-            test_policy.pol.QueryTypeAttribute(
-                Type="isolated_compute_allowed_device", IsAttr=True
+        allowedAttributes = [
+            "isolated_compute_allowed_service",
+            "isolated_compute_allowed_device",
+            "isolated_compute_allowed_property_type",
+        ]
+
+        allowedMemberTypes = set()
+        for attribute in allowedAttributes:
+            allowedMemberTypes.update(
+                test_policy.pol.QueryTypeAttribute(
+                    Type=attribute, IsAttr=True,
+                    IgnoreMissing=True,
+                )
             )
-        )
         return (
             tctx in allowedMemberTypes
             and tclass in permissionAllowList["isolated_compute_allowed"]
@@ -451,6 +500,11 @@ def do_main(libpath):
         or "TestIsolatedAttributeConsistency" in options.test
     ):
         results += TestIsolatedAttributeConsistency(test_policy)
+    if (
+        options.test is None
+        or "TestIsolatedComputeAllowedPropertySubset" in options.test
+    ):
+        results += TestIsolatedComputeAllowedPropertySubset(test_policy)
 
     # dev type test won't be run as default
     if options.test and "TestDevTypeViolations" in options.test:
