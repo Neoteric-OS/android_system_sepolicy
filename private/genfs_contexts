@@ -241,6 +241,8 @@ genfscon tracefs /events/ext4/ext4_sync_file_enter/          u:object_r:debugfs_
 genfscon tracefs /events/ext4/ext4_sync_file_exit/           u:object_r:debugfs_tracing:s0
 genfscon tracefs /events/block/block_rq_issue/               u:object_r:debugfs_tracing:s0
 genfscon tracefs /events/block/block_rq_complete/            u:object_r:debugfs_tracing:s0
+genfscon tracefs /events/lock/contention_begin/              u:object_r:debugfs_tracing:s0
+genfscon tracefs /events/lock/contention_end/                u:object_r:debugfs_tracing:s0
 
 genfscon tracefs /synthetic_events                                       u:object_r:debugfs_tracing:s0
 
@@ -354,6 +356,7 @@ genfscon bpf /cputimeinstate u:object_r:fs_bpf_cputimeinstate:s0
 genfscon bpf /dmabuf u:object_r:fs_bpf_dmabuf:s0
 genfscon bpf /kernelwakelockduration u:object_r:fs_bpf_kernelwakelockduration:s0
 genfscon bpf /loader u:object_r:fs_bpf_loader:s0
+genfscon bpf /lock_contention u:object_r:fs_bpf_lock_contention:s0
 genfscon bpf /memevents u:object_r:fs_bpf_memevents:s0
 genfscon bpf /net_private u:object_r:fs_bpf_net_private:s0
 genfscon bpf /net_shared u:object_r:fs_bpf_net_shared:s0

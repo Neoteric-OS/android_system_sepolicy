@@ -18,6 +18,9 @@ allow bpfloader proc_kallsyms:file r_file_perms;
 allow bpfloader self:perf_event { open write cpu kernel };
 neverallow bpfloader self:perf_event ~{ open write cpu kernel };
 
+# Attaching conventional tracepoint programs requires being able to read the trace event IDs
+allow bpfloader debugfs_tracing:file r_file_perms;
+
 # These permissions are required to pin ebpf maps & programs.
 allow bpfloader bpffs_type:dir { add_name create open read remove_name search setattr write };
 allow bpfloader bpffs_type:file { create getattr read rename setattr };
