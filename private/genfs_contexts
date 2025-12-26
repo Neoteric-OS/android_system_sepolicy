@@ -125,9 +125,11 @@ genfscon cgroup2 / u:object_r:cgroup_v2:s0
 genfscon sysfs / u:object_r:sysfs:s0
 genfscon sysfs /bus/thunderbolt/devices           u:object_r:sysfs_thunderbolt:s0
 genfscon sysfs /bus/usb/devices                   u:object_r:sysfs_usb:s0
+genfscon sysfs /module/usbcore/parameters/authorized_default u:object_r:sysfs_usbcore:s0
 genfscon sysfs /devices/cs_etm                    u:object_r:sysfs_devices_cs_etm:s0
 genfscon sysfs /devices/system/cpu u:object_r:sysfs_devices_system_cpu:s0
 genfscon sysfs /class/android_usb                 u:object_r:sysfs_android_usb:s0
+genfscon sysfs /class/block                       u:object_r:sysfs_block:s0
 genfscon sysfs /class/extcon                      u:object_r:sysfs_extcon:s0
 genfscon sysfs /class/gpu                         u:object_r:sysfs_gpu:s0
 genfscon sysfs /class/leds                        u:object_r:sysfs_leds:s0
@@ -323,6 +325,7 @@ genfscon binder /hwbinder u:object_r:hwbinder_device:s0
 genfscon binder /vndbinder u:object_r:vndbinder_device:s0
 genfscon binder /binder_logs u:object_r:binderfs_logs:s0
 genfscon binder /binder_logs/proc u:object_r:binderfs_logs_proc:s0
+genfscon binder /binder_logs/state_hashed u:object_r:binderfs_logs_state_hashed:s0
 genfscon binder /binder_logs/stats u:object_r:binderfs_logs_stats:s0
 genfscon binder /binder_logs/transactions u:object_r:binderfs_logs_transactions:s0
 genfscon binder /binder_logs/transactions_hashed u:object_r:binderfs_logs_transaction_history:s0

@@ -34,3 +34,4 @@ allow isolated_app webview_zygote:process sigchld;
 allow isolated_app webview_zygote:unix_dgram_socket write;
 # Read system properties managed by webview_zygote.
 allow isolated_app webview_zygote_tmpfs:file read;
+allow isolated_app webview_zygote:memfd_file read;

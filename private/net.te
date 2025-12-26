@@ -1,7 +1,7 @@
 # Bind to ports.
-allow {netdomain -ephemeral_app -sdk_sandbox_all} node_type:{ icmp_socket rawip_socket tcp_socket udp_socket } node_bind;
-allow {netdomain -ephemeral_app -sdk_sandbox_all} port_type:udp_socket name_bind;
-allow {netdomain -ephemeral_app -sdk_sandbox_all} port_type:tcp_socket name_bind;
+allow {netdomain -ephemeral_app -pcc_component -sdk_sandbox_all} node_type:{ icmp_socket rawip_socket tcp_socket udp_socket } node_bind;
+allow {netdomain -ephemeral_app -pcc_component -sdk_sandbox_all} port_type:udp_socket name_bind;
+allow {netdomain -ephemeral_app -pcc_component -sdk_sandbox_all} port_type:tcp_socket name_bind;
 
 # RTM_GETLINK, RTM_GETNEIGH and RTM_GETNEIGHTBL are not accessible to
 # untrusted_app (as these can be abused to recover the MAC address). See
@@ -14,6 +14,7 @@ allow {netdomain -ephemeral_app -sdk_sandbox_all} port_type:tcp_socket name_bind
 allow {
   netdomain
   -ephemeral_app
+  -pcc_component
   -mediaprovider
   -priv_app
   -sdk_sandbox_all
@@ -25,11 +26,11 @@ allow {
 ###
 
 # Use network sockets.
-allow netdomain self:tcp_socket create_stream_socket_perms;
-allow netdomain self:{ icmp_socket udp_socket rawip_socket } create_socket_perms;
+allow { netdomain -pcc_component } self:tcp_socket create_stream_socket_perms;
+allow { netdomain -pcc_component } self:{ icmp_socket udp_socket rawip_socket } create_socket_perms;
 
 # Connect to ports.
-allow netdomain port_type:tcp_socket name_connect;
+allow { netdomain -pcc_component } port_type:tcp_socket name_connect;
 # See changes to the routing table.
 allow netdomain self:netlink_route_socket { create read getattr write setattr lock append connect getopt setopt shutdown nlmsg_read nlmsg };
 allowxperm netdomain self:netlink_route_socket nlmsg unpriv_route_socket_nlmsgs;

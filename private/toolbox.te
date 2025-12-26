@@ -34,6 +34,10 @@ allow toolbox system_data_file:file { getattr unlink };
 # directory if it present.
 allow toolbox zram_data_file:dir { rmdir r_dir_perms };
 
+# For Zram
+allow toolbox per_boot_file:dir create_dir_perms;
+allow toolbox per_boot_file:file create_file_perms;
+
 # chattr +F /data/media in init
 allow toolbox media_userdir_file:dir { r_dir_perms setattr };
 allowxperm toolbox media_userdir_file:dir ioctl { FS_IOC_SETFLAGS FS_IOC_GETFLAGS };

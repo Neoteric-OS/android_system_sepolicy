@@ -21,3 +21,7 @@ allow untrusted_app sdk_sandbox_data_file:fd use;
 allow untrusted_app sdk_sandbox_data_file:file write;
 
 neverallow untrusted_app sdk_sandbox_data_file:file { open create };
+
+# TODO(b/443130838): Remove this for untrusted_app when the domains
+# are split at SDK version 37. SDK version 37+ should not have this.
+allowxperm untrusted_app domain:memfd_file ioctl ashmem_ioctls;

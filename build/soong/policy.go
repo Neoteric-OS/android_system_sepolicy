@@ -246,6 +246,7 @@ func findPolicyConfOrder(name string) int {
 func (c *policyConf) transformPolicyToConf(ctx android.ModuleContext) android.OutputPath {
 	conf := pathForModuleOut(ctx, c.stem())
 	rule := android.NewRuleBuilder(pctx, ctx)
+	rule.SandboxDisabled()
 
 	srcs := android.PathsForModuleSrc(ctx, c.properties.Srcs)
 	sort.SliceStable(srcs, func(x, y int) bool {
@@ -380,6 +381,7 @@ func (c *policyCil) stem() string {
 func (c *policyCil) compileConfToCil(ctx android.ModuleContext, conf android.Path) android.OutputPath {
 	cil := pathForModuleOut(ctx, c.stem())
 	rule := android.NewRuleBuilder(pctx, ctx)
+	rule.SandboxDisabled()
 	checkpolicyCmd := rule.Command().BuiltTool("checkpolicy").
 		Flag("-C"). // Write CIL
 		Flag("-M"). // Enable MLS
@@ -523,6 +525,7 @@ func (c *policyBinary) GenerateAndroidBuildActions(ctx android.ModuleContext) {
 	}
 	bin := pathForModuleOut(ctx, c.stem()+"_policy")
 	rule := android.NewRuleBuilder(pctx, ctx)
+	rule.SandboxDisabled()
 	secilcCmd := rule.Command().BuiltTool("secilc").
 		Flag("-m").                 // Multiple decls
 		FlagWithArg("-M ", "true"). // Enable MLS

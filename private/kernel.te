@@ -128,6 +128,10 @@ allow kernel media_rw_data_file:file create_file_perms;
 # Access to /data/misc/vold/virtual_disk.
 allow kernel vold_data_file:file { read write };
 
+# Access to /data/per_boot for zram set up
+# TODO: b/454531915
+allow kernel per_boot_file:file r_file_perms;
+
 # Allow the kernel to read APEX file descriptors and (staged) data files;
 # Needed because APEX uses the loopback driver, which issues requests from
 # a kernel thread in earlier kernel version.
@@ -167,6 +171,7 @@ allow kernel self:system firmware_load;
 
 # required by VTS lidbm unit test
 allow kernel appdomain_tmpfs:file { read write };
+allow kernel appdomain:memfd_file { read write };
 
 # Allow first stage init to copy and then launch overlay_remounter
 userdebug_or_eng(`

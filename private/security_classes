@@ -17,6 +17,7 @@ class filesystem
 class file
 class anon_inode
 class dir
+class memfd_file
 class fd
 class lnk_file
 class chr_file

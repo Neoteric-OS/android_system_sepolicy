@@ -7,6 +7,7 @@ type proc, fs_type, proc_type;
 type binderfs, fs_type;
 type binderfs_logs, fs_type;
 type binderfs_logs_proc, fs_type;
+starting_at_board_api(202604, `type binderfs_logs_state_hashed, fs_type;')
 type binderfs_logs_stats, fs_type;
 type binderfs_logs_transactions, fs_type;
 type binderfs_logs_transaction_history, fs_type;
@@ -97,6 +98,7 @@ type sysfs, fs_type, sysfs_type, mlstrustedobject;
 type sysfs_android_usb, fs_type, sysfs_type;
 type sysfs_uio, sysfs_type, fs_type;
 type sysfs_batteryinfo, fs_type, sysfs_type;
+starting_at_board_api(202604, `type sysfs_block, fs_type, sysfs_type;')
 type sysfs_bluetooth_writable, fs_type, sysfs_type, mlstrustedobject;
 type sysfs_cma, fs_type, sysfs_type;
 type sysfs_devfreq_cur, fs_type, sysfs_type;
@@ -657,6 +659,8 @@ starting_at_board_api(202604, `type sysfs_thunderbolt, fs_type, sysfs_type;')
 starting_at_board_api(202604, `type sysfs_typec, fs_type, sysfs_type;')
 # /sys/class/usb_power_delivery
 starting_at_board_api(202604, `type sysfs_usb_pd, fs_type, sysfs_type;')
+# /sys/modules/usbcore
+starting_at_board_api(202604, `type sysfs_usbcore, fs_type, sysfs_type;')
 
 # system/sepolicy/public is for vendor-facing type and attribute definitions.
 # DO NOT ADD allow, neverallow, or dontaudit statements here.

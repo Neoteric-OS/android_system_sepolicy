@@ -189,6 +189,8 @@ allow priv_app apex_data_file:dir search;
 allow priv_app staging_data_file:file r_file_perms;
 # Required for Phonesky to be able to read staged files under /data/app-staging.
 allow priv_app staging_data_file:dir r_dir_perms;
+# data APEXes are moved to device-mapped block files
+allow priv_app apex_dm_device:blk_file r_file_perms;
 
 # Allow com.android.vending to access files under vendor/apex as well as system apex files.
 # This is required for com.android.vending to handle APEXes for e.g. delta patch optimization.
@@ -294,3 +296,7 @@ neverallow priv_app *:{
 # Disallow sending RTM_GETLINK messages on netlink sockets.
 neverallow priv_app domain:netlink_route_socket { bind nlmsg_readpriv };
 neverallowxperm priv_app domain:netlink_route_socket nlmsg RTM_GETLINK;
+
+# TODO(b/443130838): Remove this for priv_app when the domains
+# are split at SDK version 37. SDK version 37+ should not have this.
+allowxperm priv_app domain:memfd_file ioctl ashmem_ioctls;

@@ -100,6 +100,7 @@ func (m *macPermissionsModule) GenerateAndroidBuildActions(ctx android.ModuleCon
 
 	m4Keys := android.PathForModuleGen(ctx, "mac_perms_keys.tmp")
 	rule := android.NewRuleBuilder(pctx, ctx)
+	rule.SandboxDisabled()
 	rule.Command().
 		Tool(ctx.Config().PrebuiltBuildTool(ctx, "m4")).
 		Text("--fatal-warnings -s").

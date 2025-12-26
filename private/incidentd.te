@@ -150,6 +150,7 @@ dontaudit incidentd dalvikcache_data_file:dir r_dir_perms;
 dontaudit incidentd apex_module_data_file:dir r_dir_perms;
 dontaudit incidentd apex_art_data_file:dir r_dir_perms;
 dontaudit incidentd tmpfs:file rwx_file_perms;
+dontaudit incidentd domain:memfd_file rwx_file_perms;
 
 # Allow incidentd to read /apex/apex-info-list.xml
 allow incidentd apex_info_file:file r_file_perms;

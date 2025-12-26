@@ -73,6 +73,9 @@ android.hardware.media.c2.IComponentStore/software                   u:object_r:
 android.hardware.memtrack.IMemtrack/default                          u:object_r:hal_memtrack_service:s0
 android.hardware.net.nlinterceptor.IInterceptor/default              u:object_r:hal_nlinterceptor_service:s0
 android.hardware.nfc.INfc/default                                    u:object_r:hal_nfc_service:s0
+starting_at_board_api(202604, `
+  android.hardware.npu.IScheduling/default                             u:object_r:hal_npu_scheduling_service:s0
+')
 android.hardware.oemlock.IOemLock/default                            u:object_r:hal_oemlock_service:s0
 android.hardware.power.IPower/default                                u:object_r:hal_power_service:s0
 android.hardware.power.stats.IPowerStats/default                     u:object_r:hal_power_stats_service:s0
@@ -117,6 +120,7 @@ android.hardware.gatekeeper.IGatekeeper/default                      u:object_r:
 android.hardware.security.secureclock.ISecureClock/default             u:object_r:hal_secureclock_service:s0
 android.hardware.security.see.hwcrypto.IHwCryptoKey/default          u:object_r:hal_hwcrypto_service:s0
 android.hardware.security.sharedsecret.ISharedSecret/default             u:object_r:hal_sharedsecret_service:s0
+android.hardware.security.sharedsecret.ISharedSecret/hwcrypto        u:object_r:hal_hwcrypto_service:s0
 android.hardware.sensors.ISensors/default                            u:object_r:hal_sensors_service:s0
 android.hardware.soundtrigger3.ISoundTriggerHw/default               u:object_r:hal_audio_service:s0
 android.hardware.tetheroffload.IOffload/default                      u:object_r:hal_tetheroffload_service:s0
@@ -152,6 +156,7 @@ android.system.keystore2.IKeystoreService/default                    u:object_r:
 android.system.net.netd.INetd/default                                u:object_r:system_net_netd_service:s0
 android.system.suspend.ISystemSuspend/default                        u:object_r:hal_system_suspend_service:s0
 android.system.vold.IVold/default                                    u:object_r:fwk_vold_service:s0
+android.os.casefoldingremover                                        u:object_r:casefolding_remover_service:s0
 
 accessibility                             u:object_r:accessibility_service:s0
 account                                   u:object_r:account_service:s0
@@ -188,6 +193,7 @@ android.os.IAccessor/sharedsecret/security_vm_shared_secret u:object_r:accessor_
 android.os.IAccessor/ICommService/widevine_vm_widevine u:object_r:accessor_trusty_widevine_comm_service:s0
 android.widevine.trusty.commservice.ICommService/widevine_vm u:object_r:trusty_widevine_comm_service:s0
 android.os.IAccessor/IKeyMintProvisioningService/security_vm_keymint u:object_r:accessor_trusty_keymint_provisioning_service:s0
+com.android.trusty.rust.KeyMintProvisioningService.V1 u:object_r:accessor_trusty_keymint_provisioning_service:s0
 
 is_flag_enabled(RELEASE_AVF_ENABLE_DEVICE_ASSIGNMENT, `
     android.system.virtualizationservice_internal.IVfioHandler u:object_r:vfio_handler_service:s0
@@ -386,6 +392,9 @@ network_score                             u:object_r:network_score_service:s0
 network_time_update_service               u:object_r:network_time_update_service:s0
 nfc                                       u:object_r:nfc_service:s0
 notification                              u:object_r:notification_service:s0
+starting_at_board_api(202604, `
+  npu                                       u:object_r:npu_service:s0
+')
 oem_lock                                  u:object_r:oem_lock_service:s0
 ondevicepersonalization_system_service    u:object_r:ondevicepersonalization_system_service:s0
 on_device_intelligence                    u:object_r:on_device_intelligence_service:s0
@@ -492,6 +501,7 @@ telephony_ims                             u:object_r:radio_service:s0
 is_flag_enabled(RELEASE_TELEPHONY_MODULE, `
     telephony_phone_number                u:object_r:radio_service:s0
 ')
+talisman                                  u:object_r:talisman_service:s0
 testharness                               u:object_r:testharness_service:s0
 tethering                                 u:object_r:tethering_service:s0
 textclassification                        u:object_r:textclassification_service:s0
@@ -517,9 +527,10 @@ updatelock                                u:object_r:updatelock_service:s0
 uri_grants                                u:object_r:uri_grants_service:s0
 usagestats                                u:object_r:usagestats_service:s0
 usb                                       u:object_r:usb_service:s0
+usb_auth                                  u:object_r:usb_auth_service:s0
 user                                      u:object_r:user_service:s0
 uprobestats_service                       u:object_r:uprobestats_service:s0
-uprobestats_bridge_service                u:object_r:uprobestats_bridge_service:s0
+uprobestats_bridge                        u:object_r:uprobestats_bridge_service:s0
 uwb                                       u:object_r:uwb_service:s0
 vcn_management                            u:object_r:vcn_management_service:s0
 vibrator                                  u:object_r:vibrator_service:s0

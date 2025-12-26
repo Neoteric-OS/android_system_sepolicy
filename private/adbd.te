@@ -206,6 +206,9 @@ r_dir_file(adbd, vendor_apex_file)
 # Allow adb pull of updated apex files in /data/apex/active.
 allow adbd apex_data_file:dir search;
 allow adbd staging_data_file:file r_file_perms;
+# data APEXes are moved to device-mapped block files
+allow adbd apex_dm_device:blk_file r_file_perms;
+allow adbd block_device:dir search;
 
 # Allow adbd to pull /apex/apex-info-list.xml for CTS tests.
 allow adbd apex_info_file:file r_file_perms;

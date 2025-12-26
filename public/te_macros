@@ -76,8 +76,7 @@ allow $1 $2:{ file lnk_file } r_file_perms;
 # Allow access to a unique type for this domain when creating tmpfs / ashmem files.
 define(`tmpfs_domain', `
 type_transition $1 tmpfs:file $1_tmpfs;
-allow $1 $1_tmpfs:file { read write getattr map ioctl relabelfrom };
-allowxperm $1 $1_tmpfs:file ioctl ashmem_ioctls;
+allow $1 $1_tmpfs:file { read write getattr map };
 ')
 
 # pdx macros for IPC. pdx is a high-level name which contains transport-specific
@@ -225,6 +224,7 @@ allow { early_virtmgr crosvm } $1:unix_stream_socket { ioctl getattr read write 
 # Let the client pass file descriptors to early_virtmgr and on to crosvm.
 allow { early_virtmgr crosvm } $1:fd use;
 allow { early_virtmgr crosvm } $1_tmpfs:file rw_file_perms;
+allow { early_virtmgr crosvm } $1:memfd_file rw_no_ioctl_file_perms;
 # Let the client use file descriptors created by early_virtmgr.
 allow $1 early_virtmgr:fd use;
 # Allow piping console log to the client
@@ -249,8 +249,8 @@ typeattribute $1 appdomain;
 # Label tmpfs objects for all apps.
 type_transition $1 tmpfs:file appdomain_tmpfs;
 userfaultfd_use($1)
-allow $1 appdomain_tmpfs:file { execute getattr map read write ioctl relabelfrom };
-allowxperm $1 appdomain_tmpfs:file ioctl ashmem_ioctls;
+allow $1 appdomain_tmpfs:file { execute getattr map read write };
+allow $1 appdomain:memfd_file { execute getattr map read write };
 neverallow { $1 -runas_app -shell -simpleperf } { domain -$1 }:file no_rw_file_perms;
 neverallow { appdomain -runas_app -shell -simpleperf -$1 } $1:file no_rw_file_perms;
 # The Android security model guarantees the confidentiality and integrity
@@ -340,6 +340,8 @@ typeattribute $1 $2;
 define(`hal_client_domain', `
 typeattribute $1 halclientdomain;
 typeattribute $1 $2_client;
+allow $1 $2:memfd_file { read write getattr map };
+allow $2 $1:memfd_file { read write getattr map };
 
 # TODO(b/34170079): Make the inclusion of the rules below conditional also on
 # non-Treble devices. For now, on non-Treble device, always grant clients of a
@@ -819,6 +821,7 @@ define(`can_profile_heap', `
   # Allow to read and write to heapprofd shmem.
   # The client needs to read the read and write pointers in order to write.
   allow $1 heapprofd_tmpfs:file { read write getattr map };
+  allow $1 heapprofd:memfd_file { read write getattr map };
   # Use shared memory received over the unix socket.
   allow $1 heapprofd:fd use;
 
@@ -880,6 +883,7 @@ define(`never_profile_perf', `
 define(`perfetto_producer', `
   allow $1 traced:fd use;
   allow $1 traced_tmpfs:file { read write getattr map };
+  allow $1 traced:memfd_file { read write getattr map };
   unix_socket_connect($1, traced_producer, traced)
 
   # Also allow the service to use the producer file descriptors. This is

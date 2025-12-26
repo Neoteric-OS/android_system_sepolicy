@@ -24,6 +24,8 @@ type_transition system_server system_data_file:sock_file system_unsolzygote_sock
 
 allow system_server zygote_tmpfs:file { map read write };
 allow system_server appdomain_tmpfs:file { getattr map read write };
+allow system_server zygote:memfd_file { map read write };
+allow system_server appdomain:memfd_file { getattr map read write };
 
 # For Incremental Service to check if incfs is available
 allow system_server proc_filesystems:file r_file_perms;
@@ -459,6 +461,8 @@ allow system_server audioserver:udp_socket rw_socket_perms;
 allow system_server mediaserver:tcp_socket rw_socket_perms;
 allow system_server mediaserver:udp_socket rw_socket_perms;
 
+allow system_server audioserver:memfd_file { getattr read write map };
+
 # Use sockets received over binder from various services.
 allow system_server mediadrmserver:tcp_socket rw_socket_perms;
 allow system_server mediadrmserver:udp_socket rw_socket_perms;
@@ -513,9 +517,6 @@ allow system_server sysfs_uhid:file rw_file_perms;
 
 # TODO: Remove when HALs are forced into separate processes
 allow system_server sysfs_vibrator:file { write append };
-
-# TODO: added to match above sysfs rule. Remove me?
-allow system_server sysfs_usb:file w_file_perms;
 
 # Access devices.
 allow system_server device:dir r_dir_perms;
@@ -1513,7 +1514,7 @@ neverallow system_server data_file_type:file no_x_file_perms;
 # The system_server may need to read from vd_device and dm_device if it uses
 # apexes mapped as block devices.
 neverallow system_server { dev_type -frp_block_device }:blk_file no_w_file_perms;
-neverallow system_server { dev_type -frp_block_device -vd_device -dm_device }:blk_file r_file_perms;
+neverallow system_server { dev_type -frp_block_device -vd_device -apex_dm_device }:blk_file r_file_perms;
 
 # system_server should never use JIT functionality
 # See https://googleprojectzero.blogspot.com/2016/12/bitunmap-attacking-android-ashmem.html
@@ -1528,10 +1529,12 @@ neverallow system_server { ashmem_device ashmem_libcutils_device }:chr_file exec
 
 # TODO: deal with tmpfs_domain pub/priv split properly
 neverallow system_server system_server_tmpfs:file execute;
+neverallow system_server system_server:memfd_file execute;
 
 # Resources handed off by system_server_startup
 allow system_server system_server_startup:fd use;
 allow system_server system_server_startup_tmpfs:file { read write map };
+allow system_server system_server_startup:memfd_file { read write map };
 allow system_server system_server_startup:unix_dgram_socket write;
 
 # Allow system server to communicate to apexd
@@ -1545,7 +1548,8 @@ allow system_server apex_mnt_dir:dir r_dir_perms;
 allow system_server apex_info_file:file r_file_perms;
 
 # Allow system_server read APEX file mapped as device-mapper device
-allow system_server dm_device:blk_file r_file_perms;
+allow system_server apex_dm_device:blk_file r_file_perms;
+
 # and read the device mapper name from sysfs
 allow system_server sysfs_dm:file r_file_perms;
 
@@ -1768,6 +1772,7 @@ allow system_server pre_reboot_dexopt_file:dir { getattr search };
 # system_server needs to copy the new service-art.jar to a memfd and reopen it with the path
 # /proc/self/fd/<fd> with a classloader.
 allow system_server system_server_tmpfs:file open;
+allow system_server system_server:memfd_file open;
 
 # Allow system_server to read from postinstall scripts through STDIN, to check if the
 # otapreopt_script is still alive.
@@ -1786,6 +1791,14 @@ allow system_server {
 # Allow system_server to talk to native serial service to read metadata of and open serial ports.
 allow system_server native_serial_service:service_manager find;
 binder_call(system_server, serialservice)
+
+allow system_server usb_auth_service:service_manager find;
+binder_call(system_server, usbauthservice)
+
+# Allow system_server to talk to NPU scheduling service
+starting_at_board_api(202604, `
+  hal_client_domain(system_server, hal_npu_scheduling)
+')
 
 # Allow system server to read and write serial devices
 allow system_server { serial_device usb_serial_device }:chr_file { read write };
@@ -1826,3 +1839,6 @@ get_prop(system_server, usb_userspace_aoa_enabled_prop)
 
 # Allow system_server to read the remote_provisioning.*.rkp_only property;
 get_prop(system_server,remote_prov_prop)
+
+# Read /proc/swaps for debugging and meminfo-related utilities.
+allow system_server proc_swaps:file { read open getattr };

@@ -6,6 +6,7 @@ typeattribute mediatranscoding coredomain;
 init_daemon_domain(mediatranscoding)
 tmpfs_domain(mediatranscoding)
 allow mediatranscoding appdomain_tmpfs:file { getattr map read write };
+allow mediatranscoding appdomain:memfd_file { getattr map read write };
 
 binder_use(mediatranscoding)
 binder_call(mediatranscoding, binderservicedomain)

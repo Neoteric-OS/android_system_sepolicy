@@ -370,3 +370,10 @@ filegroup {
         "com.google.android.gmssystem-file_contexts",
     ],
 }
+
+filegroup {
+    name: "com.android.webapp-file_contexts",
+    srcs: [
+        "com.android.webapp-file_contexts",
+    ],
+}

@@ -103,6 +103,7 @@
 /dev/binder		u:object_r:binder_device:s0
 /dev/block(/.*)?	u:object_r:block_device:s0
 /dev/block/by-name/zoned_device	u:object_r:zoned_block_device:s0
+/dev/block/mapper/.*\.apex	u:object_r:apex_dm_device:s0
 /dev/block/dm-[0-9]+	u:object_r:dm_device:s0
 /dev/block/ublkb[0-9]+	u:object_r:ublk_block_device:s0
 /dev/block/loop[0-9]*	u:object_r:loop_device:s0
@@ -335,6 +336,7 @@
 /system/bin/mmd_setup   u:object_r:mmd_setup_exec:s0
 /system/bin/pmgd        u:object_r:pmgd_exec:s0
 /system/bin/usbd   u:object_r:usbd_exec:s0
+/system/bin/usbauthservice   u:object_r:usbauthservice_exec:s0
 /system/bin/inputflinger u:object_r:inputflinger_exec:s0
 /system/bin/logd        u:object_r:logd_exec:s0
 /system/bin/lpdumpd        u:object_r:lpdumpd_exec:s0
@@ -383,7 +385,6 @@
 /system/etc/perfetto(/.*)?              u:object_r:system_perfetto_config_file:s0
 /system/etc/seccomp_policy(/.*)?        u:object_r:system_seccomp_policy_file:s0
 /system/etc/security/cacerts(/.*)?      u:object_r:system_security_cacerts_file:s0
-/system/etc/selinux/ashmem_compat_memfd_context\.txt       u:object_r:ashmem_compat_memfd_context_file:s0
 /system/etc/selinux/mapping/[0-9]+\.[0-9]+(\.compat)?\.cil       u:object_r:sepolicy_file:s0
 /system/etc/selinux/plat_mac_permissions\.xml u:object_r:mac_perms_file:s0
 /system/etc/selinux/plat_property_contexts  u:object_r:property_contexts_file:s0
@@ -598,6 +599,7 @@
 /data/userdata_exp\.[^/]+ u:object_r:exp_partition_data_file:s0
 /data/system/environ(/.*)? u:object_r:environ_system_data_file:s0
 /data/system/packages\.list u:object_r:packages_list_file:s0
+/data/system/users/user\.list u:object_r:user_list_data_file:s0
 /data/system/game_mode_intervention\.list u:object_r:game_mode_intervention_list_file:s0
 /data/unencrypted(/.*)?         u:object_r:unencrypted_data_file:s0
 /data/backup(/.*)?		u:object_r:backup_data_file:s0
@@ -635,6 +637,7 @@
 /data/local/tmp/ltp(/.*)?   u:object_r:nativetest_data_file:s0
 /data/local/traces(/.*)?	u:object_r:trace_data_file:s0
 /data/media             u:object_r:media_userdir_file:s0
+/data/media_temp        u:object_r:media_userdir_file:s0
 /data/media/.*          u:object_r:media_rw_data_file:s0
 /data/mediadrm(/.*)?	u:object_r:media_data_file:s0
 /data/nativetest(/.*)?	u:object_r:nativetest_data_file:s0
@@ -659,6 +662,7 @@
 /data/user                u:object_r:system_userdir_file:s0
 /data/user_de             u:object_r:system_userdir_file:s0
 /data/storage_area        u:object_r:system_userdir_file:s0
+/data/per_boot(/.*)?      u:object_r:per_boot_file:s0
 /data/per_boot/zram       u:object_r:zram_data_file:s0
 
 # Misc data
@@ -977,3 +981,7 @@
 #############################
 # For overlays
 /second_stage_resources/overlay_remounter u:object_r:overlay_remounter_exec:s0
+
+#############################
+# For casefolding_remover
+/system/bin/casefolding_remover u:object_r:casefolding_remover_exec:s0

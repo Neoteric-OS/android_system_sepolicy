@@ -5,8 +5,10 @@
 (typeattribute new_objects)
 (typeattributeset new_objects
   ( new_objects
+    binderfs_logs_state_hashed
     hal_bluetooth_lpp_service
     hal_frp_service
+    hal_npu_scheduling_service
     init_dev_config
     init_dev_config_exec
     native_serial_service
@@ -18,6 +20,7 @@
     omapi
     omapi_exec
     omapi_service
+    npu_service
     serialservice
     serialservice_exec
     sysfs_suspend_params

@@ -23,6 +23,9 @@ type fs_bpf_dmabuf, fs_type, bpffs_type;
 # /data/system/mediadrm
 type mediadrm_system_data_file, file_type, data_file_type, core_data_file_type;
 
+# /data/system/users/user.list
+type user_list_data_file, file_type, data_file_type, core_data_file_type;
+
 # /data/misc/storaged
 type storaged_data_file, file_type, data_file_type, core_data_file_type;
 
@@ -148,6 +151,9 @@ type bootanim_data_file, file_type, data_file_type, core_data_file_type;
 # /data/misc/surfaceflinger
 type surfaceflinger_data_file, file_type, data_file_type, core_data_file_type;
 
+# /data/per_boot
+type per_boot_file, file_type, data_file_type, core_data_file_type;
+
 # /dev/kvm
 # The type needs to be mlstrustedobject to allow for being accessed from
 # crosvm, which runs at a more constrained MLS level.
@@ -265,16 +271,6 @@ type exp_partition_data_file, file_type, data_file_type, core_data_file_type;
 # statsd service stores list of atoms in use
 type statsd_atoms_list_file, file_type, data_file_type, core_data_file_type;
 
-# File type used for memfds created by libcutils. This type has similar access
-# control rules as the other ashmem types to smooth over the transition from
-# ashmem to memfd.
-type ashmem_compat_memfd, file_type, mlstrustedobject;
-
-# File type used for the text file containing the type that libcutils
-# uses when constructing contexts for memfd. This needs to be accessible
-# to all processes.
-type ashmem_compat_memfd_context_file, system_file_type, file_type;
-
 # /sys/device/virtual/misc/ublk-control/
 type sysfs_ublk, fs_type, sysfs_type;
 
@@ -282,6 +278,7 @@ type sysfs_ublk, fs_type, sysfs_type;
 until_board_api(202604, `type sysfs_thunderbolt, fs_type, sysfs_type;')
 until_board_api(202604, `type sysfs_typec, fs_type, sysfs_type;')
 until_board_api(202604, `type sysfs_usb_pd, fs_type, sysfs_type;')
+until_board_api(202604, `type sysfs_usbcore, fs_type, sysfs_type;')
 
 until_board_api(202604, `
     type sysfs_powercap, fs_type, sysfs_type;
@@ -291,3 +288,7 @@ until_board_api(202604, `
 type wifi_vendor_data_file, file_type, data_file_type;
 
 type zygote_next_socket, file_type, coredomain_socket;
+
+until_board_api(202604, `type sysfs_block, fs_type, sysfs_type;')
+
+until_board_api(202604, `type binderfs_logs_state_hashed, fs_type;')

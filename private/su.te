@@ -50,6 +50,7 @@ userdebug_or_eng(`
   dontaudit su domain:filesystem *;
   dontaudit su domain:dir *;
   dontaudit su domain:lnk_file *;
+  dontaudit su domain:memfd_file *;
   dontaudit su domain:{ fifo_file file } *;
   dontaudit su domain:socket_class_set *;
   dontaudit su domain:ipc_class_set *;

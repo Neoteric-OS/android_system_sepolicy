@@ -32,6 +32,7 @@ allow mmd_setup { ram_device swap_block_device }:blk_file rw_file_perms;
 unix_socket_send(mmd_setup, statsdw, statsd)
 
 # Allow mmd_setup to manage the zram writeback file in /data/per_boot/zram
+allow mmd_setup per_boot_file:dir search;
 allow mmd_setup zram_data_file:dir w_dir_perms;
 allow mmd_setup zram_data_file:file create_file_perms;
 
@@ -50,8 +51,7 @@ allow mmd_setup sysfs_devices_block:file r_file_perms;
 # Access to /sys/class/block and the files it contains so that mmd_setup
 # can resolve the physical block device that underlies /data/per_boot/zram
 # and then use its queue depth to configure the zram writeback device.
-allow mmd_setup sysfs:dir r_dir_perms;
-allow mmd_setup sysfs:file r_file_perms;
+allow mmd_setup sysfs_block:dir r_dir_perms;
 
 # swapon syscall
 allow mmd_setup self:capability sys_admin;

@@ -2,6 +2,7 @@ type activity_structured_service,    system_api_service, system_server_service, 
 type ambient_context_service,        app_api_service, system_server_service, service_manager_type;
 type authentication_policy_service,  app_api_service, system_api_service, system_server_service, service_manager_type;
 
+type casefolding_remover_service,    service_manager_type;
 type attention_service,              system_server_service, service_manager_type;
 type bg_install_control_service,     system_api_service, system_server_service, service_manager_type;
 type binder_stats_consumer_service,  system_server_service, service_manager_type;
@@ -35,7 +36,8 @@ type statsmanager_service,           system_api_service, system_server_service, 
 is_flag_enabled(RELEASE_SUPERVISION_SERVICE, `
     type supervision_service, app_api_service, ephemeral_app_api_service, system_server_service, service_manager_type;
 ')
-type task_continuity_service,       system_server_service, service_manager_type;
+type talisman_service, system_api_service, system_server_service, service_manager_type;
+type task_continuity_service,       app_api_service, system_server_service, service_manager_type;
 type tracingproxy_service,          system_server_service, service_manager_type;
 type tradeinmode_service,           system_server_service, service_manager_type;
 type transparency_service,          system_server_service, service_manager_type;
@@ -67,7 +69,7 @@ type wearable_sensing_service,         app_api_service, system_server_service, s
 type wifi_mainline_supplicant_service, service_manager_type;
 type dynamic_instrumentation_service,  app_api_service, system_server_service, service_manager_type;
 type uprobestats_service,              service_manager_type;
-type uprobestats_bridge_service,       system_server_service, service_manager_type;
+type uprobestats_bridge_service,       app_api_service, system_server_service, service_manager_type;
 type advanced_protection_service,      app_api_service, system_server_service, service_manager_type;
 
 is_flag_enabled(RELEASE_RANGING_STACK, `
@@ -83,6 +85,8 @@ type hal_bluetooth_lpp_service, protected_service, hal_service_type, service_man
 until_board_api(202604, `
     type native_serial_service,         service_manager_type;
 ')
+
+type usb_auth_service,        service_manager_type;
 
 ###
 ### Neverallow rules

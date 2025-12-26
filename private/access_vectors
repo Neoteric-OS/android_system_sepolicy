@@ -187,6 +187,13 @@ inherits file
 class anon_inode
 inherits file
 
+class memfd_file
+inherits file
+{
+	execute_no_trans
+	entrypoint
+}
+
 class lnk_file
 inherits file
 

@@ -32,8 +32,9 @@ var (
 	combineMapsRule = pctx.StaticRule(
 		"combineMapsRule",
 		blueprint.RuleParams{
-			Command:     combineMapsCmd,
-			CommandDeps: []string{"${combine_maps}"},
+			Command:         combineMapsCmd,
+			CommandDeps:     []string{"${combine_maps}"},
+			SandboxDisabled: true,
 		},
 		"topHalf",
 		"bottomHalf",
