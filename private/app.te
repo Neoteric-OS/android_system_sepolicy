@@ -537,6 +537,14 @@ allow appdomain mediaextractor:memfd_file { getattr map read write };
 # MetadataRetrieverClient access
 allow appdomain mediaserver:memfd_file { getattr map read write };
 
+# Allow apps to access ContextHub Data Flows. This requires the ability to map
+# shared memory regions (either memfd or dmabuf) created by the ContextHub HAL
+# and the ability to pass eventfds from the app to the HAL and vice versa. The
+# dmabuf regions are covered by the hal_contexthub:fd use rule.
+allow appdomain hal_contexthub:fd use;
+allow hal_contexthub appdomain:fd use;
+allow appdomain hal_contexthub:memfd_file { getattr read write map };
+
 ###
 ### Neverallow rules
 ###

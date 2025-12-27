@@ -88,6 +88,10 @@ type hal_bluetooth_lpp_service, protected_service, hal_service_type, service_man
 ')
 
 until_board_api(202604, `
+type hal_motioncontext_service, protected_service, hal_service_type, service_manager_type;
+')
+
+until_board_api(202604, `
     type native_serial_service,         service_manager_type;
 ')
 

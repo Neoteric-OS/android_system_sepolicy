@@ -36,6 +36,9 @@ userdebug_or_eng(`
   # Allow profcollectd to write to perf_event_paranoid under /proc.
   allow profcollectd proc_perf:file write;
 
+  # Allow profcollectd to adjust record options based on available memory.
+  allow profcollectd proc_meminfo:file r_file_perms;
+
   # Allow profcollectd to access cs_etm sysfs.
   r_dir_file(profcollectd, sysfs_devices_cs_etm)
 

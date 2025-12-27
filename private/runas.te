@@ -36,6 +36,11 @@ allow runas non_system_app_set:process dyntransition; # setcon
 # determine which domain to transition to.
 allow runas seapp_contexts_file:file r_file_perms;
 
+# Allow runas to call servicemanager, and connect to activity_structured_service.
+# This allows run-as to query the current user ID.
+binder_call(runas, servicemanager)
+allow runas activity_structured_service:service_manager find;
+
 ###
 ### neverallow rules
 ###
