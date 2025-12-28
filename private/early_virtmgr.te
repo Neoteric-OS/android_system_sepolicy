@@ -1,4 +1,7 @@
-until_board_api(202604, `type early_virtmgr_vendor, domain, coredomain, early_virtmgr_domain;')
+until_board_api(202604, `
+type early_virtmgr_vendor, domain, coredomain, early_virtmgr_domain;
+typeattribute early_virtmgr early_virtmgr_domain;
+')
 
 # Ensure that coredomain may not transition to early_virtmgr_vendor.
 neverallow coredomain early_virtmgr_vendor:process transition;

@@ -1,5 +1,6 @@
 until_board_api(202604, `
 type virtualizationmanager_vendor, domain, coredomain, virtualizationmanager_domain;
+typeattribute virtualizationmanager virtualizationmanager_domain;
 ')
 
 # Ensure that coredomain may not transition to virtualizationmanager_vendor.

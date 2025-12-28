@@ -385,6 +385,9 @@ hal_attribute(lowpan);
 hal_attribute(macsec);
 hal_attribute(mediaquality);
 hal_attribute(memtrack);
+starting_at_board_api(202604, `
+hal_attribute(motioncontext);
+') # starting_at_board_api(202604)
 hal_attribute(neuralnetworks);
 hal_attribute(nfc);
 hal_attribute(nlinterceptor);

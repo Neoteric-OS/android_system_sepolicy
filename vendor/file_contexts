@@ -90,6 +90,10 @@ starting_at_board_api(202604, `
 /(vendor|system/vendor)/bin/hw/android\.hardware\.tv\.mediaquality-service\.example  u:object_r:hal_mediaquality_default_exec:s0
 /(vendor|system/vendor)/bin/hw/android\.hardware\.memtrack@1\.0-service       u:object_r:hal_memtrack_default_exec:s0
 /(vendor|system/vendor)/bin/hw/android\.hardware\.memtrack-service.example    u:object_r:hal_memtrack_default_exec:s0
+starting_at_board_api(202604, `
+/(vendor|system/vendor)/bin/hw/android\.hardware\.motioncontext-service       u:object_r:hal_motioncontext_default_exec:s0
+/(vendor|system/vendor)/bin/hw/android\.hardware\.motioncontext-service\.default u:object_r:hal_motioncontext_default_exec:s0
+') # starting_at_board_api(202604)
 /(vendor|system/vendor)/bin/hw/android\.hardware\.nfc@1\.0-service            u:object_r:hal_nfc_default_exec:s0
 /(vendor|system/vendor)/bin/hw/android\.hardware\.nfc@1\.1-service            u:object_r:hal_nfc_default_exec:s0
 /(vendor|system/vendor)/bin/hw/android\.hardware\.nfc@1\.2-service            u:object_r:hal_nfc_default_exec:s0
