@@ -26,7 +26,7 @@ allow domain proc:dir r_dir_perms;
 allow domain proc_net_type:dir search;
 r_dir_file(domain, self)
 allow domain self:{ fifo_file file } rw_file_perms;
-allow { domain -pcc_component } self:unix_dgram_socket { create_socket_perms sendto };
+allow domain self:unix_dgram_socket { create_socket_perms sendto };
 allow domain self:unix_stream_socket { create_stream_socket_perms connectto };
 
 # Inherit or receive open files from others.
@@ -36,6 +36,7 @@ userdebug_or_eng(`
   allow domain su:fd use;
   allow domain su:unix_stream_socket { connectto getattr getopt read write shutdown };
   allow domain su:unix_dgram_socket sendto;
+  allow domain su:memfd_file { getattr read write map };
 
   allow { domain -init } su:binder { call transfer };
 
@@ -342,6 +343,7 @@ allow {
   -webview_zygote
   -vendor_init
   -app_zygote
+  -native_app_zygote
   -isolated_app_all
   -hal_configstore_server
 } binder_stats_consumer_service:service_manager find;
@@ -351,6 +353,7 @@ allow {
   -webview_zygote
   -vendor_init
   -app_zygote
+  -native_app_zygote
   -isolated_app_all
   -hal_configstore_server
 } system_server:binder call;
@@ -413,6 +416,7 @@ define(`dumpable_domain',`{
 can_profile_heap({
   dumpable_domain
   -app_zygote
+  -native_app_zygote
   -hal_configstore_server
   -logpersist
   -recovery
@@ -426,6 +430,7 @@ can_profile_heap({
 can_profile_perf({
   dumpable_domain
   -app_zygote
+  -native_app_zygote
   -hal_configstore_server
   -webview_zygote
   -zygote
@@ -565,6 +570,7 @@ allow {
   -init
   -vendor_init
   -app_zygote
+  -native_app_zygote
   -webview_zygote
   -system_server
   -artd
@@ -942,8 +948,8 @@ full_treble_only(`
     -mediametrics_service
     -mediaserver_service
     -nfc_service
-    -omapi_service
     -radio_service
+    -secure_element_service
     -virtual_touchpad_service
     -vr_manager_service
     userdebug_or_eng(`-hal_face_service')
@@ -1217,7 +1223,7 @@ full_treble_only(`
         -shell_exec
         -toolbox_exec
         -virtualizationmanager_exec
-        is_flag_enabled(RELEASE_AVF_ENABLE_EARLY_VM, `-early_virtmgr_exec')
+        -early_virtmgr_exec
     }:file { entrypoint execute execute_no_trans };
 ')
 
@@ -1305,7 +1311,7 @@ full_treble_only(`
     -shell_exec
     -toolbox_exec
     -virtualizationmanager_exec
-    is_flag_enabled(RELEASE_AVF_ENABLE_EARLY_VM, `-early_virtmgr_exec')
+    -early_virtmgr_exec
   }:file *;
 ')
 
@@ -1316,6 +1322,7 @@ neverallow { domain -system_server } zygote_socket:sock_file write;
 neverallow { domain -system_server -webview_zygote -app_zygote } webview_zygote:unix_stream_socket connectto;
 neverallow { domain -system_server } webview_zygote:sock_file write;
 neverallow { domain -system_server } app_zygote:sock_file write;
+neverallow { domain -system_server } native_app_zygote:sock_file write;
 
 neverallow domain tombstoned_crash_socket:unix_stream_socket connectto;
 
@@ -1446,6 +1453,7 @@ neverallow {
   -simpleperf_app_runner
   -runas
   -app_zygote
+  -native_app_zygote
   -webview_zygote
   -zygote
 } {
@@ -1459,6 +1467,7 @@ neverallow {
   -simpleperf_app_runner
   -runas
   -app_zygote
+  -native_app_zygote
   -webview_zygote
   -zygote
   -zygote_next
@@ -1744,6 +1753,7 @@ neverallow {
   -adbd
   -appdomain
   -app_zygote
+  -native_app_zygote
   -artd # compile secondary dex files
   -installd
   -profman
@@ -1751,6 +1761,7 @@ neverallow {
   -runas
   -system_server
   -zygote
+  -zygote_next
 } {
   privapp_data_file
   app_data_file
@@ -1769,6 +1780,7 @@ is_flag_enabled(RELEASE_UNLOCKED_STORAGE_API, `
     -vold # encryption of storage area directories
     -vold_prepare_subdirs # creation of storage area directories
     -zygote
+    -zygote_next
   } { storage_area_dir storage_area_app_dir }:dir *;
 ')
 
@@ -1864,7 +1876,7 @@ neverallow {
   -apexd
   -installd
   -priv_app
-  -virtualizationmanager
+  -virtualizationmanager_domain
   -update_provider # WARNING: USING THIS ATTRIBUTE WILL CAUSE CTS TO FAIL!
 } staging_data_file:dir *;
 neverallow {
@@ -1878,7 +1890,7 @@ neverallow {
   -installd
   -priv_app
   -shell
-  -virtualizationmanager
+  -virtualizationmanager_domain
   -crosvm
   -update_provider # WARNING: USING THIS ATTRIBUTE WILL CAUSE CTS TO FAIL!
 } staging_data_file:file *;
@@ -1916,6 +1928,7 @@ neverallow {
     userdebug_or_eng(`-su')
     -system_server_startup # for memfd backed executable regions
     -app_zygote
+    -native_app_zygote
     -webview_zygote
     -zygote
     userdebug_or_eng(`-mediaextractor')
@@ -2159,8 +2172,8 @@ full_treble_only(`
     # TODO(b/37168747): clean up fwk access to /vendor
     -crash_dump
     -crosvm # loads vendor-specific disk images
-    -virtualizationmanager # loads vendor-specific disk images
-    -early_virtmgr # loads vendor-specific disk images
+    -virtualizationmanager_domain # loads vendor-specific disk images
+    -early_virtmgr_domain # loads vendor-specific disk images
     -init # starts vendor executables
     -kernel # loads /vendor/firmware
     -heapprofd
@@ -2339,8 +2352,9 @@ neverallow {
     domain
 
     # these are expected
-    is_flag_enabled(RELEASE_AVF_ENABLE_EARLY_VM, `-early_virtmgr')
-    -virtualizationmanager
+    is_flag_enabled(RELEASE_AISEAL_FRAMEWORK, `-aisealhostservice')
+    -early_virtmgr_domain
+    -virtualizationmanager_domain
     -virtualizationservice
     -adbd_common # maybe should move to emulator/virtual device specific policy
     -traced # traced listens to connections from guest VMs

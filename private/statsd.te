@@ -162,6 +162,10 @@ allow statsd shell:fifo_file { getattr read write };
 
 unix_socket_send(statsd, statsdw, statsd)
 
+# Allow statsd to trigger perfetto
+allow statsd traced:unix_stream_socket connectto;
+allow statsd traced_producer_socket:sock_file write;
+
 ###
 ### neverallow rules
 ###

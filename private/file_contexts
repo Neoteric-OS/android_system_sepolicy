@@ -423,6 +423,7 @@
 /system/bin/linux_vm_setup        u:object_r:linux_vm_setup_exec:s0
 /system/bin/tradeinmode           u:object_r:tradeinmode_exec:s0
 /system/bin/prefetch              u:object_r:prefetch_exec:s0
+/system/bin/aisealhostservice     u:object_r:aisealhostservice_exec:s0
 
 #############################
 # Vendor files
@@ -676,7 +677,7 @@
 /data/misc/apexdata/com\.android\.scheduling(/.*)?    u:object_r:apex_system_server_data_file:s0
 /data/misc/apexdata/com\.android\.tethering(/.*)?     u:object_r:apex_tethering_data_file:s0
 /data/misc/apexdata/com\.android\.uwb(/.*)?           u:object_r:apex_uwb_data_file:s0
-/data/misc/apexdata/com\.android\.wifi(/.*)?          u:object_r:apex_system_server_data_file:s0
+/data/misc/apexdata/com\.android\.wifi(/.*)?          u:object_r:apex_wifi_data_file:s0
 /data/misc/apexrollback(/.*)?   u:object_r:apex_rollback_data_file:s0
 /data/misc/apns(/.*)?           u:object_r:radio_data_file:s0
 /data/misc/appcompat(/.*)?      u:object_r:appcompat_data_file:s0
@@ -745,6 +746,7 @@
 /data/misc/update_engine(/.*)?  u:object_r:update_engine_data_file:s0
 /data/misc/update_engine_log(/.*)?  u:object_r:update_engine_log_data_file:s0
 /data/misc/snapuserd_log(/.*)?  u:object_r:snapuserd_log_data_file:s0
+/data/system/aiseal(/.*)?       u:object_r:aiseal_data_file:s0
 /data/system/dropbox(/.*)?      u:object_r:dropbox_data_file:s0
 /data/system/heapdump(/.*)?     u:object_r:heapdump_data_file:s0
 /data/misc/trace(/.*)?          u:object_r:method_trace_data_file:s0
@@ -769,9 +771,6 @@
 # checkin data files
 /data/misc_ce/[0-9]+/checkin(/.*)? u:object_r:checkin_data_file:s0
 
-# Gatekeeper data
-/data/vendor/gatekeeper(/.*)? u:object_r:gatekeeper_vendor_data_file:s0
-
 # Fingerprint data
 /data/system/users/[0-9]+/fpdata(/.*)? u:object_r:fingerprintd_data_file:s0
 
@@ -785,8 +784,8 @@
 # Iris vendor data file
 /data/vendor_de/[0-9]+/irisdata(/.*)? u:object_r:iris_vendor_data_file:s0
 
-# wifi vendor data file
-/data/vendor_ce/[0-9]+/wifi(/.*)? u:object_r:wifi_vendor_data_file:s0
+# wifi vendor user data file
+/data/vendor_ce/[0-9]+/wifi(/.*)? u:object_r:wifi_vendor_user_data_file:s0
 # Bootchart data
 /data/bootchart(/.*)?		u:object_r:bootchart_data_file:s0
 
@@ -804,8 +803,8 @@
 /data/misc_ce/[0-9]+/apexdata/com\.android\.appsearch(/.*)?   u:object_r:apex_system_server_data_file:s0
 /data/misc_de/[0-9]+/apexdata/com\.android\.permission(/.*)?  u:object_r:apex_system_server_data_file:s0
 /data/misc_ce/[0-9]+/apexdata/com\.android\.permission(/.*)?  u:object_r:apex_system_server_data_file:s0
-/data/misc_de/[0-9]+/apexdata/com\.android\.wifi(/.*)?        u:object_r:apex_system_server_data_file:s0
-/data/misc_ce/[0-9]+/apexdata/com\.android\.wifi(/.*)?        u:object_r:apex_system_server_data_file:s0
+/data/misc_de/[0-9]+/apexdata/com\.android\.wifi(/.*)?        u:object_r:apex_wifi_data_file:s0
+/data/misc_ce/[0-9]+/apexdata/com\.android\.wifi(/.*)?        u:object_r:apex_wifi_data_file:s0
 /data/misc_de/[0-9]+/apexdata/com\.android\.uwb(/.*)?         u:object_r:apex_system_server_data_file:s0
 /data/misc_ce/[0-9]+/apexdata/com\.android\.uwb(/.*)?         u:object_r:apex_system_server_data_file:s0
 

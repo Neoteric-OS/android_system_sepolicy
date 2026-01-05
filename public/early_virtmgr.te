@@ -1,7 +1,8 @@
 is_flag_enabled(RELEASE_AVF_ENABLE_EARLY_VM, `
     # Domain for a child process that manages early VMs available before /data mount, on behalf of
     # its parent.
-    type early_virtmgr, domain, coredomain;
+    until_board_api(202604, `type early_virtmgr, domain, coredomain;')
+    starting_at_board_api(202604, `type early_virtmgr_vendor, domain, coredomain, early_virtmgr_domain;')
     type early_virtmgr_exec, system_file_type, exec_type, file_type;
 ')
 

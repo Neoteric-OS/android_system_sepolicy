@@ -213,6 +213,15 @@ allow priv_app app_exec_data_file:file { r_file_perms execute unlink };
 # permission.
 virtualizationservice_use(priv_app)
 
+# Allow privileged apps to access AiSeal VM. Note that access to the
+# service is guarded with the `android.permission.MANAGE_AISEAL_VIRTUAL_MACHINE`
+# permission and AiSeal restricts access to the VM only to its tenants, so
+# even with the permission granted, the app won't be able to access the VM
+# with other tenants.
+is_flag_enabled(RELEASE_AISEAL_FRAMEWORK, `
+    aiseal_use(priv_app)
+')
+
 ###
 ### neverallow rules
 ###

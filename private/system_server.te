@@ -104,9 +104,10 @@ allow system_server zygote:process sigchld;
 # May kill zygote (or its child processes) on crashes.
 allow system_server {
   app_zygote
+  native_app_zygote
   crash_dump
   crosvm
-  virtualizationmanager
+  virtualizationmanager_domain
   webview_zygote
   zygote
 }:process { getpgid sigkill signull setsched };
@@ -206,7 +207,7 @@ allow system_server hal_camera:process { getsched setsched };
 allow system_server mediaserver:process { getsched setsched };
 allow system_server bootanim:process { getsched setsched };
 # Set scheduling info for VMs (b/375058190)
-allow system_server { virtualizationmanager crosvm }:process { getsched setsched };
+allow system_server { virtualizationmanager_domain crosvm }:process { getsched setsched };
 
 # Set scheduling info for psi monitor thread.
 # TODO: delete this line b/131761776
@@ -297,9 +298,12 @@ allow system_server webview_zygote:unix_stream_socket { read write connectto set
 # Communicate over a socket created by app_zygote.
 allow system_server app_zygote:unix_stream_socket { read write connectto setopt };
 
+# Communicate over a socket created by native_app_zygote.
+allow system_server native_app_zygote:unix_stream_socket { read write connectto setopt };
+
 # Communicate with a virtual machine (b/396144272)
-allow system_server virtualizationmanager:fd use;
-allow system_server virtualizationmanager:vsock_socket { getopt read write };
+allow system_server priv_app_virtualizationmanager:fd use;
+allow system_server priv_app_virtualizationmanager:vsock_socket { getopt read write };
 
 # Perform Binder IPC.
 binder_use(system_server)
@@ -496,6 +500,7 @@ r_dir_file(system_server, sysfs_usb_pd)
 allow system_server sysfs_usb_pd:file r_file_perms;
 
 # Read/write to usb for port mapping and authorization
+# Also used by UsbDeviceManager for android_kernel_aoa_enabled switch
 r_dir_file(system_server, sysfs_usb)
 allow system_server sysfs_usb:file rw_file_perms;
 
@@ -550,6 +555,7 @@ allow system_server ota_package_file:file create_file_perms;
 allow system_server system_data_file:dir create_dir_perms;
 allow system_server system_data_file:notdevfile_class_set create_file_perms;
 allow system_server packages_list_file:file create_file_perms;
+allow system_server user_list_data_file:file create_file_perms;
 allow system_server game_mode_intervention_list_file:file create_file_perms;
 allow system_server keychain_data_file:dir create_dir_perms;
 allow system_server keychain_data_file:file create_file_perms;
@@ -1229,7 +1235,7 @@ allow system_server toolbox_exec:file rx_file_perms;
 allow system_server pbtombstone_exec:file rx_file_perms;
 
 # Allow system process to setup fs-verity
-allowxperm system_server { apk_data_file apk_tmp_file system_data_file apex_system_server_data_file }:file ioctl FS_IOC_ENABLE_VERITY;
+allowxperm system_server { apk_data_file apk_tmp_file system_data_file apex_system_server_data_file apex_wifi_data_file}:file ioctl FS_IOC_ENABLE_VERITY;
 
 # Allow system process to measure fs-verity for apps, including those being installed
 allowxperm system_server { apk_data_file apk_tmp_file }:file ioctl FS_IOC_MEASURE_VERITY;
@@ -1363,7 +1369,8 @@ get_prop(system_server,system_jvmti_agent_prop)
 allow system_server functionfs:dir search;
 # UsbDeviceManager needs relabelfrom to change from functionfs to usbaccessory
 allow system_server functionfs:file { rw_file_perms relabelfrom };
-allow system_server usbaccessory_device:file relabelto;
+allow system_server usbaccessory_device:file { rw_file_perms relabelto };
+allowxperm system_server usbaccessory_device:file ioctl { FUNCTIONFS_ENDPOINT_DESC };
 allow usbaccessory_device functionfs:filesystem associate;
 # To resolve arbitrary sysfs paths from /sys/class/udc/* symlinks.
 allow system_server sysfs_type:dir search;
@@ -1587,18 +1594,18 @@ allow system_server apex_tethering_data_file:dir create_dir_perms;
 allow system_server apex_tethering_data_file:file create_file_perms;
 allow system_server apex_uwb_data_file:dir create_dir_perms;
 allow system_server apex_uwb_data_file:file create_file_perms;
+allow system_server apex_wifi_data_file:dir create_dir_perms;
+allow system_server apex_wifi_data_file:file create_file_perms;
 # Legacy labels that we still need to support (b/217581286)
 allow system_server {
   apex_appsearch_data_file
   apex_permission_data_file
   apex_scheduling_data_file
-  apex_wifi_data_file
 }:dir create_dir_perms;
 allow system_server {
   apex_appsearch_data_file
   apex_permission_data_file
   apex_scheduling_data_file
-  apex_wifi_data_file
 }:file create_file_perms;
 
 # Broadcast AppSearch memory
@@ -1795,6 +1802,11 @@ binder_call(system_server, serialservice)
 allow system_server usb_auth_service:service_manager find;
 binder_call(system_server, usbauthservice)
 
+# Allow system_server to access AiSeal VM
+is_flag_enabled(RELEASE_AISEAL_FRAMEWORK, `
+    aiseal_use(system_server)
+')
+
 # Allow system_server to talk to NPU scheduling service
 starting_at_board_api(202604, `
   hal_client_domain(system_server, hal_npu_scheduling)
@@ -1839,6 +1851,11 @@ get_prop(system_server, usb_userspace_aoa_enabled_prop)
 
 # Allow system_server to read the remote_provisioning.*.rkp_only property;
 get_prop(system_server,remote_prov_prop)
+
+# Allow system_server to read the zygote.zygote_next.server_ready property.
+get_prop(system_server, zygote_zygote_next_server_status_prop)
+# Allow system_server to read/write the persist.zygote.zygote_next.start_on_boot property.
+set_prop(system_server, zygote_zygote_next_boot_config_prop)
 
 # Read /proc/swaps for debugging and meminfo-related utilities.
 allow system_server proc_swaps:file { read open getattr };

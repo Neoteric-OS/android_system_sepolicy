@@ -25,6 +25,9 @@ allow pcc_component shell_data_file:dir r_dir_perms;
 allow pcc_component privapp_data_file:file { r_file_perms execute };
 allow pcc_component app_data_file:file     { r_file_perms execute };
 
+allow pcc_component pcc_data_file:dir create_dir_perms;
+allow pcc_component pcc_data_file:file create_file_perms;
+
 # Follow priv-app symlinks. This is used for dynamite functionality.
 allow pcc_component privapp_data_file:lnk_file r_file_perms;
 
@@ -304,9 +307,6 @@ neverallow pcc_component media_rw_data_file:file { write append ioctl lock };
 # Never allow pcc component to write to other app fifo_files
 # su is allowed because of rule `allow domain su (fifo_file (write getattr))` in domain.te
 neverallow pcc_component { appdomain -pcc_component -su }:fifo_file { write append ioctl lock watch_reads };
-
-# Never allow pcc component to use unix_dgram_socket
-neverallow pcc_component pcc_component:unix_dgram_socket { create_socket_perms sendto };
 
 # Never allow pcc component to create tcp stream sockets
 neverallow pcc_component pcc_component:tcp_socket create_stream_socket_perms;

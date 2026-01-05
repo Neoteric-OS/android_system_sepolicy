@@ -386,6 +386,9 @@ allow dumpstate apex_system_server_data_file:dir search;
 allow dumpstate apex_uwb_data_file:dir r_dir_perms;
 allow dumpstate apex_uwb_data_file:file r_file_perms;
 
+# For wifi
+allow dumpstate apex_wifi_data_file:dir search;
+
 # Dumpstate calls screencap, which grabs a screenshot. Needs gpu access
 gpu_sphal_use(dumpstate)
 

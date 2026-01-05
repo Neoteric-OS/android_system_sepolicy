@@ -1,6 +1,9 @@
 # Define the domain for the mmd_setup service
-type mmd_setup, domain;
-typeattribute mmd_setup coredomain;
+until_board_api(202604, `
+    # define also in private to simplify rules around this type
+    type mmd_setup, domain;
+    typeattribute mmd_setup coredomain;
+')
 type mmd_setup_exec, system_file_type, exec_type, file_type;
 type zram_data_file, file_type, data_file_type, core_data_file_type;
 
@@ -10,6 +13,7 @@ init_daemon_domain(mmd_setup)
 # Read mmd settings properties
 get_prop(mmd_setup, mmd_prop)
 get_prop(mmd_setup, mmd_shared_prop)
+get_prop(mmd_setup, mmd_config_prop)
 get_prop(mmd_setup, device_config_mmd_native_prop)
 
 # Write mmd setup related properties
@@ -41,7 +45,7 @@ allow mmd_setup loop_control_device:chr_file rw_file_perms;
 allow mmd_setup loop_device:blk_file rw_file_perms;
 allowxperm mmd_setup loop_device:blk_file ioctl LOOP_CONFIGURE;
 allow mmd_setup sysfs_loop:dir search;
-allow mmd_setup sysfs_loop:file w_file_perms;
+allow mmd_setup sysfs_loop:file rw_file_perms;
 allow mmd_setup sysfs_dm:dir r_dir_perms;
 
 # Read underlying block device queue depth to configure zram writeback.

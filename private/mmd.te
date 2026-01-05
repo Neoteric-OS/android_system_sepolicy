@@ -9,6 +9,7 @@ init_daemon_domain(mmd)
 set_prop(mmd, mmd_shared_status_prop)
 set_prop(mmd, mmd_status_prop)
 get_prop(mmd, mmd_prop)
+get_prop(mmd, mmd_config_prop)
 get_prop(mmd, device_config_mmd_native_prop)
 
 # mmd binder setup

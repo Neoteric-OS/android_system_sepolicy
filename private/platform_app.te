@@ -145,6 +145,15 @@ dontaudit platform_app debugfs_tracing:file rw_file_perms;
 # Allow platform apps to create VMs
 virtualizationservice_use(platform_app)
 
+# Allow platform apps to access AiSeal VM. Note that access to the
+# service is guarded with the `android.permission.MANAGE_AISEAL_VIRTUAL_MACHINE`
+# permission and AiSeal restricts access to the VM only to its tenants, so
+# even with the permission granted, the app won't be able to access the VM
+# with other tenants.
+is_flag_enabled(RELEASE_AISEAL_FRAMEWORK, `
+    aiseal_use(platform_app)
+')
+
 # Allow platform apps to read files and directories under /data/system/shutdown-checkpoints/
 r_dir_file(platform_app, shutdown_checkpoints_system_data_file)
 

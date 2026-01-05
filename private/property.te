@@ -90,6 +90,8 @@ system_internal_prop(trusty_security_vm_sys_prop)
 system_internal_prop(trusty_widevine_vm_sys_prop)
 system_internal_prop(hint_manager_config_prop)
 system_internal_prop(avf_vm_traced_relay_enabled_prop)
+system_internal_prop(zygote_zygote_next_server_status_prop)
+system_internal_prop(zygote_zygote_next_boot_config_prop)
 
 # Properties which can't be written outside system
 system_restricted_prop(binder_cache_adservices_server_prop)
@@ -103,7 +105,7 @@ system_restricted_prop(persist_sysui_ranking_update_prop)
 system_restricted_prop(page_size_prop)
 system_restricted_prop(pm_16kb_app_compat_prop)
 until_board_api(202604, `
-    system_restricted_prop(remote_prov_prop)
+    system_public_prop(remote_prov_prop)
 ')
 system_restricted_prop(service_sf_present_timestamp_prop)
 system_restricted_prop(statsd_atoms_list_version_prop)
@@ -123,6 +125,7 @@ system_vendor_config_prop(userdata_alias_remove_prop)
 until_board_api(202604, `
     system_vendor_config_prop(wallet_prop)
     system_vendor_config_prop(usb_userspace_aoa_enabled_prop)
+    system_vendor_config_prop(mmd_config_prop)
 ')
 
 typeattribute log_prop log_property_type;
@@ -811,6 +814,7 @@ neverallow {
   -shell
   -system_server
   -rkpdapp
+  -vendor_init
 } remote_prov_prop:property_service set;
 
 neverallow {

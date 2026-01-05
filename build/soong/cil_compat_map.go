@@ -24,7 +24,7 @@ import (
 	"github.com/google/blueprint/proptools"
 )
 
-//go:generate go run ../../../../build/blueprint/gobtools/codegen/gob_gen.go
+//go:generate go run ../../../../build/blueprint/gobtools/codegen
 
 var (
 	combine_maps    = pctx.HostBinToolVariable("combine_maps", "combine_maps")

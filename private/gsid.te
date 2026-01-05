@@ -14,6 +14,7 @@ add_service(gsid, gsi_service)
 allow gsid vold_service:service_manager find;
 binder_call(gsid, vold)
 
+get_prop(gsid, virtual_ab_prop)
 set_prop(gsid, gsid_prop)
 
 # Needed to create/delete device-mapper nodes, and read/write to them.
@@ -81,6 +82,9 @@ allow gsid sdcard_block_device:blk_file r_file_perms;
 # This is needed for FIBMAP unfortunately. Oddly FIEMAP does not carry this
 # requirement, but the kernel does not implement FIEMAP support for VFAT.
 allow gsid self:global_capability_class_set sys_rawio;
+
+# Apps send data to gsid through share memory FD.
+allow gsid appdomain:memfd_file { read write getattr map };
 
 # Allow rules for gsi_tool.
 userdebug_or_eng(`

@@ -5,10 +5,12 @@ hal_attribute_hwservice(hal_sensors, hal_sensors_hwservice)
 
 # Allow sensor hals to access ashmem memory allocated by apps
 allow hal_sensors { appdomain -isolated_app }:fd use;
+allow hal_sensors { appdomain -isolated_app }:memfd_file { getattr read write map };
 
 # Allow sensor hals to access ashmem memory allocated by android.hidl.allocator
 # fd is passed in from framework sensorservice HAL.
 allow hal_sensors hal_allocator:fd use;
+allow hal_sensors hal_allocator:memfd_file { getattr read write map };
 
 # allow to run with real-time scheduling policy
 allow hal_sensors self:global_capability_class_set sys_nice;

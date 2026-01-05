@@ -23,11 +23,11 @@ allow isolated_app_all display_service:service_manager find;
 allow isolated_app_all self:process ptrace;
 
 # Inherit FDs from the app_zygote.
-allow isolated_app_all app_zygote:fd use;
+allow isolated_app_all { app_zygote native_app_zygote }:fd use;
 # Notify app_zygote of child death.
-allow isolated_app_all app_zygote:process sigchld;
+allow isolated_app_all { app_zygote native_app_zygote }:process sigchld;
 # Inherit logd write socket.
-allow isolated_app_all app_zygote:unix_dgram_socket write;
+allow isolated_app_all { app_zygote native_app_zygote }:unix_dgram_socket write;
 
 # TODO (b/63631799) fix this access
 # suppress denials to /data/local/tmp

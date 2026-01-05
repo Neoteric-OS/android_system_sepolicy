@@ -662,6 +662,13 @@ starting_at_board_api(202604, `type sysfs_usb_pd, fs_type, sysfs_type;')
 # /sys/modules/usbcore
 starting_at_board_api(202604, `type sysfs_usbcore, fs_type, sysfs_type;')
 
+# /data/vendor_ce/[0-9]+/wifi/
+# /data/vendor_ce/[0-9]+/wifi/wpa(/.*)?
+starting_at_board_api(202604, `
+type wifi_vendor_user_data_file, file_type, data_file_type;
+type wpa_user_data_file, file_type, data_file_type;
+')
+
 # system/sepolicy/public is for vendor-facing type and attribute definitions.
 # DO NOT ADD allow, neverallow, or dontaudit statements here.
 # Instead, add such policy rules to system/sepolicy/private/*.te.

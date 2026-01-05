@@ -53,6 +53,8 @@ allow system_suspend fs_bpf_kernelwakelockduration:file { getattr read };
 allow system_suspend bpfloader:bpf { prog_run map_read map_write };
 allow system_suspend self:bpf map_create;
 
+# Allow writing to /sys/module/suspend/parameters
+starting_at_board_api(202604, `allow system_suspend sysfs_suspend_params:file rw_file_perms;')
 
 neverallow {
     domain

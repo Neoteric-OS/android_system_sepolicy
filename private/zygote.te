@@ -221,7 +221,7 @@ get_prop(zygote, device_config_runtime_native_boot_prop)
 # to initialize WindowManager static properties.
 get_prop(zygote, device_config_window_manager_native_boot_prop)
 
-# ingore spurious denials
+# Ignore spurious denials
 # fsetid can be checked as a consequence of chmod when using cgroup v2 uid/pid hierarchy. This is
 # done to determine if the file should inherit setgid. In this case, setgid on the file is
 # undesirable, so suppress the denial.

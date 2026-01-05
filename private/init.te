@@ -642,6 +642,7 @@ allow init {
   sysfs_leds
   sysfs_lowmemorykiller
   sysfs_power
+  starting_at_board_api(202604, `sysfs_suspend_params')
   sysfs_vibrator
   sysfs_wake_lock
   sysfs_zram
