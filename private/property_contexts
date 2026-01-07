@@ -74,6 +74,9 @@ persist.log.tag         u:object_r:log_tag_prop:s0
 persist.mmc.            u:object_r:mmc_prop:s0
 persist.netd.stable_secret      u:object_r:netd_stable_secret_prop:s0
 persist.pm.mock-upgrade u:object_r:mock_ota_prop:s0
+persist.pcc.audit_mode.enabled      u:object_r:pcc_audit_mode_prop:s0 exact bool
+persist.pcc.audit_mode.max_log_files      u:object_r:pcc_audit_mode_prop:s0 exact int
+persist.pcc.audit_mode.log_file_max_size_kb      u:object_r:pcc_audit_mode_prop:s0 exact int
 persist.profcollectd.enabled    u:object_r:profcollectd_enabled_prop:s0     exact   bool
 persist.profcollectd.node_id    u:object_r:profcollectd_node_id_prop:s0     exact   string
 persist.sys.            u:object_r:system_prop:s0
@@ -1453,6 +1456,7 @@ ro.hardware.vehicle              u:object_r:exported_default_prop:s0 exact strin
 ro.hardware.vibrator             u:object_r:exported_default_prop:s0 exact string
 ro.hardware.virtual_device       u:object_r:exported_default_prop:s0 exact string
 ro.hardware.vulkan               u:object_r:exported_default_prop:s0 exact string
+ro.hardware.16kb_cpu_unsupported u:object_r:exported_default_prop:s0 exact bool
 
 ro.hw_timeout_multiplier u:object_r:hw_timeout_multiplier_prop:s0 exact int
 
