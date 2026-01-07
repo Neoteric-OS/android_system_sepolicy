@@ -109,6 +109,12 @@ allow microdroid_manager self:vsock_socket { listen accept };
 # Allow microdroid_manager to read the CID of the VM.
 allow microdroid_manager vsock_device:chr_file { ioctl open read };
 
+# Allow microdroid_manager to perform socket-related operations in the microdroid_managed directory.
+allow microdroid_manager microdroid_managed_socket_dir:dir create_dir_perms;
+
+# Allow microdroid_manager to create the unix socket file.
+allow microdroid_manager microdroid_managed_socket_dir:sock_file create_file_perms;
+
 # microdroid_manager is using bootstrap bionic
 use_bootstrap_libs(microdroid_manager)
 
