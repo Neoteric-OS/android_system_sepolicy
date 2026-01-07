@@ -106,7 +106,7 @@ func (n *neverallowTestModule) loadHook(ctx android.LoadHookContext) {
 func (n *neverallowTestModule) DepsMutator(ctx android.BottomUpMutatorContext) {
 	ctx.AddDependency(n, checkpolicyTag, n.checkpolicyConfModuleName())
 	ctx.AddDependency(n, sepolicyAnalyzeTag, n.sepolicyAnalyzeConfModuleName())
-	android.AddHostToolDependencies(ctx, "checkpolicy", "sepolicy-analyze")
+	ctx.AddHostToolDependencies("checkpolicy", "sepolicy-analyze")
 }
 
 func (n *neverallowTestModule) GenerateAndroidBuildActions(ctx android.ModuleContext) {
