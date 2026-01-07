@@ -35,7 +35,7 @@ allow microdroid_manager self:global_capability_class_set sys_admin;
 allow microdroid_manager tmpfs:dir { create mounton add_name write };
 allow microdroid_manager labeledfs:filesystem { relabelfrom };
 allow microdroid_manager encrypted_assets_fs:filesystem { mount unmount relabelfrom relabelto };
-allow microdroid_manager encrypted_assets_file:dir { create mounton };
+allow microdroid_manager encrypted_assets_file:dir { create mounton getattr };
 
 # Allow microdroid_manager to read the status of netlink sockets and determine whether ueventd is
 # ready for processing the mount events.
