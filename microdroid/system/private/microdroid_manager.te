@@ -236,6 +236,11 @@ allow microdroid_manager {
 # persist.traced.enable sysprop.
 set_prop(microdroid_manager, traced_enabled_prop);
 
+# For multitenant Microdroid configurations, microdroid setexeccon the forked
+# child process into set of allowed domains.
+allow microdroid_manager self:process setexec;
+domain_trans(microdroid_manager, microdroid_app_exec, appsearch_tenant);
+
 # Domains other than microdroid can't write extra_apks
 neverallow { domain -microdroid_manager -init -vendor_init } extra_apk_file:file no_w_file_perms;
 neverallow { domain -microdroid_manager -init -vendor_init } extra_apk_file:dir no_w_dir_perms;
