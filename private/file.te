@@ -228,6 +228,9 @@ type sysfs_firmware_acpi_tables, fs_type, sysfs_type;
 # Type for /system/bin/pbtombstone.
 type pbtombstone_exec, system_file_type, exec_type, file_type;
 
+# Type for /dev/socket/microdroid_managed_socket_file
+type microdroid_managed_socket_file, file_type, coredomain_socket,  mlstrustedobject;
+
 # Allow files to be created in their appropriate filesystems.
 allow fs_type self:filesystem associate;
 allow cgroup tmpfs:filesystem associate;

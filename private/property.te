@@ -93,6 +93,7 @@ system_internal_prop(hint_manager_config_prop)
 system_internal_prop(avf_vm_traced_relay_enabled_prop)
 system_internal_prop(zygote_zygote_next_server_status_prop)
 system_internal_prop(zygote_zygote_next_boot_config_prop)
+system_internal_prop(pcc_audit_mode_prop)
 
 # Properties which can't be written outside system
 system_restricted_prop(binder_cache_adservices_server_prop)

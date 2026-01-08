@@ -127,7 +127,7 @@ func (m *selinuxContextsModule) DepsMutator(ctx android.BottomUpMutatorContext) 
 		}, reuseContextsDepTag, ctx.ModuleName())
 	}
 
-	android.AddHostToolDependencies(ctx, "check_prop_prefix", "sysprop_type_checker", "checkseapp")
+	ctx.AddHostToolDependencies("check_prop_prefix", "sysprop_type_checker", "checkseapp")
 }
 
 func (m *selinuxContextsModule) propertyContextsDeps(ctx android.BottomUpMutatorContext) {
@@ -651,7 +651,7 @@ func vndServiceContextsTestFactory() android.Module {
 }
 
 func (m *contextsTestModule) DepsMutator(ctx android.BottomUpMutatorContext) {
-	android.AddHostToolDependencies(ctx, "checkfc", "property_info_checker")
+	ctx.AddHostToolDependencies("checkfc", "property_info_checker")
 }
 
 func (m *contextsTestModule) GenerateAndroidBuildActions(ctx android.ModuleContext) {

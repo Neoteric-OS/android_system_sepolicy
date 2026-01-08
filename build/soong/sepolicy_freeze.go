@@ -60,7 +60,7 @@ func (f *freezeTestModule) shouldCompareExtraDirs(ctx android.EarlyModuleContext
 }
 
 func (f *freezeTestModule) DepsMutator(ctx android.BottomUpMutatorContext) {
-	android.AddHostToolDependencies(ctx, "sepolicy_freeze_test")
+	ctx.AddHostToolDependencies("sepolicy_freeze_test")
 }
 
 func (f *freezeTestModule) GenerateAndroidBuildActions(ctx android.ModuleContext) {
