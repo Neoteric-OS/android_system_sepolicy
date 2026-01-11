@@ -103,3 +103,12 @@ get_prop(apexd, cold_boot_done_prop)
 
 # apexd uses this to determine where there metadata partition is.
 get_prop(apexd, apexd_payload_metadata_prop)
+
+# Allow apexd to directly create loop and dm block devices to optimize boot time.
+# This bypasses the dependency on ueventd by allowing apexd to:
+# 1. Use setfscreatecon() to set the correct label (loop_device/apex_dm_device).
+# 2. Use mknod() to create the nodes directly in /dev/block.
+allow apexd self:global_capability_class_set mknod;
+allow apexd { loop_device apex_dm_device }:blk_file create;
+allow apexd block_device:dir { add_name write };
+allow apexd self:process setfscreate;

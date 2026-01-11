@@ -113,6 +113,9 @@ system_restricted_prop(service_sf_present_timestamp_prop)
 system_restricted_prop(statsd_atoms_list_version_prop)
 system_restricted_prop(trusty_coverage_prop)
 
+# Device thermal property
+system_restricted_prop(thermal_profile_prop)
+
 # Properties which should only be written by vendor_init
 system_vendor_config_prop(arm64_memtag_bootctl_prop)
 system_vendor_config_prop(avf_virtualizationservice_prop)

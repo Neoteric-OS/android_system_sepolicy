@@ -165,3 +165,6 @@ neverallow { domain -init userdebug_or_eng(`-shell -platform_app') } persist_sys
 
 # app domains which access /dev/fuse should not run as platform_app
 neverallow platform_app fuse_device:chr_file *;
+
+# Allow platform_app to write the thermal profile property.
+set_prop(platform_app, thermal_profile_prop)
