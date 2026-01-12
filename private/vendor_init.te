@@ -376,3 +376,6 @@ neverallow * vendor_init:process ptrace;
 
 # allow vendor_init to set usb_userspace_aoa_enabled_prop
 set_prop(vendor_init, usb_userspace_aoa_enabled_prop)
+
+# Allow vendor init to read thermal profile properties
+get_prop(vendor_init, thermal_profile_prop)

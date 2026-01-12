@@ -1865,3 +1865,6 @@ set_prop(system_server, zygote_zygote_next_boot_config_prop)
 
 # Read /proc/swaps for debugging and meminfo-related utilities.
 allow system_server proc_swaps:file { read open getattr };
+
+# Allow system_server to write the thermal profile property.
+set_prop(system_server, thermal_profile_prop)
