@@ -29,6 +29,7 @@ allow zygote_next self:global_capability_class_set sys_admin;
 # The Native Zygote must be able to inspect /dev/pmsg0, which is used by the
 # logger, as it needs to get the fd and close it before fork
 allow zygote_next pmsg_device:chr_file getattr;
+allow zygote_next debugfs_trace_marker:file getattr;
 
 # Needed for calling selinux_android_setcontext
 allow zygote_next seapp_contexts_file:file r_file_perms;

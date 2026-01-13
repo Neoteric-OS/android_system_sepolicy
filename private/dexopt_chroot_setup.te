@@ -69,6 +69,7 @@ allow dexopt_chroot_setup {
   proc
   pstorefs
   rootfs
+  securityfs
   selinuxfs
   sysfs
   system_data_file
@@ -96,6 +97,7 @@ allow dexopt_chroot_setup {
   labeledfs
   proc
   pstorefs
+  securityfs
   selinuxfs
   sysfs
   tmpfs
