@@ -46,8 +46,9 @@ allowxperm apexd loop_device:blk_file ioctl {
   LOOP_SET_BLOCK_SIZE
   LOOP_SET_DIRECT_IO
   LOOP_CLR_FD
-  BLKFLSBUF
   LOOP_CONFIGURE
+  BLKFLSBUF
+  BLKRASET
 };
 # Allow apexd to access /dev/block
 allow apexd dev_type:dir r_dir_perms;
@@ -61,6 +62,8 @@ allow apexd vd_device:blk_file r_file_perms;
 allow apexd dm_device:chr_file rw_file_perms;
 allow apexd dm_device:blk_file rw_file_perms;
 allow apexd apex_dm_device:blk_file {setattr rw_file_perms};
+allowxperm apexd dm_device:blk_file ioctl BLKRASET;
+allowxperm apexd apex_dm_device:blk_file ioctl BLKRASET;
 
 # sys_admin is required to access the device-mapper and mount
 # dac_override, chown, and fowner are needed for snapshot and restore

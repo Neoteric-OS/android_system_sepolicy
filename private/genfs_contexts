@@ -322,6 +322,7 @@ genfscon tracefs /events/clk/clk_set_rate/                               u:objec
 genfscon debugfs /kcov								 u:object_r:debugfs_kcov:s0
 
 genfscon securityfs / u:object_r:securityfs:s0
+genfscon securityfs /safesetid/uid_allowlist_policy u:object_r:uid_allowlist_policy:s0
 
 genfscon binder /binder u:object_r:binder_device:s0
 genfscon binder /hwbinder u:object_r:hwbinder_device:s0

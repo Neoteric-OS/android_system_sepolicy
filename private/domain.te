@@ -650,7 +650,8 @@ neverallow * self:global_capability2_class_set mac_override;
 # Disallow attempts to set contexts not defined in current policy
 # This helps guarantee that unknown or dangerous contents will not ever
 # be set.
-neverallow * self:global_capability2_class_set mac_admin;
+# system_server requires mac_admin for setting the safesetid policy.
+neverallow { domain -system_server } self:global_capability2_class_set mac_admin;
 
 # Once the policy has been loaded there shall be none to modify the policy.
 # It is sealed.

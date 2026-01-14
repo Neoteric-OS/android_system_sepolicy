@@ -14,7 +14,7 @@ app_domain(pcc_component)
 # Allow pcc components to read files in visible storage. The write access to sdcard_type, fuse is temporary for debug mode functionality in AiAi.
 allow pcc_component { sdcard_type fuse }:file { read getattr write append ioctl lock };
 allow pcc_component media_rw_data_file:file { read getattr };
-allow pcc_component { sdcard_type fuse media_rw_data_file }:dir { open search read };
+allow pcc_component { sdcard_type fuse media_rw_data_file }:dir { open search read getattr };
 
 # Required to read CTS tests data from the shell_data_file location.
 allow pcc_component shell_data_file:file r_file_perms;

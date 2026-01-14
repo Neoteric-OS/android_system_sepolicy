@@ -147,6 +147,11 @@ allow system_server self:global_capability_class_set {
     sys_tty_config
 };
 
+# Allow system_server to use CAP_MAC_ADMIN for managing the safetsetid policy.
+#
+# Despite its name, CAP_MAC_ADMIN does not provide admin control of selinux.
+allow system_server self:global_capability2_class_set mac_admin;
+
 # Allow alarmtimers to be set
 allow system_server self:global_capability2_class_set wake_alarm;
 
@@ -1676,6 +1681,10 @@ allow system_server proc_pressure_mem:file rw_file_perms;
 allow system_server { proc_pressure_cpu proc_pressure_io }:file r_file_perms;
 # Read /proc/diskstats to help debug IO stalls.
 allow system_server proc_diskstats:file r_file_perms;
+
+# Read/Write /sys/kernel/security/safesetid/uid_allowlist_policy
+allow system_server securityfs:dir search;
+allow system_server uid_allowlist_policy:file rw_file_perms;
 
 # CAP_SYS_RESOURCE was traditionally needed for sensitive /proc/PID
 # file read access. However, that is now unnecessary (b/34951864)
