@@ -35,7 +35,7 @@ neverallow {
   appdomain
   -bluetooth
   -platform_app
-  -priv_app
+  -priv_app_all
   -radio
   -shell
   userdebug_or_eng(`-su')

@@ -523,6 +523,7 @@
 /system/vendor/etc/cgroups.json                                   vendor_cgroup_desc_file
 /vendor/etc/task_profiles.json                                    vendor_task_profiles_file
 /system/vendor/etc/task_profiles.json                             vendor_task_profiles_file
+/vendor/etc/dma_heap.json                                         vendor_dma_heap_config_file
 
 /vendor/lib/egl                                                   same_process_hal_file
 /vendor/lib64/egl                                                 same_process_hal_file

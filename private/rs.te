@@ -30,7 +30,7 @@ allow rs ion_device:chr_file r_file_perms;
 allow rs same_process_hal_file:file { r_file_perms execute };
 
 # File descriptors passed from app to renderscript
-allow rs { untrusted_app_all ephemeral_app priv_app }:fd use;
+allow rs { untrusted_app_all ephemeral_app priv_app_all }:fd use;
 
 # See b/291211299. Since rs is deprecated, this shouldn't be too dangerous, since new
 # renderscript usages shouldn't be popping up.

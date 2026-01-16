@@ -9,7 +9,7 @@ r_dir_file({
   -isolated_app_all
   -network_stack
   -platform_app
-  -priv_app
+  -priv_app_all
   -shell
   -sdk_sandbox_all
   -system_app
@@ -24,7 +24,7 @@ userdebug_or_eng(`
     -isolated_app_all
     -network_stack
     -platform_app
-    -priv_app
+    -priv_app_all
     -shell
     -su
     -sdk_sandbox_all
@@ -50,8 +50,6 @@ get_prop(appdomain, vold_config_prop)
 get_prop(appdomain, adbd_config_prop)
 get_prop(appdomain, dck_prop)
 get_prop(appdomain, persist_wm_debug_prop)
-get_prop(appdomain, persist_sysui_builder_extras_prop)
-get_prop(appdomain, persist_sysui_ranking_update_prop)
 
 # Allow the heap dump ART plugin to the count of sessions waiting for OOME
 get_prop(appdomain, traced_oome_heap_session_count_prop)
