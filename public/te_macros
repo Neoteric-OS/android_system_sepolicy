@@ -285,6 +285,13 @@ typeattribute $1 untrusted_app_all;
 ')
 
 #####################################
+# priv_app_domain(domain)
+# Allow a base set of permissions required for all privileged apps.
+define(`priv_app_domain', `
+typeattribute $1 priv_app_all;
+')
+
+#####################################
 # isolated_app_domain(domain)
 # Allow a base set of permissions required for all isolated apps.
 define(`isolated_app_domain', `

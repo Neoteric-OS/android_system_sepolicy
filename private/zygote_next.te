@@ -26,9 +26,13 @@ allow zygote_next cgroup_v2:dir create_dir_perms;
 allow zygote_next cgroup_v2:{ file lnk_file } { r_file_perms setattr };
 allow zygote_next self:global_capability_class_set sys_admin;
 
-# The Native Zygote must be able to inspect /dev/pmsg0, which is used by the
-# logger, as it needs to get the fd and close it before fork
+# Allow zygote_next to stat the files that it opens. The Native Zygote must be
+# able to inspect them so that it can reopen them on fork if necessary:
+# b/30963384.
+
+# Required for logging
 allow zygote_next pmsg_device:chr_file getattr;
+# Required for tracing
 allow zygote_next debugfs_trace_marker:file getattr;
 
 # Needed for calling selinux_android_setcontext

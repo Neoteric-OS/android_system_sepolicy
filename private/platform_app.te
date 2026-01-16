@@ -46,12 +46,6 @@ userdebug_or_eng(`
 ')
 neverallow { domain -init -dumpstate -system_server userdebug_or_eng(`-domain') } persist_wm_debug_prop:property_service set;
 
-userdebug_or_eng(`
-  set_prop(platform_app, persist_sysui_builder_extras_prop)
-')
-userdebug_or_eng(`
-  set_prop(platform_app, persist_sysui_ranking_update_prop)
-')
 set_prop(platform_app, debug_tracing_desktop_mode_visible_tasks_prop)
 
 # com.android.captiveportallogin reads /proc/vmstat
@@ -160,8 +154,6 @@ r_dir_file(platform_app, shutdown_checkpoints_system_data_file)
 ###
 ### Neverallow rules
 ###
-
-neverallow { domain -init userdebug_or_eng(`-shell -platform_app') } persist_sysui_builder_extras_prop:property_service set;
 
 # app domains which access /dev/fuse should not run as platform_app
 neverallow platform_app fuse_device:chr_file *;

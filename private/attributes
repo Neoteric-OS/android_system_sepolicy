@@ -46,3 +46,7 @@ until_board_api(202604, `
 attribute virtualizationmanager_domain;
 attribute early_virtmgr_domain;
 ') # until_board_api(202604)
+
+until_board_api(202604, `
+attribute priv_app_all;
+') # until_board_api(202604)

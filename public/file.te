@@ -231,6 +231,10 @@ type vendor_cgroup_desc_file, vendor_file_type, file_type;
 type task_profiles_file, system_file_type, file_type;
 # Vendor task profiles file under /vendor/etc/task_profiles.json
 type vendor_task_profiles_file, vendor_file_type, file_type;
+# Vendor DMA heap config file under /vendor/etc/dma_heap.json
+starting_at_board_api(202604, `
+    type vendor_dma_heap_config_file, vendor_file_type, file_type;
+');
 # Type for /system/apex/com.android.art
 type art_apex_dir, system_file_type, file_type;
 # /linkerconfig(/.*)?

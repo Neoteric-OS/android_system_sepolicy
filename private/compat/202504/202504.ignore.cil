@@ -31,6 +31,7 @@
     sysfs_suspend_params
     usb_disable_when_locked_prop
     usb_userspace_aoa_enabled_prop
+    vendor_dma_heap_config_file
     virtualizationservice_data_file
     wallet_prop
     anomaly_detector_service

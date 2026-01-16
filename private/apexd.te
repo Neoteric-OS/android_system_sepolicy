@@ -269,7 +269,7 @@ neverallow {
   -apexd
   -crosvm
   -init
-  -priv_app
+  -priv_app_all
   -shell
   -system_app
   -system_server

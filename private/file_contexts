@@ -434,6 +434,7 @@
 /(vendor|system/vendor)/bin/toolbox            u:object_r:vendor_toolbox_exec:s0
 /(vendor|system/vendor)/etc(/.*)?              u:object_r:vendor_configs_file:s0
 /(vendor|system/vendor)/etc/cgroups\.json      u:object_r:vendor_cgroup_desc_file:s0
+/(vendor|system/vendor)/etc/dma_heap\.json     u:object_r:vendor_dma_heap_config_file:s0
 /(vendor|system/vendor)/etc/task_profiles\.json    u:object_r:vendor_task_profiles_file:s0
 /(vendor|system/vendor)/etc/avf/microdroid(/.*)?   u:object_r:vendor_microdroid_file:s0
 

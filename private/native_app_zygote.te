@@ -27,9 +27,14 @@ allow native_app_zygote zygote_next:unix_dgram_socket { write getattr };
 allow native_app_zygote apk_data_file:dir r_dir_perms;
 allow native_app_zygote apk_data_file:file { r_file_perms execute };
 
-# The Native App Zygote must be able to inspect /dev/pmsg0, which is used by
-# the logger, as it needs to get the fd and close it before fork
+# Allow native_app_zygote to stat the files that it opens. Native App Zygotes
+# must be able to inspect them so that it can reopen them on fork if necessary:
+# b/30963384.
+
+# Required for logging
 allow native_app_zygote pmsg_device:chr_file getattr;
+# Required for tracing
+allow native_app_zygote debugfs_trace_marker:file getattr;
 
 # Allow the native_app_zygote to access the runtime feature flag properties.
 get_prop(native_app_zygote, device_config_runtime_native_prop)

@@ -59,4 +59,5 @@ userdebug_or_eng(`
   auditallow untrusted_app_27 apk_data_file:file { watch watch_reads };
 ')
 
+allow untrusted_app_27 domain:memfd_file ioctl;
 allowxperm untrusted_app_27 domain:memfd_file ioctl ashmem_ioctls;

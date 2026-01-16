@@ -73,12 +73,12 @@ add_service(update_engine, update_engine_service)
 add_service(update_engine, update_engine_stable_service)
 
 # Allow update_engine to call the callback function provided by priv_app/GMS core.
-binder_call(update_engine, priv_app)
+binder_call(update_engine, priv_app_all)
 # b/142672293: No other priv-app should need this rule now that GMS core runs in its own domain.
 userdebug_or_eng(`
-  auditallow update_engine priv_app:binder { call transfer };
-  auditallow priv_app update_engine:binder transfer;
-  auditallow update_engine priv_app:fd use;
+  auditallow update_engine priv_app_all:binder { call transfer };
+  auditallow priv_app_all update_engine:binder transfer;
+  auditallow update_engine priv_app_all:fd use;
 ')
 
 binder_call(update_engine, gmscore_app)
