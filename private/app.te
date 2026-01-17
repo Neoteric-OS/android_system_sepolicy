@@ -98,6 +98,9 @@ get_prop(appdomain, camera_calibration_prop)
 # Allow to read db.log.detailed, db.log.slow_query_threshold*
 get_prop(appdomain, sqlite_log_prop)
 
+# Allow to read PCC audit mode client properties.
+get_prop(appdomain, pcc_audit_mode_client_prop)
+
 # Allow to read system_user_mode_emulation_prop, which is used by UserManager.java
 userdebug_or_eng(`get_prop(appdomain, system_user_mode_emulation_prop)')
 
@@ -618,7 +621,7 @@ neverallow { appdomain -shell } { domain -appdomain }:file no_rw_file_perms;
 # -perfetto is to allow shell (which is an appdomain) to kill perfetto
 # (see private/shell.te).
 # -crosvm is to allow owner of a VM to kill VM they own.
-neverallow appdomain { domain -appdomain -perfetto -crosvm }:process
+neverallow appdomain { domain -appdomain -perfetto -crosvm_domain }:process
     { sigkill sigstop signal };
 
 # Write to rootfs.

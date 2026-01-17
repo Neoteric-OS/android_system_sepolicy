@@ -267,7 +267,7 @@ neverallow {
   domain
   -adbd
   -apexd
-  -crosvm
+  -crosvm_domain
   -init
   -priv_app_all
   -shell

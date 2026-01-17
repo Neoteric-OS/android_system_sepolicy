@@ -290,8 +290,8 @@ userdebug_or_eng(`set_prop(shell, persist_wm_debug_prop)')
 set_prop(shell, gwp_asan_prop)
 
 # Read/Write persist.pcc. properties
-get_prop(shell, pcc_audit_mode_prop)
 set_prop(shell, pcc_audit_mode_prop)
+set_prop(shell, pcc_audit_mode_client_prop)
 
 # Allow shell to read the build properties for attestation feature
 get_prop(shell, build_attestation_prop)
@@ -606,7 +606,7 @@ neverallow {
   userdebug_or_eng(`-uncrypt')
   userdebug_or_eng(`-virtualizationmanager_domain')
   userdebug_or_eng(`-virtualizationservice')
-  userdebug_or_eng(`-crosvm')
+  userdebug_or_eng(`-crosvm_domain')
 } shell_data_file:file open;
 
 # In addition to the symlink reading restrictions above, restrict
@@ -660,7 +660,7 @@ neverallow {
   -system_server # why?
   userdebug_or_eng(`-uncrypt')
   userdebug_or_eng(`-virtualizationmanager_domain')
-  userdebug_or_eng(`-crosvm')
+  userdebug_or_eng(`-crosvm_domain')
 } shell_data_file:dir search;
 
 # Restrict execute from /data/local/tmp directories. This directory contains
