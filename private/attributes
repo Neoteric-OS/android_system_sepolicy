@@ -50,3 +50,9 @@ attribute early_virtmgr_domain;
 until_board_api(202604, `
 attribute priv_app_all;
 ') # until_board_api(202604)
+
+until_board_api(202604, `
+attribute crosvm_domain;
+') # until_board_api(202604)
+
+

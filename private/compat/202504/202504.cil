@@ -1638,7 +1638,7 @@
 (typeattributeset credstore_exec_202504 (credstore_exec))
 (typeattributeset credstore_service_202504 (credstore_service))
 (typeattributeset crossprofileapps_service_202504 (crossprofileapps_service))
-(typeattributeset crosvm_202504 (crosvm))
+(typeattributeset crosvm_202504 (crosvm crosvm_vendor))
 (typeattributeset ctl_adbd_prop_202504 (ctl_adbd_prop))
 (typeattributeset ctl_apexd_prop_202504 (ctl_apexd_prop))
 (typeattributeset ctl_bootanim_prop_202504 (ctl_bootanim_prop))

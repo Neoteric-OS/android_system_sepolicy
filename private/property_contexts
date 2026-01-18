@@ -74,9 +74,12 @@ persist.log.tag         u:object_r:log_tag_prop:s0
 persist.mmc.            u:object_r:mmc_prop:s0
 persist.netd.stable_secret      u:object_r:netd_stable_secret_prop:s0
 persist.pm.mock-upgrade u:object_r:mock_ota_prop:s0
-persist.pcc.audit_mode.enabled      u:object_r:pcc_audit_mode_prop:s0 exact bool
-persist.pcc.audit_mode.max_log_files      u:object_r:pcc_audit_mode_prop:s0 exact int
-persist.pcc.audit_mode.log_file_max_size_kb      u:object_r:pcc_audit_mode_prop:s0 exact int
+persist.pcc.audit_mode.enabled                  u:object_r:pcc_audit_mode_prop:s0 exact bool
+persist.pcc.audit_mode.max_log_files            u:object_r:pcc_audit_mode_prop:s0 exact int
+persist.pcc.audit_mode.log_file_max_size_kb     u:object_r:pcc_audit_mode_prop:s0 exact int
+persist.pcc.audit_mode.batching.enabled         u:object_r:pcc_audit_mode_client_prop:s0 exact bool
+persist.pcc.audit_mode.batching.max_batch_size  u:object_r:pcc_audit_mode_client_prop:s0 exact int
+persist.pcc.audit_mode.batching.flush_time_ms   u:object_r:pcc_audit_mode_client_prop:s0 exact int
 persist.profcollectd.enabled    u:object_r:profcollectd_enabled_prop:s0     exact   bool
 persist.profcollectd.node_id    u:object_r:profcollectd_node_id_prop:s0     exact   string
 persist.sys.            u:object_r:system_prop:s0
@@ -302,6 +305,7 @@ persist.device_config.lmkd_native.                  u:object_r:device_config_lmk
 persist.device_config.media_native.                 u:object_r:device_config_media_native_prop:s0
 persist.device_config.netd_native.                  u:object_r:device_config_netd_native_prop:s0
 persist.device_config.nnapi_native.                 u:object_r:device_config_nnapi_native_prop:s0
+persist.device_config.pixel_faceauth.               u:object_r:device_config_pixel_faceauth_native_prop:s0
 persist.device_config.profcollect_native_boot.      u:object_r:device_config_profcollect_native_boot_prop:s0
 persist.device_config.remote_key_provisioning_native.  u:object_r:device_config_remote_key_provisioning_native_prop:s0
 persist.device_config.runtime_native.               u:object_r:device_config_runtime_native_prop:s0

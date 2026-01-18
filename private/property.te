@@ -17,6 +17,7 @@ system_internal_prop(device_config_core_experiments_team_internal_prop)
 system_internal_prop(device_config_lmkd_native_prop)
 system_internal_prop(device_config_mglru_native_prop)
 system_internal_prop(device_config_mmd_native_prop)
+system_internal_prop(device_config_pixel_faceauth_native_prop)
 system_internal_prop(device_config_profcollect_native_boot_prop)
 system_internal_prop(device_config_remote_key_provisioning_native_prop)
 system_internal_prop(device_config_statsd_native_prop)
@@ -110,6 +111,7 @@ until_board_api(202604, `
 system_restricted_prop(service_sf_present_timestamp_prop)
 system_restricted_prop(statsd_atoms_list_version_prop)
 system_restricted_prop(trusty_coverage_prop)
+system_restricted_prop(pcc_audit_mode_client_prop)
 
 # Device thermal property
 system_restricted_prop(thermal_profile_prop)

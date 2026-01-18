@@ -61,3 +61,6 @@ neverallow { domain -zygote_next } native_app_zygote:process { dyntransition tra
 
 # Send unsolicited message to system_server
 unix_socket_send(zygote_next, system_unsolzygote, system_server)
+
+# Allow Native Zygote to write to statsd
+unix_socket_send(zygote_next, statsdw, statsd)

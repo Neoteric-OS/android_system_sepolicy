@@ -506,4 +506,6 @@ attribute virtualizationmanager_domain;
 expandattribute virtualizationmanager_domain false;
 attribute early_virtmgr_domain;
 expandattribute early_virtmgr_domain false;
+attribute crosvm_domain;
+expandattribute crosvm_domain false;
 ') # starting_at_board_api(202604)

@@ -106,7 +106,7 @@ allow system_server {
   app_zygote
   native_app_zygote
   crash_dump
-  crosvm
+  crosvm_domain
   virtualizationmanager_domain
   webview_zygote
   zygote
@@ -212,7 +212,7 @@ allow system_server hal_camera:process { getsched setsched };
 allow system_server mediaserver:process { getsched setsched };
 allow system_server bootanim:process { getsched setsched };
 # Set scheduling info for VMs (b/375058190)
-allow system_server { virtualizationmanager_domain crosvm }:process { getsched setsched };
+allow system_server { virtualizationmanager_domain crosvm_domain }:process { getsched setsched };
 
 # Set scheduling info for psi monitor thread.
 # TODO: delete this line b/131761776
@@ -860,6 +860,7 @@ set_prop(system_server, device_config_lmkd_native_prop)
 set_prop(system_server, device_config_media_native_prop)
 set_prop(system_server, device_config_camera_native_prop)
 set_prop(system_server, device_config_mglru_native_prop)
+set_prop(system_server, device_config_pixel_faceauth_native_prop)
 set_prop(system_server, device_config_profcollect_native_boot_prop)
 set_prop(system_server, device_config_statsd_native_prop)
 set_prop(system_server, device_config_statsd_native_boot_prop)
@@ -958,8 +959,8 @@ get_prop(system_server, persist_wm_debug_prop)
 set_prop(system_server, persist_wm_debug_prop)
 
 # Read/Write persist.pcc. properties
-get_prop(system_server, pcc_audit_mode_prop)
 set_prop(system_server, pcc_audit_mode_prop)
+set_prop(system_server, pcc_audit_mode_client_prop)
 
 # Read ro.tuner.lazyhal
 get_prop(system_server, tuner_config_prop)
