@@ -16,9 +16,7 @@ isolated_app_domain(isolated_compute_app)
 
 allow isolated_compute_app isolated_compute_allowed_service:service_manager find;
 allow isolated_compute_app isolated_compute_allowed_device:chr_file { read write ioctl map };
-starting_at_board_api(202604, `
 get_prop(isolated_compute_app, isolated_compute_allowed_property_type)
-') # starting_at_board_api(202604)
 
 # Enable access to hardware services for camera functionalilites
 hal_client_domain(isolated_compute_app, hal_allocator)

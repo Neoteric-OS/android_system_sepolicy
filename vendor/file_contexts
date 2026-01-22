@@ -23,10 +23,8 @@
 /(vendor|system/vendor)/bin/hw/android\.hardware\.bluetooth\.ranging-service\.default      u:object_r:hal_bluetooth_default_exec:s0
 /(vendor|system/vendor)/bin/hw/android\.hardware\.bluetooth\.lmp_event-service\.default    u:object_r:hal_bluetooth_default_exec:s0
 /(vendor|system/vendor)/bin/hw/android\.hardware\.bluetooth\.socket-service\.default       u:object_r:hal_bluetooth_default_exec:s0
-starting_at_board_api(202604, `
 /(vendor|system/vendor)/bin/hw/android\.hardware\.bluetooth\.socket-service\.lpp           u:object_r:hal_bluetooth_lpp_default_exec:s0
 /(vendor|system/vendor)/bin/hw/android\.hardware\.bluetooth\.gatt-service\.default         u:object_r:hal_bluetooth_lpp_default_exec:s0
-') # starting_at_board_api(202604)
 /(vendor|system/vendor)/bin/hw/android\.hardware\.biometrics\.face@1\.[0-9]+-service\.example u:object_r:hal_face_default_exec:s0
 /(vendor|system/vendor)/bin/hw/android\.hardware\.biometrics\.face-service\.example u:object_r:hal_face_default_exec:s0
 /(vendor|system/vendor)/bin/hw/android\.hardware\.biometrics\.face-service\.default u:object_r:hal_face_default_exec:s0
@@ -90,10 +88,8 @@ starting_at_board_api(202604, `
 /(vendor|system/vendor)/bin/hw/android\.hardware\.tv\.mediaquality-service\.example  u:object_r:hal_mediaquality_default_exec:s0
 /(vendor|system/vendor)/bin/hw/android\.hardware\.memtrack@1\.0-service       u:object_r:hal_memtrack_default_exec:s0
 /(vendor|system/vendor)/bin/hw/android\.hardware\.memtrack-service.example    u:object_r:hal_memtrack_default_exec:s0
-starting_at_board_api(202604, `
 /(vendor|system/vendor)/bin/hw/android\.hardware\.motioncontext-service       u:object_r:hal_motioncontext_default_exec:s0
 /(vendor|system/vendor)/bin/hw/android\.hardware\.motioncontext-service\.default u:object_r:hal_motioncontext_default_exec:s0
-') # starting_at_board_api(202604)
 /(vendor|system/vendor)/bin/hw/android\.hardware\.nfc@1\.0-service            u:object_r:hal_nfc_default_exec:s0
 /(vendor|system/vendor)/bin/hw/android\.hardware\.nfc@1\.1-service            u:object_r:hal_nfc_default_exec:s0
 /(vendor|system/vendor)/bin/hw/android\.hardware\.nfc@1\.2-service            u:object_r:hal_nfc_default_exec:s0
@@ -172,9 +168,7 @@ starting_at_board_api(202604, `
 /data/vendor/gatekeeper(/.*)?                                                 u:object_r:gatekeeper_vendor_data_file:s0
 /data/vendor/wifi/hostapd(/.*)?                                               u:object_r:hostapd_data_file:s0
 /data/vendor/wifi/wpa(/.*)?                                                   u:object_r:wpa_data_file:s0
-starting_at_board_api(202604, `
 /data/vendor_ce/[0-9]+/wifi/wpa(/.*)?                                         u:object_r:wpa_user_data_file:s0
-') # starting_at_board_api(202604)
 
 #############################
 # Vendor libraries loaded from SP-HAL (former VNDK-SP)

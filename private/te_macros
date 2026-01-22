@@ -1,5 +1,5 @@
 divert(-1)
-starting_at_board_api(202604, `
+
 ####################################
 # virtualizationservice_use(domain)
 # Allow domain to create and communicate with a virtual machine using
@@ -81,7 +81,6 @@ allow $1_early_virtmgr $1:lnk_file read;
 # to HAL.
 hal_client_domain($1_early_virtmgr, hal_secretkeeper)
 ') # early_virtmgr_use
-') # starting_at_board_api
 
 ####################################
 # aiseal_use(domain)

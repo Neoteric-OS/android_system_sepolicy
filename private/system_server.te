@@ -1822,9 +1822,7 @@ is_flag_enabled(RELEASE_AISEAL_FRAMEWORK, `
 ')
 
 # Allow system_server to talk to NPU scheduling service
-starting_at_board_api(202604, `
-  hal_client_domain(system_server, hal_npu_scheduling)
-')
+hal_client_domain(system_server, hal_npu_scheduling)
 
 # Allow system server to read and write serial devices
 allow system_server { serial_device usb_serial_device }:chr_file { read write };

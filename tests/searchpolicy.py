@@ -19,7 +19,7 @@ import policy
 
 parser = argparse.ArgumentParser(
     description="SELinux policy rule search tool. Intended to have a similar "
-        + "API as sesearch, but simplified to use only code availabe in AOSP")
+        + "API as sesearch, but simplified to use only code available in AOSP")
 parser.add_argument("policy", help="Path to the SELinux policy to search.", nargs="?")
 parser.add_argument("--libpath", dest="libpath", help="Path to the libsepolwrap.so", nargs="?")
 tertypes = parser.add_argument_group("TE Rule Types")

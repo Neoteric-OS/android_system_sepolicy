@@ -83,18 +83,6 @@ is_flag_enabled(RELEASE_AISEAL_FRAMEWORK, `
 
 type theme_service,                     app_api_service, system_server_service, service_manager_type;
 
-until_board_api(202604, `
-type hal_bluetooth_lpp_service, protected_service, hal_service_type, service_manager_type;
-')
-
-until_board_api(202604, `
-type hal_motioncontext_service, protected_service, hal_service_type, service_manager_type;
-')
-
-until_board_api(202604, `
-    type native_serial_service,         service_manager_type;
-')
-
 type usb_auth_service,        service_manager_type;
 
 ###

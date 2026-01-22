@@ -43,8 +43,10 @@ def do_main():
                                                 prebuilt_policy.typeattributes))
 
     results = ""
+    exempt_types = {"sysfs_powercap"}
     removed_types = prebuilt_policy.types - current_policy.types
     added_types = current_policy.types - prebuilt_policy.types
+    added_types = added_types - exempt_types
     removed_attributes = prebuilt_policy.typeattributes - current_policy.typeattributes
     added_attributes = current_policy.typeattributes - prebuilt_policy.typeattributes
 

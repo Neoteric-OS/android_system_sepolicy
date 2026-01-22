@@ -6,3 +6,10 @@
 (allow hal_wifi_supplicant self (cap_userns (setuid)))
 (allow hal_wifi_supplicant self (capability (setgid)))
 (allow hal_wifi_supplicant self (cap_userns (setgid)))
+
+(type crosvm)
+(typeattributeset crosvm_domain crosvm)
+(type early_virtmgr)
+(typeattributeset early_virtmgr_domain early_virtmgr)
+(type virtualizationmanager)
+(typeattributeset virtualizationmanager_domain virtualizationmanager)

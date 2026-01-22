@@ -694,6 +694,10 @@ neverallow * { file_type -exec_type -postinstall_file }:file entrypoint;
 # does not exist or isn't accessible for the process.
 dontaudit domain postinstall_mnt_dir:dir audit_access;
 
+# suppresses any SELinux denials for all domains when the access() check occurs
+# while still generating denials for direct attempts at accessing the file/directory
+dontaudit domain statsd_atoms_list_file:dir audit_access;
+
 #Ensure that nothing in userspace can access /dev/port
 neverallow {
   domain

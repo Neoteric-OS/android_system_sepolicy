@@ -2,10 +2,6 @@
 ### A domain for further sandboxing privileged apps targeting SDK level < 37.
 ###
 
-until_board_api(202604, `
-type priv_app_36, domain;
-')
-
 typeattribute priv_app_36 coredomain;
 app_domain(priv_app_36)
 

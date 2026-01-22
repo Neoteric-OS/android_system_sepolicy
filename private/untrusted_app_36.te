@@ -8,10 +8,6 @@
 ### placed in this selinux domain.
 ###
 
-until_board_api(202604, `
-type untrusted_app_36, domain;
-')
-
 typeattribute untrusted_app_36 coredomain;
 
 app_domain(untrusted_app_36)
