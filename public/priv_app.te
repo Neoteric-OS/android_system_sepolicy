@@ -7,10 +7,8 @@
 
 type priv_app, domain;
 
-starting_at_board_api(202604, `
 # This type is assigned to priv-apps running with targetSdkVersion <= 36.
 type priv_app_36, domain;
-')
 
 # system/sepolicy/public is for vendor-facing type and attribute definitions.
 # DO NOT ADD allow, neverallow, or dontaudit statements here.

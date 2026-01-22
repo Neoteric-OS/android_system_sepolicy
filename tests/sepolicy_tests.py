@@ -172,7 +172,7 @@ def TestCoredomainViolations(test_policy):
         ret += "/system:\n"
         ret += " ".join(str(x) for x in sorted(violators)) + "\n"
 
-    # verify that all domains launched form /vendor do not have the coredomain
+    # verify that all domains launched from /vendor do not have the coredomain
     # attribute
     violators = []
     for d in test_policy.alldomains:

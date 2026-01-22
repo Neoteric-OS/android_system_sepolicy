@@ -105,9 +105,6 @@ system_restricted_prop(log_file_logger_prop)
 system_restricted_prop(mmd_shared_status_prop)
 system_restricted_prop(page_size_prop)
 system_restricted_prop(pm_16kb_app_compat_prop)
-until_board_api(202604, `
-    system_public_prop(remote_prov_prop)
-')
 system_restricted_prop(service_sf_present_timestamp_prop)
 system_restricted_prop(statsd_atoms_list_version_prop)
 system_restricted_prop(trusty_coverage_prop)
@@ -127,11 +124,6 @@ system_vendor_config_prop(sensors_hal_prop)
 system_vendor_config_prop(strongbox_prop)
 system_vendor_config_prop(usb_disable_when_locked_prop)
 system_vendor_config_prop(userdata_alias_remove_prop)
-until_board_api(202604, `
-    system_vendor_config_prop(wallet_prop)
-    system_vendor_config_prop(usb_userspace_aoa_enabled_prop)
-    system_vendor_config_prop(mmd_config_prop)
-')
 
 typeattribute log_prop log_property_type;
 typeattribute log_tag_prop log_property_type;

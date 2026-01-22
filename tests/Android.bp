@@ -170,6 +170,7 @@ filegroup {
     srcs: [
         ":202404_sepolicy_cts_data",
         ":202504_sepolicy_cts_data",
+        ":202604_sepolicy_cts_data",
     ],
     visibility: ["//cts/hostsidetests/security"],
 }

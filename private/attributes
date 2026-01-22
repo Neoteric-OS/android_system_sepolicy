@@ -27,32 +27,3 @@ expandattribute update_provider false;
 # of the OMAPI services. Remove once the RELEASE_NATIVE_OMAPI flag is cleaned
 # up and the app-based implementation is removed.
 attribute omapi_server;
-
-until_board_api(202604, `
-attribute treble_labeling_violators;
-expandattribute treble_labeling_violators false;
-
-attribute mapper_sphal_domain;
-expandattribute mapper_sphal_domain false;
-
-attribute gpu_sphal_domain;
-expandattribute gpu_sphal_domain false;
-
-hal_attribute(bluetooth_lpp);
-hal_attribute(motioncontext);
-') # until_board_api(202604)
-
-until_board_api(202604, `
-attribute virtualizationmanager_domain;
-attribute early_virtmgr_domain;
-') # until_board_api(202604)
-
-until_board_api(202604, `
-attribute priv_app_all;
-') # until_board_api(202604)
-
-until_board_api(202604, `
-attribute crosvm_domain;
-') # until_board_api(202604)
-
-
