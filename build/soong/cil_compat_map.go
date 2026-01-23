@@ -130,7 +130,7 @@ func (c *cilCompatMap) GenerateAndroidBuildActions(ctx android.ModuleContext) {
 
 	bottomHalf := android.PathForModuleGen(ctx, "bottom_half")
 	ctx.Build(pctx, android.BuildParams{
-		Rule:   android.Cat,
+		Rule:   android.CatRule,
 		Output: bottomHalf,
 		Inputs: srcFiles,
 	})

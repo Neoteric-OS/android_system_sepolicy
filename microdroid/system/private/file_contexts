@@ -72,6 +72,8 @@
 /dev/socket/traced_perf	u:object_r:traced_perf_socket:s0
 /dev/socket/tombstoned_crash u:object_r:tombstoned_crash_socket:s0
 /dev/socket/tombstoned_intercept u:object_r:tombstoned_intercept_socket:s0
+/dev/socket/microdroid_managed u:object_r:microdroid_managed_socket_dir:s0
+/dev/socket/microdroid_managed/.* u:object_r:microdroid_managed_socket_file:s0
 /dev/tty		u:object_r:owntty_device:s0
 /dev/tty[0-9]*		u:object_r:tty_device:s0
 /dev/ttyS[0-9]*		u:object_r:serial_device:s0

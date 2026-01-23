@@ -13,6 +13,9 @@ is_flag_enabled(RELEASE_AISEAL_FRAMEWORK, `
     binder_use(aisealhostservice)
     add_service(aisealhostservice, aiseal_host_service)
 
+    # Allow aisealhostservice to read AiSeal properties.
+    get_prop(aisealhostservice, aiseal_prop)
+
     # Let aisealhostservice to start VM.
     virtualizationservice_use(aisealhostservice)
 

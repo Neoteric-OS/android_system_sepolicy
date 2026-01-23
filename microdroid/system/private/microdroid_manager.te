@@ -35,7 +35,7 @@ allow microdroid_manager self:global_capability_class_set sys_admin;
 allow microdroid_manager tmpfs:dir { create mounton add_name write };
 allow microdroid_manager labeledfs:filesystem { relabelfrom };
 allow microdroid_manager encrypted_assets_fs:filesystem { mount unmount relabelfrom relabelto };
-allow microdroid_manager encrypted_assets_file:dir { create mounton };
+allow microdroid_manager encrypted_assets_file:dir { create mounton getattr };
 
 # Allow microdroid_manager to read the status of netlink sockets and determine whether ueventd is
 # ready for processing the mount events.
@@ -108,6 +108,12 @@ allow microdroid_manager self:vsock_socket { listen accept };
 
 # Allow microdroid_manager to read the CID of the VM.
 allow microdroid_manager vsock_device:chr_file { ioctl open read };
+
+# Allow microdroid_manager to perform socket-related operations in the microdroid_managed directory.
+allow microdroid_manager microdroid_managed_socket_dir:dir create_dir_perms;
+
+# Allow microdroid_manager to create the unix socket file.
+allow microdroid_manager microdroid_managed_socket_dir:sock_file create_file_perms;
 
 # microdroid_manager is using bootstrap bionic
 use_bootstrap_libs(microdroid_manager)
@@ -229,6 +235,11 @@ allow microdroid_manager {
 # Allow microdroid_manager to start & stop traced_relay service by setting
 # persist.traced.enable sysprop.
 set_prop(microdroid_manager, traced_enabled_prop);
+
+# For multitenant Microdroid configurations, microdroid setexeccon the forked
+# child process into set of allowed domains.
+allow microdroid_manager self:process setexec;
+domain_trans(microdroid_manager, microdroid_app_exec, appsearch_tenant);
 
 # Domains other than microdroid can't write extra_apks
 neverallow { domain -microdroid_manager -init -vendor_init } extra_apk_file:file no_w_file_perms;

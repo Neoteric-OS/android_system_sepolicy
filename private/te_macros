@@ -86,6 +86,8 @@ binder_call($1, aisealhostservice)
 # to create a vsock; the client can only use established vsock connections
 # provided by AiSeal.
 allow $1 aisealhostservice:vsock_socket { getattr getopt read write };
+# Allow domain to read AiSeal properties.
+get_prop($1, aiseal_prop)
 ')
 
 divert(0)

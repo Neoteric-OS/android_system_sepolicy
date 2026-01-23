@@ -949,6 +949,10 @@ get_prop(system_server, hypervisor_prop)
 get_prop(system_server, persist_wm_debug_prop)
 set_prop(system_server, persist_wm_debug_prop)
 
+# Read/Write persist.pcc. properties
+get_prop(system_server, pcc_audit_mode_prop)
+set_prop(system_server, pcc_audit_mode_prop)
+
 # Read persist.sysui.notification.builder_extras_override property
 get_prop(system_server, persist_sysui_builder_extras_prop)
 # Read persist.sysui.notification.ranking_update_ashmem property
@@ -1464,6 +1468,8 @@ neverallow {
   -zygote
   -app_zygote
   -webview_zygote
+  -zygote_next
+  -native_app_zygote
 } system_unsolzygote_socket:sock_file { open write };
 
 # Only allow init, system_server, flags_health_check to set properties for server configurable flags

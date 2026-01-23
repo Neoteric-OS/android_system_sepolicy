@@ -924,7 +924,7 @@ define(`dump_hal', `
 #
 # For devices launching with R or later, exported properties must be explicitly marked as
 # "restricted" or "public", depending on the accessibility outside the owner.
-# For devices launching with Q or eariler, this neverallow rules can be relaxed with defining
+# For devices launching with Q or earlier, this neverallow rules can be relaxed with defining
 # BUILD_BROKEN_TREBLE_SYSPROP_NEVERALLOW := true on BoardConfig.mk.
 # See {partition}_{accessibility}_prop macros below.
 #
@@ -945,7 +945,7 @@ $1
 #
 # For devices launching with S or later, all properties must be explicitly marked as one of:
 # system_property_type, vendor_property_type, or product_property_type.
-# For devices launching with R or eariler, this neverallow rules can be relaxed with defining
+# For devices launching with R or earlier, this neverallow rules can be relaxed with defining
 # BUILD_BROKEN_ENFORCE_SYSPROP_OWNER := true on BoardConfig.mk.
 # See {partition}_{accessibility}_prop macros below.
 #
@@ -969,7 +969,7 @@ define(`define_prop', `
 ###########################################
 # system_internal_prop(name)
 # Define a /system-owned property used only in /system
-# For devices launching with Q or eariler, this restriction can be relaxed with
+# For devices launching with Q or earlier, this restriction can be relaxed with
 # BUILD_BROKEN_TREBLE_SYSPROP_NEVERALLOW := true
 #
 define(`system_internal_prop', `
@@ -982,7 +982,7 @@ define(`system_internal_prop', `
 ###########################################
 # system_restricted_prop(name)
 # Define a /system-owned property which can't be written outside /system
-# For devices launching with Q or eariler, this restriction can be relaxed with
+# For devices launching with Q or earlier, this restriction can be relaxed with
 # BUILD_BROKEN_TREBLE_SYSPROP_NEVERALLOW := true
 #
 define(`system_restricted_prop', `
@@ -1000,20 +1000,20 @@ define(`system_public_prop', `define_prop($1, system, public)')
 
 ###########################################
 # system_vendor_config_prop(name)
-# Define a /system-owned property which can only be written by vendor_init
-# This is a macro for vendor-specific configuration properties which is meant
-# to be set once from vendor_init.
+# Define a /system-owned property which can only be written by vendor processes
+# (either vendor_init or init_dev_config). This is a macro for vendor-specific
+# configuration properties which is meant to be set once.
 #
 define(`system_vendor_config_prop', `
   system_public_prop($1)
   set_prop(vendor_init, $1)
-  neverallow { domain -init -vendor_init } $1:property_service set;
+  neverallow { domain -init -vendor_init starting_at_board_api(202604, `-init_dev_config') } $1:property_service set;
 ')
 
 ###########################################
 # product_internal_prop(name)
 # Define a /product-owned property used only in /product
-# For devices launching with Q or eariler, this restriction can be relaxed with
+# For devices launching with Q or earlier, this restriction can be relaxed with
 # BUILD_BROKEN_TREBLE_SYSPROP_NEVERALLOW := true
 #
 define(`product_internal_prop', `
@@ -1026,7 +1026,7 @@ define(`product_internal_prop', `
 ###########################################
 # product_restricted_prop(name)
 # Define a /product-owned property which can't be written outside /product
-# For devices launching with Q or eariler, this restriction can be relaxed with
+# For devices launching with Q or earlier, this restriction can be relaxed with
 # BUILD_BROKEN_TREBLE_SYSPROP_NEVERALLOW := true
 #
 define(`product_restricted_prop', `
@@ -1045,7 +1045,7 @@ define(`product_public_prop', `define_prop($1, product, public)')
 ###########################################
 # vendor_internal_prop(name)
 # Define a /vendor-owned property used only in /vendor
-# For devices launching with Q or eariler, this restriction can be relaxed with
+# For devices launching with Q or earlier, this restriction can be relaxed with
 # BUILD_BROKEN_TREBLE_SYSPROP_NEVERALLOW := true
 #
 define(`vendor_internal_prop', `
@@ -1059,7 +1059,7 @@ define(`vendor_internal_prop', `
 ###########################################
 # vendor_restricted_prop(name)
 # Define a /vendor-owned property which can't be written outside /vendor
-# For devices launching with Q or eariler, this restriction can be relaxed with
+# For devices launching with Q or earlier, this restriction can be relaxed with
 # BUILD_BROKEN_TREBLE_SYSPROP_NEVERALLOW := true
 #
 define(`vendor_restricted_prop', `
@@ -1112,7 +1112,7 @@ type $1_iouring;
 type_transition $1 $1:anon_inode $1_iouring "[io_uring]";
 # Allow domain to create/use io_uring anon_inode.
 allow $1 $1_iouring:anon_inode { create map read write };
-allow $1 self:io_uring sqpoll;
+allow $1 self:io_uring { sqpoll allowed };
 # Other domains may not use iouring anon_inodes created by this domain.
 neverallow { domain -$1 } $1_iouring:anon_inode *;
 # io_uring checks for CAP_IPC_LOCK to determine whether or not to track

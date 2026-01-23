@@ -86,7 +86,7 @@ neverallow isolated_app_all { sdcard_type fuse }:{ devfile_class_set lnk_file so
 neverallow isolated_app_all { sdcard_type fuse }:file ~{ read write append getattr lock map };
 
 # Do not allow USB access
-neverallow isolated_app_all { usb_device usbaccessory_device }:chr_file *;
+neverallow isolated_app_all { usb_device usbaccessory_device }:{ chr_file file } *;
 
 # Restrict the webview_zygote control socket.
 neverallow isolated_app_all webview_zygote:sock_file write;
