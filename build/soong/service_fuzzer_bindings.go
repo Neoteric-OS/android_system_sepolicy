@@ -500,7 +500,6 @@ var (
 		"system_config":                          EXCEPTION_NO_FUZZER,
 		"system_server_dumper":                   EXCEPTION_NO_FUZZER,
 		"system_update":                          EXCEPTION_NO_FUZZER,
-		"talisman":                               EXCEPTION_NO_FUZZER, // TODO(b/418280383): add fuzzer
 		"tare":                                   EXCEPTION_NO_FUZZER,
 		"task":                                   EXCEPTION_NO_FUZZER,
 		"task_continuity":                        EXCEPTION_NO_FUZZER,
@@ -523,6 +522,7 @@ var (
 		"translation":                            EXCEPTION_NO_FUZZER,
 		"transparency":                           EXCEPTION_NO_FUZZER,
 		"trust":                                  EXCEPTION_NO_FUZZER,
+		"trust_token":                            EXCEPTION_NO_FUZZER, // TODO(b/418280383): add fuzzer
 		"tv_ad":                                  EXCEPTION_NO_FUZZER,
 		"tv_interactive_app":                     EXCEPTION_NO_FUZZER,
 		"tv_input":                               EXCEPTION_NO_FUZZER,

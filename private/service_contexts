@@ -503,7 +503,6 @@ telephony_ims                             u:object_r:radio_service:s0
 is_flag_enabled(RELEASE_TELEPHONY_MODULE, `
     telephony_phone_number                u:object_r:radio_service:s0
 ')
-talisman                                  u:object_r:talisman_service:s0
 testharness                               u:object_r:testharness_service:s0
 tethering                                 u:object_r:tethering_service:s0
 textclassification                        u:object_r:textclassification_service:s0
@@ -519,6 +518,7 @@ tradeinmode                               u:object_r:tradeinmode_service:s0
 translation                               u:object_r:translation_service:s0
 transparency                              u:object_r:transparency_service:s0
 trust                                     u:object_r:trust_service:s0
+trust_token                               u:object_r:trust_token_service:s0
 tv_ad                                     u:object_r:tv_ad_service:s0
 tv_interactive_app                        u:object_r:tv_iapp_service:s0
 tv_input                                  u:object_r:tv_input_service:s0

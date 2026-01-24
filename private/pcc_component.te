@@ -45,11 +45,7 @@ allow pcc_component mediadrmserver_service:service_manager find;
 allow pcc_component drmserver_service:service_manager find;
 allow pcc_component radio_service:service_manager find;
 
-# TODO: b/442762197 - Audit all ephemeral_app_api_service services
-#
-# All the ephemeral_app_api_service services are allowed but that will change after the above audit
 allow pcc_component {
-# ephemeral_app_api_service services
 # go/keep-sorted start
 IProxyService_service
 accessibility_service
@@ -163,6 +159,9 @@ vibrator_service
 virtual_device_native_service
 voiceinteraction_service
 webviewupdate_service
+wifi_service
+wifiaware_service
+wifiscanner_service
 # go/keep-sorted end
 
 # app_api_service services
