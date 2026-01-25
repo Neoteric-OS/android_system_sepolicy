@@ -98,6 +98,9 @@ get_prop(zygote, odsign_prop)
 allow webview_zygote resourcecache_data_file:file r_file_perms;
 allow webview_zygote resourcecache_data_file:dir r_dir_perms;
 
+# Allow crashes to generate tombstones.
+crash_dump_fallback(webview_zygote)
+
 #####
 ##### Neverallow
 #####

@@ -609,6 +609,11 @@ allow dumpstate shutdown_checkpoints_system_data_file:file r_file_perms;
 # Allow dumpstate to make binder calls to wifi_mainline_supplicant
 binder_call(dumpstate, wifi_mainline_supplicant);
 
+is_flag_enabled(RELEASE_AISEAL_FRAMEWORK, `
+  # Allow dumpstate to call "dump" of aisealhostservice for bugreport generation
+  binder_call(dumpstate, aisealhostservice);
+') # is_flag_enabled(RELEASE_AISEAL_FRAMEWORK)
+
 ###
 ### neverallow rules
 ###
