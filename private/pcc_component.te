@@ -31,6 +31,9 @@ allow pcc_component pcc_data_file:file create_file_perms;
 # Follow priv-app symlinks. This is used for dynamite functionality.
 allow pcc_component privapp_data_file:lnk_file r_file_perms;
 
+# Do not allow untrusted apps to access PCC data
+neverallow untrusted_app_all pcc_data_file:dir_file_class_set *;
+
 # Allow loading and deleting shared libraries created by trusted system
 # components within an application home directory.
 allow pcc_component app_exec_data_file:file { r_file_perms execute unlink };

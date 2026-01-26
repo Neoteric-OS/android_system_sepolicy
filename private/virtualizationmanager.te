@@ -39,8 +39,11 @@ binder_call(virtualizationmanager_domain, stats_service_server);
 binder_call(virtualizationmanager_domain,  system_server)
 allow virtualizationmanager_domain { package_native_service permission_service }:service_manager find;
 
+domain_auto_trans(virtualizationmanager_domain,  crosvm_vu_fs_exec, crosvm_vu_fs)
+
 # Let virtualizationmanager_domain kill crosvm.
 allow virtualizationmanager_domain crosvm_domain:process sigkill;
+allow virtualizationmanager_domain crosvm_vu_fs:process sigkill;
 
 # Let virtualizationmanager_domain create files inside virtualizationservice's temporary directories.
 allow virtualizationmanager_domain virtualizationservice_data_file:dir rw_dir_perms;
