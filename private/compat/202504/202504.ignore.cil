@@ -8,6 +8,8 @@
     aisealhostservice
     aiseal_data_file
     binderfs_logs_state_hashed
+    crosvm_vu_fs
+    crosvm_vu_fs_tmpfs
     hal_bluetooth_lpp_service
     hal_frp_service
     hal_npu_scheduling_service

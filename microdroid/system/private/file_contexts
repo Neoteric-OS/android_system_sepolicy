@@ -190,7 +190,8 @@
 
 #############################
 # sysfs property file for virtio-balloon driver options.
-# The code uses the /sys/bus paths because they are easier to search, but they
-# ultimately symlink to the /sys/devices path, so we give permissions on both.
+# The code uses the /sys/bus path because it is easier to search.
 /sys/bus/virtio/drivers/virtio_balloon u:object_r:sysfs_balloon:s0
+# The property files ultimately symlink to /sys/devices paths, so we have to
+# give permission to the symlink destinations instead.
 /sys/devices/(platform/[^/]+\.pci/)?pci[^/]+/[^/]+/virtio[0-9]+/bail_on_out_of_puff u:object_r:sysfs_balloon:s0
