@@ -91,7 +91,8 @@ domain_auto_trans(microdroid_manager, zipfuse_exec, zipfuse)
 domain_auto_trans(microdroid_manager, encryptedstore_exec, encryptedstore)
 
 # Microdroid Manager needs read related permission for syncing encrypted storage fs
-allow microdroid_manager encryptedstore_file:dir r_dir_perms;
+# Also microdroid manager creates the ce store folders
+allow microdroid_manager encryptedstore_file:dir create_dir_perms;
 
 # Allow microdroid_manager to run kexec to load crashkernel
 domain_auto_trans(microdroid_manager, kexec_exec, kexec)
@@ -240,6 +241,18 @@ set_prop(microdroid_manager, traced_enabled_prop);
 # child process into set of allowed domains.
 allow microdroid_manager self:process setexec;
 domain_trans(microdroid_manager, microdroid_app_exec, appsearch_tenant);
+
+# For credential encrypted storage, allow use of file encryption ioclts
+allowxperm microdroid_manager encryptedstore_file:dir ioctl {
+  FS_IOC_GET_ENCRYPTION_POLICY
+  FS_IOC_GET_ENCRYPTION_POLICY_EX
+  FS_IOC_SET_ENCRYPTION_POLICY
+  FS_IOC_ADD_ENCRYPTION_KEY
+  FS_IOC_REMOVE_ENCRYPTION_KEY
+  FS_IOC_GET_ENCRYPTION_KEY_STATUS
+};
+
+allow microdroid_manager microdroid_manager:key { write search setattr };
 
 # Domains other than microdroid can't write extra_apks
 neverallow { domain -microdroid_manager -init -vendor_init } extra_apk_file:file no_w_file_perms;

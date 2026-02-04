@@ -71,6 +71,9 @@ binder_call(dumpstate, ot_daemon)
 # Allow dumpstate to talk to mmd service over binder
 binder_call(dumpstate, mmd)
 
+# Allow dumpstate to talk to usbauthservice over binder
+binder_call(dumpstate, usbauthservice)
+
 # Collect metrics on boot time created by init
 get_prop(dumpstate, boottime_prop)
 

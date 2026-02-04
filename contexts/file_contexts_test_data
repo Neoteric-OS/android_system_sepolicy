@@ -1134,6 +1134,7 @@
 /data/misc/trace/test                                             method_trace_data_file
 /data/misc/wmtrace                                                wm_trace_data_file
 /data/misc/wmtrace/test                                           wm_trace_data_file
+/data/misc/pmgd                                                   pmgd_data_file
 /data/misc/profiles/cur/0                                         user_profile_root_file
 /data/misc/profiles/cur/9                                         user_profile_root_file
 /data/misc/profiles/cur/0/test                                    user_profile_data_file
