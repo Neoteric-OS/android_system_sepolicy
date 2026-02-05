@@ -149,6 +149,9 @@ r_dir_file(virtualizationmanager_domain,  nativetest_data_file)
 # monitoring thread.
 set_prop(virtualizationmanager_domain, avf_vm_traced_relay_enabled_prop)
 
+# Allow virtmgr to write dump for dumpsys
+allow virtualizationmanager_domain virtualizationservice:fifo_file write;
+
 # Do not allow writing vendor_microdroid_file from any process.
 neverallow {
   domain

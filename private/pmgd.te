@@ -6,6 +6,8 @@ typeattribute pmgd coredomain;
 # by the init_daemon_domain macro.
 type pmgd_exec, system_file_type, exec_type, file_type;
 
+type pmgd_data_file, file_type, data_file_type, core_data_file_type;
+
 init_daemon_domain(pmgd)
 
 # Allow access to cgroup files
@@ -14,6 +16,10 @@ allow pmgd cgroup_v2:file rw_file_perms;
 
 # Allow pmgd to clean up cgroups as per calls to kill_process_group
 allow pmgd cgroup_v2:dir rmdir;
+
+# Allow pmgd to fully manage its own directory
+allow pmgd pmgd_data_file:dir rw_dir_perms;
+allow pmgd pmgd_data_file:file create_file_perms;
 
 # Allow pmgd to write to statsd socket.
 unix_socket_send(pmgd, statsdw, statsd)

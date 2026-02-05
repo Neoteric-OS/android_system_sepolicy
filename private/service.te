@@ -79,6 +79,7 @@ is_flag_enabled(RELEASE_RANGING_STACK, `
 
 is_flag_enabled(RELEASE_AISEAL_FRAMEWORK, `
     type aiseal_host_service, service_manager_type;
+    type aiseal_internal_service, service_manager_type;
 ')
 
 type theme_service,                     app_api_service, system_server_service, service_manager_type;

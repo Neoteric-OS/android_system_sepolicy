@@ -871,6 +871,9 @@
 # storage area keys
 /data/misc_ce/[0-9]+/storage_area_keys(/.*)?           u:object_r:storage_area_key_file:s0
 
+# pmgd persistent storage
+/data/misc/pmgd(/.*)?           u:object_r:pmgd_data_file:s0
+
 # Backup service persistent per-user bookkeeping
 /data/system_ce/[0-9]+/backup(/.*)?		u:object_r:backup_data_file:s0
 # Backup service temporary per-user data for inter-change with apps
