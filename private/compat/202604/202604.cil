@@ -1,3 +1,7 @@
+;; types removed from current policy
+(type ion_device)
+(type sysfs_ion)
+
 ;; mapping information from ToT policy's types to 202604 policy's types.
 (expandtypeattribute (DockObserver_service_202604) true)
 (expandtypeattribute (IProxyService_service_202604) true)
@@ -1284,7 +1288,7 @@
 (expandtypeattribute (untrusted_app_29_202604) true)
 (expandtypeattribute (untrusted_app_30_202604) true)
 (expandtypeattribute (untrusted_app_32_202604) true)
-(expandtypeattribute (untrusted_app_36_202604) true)
+(expandtypeattribute (untrusted_app_34_202604) true)
 (expandtypeattribute (update_engine_202604) true)
 (expandtypeattribute (update_engine_data_file_202604) true)
 (expandtypeattribute (update_engine_exec_202604) true)
@@ -2731,7 +2735,7 @@
 (typeattributeset untrusted_app_29_202604 (untrusted_app_29))
 (typeattributeset untrusted_app_30_202604 (untrusted_app_30))
 (typeattributeset untrusted_app_32_202604 (untrusted_app_32))
-(typeattributeset untrusted_app_36_202604 (untrusted_app_36))
+(typeattributeset untrusted_app_34_202604 (untrusted_app_34))
 (typeattributeset update_engine_202604 (update_engine))
 (typeattributeset update_engine_data_file_202604 (update_engine_data_file))
 (typeattributeset update_engine_exec_202604 (update_engine_exec))

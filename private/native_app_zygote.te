@@ -11,6 +11,9 @@ allow native_app_zygote self:global_capability_class_set setpcap;
 allow native_app_zygote self:process setcurrent;
 allow native_app_zygote isolated_app:process dyntransition;
 
+# TODO (b/63631799) fix this access
+dontaudit native_app_zygote mnt_expand_file:dir getattr;
+
 # Get seapp_contexts
 allow native_app_zygote seapp_contexts_file:file r_file_perms;
 # Check validity of SELinux context before use.
@@ -22,6 +25,8 @@ selinux_check_access(native_app_zygote)
 allow native_app_zygote zygote_next:fd use;
 allow native_app_zygote zygote_next:process sigchld;
 allow native_app_zygote zygote_next:unix_dgram_socket { write getattr };
+
+allow native_app_zygote zygote_next_exec:file { read execute getattr };
 
 # application data
 allow native_app_zygote apk_data_file:dir r_dir_perms;
@@ -49,11 +54,24 @@ unix_socket_send(native_app_zygote, system_unsolzygote, system_server)
 
 # Only permit transition to isolated_app.
 neverallow native_app_zygote { domain -isolated_app }:process dyntransition;
+
+# Only setcon() transitions, no exec() based transitions, except for crash_dump.
 neverallow native_app_zygote { domain -crash_dump }:process transition;
+
+# Must not exec() a program without changing domains.
+# Having said that, exec() above is not allowed.
+neverallow native_app_zygote *:file execute_no_trans;
+
+# The only way to enter this domain is for the zygote to fork a new
+# native_app_zygote child.
+neverallow { domain -zygote_next } native_app_zygote:process dyntransition;
 
 # Disallow write access to properties.
 neverallow native_app_zygote property_socket:sock_file write;
 neverallow native_app_zygote property_type:property_service set;
+
+# Should not have any access to app data files.
+neverallow native_app_zygote app_data_file_type:file { rwx_file_perms };
 
 neverallow native_app_zygote {
   service_manager_type

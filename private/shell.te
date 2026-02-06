@@ -481,9 +481,6 @@ userdebug_or_eng(`
 # Allow CTS to check whether AVF debug policy is installed
 allow shell { proc_dt_avf sysfs_dt_avf }:dir search;
 
-# Allow access to ion memory allocation device.
-allow shell ion_device:chr_file rw_file_perms;
-
 #
 # filesystem test for insecure chr_file's is done
 # via a host side test
@@ -664,3 +661,6 @@ neverallow {
 # be able to execute such content. Allowing other domains to execute this
 # content would be a privilege escalation vulnerability.
 neverallow { domain -shell } shell_data_file:file no_x_file_perms;
+
+# Allow shell to set adbd connect timeout for UDS
+set_prop(shell, adb_timeout_prop)

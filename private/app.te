@@ -220,6 +220,7 @@ allow appdomain app_zygote:memfd_file { read write getattr map };
 # gdbserver for ndk-gdb reads the zygote.
 # valgrind needs mmap exec for zygote
 allow appdomain zygote_exec:file rx_file_perms;
+allow appdomain zygote_next_exec:file rx_file_perms;
 
 # Notify zygote of death;
 allow appdomain zygote:process sigchld;
@@ -381,7 +382,7 @@ allow appdomain incidentd:fifo_file append;
 allow appdomain dumpstate:fd use;
 allow appdomain dumpstate:unix_stream_socket { read write getopt getattr shutdown };
 allow appdomain dumpstate:fifo_file { write getattr };
-allow appdomain shell_data_file:file { write getattr };
+allow { appdomain -pcc_component } shell_data_file:file { write getattr };
 
 # Allow apps to send dump information to incidentd
 allow appdomain incidentd:fd use;
@@ -473,7 +474,6 @@ allow appdomain console_device:chr_file { read write };
 allowxperm { appdomain -bluetooth } self:{ rawip_socket tcp_socket udp_socket }
   ioctl { unpriv_sock_ioctls unpriv_tty_ioctls };
 
-allow { appdomain -isolated_app_all } ion_device:chr_file r_file_perms;
 allow { appdomain -isolated_app_all } dmabuf_system_heap_device:chr_file r_file_perms;
 allow { appdomain -isolated_app_all } dmabuf_system_secure_heap_device:chr_file r_file_perms;
 

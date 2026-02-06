@@ -55,6 +55,7 @@ persist.adb.tradeinmode u:object_r:adbd_tradeinmode_prop:s0
 persist.adb.test_tradeinmode u:object_r:adbd_tradeinmode_prop:s0
 persist.adb.wifi.       u:object_r:adbd_prop:s0
 persist.adb.tls_server.enable  u:object_r:system_adbd_prop:s0
+persist.adb.local_connect_timeout_ms u:object_r:adb_timeout_prop:s0
 
 persist.audio.          u:object_r:audio_prop:s0
 persist.bluetooth.      u:object_r:bluetooth_prop:s0
@@ -305,7 +306,6 @@ persist.device_config.lmkd_native.                  u:object_r:device_config_lmk
 persist.device_config.media_native.                 u:object_r:device_config_media_native_prop:s0
 persist.device_config.netd_native.                  u:object_r:device_config_netd_native_prop:s0
 persist.device_config.nnapi_native.                 u:object_r:device_config_nnapi_native_prop:s0
-persist.device_config.pixel_faceauth.               u:object_r:device_config_pixel_faceauth_native_prop:s0
 persist.device_config.profcollect_native_boot.      u:object_r:device_config_profcollect_native_boot_prop:s0
 persist.device_config.remote_key_provisioning_native.  u:object_r:device_config_remote_key_provisioning_native_prop:s0
 persist.device_config.runtime_native.               u:object_r:device_config_runtime_native_prop:s0
@@ -1462,6 +1462,7 @@ ro.hardware.vibrator             u:object_r:exported_default_prop:s0 exact strin
 ro.hardware.virtual_device       u:object_r:exported_default_prop:s0 exact string
 ro.hardware.vulkan               u:object_r:exported_default_prop:s0 exact string
 ro.hardware.16kb_cpu_unsupported u:object_r:exported_default_prop:s0 exact bool
+ro.hardware.16kb_hardware_unsupported u:object_r:exported_default_prop:s0 exact bool
 
 ro.hw_timeout_multiplier u:object_r:hw_timeout_multiplier_prop:s0 exact int
 
