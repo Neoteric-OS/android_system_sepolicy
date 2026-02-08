@@ -21,6 +21,7 @@ tmpfs_domain(crosvm_domain)
 # Let crosvm receive file descriptors from VirtualizationService.
 allow crosvm_domain {
   virtualizationmanager_domain
+  virtualizationservice
   is_flag_enabled(RELEASE_AVF_ENABLE_EARLY_VM, `early_virtmgr_domain')
 }:fd use;
 

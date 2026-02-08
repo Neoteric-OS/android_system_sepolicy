@@ -12,6 +12,7 @@ type communal_service,               app_api_service, system_server_service, ser
 type content_restriction_service,    app_api_service, ephemeral_app_api_service, system_server_service, service_manager_type;
 type dynamic_system_service,         system_api_service, system_server_service, service_manager_type;
 type feature_flags_service,          app_api_service, system_server_service, service_manager_type;
+type files_service,                  app_api_service, ephemeral_app_api_service, system_server_service, service_manager_type;
 type fwk_devicestate_service, system_server_service, service_manager_type;
 type gsi_service,                    service_manager_type;
 type incidentcompanion_service,      app_api_service, system_api_service, system_server_service, service_manager_type;

@@ -284,6 +284,10 @@ neverallow pcc_component proc:file { no_rw_file_perms no_x_file_perms };
 neverallow pcc_component { sdcard_type fuse media_rw_data_file }:file create;
 neverallow pcc_component { sdcard_type fuse media_rw_data_file }:dir {write add_name remove_name lock};
 
+# Avoid mutating shell files
+neverallow pcc_component shell_data_file:dir { write add_name remove_name create setattr };
+neverallow pcc_component shell_data_file:file { write create setattr relabelfrom append unlink link rename };
+
 # Avoid reads to proc_net, it contains too much device wide information about
 # ongoing connections.
 neverallow pcc_component proc_net:file no_rw_file_perms;

@@ -2678,7 +2678,7 @@
 (typeattributeset uncrypt_socket_202504 (uncrypt_socket))
 (typeattributeset unencrypted_data_file_202504 (unencrypted_data_file))
 (typeattributeset unlabeled_202504 (unlabeled))
-(typeattributeset untrusted_app_202504 (untrusted_app untrusted_app_36))
+(typeattributeset untrusted_app_202504 (untrusted_app untrusted_app_34))
 (typeattributeset untrusted_app_25_202504 (untrusted_app_25))
 (typeattributeset untrusted_app_27_202504 (untrusted_app_27))
 (typeattributeset untrusted_app_29_202504 (untrusted_app_29))

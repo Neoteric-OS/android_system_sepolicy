@@ -1,4 +1,5 @@
 # Properties used only in /system
+system_internal_prop(adb_timeout_prop)
 system_internal_prop(adbd_prop)
 system_internal_prop(adbd_tradeinmode_prop)
 system_internal_prop(aiseal_prop)
@@ -17,7 +18,6 @@ system_internal_prop(device_config_core_experiments_team_internal_prop)
 system_internal_prop(device_config_lmkd_native_prop)
 system_internal_prop(device_config_mglru_native_prop)
 system_internal_prop(device_config_mmd_native_prop)
-system_internal_prop(device_config_pixel_faceauth_native_prop)
 system_internal_prop(device_config_profcollect_native_boot_prop)
 system_internal_prop(device_config_remote_key_provisioning_native_prop)
 system_internal_prop(device_config_statsd_native_prop)

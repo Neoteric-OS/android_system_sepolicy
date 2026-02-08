@@ -320,6 +320,7 @@ var (
 		"ethernet":                                                             EXCEPTION_NO_FUZZER,
 		"face":                                                                 EXCEPTION_NO_FUZZER,
 		"file_integrity":                                                       EXCEPTION_NO_FUZZER,
+		"files":                                                                EXCEPTION_NO_FUZZER,
 		"fingerprint":                                                          EXCEPTION_NO_FUZZER,
 		"feature_flags":                                                        EXCEPTION_NO_FUZZER,
 		"font":                                                                 EXCEPTION_NO_FUZZER,
