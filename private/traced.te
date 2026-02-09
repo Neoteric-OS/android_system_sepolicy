@@ -118,33 +118,6 @@ neverallow traced dev_type:blk_file { read write };
 # ptrace any other process
 neverallow traced domain:process ptrace;
 
-# Disallows access to /data files, still allowing to write to file descriptors
-# passed through the socket.
-neverallow traced {
-  data_file_type
-  -perfetto_traces_data_file
-  -perfetto_traces_bugreport_data_file
-  -perfetto_traces_profiling_data_file
-  -system_data_file
-  -system_data_root_file
-  -media_userdir_file
-  -system_userdir_file
-  -vendor_userdir_file
-  # TODO(b/72998741) Remove vendor_data_file exemption. Further restricted in a
-  # subsequent neverallow. Currently only getattr and search are allowed.
-  -vendor_data_file
-  with_native_coverage(`-method_trace_data_file')
-}:dir *;
-neverallow traced { system_data_file }:dir ~{ getattr search };
-neverallow traced {
-  data_file_type
-  -perfetto_traces_data_file
-  -perfetto_traces_bugreport_data_file
-  -perfetto_traces_profiling_data_file
-  -trace_data_file
-  with_native_coverage(`-method_trace_data_file')
-}:file ~write;
-
 # Only init is allowed to enter the traced domain via exec()
 neverallow { domain -init } traced:process transition;
 neverallow * traced:process dyntransition;
