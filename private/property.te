@@ -614,6 +614,7 @@ neverallow {
   -init
   -shell
   -kcmdlinectrl
+  -aconfigd
 } {
   kcmdline_prop
 }:property_service set;
