@@ -29,6 +29,9 @@ allow aconfigd apex_mnt_dir:dir r_dir_perms;
 allow aconfigd apex_mnt_dir:file r_file_perms;
 dontaudit aconfigd apex_info_file:file r_file_perms;
 
+# interact with kcmdline properties to inform bootloader about relevant flags
+set_prop(aconfigd, kcmdline_prop)
+
 ###
 ### Neverallow assertions
 ###
