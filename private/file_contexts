@@ -882,6 +882,9 @@
 # AppSearch files (https://developer.android.com/develop/ui/views/search/appsearch)
 /data/system_ce/[0-9]+/appsearch(/.*)?          u:object_r:appsearch_data_file:s0
 
+# AiSeal files
+/data/system_ce/[0-9]+/AiSeal(/.*)?          u:object_r:aiseal_data_file:s0
+
 #############################
 # efs files
 #
