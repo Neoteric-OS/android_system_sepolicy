@@ -140,6 +140,7 @@ var (
 		"android.hardware.security.secretkeeper.ISecretkeeper/default":                       EXCEPTION_NO_FUZZER,
 		"android.hardware.security.secretkeeper.ISecretkeeper/nonsecure":                     []string{"android.hardware.security.secretkeeper-service.nonsecure_fuzzer"},
 		"android.hardware.security.secureclock.ISecureClock/default":                         EXCEPTION_NO_FUZZER,
+		"android.os.IAccessor/ISecureClock/security_vm_keymint":                              EXCEPTION_NO_FUZZER,
 		"android.hardware.security.see.hwcrypto.IHwCryptoKey/default":                        []string{"android.hardware.trusty.hwcryptohal-service_fuzzer"},
 		"android.hardware.security.sharedsecret.ISharedSecret/default":                       EXCEPTION_NO_FUZZER,
 		"android.hardware.security.sharedsecret.ISharedSecret/hwcrypto":                      EXCEPTION_NO_FUZZER,
