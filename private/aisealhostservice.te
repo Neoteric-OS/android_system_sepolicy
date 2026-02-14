@@ -44,7 +44,7 @@ is_flag_enabled(RELEASE_AISEAL_FRAMEWORK, `
     allow aisealhostservice self:process setsockcreate;
 
     # Allow system_server to clean up AiSeals data files
-    allow system_server aiseal_data_file:dir { search getattr rmdir relabelto read open write remove_name };
+    allow system_server aiseal_data_file:dir { rw_dir_perms relabelto };
     allow system_server aiseal_data_file:file { getattr unlink };
 
     neverallow {

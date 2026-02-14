@@ -9,6 +9,7 @@ genfscon proc /buddyinfo u:object_r:proc_buddyinfo:s0
 genfscon proc /cgroups u:object_r:proc_cgroups:s0
 genfscon proc /cmdline u:object_r:proc_cmdline:s0
 genfscon proc /config.gz u:object_r:config_gz:s0
+genfscon proc /consoles u:object_r:proc_consoles:s0
 genfscon proc /cpu/alignment u:object_r:proc_cpu_alignment:s0
 genfscon proc /device-tree/avf u:object_r:proc_dt_avf:s0
 genfscon proc /diskstats u:object_r:proc_diskstats:s0
@@ -46,6 +47,7 @@ genfscon proc /sys/fs/pipe-max-size u:object_r:proc_pipe_conf:s0
 genfscon proc /sys/fs/protected_hardlinks u:object_r:proc_security:s0
 genfscon proc /sys/fs/protected_symlinks u:object_r:proc_security:s0
 genfscon proc /sys/fs/suid_dumpable u:object_r:proc_security:s0
+genfscon proc /sys/kernel/android_bpf_ u:object_r:proc_bpf:s0
 genfscon proc /sys/kernel/bpf_ u:object_r:proc_bpf:s0
 genfscon proc /sys/kernel/core_pattern u:object_r:usermodehelper:s0
 genfscon proc /sys/kernel/core_pipe_limit u:object_r:usermodehelper:s0

@@ -407,6 +407,7 @@ allowxperm shell self:netlink_route_socket nlmsg RTM_GETLINK;
 
 allow shell {
   proc_asound
+  proc_consoles
   proc_cgroups
   proc_diskstats
   proc_filesystems

@@ -312,7 +312,7 @@ ethernet                                  u:object_r:ethernet_service:s0
 face                                      u:object_r:face_service:s0
 feature_flags                             u:object_r:feature_flags_service:s0
 file_integrity                            u:object_r:file_integrity_service:s0
-files                                     u:object_r:files_service:s0
+file                                      u:object_r:file_service:s0
 fingerprint                               u:object_r:fingerprint_service:s0
 font                                      u:object_r:font_service:s0
 android.hardware.fingerprint.IFingerprintDaemon u:object_r:fingerprintd_service:s0
@@ -528,6 +528,7 @@ tv_interactive_app                        u:object_r:tv_iapp_service:s0
 tv_input                                  u:object_r:tv_input_service:s0
 tv_tuner_resource_mgr                     u:object_r:tv_tuner_resource_mgr_service:s0
 uce                                       u:object_r:uce_service:s0
+ui_latency_stats                          u:object_r:ui_latency_stats_service:s0
 uimode                                    u:object_r:uimode_service:s0
 updatelock                                u:object_r:updatelock_service:s0
 uri_grants                                u:object_r:uri_grants_service:s0

@@ -10,6 +10,9 @@ init_daemon_domain(uprobestats)
 allow uprobestats fs_bpf_uprobestats:file { read write };
 allow uprobestats fs_bpf_uprobestats:dir search;
 allow uprobestats bpfloader:bpf { map_read map_write prog_run };
+# required to attach uprobes on 6.1 and before kernels
+allow uprobestats self:capability2 perfmon;
+# required to attache uprobes on newer kernels
 allow uprobestats self:global_capability_class_set sys_admin;
 allow uprobestats self:perf_event { cpu open write };
 allow uprobestats sysfs_uprobe:file { open read };
