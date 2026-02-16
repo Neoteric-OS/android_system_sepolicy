@@ -271,6 +271,9 @@ allow system_server fs_bpf_dmabuf:file { getattr open read };
 # for dumpsys meminfo
 allow system_server dmabuf_heap_device:dir r_dir_perms;
 
+# Allow NpuManager to access /dev/wrapfd
+allow system_server wrapfd_device:chr_file r_file_perms;
+
 # Allow reading /proc/vmstat for the oom kill count
 allow system_server proc_vmstat:file r_file_perms;
 
@@ -1105,6 +1108,7 @@ userdebug_or_eng(`
   allow system_server profcollectd_service:service_manager find;
 ')
 allow system_server wifi_mainline_supplicant_service:service_manager find;
+allow system_server uprobestats_service:service_manager find;
 
 add_service(system_server, batteryproperties_service)
 
