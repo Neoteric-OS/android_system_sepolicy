@@ -12,6 +12,7 @@ type communal_service,               app_api_service, system_server_service, ser
 type content_restriction_service,    app_api_service, ephemeral_app_api_service, system_server_service, service_manager_type;
 type dynamic_system_service,         system_api_service, system_server_service, service_manager_type;
 type feature_flags_service,          app_api_service, system_server_service, service_manager_type;
+type files_service,                  app_api_service, ephemeral_app_api_service, system_server_service, service_manager_type;
 type fwk_devicestate_service, system_server_service, service_manager_type;
 type gsi_service,                    service_manager_type;
 type incidentcompanion_service,      app_api_service, system_api_service, system_server_service, service_manager_type;
@@ -20,6 +21,7 @@ type logd_service,                   service_manager_type;
 type mediatuner_service,             app_api_service, service_manager_type;
 type mmd_service,                    service_manager_type;
 type on_device_intelligence_service, app_api_service, system_server_service, service_manager_type, isolated_compute_allowed_service;
+type content_safety_service,         app_api_service, system_server_service, service_manager_type, isolated_compute_allowed_service;
 type pcc_sandbox_service,            app_api_service, system_server_service, service_manager_type;
 type personal_context_service,       app_api_service, ephemeral_app_api_service, system_server_service, service_manager_type;
 type profcollectd_service,           service_manager_type;
@@ -36,12 +38,11 @@ type statsmanager_service,           system_api_service, system_server_service, 
 is_flag_enabled(RELEASE_SUPERVISION_SERVICE, `
     type supervision_service, app_api_service, ephemeral_app_api_service, system_server_service, service_manager_type;
 ')
-type talisman_service, system_api_service, system_server_service, service_manager_type;
 type task_continuity_service,       app_api_service, system_server_service, service_manager_type;
 type tracingproxy_service,          system_server_service, service_manager_type;
 type tradeinmode_service,           system_server_service, service_manager_type;
 type transparency_service,          system_server_service, service_manager_type;
-
+type trust_token_service,           system_api_service, system_server_service, service_manager_type;
 type accessor_trusty_keymint_comm_service, service_manager_type;
 type trusty_keymint_comm_service, service_manager_type;
 type accessor_trusty_gatekeeper_service, service_manager_type;
@@ -79,21 +80,10 @@ is_flag_enabled(RELEASE_RANGING_STACK, `
 
 is_flag_enabled(RELEASE_AISEAL_FRAMEWORK, `
     type aiseal_host_service, service_manager_type;
+    type aiseal_internal_service, service_manager_type;
 ')
 
 type theme_service,                     app_api_service, system_server_service, service_manager_type;
-
-until_board_api(202604, `
-type hal_bluetooth_lpp_service, protected_service, hal_service_type, service_manager_type;
-')
-
-until_board_api(202604, `
-type hal_motioncontext_service, protected_service, hal_service_type, service_manager_type;
-')
-
-until_board_api(202604, `
-    type native_serial_service,         service_manager_type;
-')
 
 type usb_auth_service,        service_manager_type;
 

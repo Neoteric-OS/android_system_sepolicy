@@ -1,6 +1,5 @@
 # omapi subsystem
 type omapi_exec, system_file_type, exec_type, file_type;
-starting_at_board_api(202604, `
 typeattribute omapi coredomain;
 typeattribute omapi omapi_server;
 
@@ -18,4 +17,3 @@ binder_service(omapi)
 
 # allow omapi to read vendor_uuid_mapping_config files
 allow omapi vendor_uuid_mapping_config_file:file r_file_perms;
-')

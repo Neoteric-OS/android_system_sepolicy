@@ -398,7 +398,7 @@ define(`dumpable_domain',`{
   -apexd
   -bpfloader
   -crash_dump
-  -crosvm # TODO(b/236672526): Remove exception for crosvm
+  -crosvm_domain # TODO(b/236672526): Remove exception for crosvm
   -init
   -kernel
   -keystore
@@ -638,6 +638,7 @@ neverallow {
   -init
   -ueventd
   -vold
+  -apexd
 } self:global_capability_class_set mknod;
 
 # No process can map low memory (< CONFIG_LSM_MMAP_MIN_ADDR).
@@ -649,7 +650,8 @@ neverallow * self:global_capability2_class_set mac_override;
 # Disallow attempts to set contexts not defined in current policy
 # This helps guarantee that unknown or dangerous contents will not ever
 # be set.
-neverallow * self:global_capability2_class_set mac_admin;
+# system_server requires mac_admin for setting the safesetid policy.
+neverallow { domain -system_server } self:global_capability2_class_set mac_admin;
 
 # Once the policy has been loaded there shall be none to modify the policy.
 # It is sealed.
@@ -691,6 +693,10 @@ neverallow * { file_type -exec_type -postinstall_file }:file entrypoint;
 # denials since the linker does not actually access the path in case the path
 # does not exist or isn't accessible for the process.
 dontaudit domain postinstall_mnt_dir:dir audit_access;
+
+# suppresses any SELinux denials for all domains when the access() check occurs
+# while still generating denials for direct attempts at accessing the file/directory
+dontaudit domain statsd_atoms_list_file:dir audit_access;
 
 #Ensure that nothing in userspace can access /dev/port
 neverallow {
@@ -1068,13 +1074,17 @@ full_treble_only(`
     -data_between_core_and_vendor_violators
     -init
     -vold_prepare_subdirs
-    -crosvm
+    -crosvm_domain
+    -crosvm_vu_fs
   } {
     data_file_type
     -core_data_file_type
     -app_data_file_type
   }:file_class_set ~{ append getattr ioctl read write map };
-  neverallow crosvm {
+  neverallow {
+    crosvm_domain
+    crosvm_vu_fs
+  } {
     data_file_type
     -core_data_file_type
     -app_data_file_type
@@ -1653,9 +1663,20 @@ neverallow {
   -untrusted_app_29
   -untrusted_app_30
   -untrusted_app_32
-  -untrusted_app
-  -priv_app
+  -untrusted_app_34
+  -priv_app_36
 } domain:memfd_file ioctl;
+
+neverallowxperm {
+  domain
+  -untrusted_app_25
+  -untrusted_app_27
+  -untrusted_app_29
+  -untrusted_app_30
+  -untrusted_app_32
+  -untrusted_app_34
+  -priv_app_36
+} domain:memfd_file ioctl ashmem_ioctls;
 
 neverallow { domain -traced_probes -init -vendor_init } debugfs_tracing_printk_formats:file *;
 
@@ -1696,8 +1717,8 @@ neverallow {
   -system_server
 } self:global_capability_class_set sys_ptrace;
 
-# Limit ability to generate hardware unique device ID attestations to priv_apps
-neverallow { domain -priv_app -gmscore_app } *:keystore2_key gen_unique_id;
+# Limit ability to generate hardware unique device ID attestations to priv_app_alls
+neverallow { domain -priv_app_all -gmscore_app } *:keystore2_key gen_unique_id;
 neverallow { domain -system_server } *:keystore2_key use_dev_id;
 neverallow { domain -system_server } keystore:keystore2 { clear_ns lock reset unlock };
 
@@ -1874,7 +1895,7 @@ neverallow {
   -system_server
   -apexd
   -installd
-  -priv_app
+  -priv_app_all
   -virtualizationmanager_domain
   -update_provider # WARNING: USING THIS ATTRIBUTE WILL CAUSE CTS TO FAIL!
 } staging_data_file:dir *;
@@ -1887,10 +1908,10 @@ neverallow {
   -adbd
   -kernel
   -installd
-  -priv_app
+  -priv_app_all
   -shell
   -virtualizationmanager_domain
-  -crosvm
+  -crosvm_domain
   -update_provider # WARNING: USING THIS ATTRIBUTE WILL CAUSE CTS TO FAIL!
 } staging_data_file:file *;
 # WARNING: USING THE update_provider ATTRIBUTE WILL CAUSE CTS TO FAIL!
@@ -2170,7 +2191,8 @@ full_treble_only(`
     coredomain
     # TODO(b/37168747): clean up fwk access to /vendor
     -crash_dump
-    -crosvm # loads vendor-specific disk images
+    -crosvm_domain # loads vendor-specific disk images
+    -crosvm_vu_fs
     -virtualizationmanager_domain # loads vendor-specific disk images
     -early_virtmgr_domain # loads vendor-specific disk images
     -init # starts vendor executables
@@ -2194,6 +2216,7 @@ full_treble_only(`
     -vendor_boot_ota_file
     -vendor_cgroup_desc_file
     -vendor_configs_file
+    -vendor_dma_heap_config_file
     -vendor_microdroid_file
     -vendor_service_contexts_file
     -vendor_framework_file
@@ -2323,7 +2346,7 @@ neverallow {
   isolated_app_all
   ephemeral_app
   pcc_component
-  priv_app
+  priv_app_all
   sdk_sandbox_all
   untrusted_app_all
 } system_app_data_file:dir_file_class_set { create unlink open };

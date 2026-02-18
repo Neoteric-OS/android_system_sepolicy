@@ -100,6 +100,7 @@ allow vold_prepare_subdirs {
   apex_permission_data_file
   apex_scheduling_data_file
   apex_tethering_data_file
+  apex_system_server_data_file
 }:dir relabelfrom;
 
 # /data/misc is unlabeled during early boot.

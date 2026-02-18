@@ -177,7 +177,6 @@ genfscon sysfs /power/wake_unlock u:object_r:sysfs_wake_lock:s0
 genfscon sysfs /kernel/btf u:object_r:sysfs_btf:s0
 genfscon sysfs /kernel/memory_state_time u:object_r:sysfs_power:s0
 genfscon sysfs /kernel/dma_heap u:object_r:sysfs_dma_heap:s0
-genfscon sysfs /kernel/ion u:object_r:sysfs_ion:s0
 genfscon sysfs /kernel/ipv4 u:object_r:sysfs_ipv4:s0
 genfscon sysfs /kernel/mm/cma u:object_r:sysfs_cma:s0
 genfscon sysfs /kernel/mm/transparent_hugepage u:object_r:sysfs_transparent_hugepage:s0
@@ -191,7 +190,7 @@ genfscon sysfs /module/dm_bufio/parameters/max_age_seconds u:object_r:sysfs_dm_v
 genfscon sysfs /module/dm_verity/parameters/prefetch_cluster u:object_r:sysfs_dm_verity:s0
 genfscon sysfs /module/lowmemorykiller u:object_r:sysfs_lowmemorykiller:s0
 genfscon sysfs /module/tcp_cubic/parameters u:object_r:sysfs_net:s0
-starting_at_board_api(202604, `genfscon sysfs /module/suspend/parameters/pm_fs_abort u:object_r:sysfs_suspend_params:s0')
+genfscon sysfs /module/suspend/parameters/pm_fs_abort u:object_r:sysfs_suspend_params:s0
 genfscon sysfs /module/wlan/parameters/fwpath u:object_r:sysfs_wlan_fwpath:s0
 genfscon sysfs /devices/virtual/timed_output/vibrator/enable u:object_r:sysfs_vibrator:s0
 genfscon sysfs /devices/virtual/misc/uhid u:object_r:sysfs_uhid:s0
@@ -297,10 +296,7 @@ genfscon tracefs /events/dma_fence/                                      u:objec
 genfscon tracefs /events/filemap/mm_filemap_add_to_page_cache/           u:object_r:debugfs_tracing:s0
 genfscon tracefs /events/filemap/mm_filemap_delete_from_page_cache/      u:object_r:debugfs_tracing:s0
 genfscon tracefs /events/kmem/rss_stat/                                  u:object_r:debugfs_tracing:s0
-genfscon tracefs /events/kmem/ion_heap_grow/                             u:object_r:debugfs_tracing:s0
-genfscon tracefs /events/kmem/ion_heap_shrink/                           u:object_r:debugfs_tracing:s0
 genfscon tracefs /events/kmem/mm_calculate_totalreserve_pages/           u:object_r:debugfs_tracing:s0
-genfscon tracefs /events/ion/ion_stat/                                   u:object_r:debugfs_tracing:s0
 genfscon tracefs /events/mm_event/mm_event_record/                       u:object_r:debugfs_tracing:s0
 genfscon tracefs /events/oom/oom_score_adj_update/                       u:object_r:debugfs_tracing:s0
 genfscon tracefs /events/oom/mark_victim/                                u:object_r:debugfs_tracing:s0
@@ -322,6 +318,7 @@ genfscon tracefs /events/clk/clk_set_rate/                               u:objec
 genfscon debugfs /kcov								 u:object_r:debugfs_kcov:s0
 
 genfscon securityfs / u:object_r:securityfs:s0
+genfscon securityfs /safesetid/uid_allowlist_policy u:object_r:uid_allowlist_policy:s0
 
 genfscon binder /binder u:object_r:binder_device:s0
 genfscon binder /hwbinder u:object_r:hwbinder_device:s0
@@ -335,6 +332,8 @@ genfscon binder /binder_logs/transactions_hashed u:object_r:binderfs_logs_transa
 genfscon binder /binder_logs/transaction_log u:object_r:binderfs_logs_transaction_history:s0
 genfscon binder /binder_logs/failed_transaction_log u:object_r:binderfs_logs_transaction_history:s0
 genfscon binder /features u:object_r:binderfs_features:s0
+
+genfscon sysfs /module/binder/parameters/impl u:object_r:sysfs_binder_impl:s0
 
 genfscon inotifyfs / u:object_r:inotify:s0
 genfscon vfat / u:object_r:vfat:s0

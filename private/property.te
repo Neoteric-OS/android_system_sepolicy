@@ -1,4 +1,5 @@
 # Properties used only in /system
+system_internal_prop(adb_timeout_prop)
 system_internal_prop(adbd_prop)
 system_internal_prop(adbd_tradeinmode_prop)
 system_internal_prop(aiseal_prop)
@@ -102,16 +103,15 @@ system_restricted_prop(device_config_virtualization_framework_native_prop)
 system_restricted_prop(fstype_prop)
 system_restricted_prop(log_file_logger_prop)
 system_restricted_prop(mmd_shared_status_prop)
-system_restricted_prop(persist_sysui_builder_extras_prop)
-system_restricted_prop(persist_sysui_ranking_update_prop)
 system_restricted_prop(page_size_prop)
 system_restricted_prop(pm_16kb_app_compat_prop)
-until_board_api(202604, `
-    system_public_prop(remote_prov_prop)
-')
 system_restricted_prop(service_sf_present_timestamp_prop)
 system_restricted_prop(statsd_atoms_list_version_prop)
 system_restricted_prop(trusty_coverage_prop)
+system_restricted_prop(pcc_audit_mode_client_prop)
+
+# Device thermal property
+system_restricted_prop(thermal_profile_prop)
 
 # Properties which should only be written by vendor_init
 system_vendor_config_prop(arm64_memtag_bootctl_prop)
@@ -124,11 +124,6 @@ system_vendor_config_prop(sensors_hal_prop)
 system_vendor_config_prop(strongbox_prop)
 system_vendor_config_prop(usb_disable_when_locked_prop)
 system_vendor_config_prop(userdata_alias_remove_prop)
-until_board_api(202604, `
-    system_vendor_config_prop(wallet_prop)
-    system_vendor_config_prop(usb_userspace_aoa_enabled_prop)
-    system_vendor_config_prop(mmd_config_prop)
-')
 
 typeattribute log_prop log_property_type;
 typeattribute log_tag_prop log_property_type;

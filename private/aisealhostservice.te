@@ -12,6 +12,7 @@ is_flag_enabled(RELEASE_AISEAL_FRAMEWORK, `
     init_daemon_domain(aisealhostservice)
     binder_use(aisealhostservice)
     add_service(aisealhostservice, aiseal_host_service)
+    add_service(aisealhostservice, aiseal_internal_service)
 
     # Allow aisealhostservice to read AiSeal properties.
     get_prop(aisealhostservice, aiseal_prop)
@@ -41,4 +42,15 @@ is_flag_enabled(RELEASE_AISEAL_FRAMEWORK, `
     # Allow aisealhostservice to set context for vsock sockets to be used by
     # tenant applications.
     allow aisealhostservice self:process setsockcreate;
+
+    neverallow {
+        domain
+        -system_server
+        -aisealhostservice
+        -atrace
+        -dumpstate
+        -shell
+        -system_app
+        -traceur_app
+    } aiseal_internal_service:service_manager find;
 ') # is_flag_enabled(RELEASE_AISEAL_FRAMEWORK)

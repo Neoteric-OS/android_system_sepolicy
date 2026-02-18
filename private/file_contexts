@@ -134,7 +134,6 @@
 /dev/hwbinder		u:object_r:hwbinder_device:s0
 /dev/input(/.*)?	u:object_r:input_device:s0
 /dev/iio:device[0-9]+   u:object_r:iio_device:s0
-/dev/ion		u:object_r:ion_device:s0
 /dev/keychord   u:object_r:keychord_device:s0
 /dev/loop-control	u:object_r:loop_control_device:s0
 /dev/modem.*		u:object_r:radio_device:s0
@@ -345,6 +344,7 @@
 /system/bin/mtectrl         u:object_r:mtectrl_exec:s0
 /system/bin/misctrl         u:object_r:misctrl_exec:s0
 /system/bin/kcmdlinectrl         u:object_r:kcmdlinectrl_exec:s0
+/system/bin/kcmdlinemodprobe     u:object_r:kcmdlinemodprobe_exec:s0
 /system/bin/traced        u:object_r:traced_exec:s0
 /system/bin/traced_perf        u:object_r:traced_perf_exec:s0
 /system/bin/traced_probes        u:object_r:traced_probes_exec:s0
@@ -364,6 +364,7 @@
 /system/bin/flags_health_check -- u:object_r:flags_health_check_exec:s0
 /system/bin/idmap2(d)?              u:object_r:idmap_exec:s0
 /system/bin/update_engine           u:object_r:update_engine_exec:s0
+/system/bin/update_engine_nonetd    u:object_r:update_engine_exec:s0
 /system/bin/update_engine_nostats   u:object_r:update_engine_exec:s0
 /system/bin/profcollectd            u:object_r:profcollectd_exec:s0
 /system/bin/profcollectctl          u:object_r:profcollectd_exec:s0
@@ -434,6 +435,7 @@
 /(vendor|system/vendor)/bin/toolbox            u:object_r:vendor_toolbox_exec:s0
 /(vendor|system/vendor)/etc(/.*)?              u:object_r:vendor_configs_file:s0
 /(vendor|system/vendor)/etc/cgroups\.json      u:object_r:vendor_cgroup_desc_file:s0
+/(vendor|system/vendor)/etc/dma_heap\.json     u:object_r:vendor_dma_heap_config_file:s0
 /(vendor|system/vendor)/etc/task_profiles\.json    u:object_r:vendor_task_profiles_file:s0
 /(vendor|system/vendor)/etc/avf/microdroid(/.*)?   u:object_r:vendor_microdroid_file:s0
 
@@ -868,6 +870,9 @@
 
 # storage area keys
 /data/misc_ce/[0-9]+/storage_area_keys(/.*)?           u:object_r:storage_area_key_file:s0
+
+# pmgd persistent storage
+/data/misc/pmgd(/.*)?           u:object_r:pmgd_data_file:s0
 
 # Backup service persistent per-user bookkeeping
 /data/system_ce/[0-9]+/backup(/.*)?		u:object_r:backup_data_file:s0

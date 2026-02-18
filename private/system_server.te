@@ -106,7 +106,7 @@ allow system_server {
   app_zygote
   native_app_zygote
   crash_dump
-  crosvm
+  crosvm_domain
   virtualizationmanager_domain
   webview_zygote
   zygote
@@ -146,6 +146,11 @@ allow system_server self:global_capability_class_set {
     sys_time
     sys_tty_config
 };
+
+# Allow system_server to use CAP_MAC_ADMIN for managing the safetsetid policy.
+#
+# Despite its name, CAP_MAC_ADMIN does not provide admin control of selinux.
+allow system_server self:global_capability2_class_set mac_admin;
 
 # Allow alarmtimers to be set
 allow system_server self:global_capability2_class_set wake_alarm;
@@ -207,7 +212,7 @@ allow system_server hal_camera:process { getsched setsched };
 allow system_server mediaserver:process { getsched setsched };
 allow system_server bootanim:process { getsched setsched };
 # Set scheduling info for VMs (b/375058190)
-allow system_server { virtualizationmanager_domain crosvm }:process { getsched setsched };
+allow system_server { virtualizationmanager_domain crosvm_domain crosvm_vu_fs }:process { getsched setsched };
 
 # Set scheduling info for psi monitor thread.
 # TODO: delete this line b/131761776
@@ -247,9 +252,6 @@ allow system_server odsign_metrics_file:file { r_file_perms unlink };
 no_debugfs_restriction(`
   allow system_server debugfs_wakeup_sources:file r_file_perms;
 ')
-
-# Read /sys/kernel/ion/*.
-allow system_server sysfs_ion:file r_file_perms;
 
 # Read /sys/kernel/dma_heap/*.
 allow system_server sysfs_dma_heap:file r_file_perms;
@@ -302,8 +304,8 @@ allow system_server app_zygote:unix_stream_socket { read write connectto setopt 
 allow system_server native_app_zygote:unix_stream_socket { read write connectto setopt };
 
 # Communicate with a virtual machine (b/396144272)
-allow system_server priv_app_virtualizationmanager:fd use;
-allow system_server priv_app_virtualizationmanager:vsock_socket { getopt read write };
+allow system_server priv_app_all_virtualizationmanager:fd use;
+allow system_server priv_app_all_virtualizationmanager:vsock_socket { getopt read write };
 
 # Perform Binder IPC.
 binder_use(system_server)
@@ -586,6 +588,9 @@ r_dir_file(system_server, vendor_app_file)
 r_dir_file(system_server, vendor_framework_file)
 r_dir_file(system_server, vendor_overlay_file)
 
+# Access /vendor/etc/dma_heap.json
+allow system_server vendor_dma_heap_config_file:file r_file_perms;
+
 # Manage /data/app-private.
 allow system_server apk_private_data_file:dir create_dir_perms;
 allow system_server apk_private_data_file:file create_file_perms;
@@ -771,6 +776,9 @@ allow system_server wallpaper_file:file { rw_file_perms rename unlink };
 # Backup of wallpaper imagery uses temporary hard links to avoid data churn
 allow system_server { system_data_file wallpaper_file }:file link;
 
+# Allow system_server to set the label for the user.list file.
+allow system_server user_list_data_file:file relabelto;
+
 # ShortcutManager icons
 allow system_server system_data_file:dir relabelfrom;
 allow system_server shortcut_manager_icons:dir { create_dir_perms relabelto };
@@ -950,13 +958,8 @@ get_prop(system_server, persist_wm_debug_prop)
 set_prop(system_server, persist_wm_debug_prop)
 
 # Read/Write persist.pcc. properties
-get_prop(system_server, pcc_audit_mode_prop)
 set_prop(system_server, pcc_audit_mode_prop)
-
-# Read persist.sysui.notification.builder_extras_override property
-get_prop(system_server, persist_sysui_builder_extras_prop)
-# Read persist.sysui.notification.ranking_update_ashmem property
-get_prop(system_server, persist_sysui_ranking_update_prop)
+set_prop(system_server, pcc_audit_mode_client_prop)
 
 # Read ro.tuner.lazyhal
 get_prop(system_server, tuner_config_prop)
@@ -1262,7 +1265,6 @@ allow system_server preloads_media_file:dir { r_dir_perms write remove_name rmdi
 
 r_dir_file(system_server, cgroup)
 r_dir_file(system_server, cgroup_v2)
-allow system_server ion_device:chr_file r_file_perms;
 
 # Access to /dev/dma_heap/system
 allow system_server dmabuf_system_heap_device:chr_file r_file_perms;
@@ -1677,6 +1679,10 @@ allow system_server { proc_pressure_cpu proc_pressure_io }:file r_file_perms;
 # Read /proc/diskstats to help debug IO stalls.
 allow system_server proc_diskstats:file r_file_perms;
 
+# Read/Write /sys/kernel/security/safesetid/uid_allowlist_policy
+allow system_server securityfs:dir search;
+allow system_server uid_allowlist_policy:file rw_file_perms;
+
 # CAP_SYS_RESOURCE was traditionally needed for sensitive /proc/PID
 # file read access. However, that is now unnecessary (b/34951864)
 neverallow system_server system_server:global_capability_class_set sys_resource;
@@ -1811,12 +1817,11 @@ binder_call(system_server, usbauthservice)
 # Allow system_server to access AiSeal VM
 is_flag_enabled(RELEASE_AISEAL_FRAMEWORK, `
     aiseal_use(system_server)
+    allow system_server aiseal_internal_service:service_manager find;
 ')
 
 # Allow system_server to talk to NPU scheduling service
-starting_at_board_api(202604, `
-  hal_client_domain(system_server, hal_npu_scheduling)
-')
+hal_client_domain(system_server, hal_npu_scheduling)
 
 # Allow system server to read and write serial devices
 allow system_server { serial_device usb_serial_device }:chr_file { read write };
@@ -1865,3 +1870,6 @@ set_prop(system_server, zygote_zygote_next_boot_config_prop)
 
 # Read /proc/swaps for debugging and meminfo-related utilities.
 allow system_server proc_swaps:file { read open getattr };
+
+# Allow system_server to write the thermal profile property.
+set_prop(system_server, thermal_profile_prop)

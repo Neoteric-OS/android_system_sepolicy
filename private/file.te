@@ -4,9 +4,6 @@ type proc_allocinfo, fs_type, proc_type;
 # /proc/config.gz
 type config_gz, fs_type, proc_type;
 
-# /proc/sys/kernel/firmware_config/*
-until_board_api(202604, `type proc_firmware_config, fs_type, proc_type;')
-
 # /sys/fs/bpf/<dir> for mainline tethering use
 # TODO: move S+ fs_bpf_tethering here from public/file.te
 type fs_bpf_net_private, fs_type, bpffs_type;
@@ -137,13 +134,6 @@ type odsign_data_file, file_type, data_file_type, core_data_file_type;
 
 # /data/misc/odsign_metrics
 type odsign_metrics_file, file_type, data_file_type, core_data_file_type;
-
-# /data/misc/virtualizationservice
-# The type needs to be mlstrustedobject to allow for being accessed from
-# virtualizationmanager, which runs at a more constrained MLS level.
-until_board_api(202604, `
-    type virtualizationservice_data_file, file_type, data_file_type, core_data_file_type, mlstrustedobject;
-')
 
 # /mnt/vm
 type vm_data_file, file_type, core_data_file_type;
@@ -280,20 +270,8 @@ type statsd_atoms_list_file, file_type, data_file_type, core_data_file_type;
 # /sys/device/virtual/misc/ublk-control/
 type sysfs_ublk, fs_type, sysfs_type;
 
-# /sys/bus/thunderbolt and /sys/class/typec
-until_board_api(202604, `type sysfs_thunderbolt, fs_type, sysfs_type;')
-until_board_api(202604, `type sysfs_typec, fs_type, sysfs_type;')
-until_board_api(202604, `type sysfs_usb_pd, fs_type, sysfs_type;')
-until_board_api(202604, `type sysfs_usbcore, fs_type, sysfs_type;')
-
 until_board_api(202604, `
     type sysfs_powercap, fs_type, sysfs_type;
-')
-
-# /data/vendor_ce/[0-9]+/wifi/
-until_board_api(202604, `
-type wifi_vendor_user_data_file, file_type, data_file_type;
-type wpa_user_data_file, file_type, data_file_type;
 ')
 
 # /data/system/aiseal
@@ -301,6 +279,8 @@ type aiseal_data_file, file_type, data_file_type, core_data_file_type;
 
 type zygote_next_socket, file_type, coredomain_socket;
 
-until_board_api(202604, `type sysfs_block, fs_type, sysfs_type;')
+# /sys/kernel/security/safesetid/uid_allowlist_policy
+type uid_allowlist_policy, file_type;
 
-until_board_api(202604, `type binderfs_logs_state_hashed, fs_type;')
+# /sys/module/binder/parameters/impl
+type sysfs_binder_impl, fs_type, sysfs_type;

@@ -14,7 +14,7 @@ app_domain(pcc_component)
 # Allow pcc components to read files in visible storage. The write access to sdcard_type, fuse is temporary for debug mode functionality in AiAi.
 allow pcc_component { sdcard_type fuse }:file { read getattr write append ioctl lock };
 allow pcc_component media_rw_data_file:file { read getattr };
-allow pcc_component { sdcard_type fuse media_rw_data_file }:dir { open search read };
+allow pcc_component { sdcard_type fuse media_rw_data_file }:dir { open search read getattr };
 
 # Required to read CTS tests data from the shell_data_file location.
 allow pcc_component shell_data_file:file r_file_perms;
@@ -31,6 +31,9 @@ allow pcc_component pcc_data_file:file create_file_perms;
 # Follow priv-app symlinks. This is used for dynamite functionality.
 allow pcc_component privapp_data_file:lnk_file r_file_perms;
 
+# Do not allow untrusted apps to access PCC data
+neverallow untrusted_app_all pcc_data_file:dir_file_class_set *;
+
 # Allow loading and deleting shared libraries created by trusted system
 # components within an application home directory.
 allow pcc_component app_exec_data_file:file { r_file_perms execute unlink };
@@ -45,11 +48,7 @@ allow pcc_component mediadrmserver_service:service_manager find;
 allow pcc_component drmserver_service:service_manager find;
 allow pcc_component radio_service:service_manager find;
 
-# TODO: b/442762197 - Audit all ephemeral_app_api_service services
-#
-# All the ephemeral_app_api_service services are allowed but that will change after the above audit
 allow pcc_component {
-# ephemeral_app_api_service services
 # go/keep-sorted start
 IProxyService_service
 accessibility_service
@@ -163,6 +162,9 @@ vibrator_service
 virtual_device_native_service
 voiceinteraction_service
 webviewupdate_service
+wifi_service
+wifiaware_service
+wifiscanner_service
 # go/keep-sorted end
 
 # app_api_service services
@@ -281,6 +283,10 @@ neverallow pcc_component proc:file { no_rw_file_perms no_x_file_perms };
 # Avoid mutating external storage
 neverallow pcc_component { sdcard_type fuse media_rw_data_file }:file create;
 neverallow pcc_component { sdcard_type fuse media_rw_data_file }:dir {write add_name remove_name lock};
+
+# Avoid mutating shell files
+neverallow pcc_component shell_data_file:dir { write add_name remove_name create setattr };
+neverallow pcc_component shell_data_file:file { write create setattr relabelfrom append unlink link rename };
 
 # Avoid reads to proc_net, it contains too much device wide information about
 # ongoing connections.

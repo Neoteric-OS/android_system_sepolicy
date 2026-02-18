@@ -108,25 +108,23 @@ phony {
         "plat_sepolicy_genfs_202604.cil",
         "plat_service_contexts",
         "secilc",
-        "plat_29.0.cil",
-        "plat_30.0.cil",
         "plat_31.0.cil",
         "plat_32.0.cil",
         "plat_33.0.cil",
         "plat_34.0.cil",
         "plat_202404.cil",
-        "29.0.compat.cil",
-        "30.0.compat.cil",
+        "plat_202504.cil",
         "31.0.compat.cil",
         "32.0.compat.cil",
         "33.0.compat.cil",
         "34.0.compat.cil",
         "202404.compat.cil",
+        "202504.compat.cil",
     ] + select(soong_config_variable("ANDROID", "PLATFORM_SEPOLICY_VERSION"), {
-        "202504": [],
+        "202604": [],
         default: [
-            "plat_202504.cil",
-            "202504.compat.cil",
+            "plat_202604.cil",
+            "202604.compat.cil",
         ],
     }) + select(soong_config_variable("ANDROID", "PRODUCT_PRECOMPILED_SEPOLICY"), {
         true: ["plat_sepolicy_and_mapping.sha256"],
@@ -931,7 +929,7 @@ se_neverallow_test {
 // SEPOLICY_FREEZE_TEST_EXTRA_DIRS and SEPOLICY_FREEZE_TEST_EXTRA_PREBUILT_DIRS.
 //////////////////////////////////
 
-FREEZE_TEST_BOARD_API_LEVEL = "202504"
+FREEZE_TEST_BOARD_API_LEVEL = "202604"
 
 se_policy_conf {
     name: "base_plat_pub_policy_for_freeze_test.conf",
@@ -1035,17 +1033,16 @@ phony {
         "system_ext_sepolicy.cil",
     ] + [
         //"ifdef HAS_SYSTEM_EXT_SEPOLICY" check included in .cil
-        "system_ext_29.0.cil",
-        "system_ext_30.0.cil",
         "system_ext_31.0.cil",
         "system_ext_32.0.cil",
         "system_ext_33.0.cil",
         "system_ext_34.0.cil",
         "system_ext_202404.cil",
+        "system_ext_202504.cil",
     ] + select(soong_config_variable("ANDROID", "PLATFORM_SEPOLICY_VERSION"), {
-        "202504": [],
+        "202604": [],
         default: [
-            "system_ext_202504.cil",
+            "system_ext_202604.cil",
         ],
     }) +
     select(soong_config_variable("ANDROID", "PRODUCT_PRECOMPILED_SEPOLICY"), {
@@ -1064,17 +1061,16 @@ phony {
         "system_ext_service_contexts_test",
         "system_ext_mac_permissions.xml",
         "system_ext_bug_map",
-        "system_ext_29.0.compat.cil",
-        "system_ext_30.0.compat.cil",
         "system_ext_31.0.compat.cil",
         "system_ext_32.0.compat.cil",
         "system_ext_33.0.compat.cil",
         "system_ext_34.0.compat.cil",
         "system_ext_202404.compat.cil",
+        "system_ext_202504.compat.cil",
     ] + select(soong_config_variable("ANDROID", "PLATFORM_SEPOLICY_VERSION"), {
-        "202504": [],
+        "202604": [],
         default: [
-            "system_ext_202504.compat.cil",
+            "system_ext_202604.compat.cil",
         ],
     }) + select(release_flag("RELEASE_AVF_ENABLE_VM_TO_TEE_SERVICES_ALLOWLIST"), {
         true: ["system_ext_tee_service_contexts"],
@@ -1089,13 +1085,12 @@ phony {
         "product_mapping_file",
         "product_sepolicy.cil",
         // "ifdef HAS_PRODUCT_PUBLIC_SEPOLICY" check included in .cil
-        "product_29.0.cil",
-        "product_30.0.cil",
         "product_31.0.cil",
         "product_32.0.cil",
         "product_33.0.cil",
         "product_34.0.cil",
         "product_202404.cil",
+        "product_202504.cil",
         "product_file_contexts",
         // "ifdef HAS_PRODUCT_SEPOLICY_DIR" in Android.mk can be ignored.
         "product_file_contexts_test",
@@ -1112,9 +1107,9 @@ phony {
         true: ["product_sepolicy_and_mapping.sha256"],
         default: [],
     }) + select(soong_config_variable("ANDROID", "PLATFORM_SEPOLICY_VERSION"), {
-        "202504": [],
+        "202604": [],
         default: [
-            "product_202504.cil",
+            "product_202604.cil",
         ],
     }) + select(release_flag("RELEASE_AVF_ENABLE_VM_TO_TEE_SERVICES_ALLOWLIST"), {
         true: ["product_tee_service_contexts"],
@@ -1192,22 +1187,20 @@ phony {
 phony {
     name: "selinux_policy_system",
     required: [
-        "29.0.compat.cil",
-        "30.0.compat.cil",
         "31.0.compat.cil",
         "32.0.compat.cil",
         "33.0.compat.cil",
         "34.0.compat.cil",
         "202404.compat.cil",
+        "202504.compat.cil",
         "build_sepolicy",
         "fuzzer_bindings_test",
-        "plat_29.0.cil",
-        "plat_30.0.cil",
         "plat_31.0.cil",
         "plat_32.0.cil",
         "plat_33.0.cil",
         "plat_34.0.cil",
         "plat_202404.cil",
+        "plat_202504.cil",
         "plat_bug_map",
         "plat_file_contexts",
         "plat_file_contexts_data_test",
@@ -1228,10 +1221,10 @@ phony {
         "searchpolicy",
         "secilc",
     ] + select(soong_config_variable("ANDROID", "PLATFORM_SEPOLICY_VERSION"), {
-        "202504": [],
+        "202604": [],
         default: [
-            "202504.compat.cil",
-            "plat_202504.cil",
+            "202604.compat.cil",
+            "plat_202604.cil",
         ],
     }) + select(soong_config_variable("ANDROID", "PRODUCT_PRECOMPILED_SEPOLICY"), {
         true: ["plat_sepolicy_and_mapping.sha256"],
@@ -1246,23 +1239,22 @@ phony {
             "sepolicy_compat_test",
             "sepolicy_test",
             "sepolicy_dev_type_test",
-            "treble_sepolicy_tests_29.0",
-            "treble_sepolicy_tests_30.0",
             "treble_sepolicy_tests_31.0",
             "treble_sepolicy_tests_32.0",
             "treble_sepolicy_tests_33.0",
             "treble_sepolicy_tests_34.0",
             "treble_sepolicy_tests_202404",
+            "treble_sepolicy_tests_202504",
         ],
     }) + select((
         soong_config_variable("ANDROID", "PLATFORM_SEPOLICY_VERSION"),
         soong_config_variable("ANDROID", "ASAN_ENABLED"),
         product_variable("selinux_ignore_neverallows"),
     ), {
-        ("202504", true, true): [],
+        ("202604", true, true): [],
         (default, true, true): [],
         (default, default, default): [
-            "treble_sepolicy_tests_202504",
+            "treble_sepolicy_tests_202604",
         ],
     }) + select(soong_config_variable("ANDROID", "RELEASE_BOARD_API_LEVEL_FROZEN"), {
         true: ["se_freeze_test"],

@@ -77,9 +77,7 @@ android.hardware.memtrack.IMemtrack/default                          u:object_r:
 android.hardware.motioncontext.IMotionContext/default                u:object_r:hal_motioncontext_service:s0
 android.hardware.net.nlinterceptor.IInterceptor/default              u:object_r:hal_nlinterceptor_service:s0
 android.hardware.nfc.INfc/default                                    u:object_r:hal_nfc_service:s0
-starting_at_board_api(202604, `
-  android.hardware.npu.IScheduling/default                             u:object_r:hal_npu_scheduling_service:s0
-')
+android.hardware.npu.IScheduling/default                             u:object_r:hal_npu_scheduling_service:s0
 android.hardware.oemlock.IOemLock/default                            u:object_r:hal_oemlock_service:s0
 android.hardware.power.IPower/default                                u:object_r:hal_power_service:s0
 android.hardware.power.stats.IPowerStats/default                     u:object_r:hal_power_stats_service:s0
@@ -114,9 +112,7 @@ android.hardware.radio.voice.IRadioVoice/slot2                       u:object_r:
 android.hardware.radio.voice.IRadioVoice/slot3                       u:object_r:hal_radio_service:s0
 android.hardware.rebootescrow.IRebootEscrow/default                  u:object_r:hal_rebootescrow_service:s0
 android.hardware.security.authgraph.IAuthGraphKeyExchange/nonsecure  u:object_r:hal_authgraph_service:s0
-starting_at_board_api(202604, `
-  android.hardware.security.factory_reset_protection.IFactoryResetProtection/default u:object_r:hal_frp_service:s0
-')
+android.hardware.security.factory_reset_protection.IFactoryResetProtection/default u:object_r:hal_frp_service:s0
 android.hardware.security.keymint.IKeyMintDevice/default             u:object_r:hal_keymint_service:s0
 android.hardware.security.keymint.IRemotelyProvisionedComponent/default u:object_r:hal_remotelyprovisionedcomponent_service:s0
 android.hardware.security.keymint.IRemotelyProvisionedComponent/avf     u:object_r:hal_remotelyprovisionedcomponent_avf_service:s0
@@ -154,9 +150,7 @@ android.hardware.secure_element.ISecureElement/SIM2                  u:object_r:
 android.hardware.secure_element.ISecureElement/SIM3                  u:object_r:hal_secure_element_service:s0
 android.hardware.security.secretkeeper.ISecretkeeper/default         u:object_r:hal_secretkeeper_service:s0
 android.hardware.security.secretkeeper.ISecretkeeper/nonsecure       u:object_r:hal_secretkeeper_service:s0
-starting_at_board_api(202604, `
-android.hardware.security.timestamp.ITimeStamper/default         u:object_r:hal_timestamp_service:s0
-')
+android.hardware.security.timestamp.ITimeStamper/default             u:object_r:hal_timestamp_service:s0
 android.hardware.virtualization.capabilities.IVmCapabilitiesService/default u:object_r:hal_vm_capabilities_service:s0
 android.hardware.virtualization.capabilities.IVmCapabilitiesService/noop u:object_r:hal_vm_capabilities_service:s0
 android.system.keystore2.IKeystoreService/default                    u:object_r:keystore_service:s0
@@ -178,7 +172,8 @@ aidl_lazy_test_2                          u:object_r:aidl_lazy_test_service:s0
 aidl_lazy_test_quit                       u:object_r:aidl_lazy_test_service:s0
 aidl_lazy_cb_test                         u:object_r:aidl_lazy_test_service:s0
 is_flag_enabled(RELEASE_AISEAL_FRAMEWORK, `
-    aiseal_host                       u:object_r:aiseal_host_service:s0
+    aiseal_host                           u:object_r:aiseal_host_service:s0
+    aiseal_internal                       u:object_r:aiseal_internal_service:s0
 ')
 alarm                                     u:object_r:alarm_service:s0
 android.hardware.automotive.evs.IEvsEnumerator/default u:object_r:evsmanagerd_service:s0
@@ -220,9 +215,7 @@ is_flag_enabled(RELEASE_AVF_ENABLE_MICROFUCHSIA, `
     android.system.microfuchsiad              u:object_r:microfuchsia_service:s0
 ')
 ambient_context                           u:object_r:ambient_context_service:s0
-starting_at_board_api(202604, `
-  anomaly_detector                        u:object_r:anomaly_detector_service:s0
-')
+anomaly_detector                          u:object_r:anomaly_detector_service:s0
 app_binding                               u:object_r:app_binding_service:s0
 app_function                              u:object_r:app_function_service:s0
 app_hibernation                           u:object_r:app_hibernation_service:s0
@@ -276,6 +269,7 @@ content                                   u:object_r:content_service:s0
 content_capture                           u:object_r:content_capture_service:s0
 content_suggestions                       u:object_r:content_suggestions_service:s0
 content_restriction                       u:object_r:content_restriction_service:s0
+content_safety                            u:object_r:content_safety_service:s0
 contexthub                                u:object_r:contexthub_service:s0
 contextual_mode                           u:object_r:contextual_mode_service:s0
 contextual_search                         u:object_r:contextual_search_service:s0
@@ -317,6 +311,7 @@ ethernet                                  u:object_r:ethernet_service:s0
 face                                      u:object_r:face_service:s0
 feature_flags                             u:object_r:feature_flags_service:s0
 file_integrity                            u:object_r:file_integrity_service:s0
+files                                     u:object_r:files_service:s0
 fingerprint                               u:object_r:fingerprint_service:s0
 font                                      u:object_r:font_service:s0
 android.hardware.fingerprint.IFingerprintDaemon u:object_r:fingerprintd_service:s0
@@ -404,9 +399,7 @@ network_score                             u:object_r:network_score_service:s0
 network_time_update_service               u:object_r:network_time_update_service:s0
 nfc                                       u:object_r:nfc_service:s0
 notification                              u:object_r:notification_service:s0
-starting_at_board_api(202604, `
-  npu                                       u:object_r:npu_service:s0
-')
+npu                                       u:object_r:npu_service:s0
 oem_lock                                  u:object_r:oem_lock_service:s0
 ondevicepersonalization_system_service    u:object_r:ondevicepersonalization_system_service:s0
 on_device_intelligence                    u:object_r:on_device_intelligence_service:s0
@@ -513,7 +506,6 @@ telephony_ims                             u:object_r:radio_service:s0
 is_flag_enabled(RELEASE_TELEPHONY_MODULE, `
     telephony_phone_number                u:object_r:radio_service:s0
 ')
-talisman                                  u:object_r:talisman_service:s0
 testharness                               u:object_r:testharness_service:s0
 tethering                                 u:object_r:tethering_service:s0
 textclassification                        u:object_r:textclassification_service:s0
@@ -529,6 +521,7 @@ tradeinmode                               u:object_r:tradeinmode_service:s0
 translation                               u:object_r:translation_service:s0
 transparency                              u:object_r:transparency_service:s0
 trust                                     u:object_r:trust_service:s0
+trust_token                               u:object_r:trust_token_service:s0
 tv_ad                                     u:object_r:tv_ad_service:s0
 tv_interactive_app                        u:object_r:tv_iapp_service:s0
 tv_input                                  u:object_r:tv_input_service:s0

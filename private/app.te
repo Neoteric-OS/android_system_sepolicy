@@ -9,7 +9,7 @@ r_dir_file({
   -isolated_app_all
   -network_stack
   -platform_app
-  -priv_app
+  -priv_app_all
   -shell
   -sdk_sandbox_all
   -system_app
@@ -24,7 +24,7 @@ userdebug_or_eng(`
     -isolated_app_all
     -network_stack
     -platform_app
-    -priv_app
+    -priv_app_all
     -shell
     -su
     -sdk_sandbox_all
@@ -50,8 +50,6 @@ get_prop(appdomain, vold_config_prop)
 get_prop(appdomain, adbd_config_prop)
 get_prop(appdomain, dck_prop)
 get_prop(appdomain, persist_wm_debug_prop)
-get_prop(appdomain, persist_sysui_builder_extras_prop)
-get_prop(appdomain, persist_sysui_ranking_update_prop)
 
 # Allow the heap dump ART plugin to the count of sessions waiting for OOME
 get_prop(appdomain, traced_oome_heap_session_count_prop)
@@ -99,6 +97,9 @@ get_prop(appdomain, camera_calibration_prop)
 
 # Allow to read db.log.detailed, db.log.slow_query_threshold*
 get_prop(appdomain, sqlite_log_prop)
+
+# Allow to read PCC audit mode client properties.
+get_prop(appdomain, pcc_audit_mode_client_prop)
 
 # Allow to read system_user_mode_emulation_prop, which is used by UserManager.java
 userdebug_or_eng(`get_prop(appdomain, system_user_mode_emulation_prop)')
@@ -219,6 +220,7 @@ allow appdomain app_zygote:memfd_file { read write getattr map };
 # gdbserver for ndk-gdb reads the zygote.
 # valgrind needs mmap exec for zygote
 allow appdomain zygote_exec:file rx_file_perms;
+allow appdomain zygote_next_exec:file rx_file_perms;
 
 # Notify zygote of death;
 allow appdomain zygote:process sigchld;
@@ -380,7 +382,7 @@ allow appdomain incidentd:fifo_file append;
 allow appdomain dumpstate:fd use;
 allow appdomain dumpstate:unix_stream_socket { read write getopt getattr shutdown };
 allow appdomain dumpstate:fifo_file { write getattr };
-allow appdomain shell_data_file:file { write getattr };
+allow { appdomain -pcc_component } shell_data_file:file { write getattr };
 
 # Allow apps to send dump information to incidentd
 allow appdomain incidentd:fd use;
@@ -472,7 +474,6 @@ allow appdomain console_device:chr_file { read write };
 allowxperm { appdomain -bluetooth } self:{ rawip_socket tcp_socket udp_socket }
   ioctl { unpriv_sock_ioctls unpriv_tty_ioctls };
 
-allow { appdomain -isolated_app_all } ion_device:chr_file r_file_perms;
 allow { appdomain -isolated_app_all } dmabuf_system_heap_device:chr_file r_file_perms;
 allow { appdomain -isolated_app_all } dmabuf_system_secure_heap_device:chr_file r_file_perms;
 
@@ -620,7 +621,7 @@ neverallow { appdomain -shell } { domain -appdomain }:file no_rw_file_perms;
 # -perfetto is to allow shell (which is an appdomain) to kill perfetto
 # (see private/shell.te).
 # -crosvm is to allow owner of a VM to kill VM they own.
-neverallow appdomain { domain -appdomain -perfetto -crosvm }:process
+neverallow appdomain { domain -appdomain -perfetto -crosvm_domain -crosvm_vu_fs }:process
     { sigkill sigstop signal };
 
 # Write to rootfs.

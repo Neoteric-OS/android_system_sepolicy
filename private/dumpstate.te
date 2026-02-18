@@ -71,6 +71,9 @@ binder_call(dumpstate, ot_daemon)
 # Allow dumpstate to talk to mmd service over binder
 binder_call(dumpstate, mmd)
 
+# Allow dumpstate to talk to usbauthservice over binder
+binder_call(dumpstate, usbauthservice)
+
 # Collect metrics on boot time created by init
 get_prop(dumpstate, boottime_prop)
 
@@ -477,11 +480,11 @@ allow dumpstate {
   -fwk_vold_service
   -default_android_service
 }:service_manager find;
-starting_at_board_api(202604, `
-    neverallow dumpstate {
-      vold
-    }:binder call;
-')
+
+neverallow dumpstate {
+  vold
+}:binder call;
+
 # suppress denials for services dumpstate should not be accessing.
 dontaudit dumpstate {
   apex_service
@@ -516,9 +519,6 @@ allow dumpstate proc_zoneinfo:file r_file_perms;
 
 # Create a service for talking back to system_server
 add_service(dumpstate, dumpstate_service)
-
-# use /dev/ion for screen capture
-allow dumpstate ion_device:chr_file r_file_perms;
 
 # Allow dumpstate to run top
 allow dumpstate proc_stat:file r_file_perms;
@@ -608,6 +608,11 @@ allow dumpstate shutdown_checkpoints_system_data_file:file r_file_perms;
 
 # Allow dumpstate to make binder calls to wifi_mainline_supplicant
 binder_call(dumpstate, wifi_mainline_supplicant);
+
+is_flag_enabled(RELEASE_AISEAL_FRAMEWORK, `
+  # Allow dumpstate to call "dump" of aisealhostservice for bugreport generation
+  binder_call(dumpstate, aisealhostservice);
+') # is_flag_enabled(RELEASE_AISEAL_FRAMEWORK)
 
 ###
 ### neverallow rules

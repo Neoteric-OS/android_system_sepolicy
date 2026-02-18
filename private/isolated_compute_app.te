@@ -16,9 +16,7 @@ isolated_app_domain(isolated_compute_app)
 
 allow isolated_compute_app isolated_compute_allowed_service:service_manager find;
 allow isolated_compute_app isolated_compute_allowed_device:chr_file { read write ioctl map };
-starting_at_board_api(202604, `
 get_prop(isolated_compute_app, isolated_compute_allowed_property_type)
-') # starting_at_board_api(202604)
 
 # Enable access to hardware services for camera functionalilites
 hal_client_domain(isolated_compute_app, hal_allocator)
@@ -30,7 +28,7 @@ allow isolated_compute_app dmabuf_system_heap_device:chr_file r_file_perms;
 
 # Allow access to network sockets received over IPC. New socket creation is not
 # permitted.
-allow isolated_compute_app { ephemeral_app priv_app untrusted_app_all }:{ tcp_socket udp_socket } { rw_socket_perms_no_ioctl };
+allow isolated_compute_app { ephemeral_app priv_app_all untrusted_app_all }:{ tcp_socket udp_socket } { rw_socket_perms_no_ioctl };
 
 # Allow access to the toybox: b/275024392
 allow isolated_compute_app toolbox_exec:file rx_file_perms;

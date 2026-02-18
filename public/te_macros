@@ -179,81 +179,6 @@ dontaudit su $1_userfaultfd:anon_inode *;
 neverallow { domain -$1 } $1_userfaultfd:anon_inode *;
 ')
 
-until_board_api(202604, `
-####################################
-# virtualizationservice_use(domain)
-# Allow domain to create and communicate with a virtual machine using
-# virtualizationservice and virtualizationmanager.
-define(`virtualizationservice_use', `
-type $1_virtualizationmanager, domain, coredomain, virtualizationmanager_domain;
-# Transition to virtualizationmanager when the client executes it.
-domain_auto_trans($1, virtualizationmanager_exec, $1_virtualizationmanager)
-# virtualizationmanager to be client of secretkeeper HAL. It ferries SecretManagement messages
-# from pVM to HAL.
-hal_client_domain($1_virtualizationmanager, hal_secretkeeper)
-# virtualizationmanager needs to talk to IVmCapabilitiesService HAL to allow specific VMs to
-# issue vendor-private smcs.
-hal_client_domain($1_virtualizationmanager, hal_vm_capabilities);
-# Allow virtualizationmanager to communicate over UDS with the client.
-allow { $1_virtualizationmanager crosvm } $1:unix_stream_socket { ioctl getattr read write };
-# Let the client pass file descriptors to virtualizationmanager and on to crosvm.
-allow { $1_virtualizationmanager crosvm } $1:fd use;
-# Let the client use file descriptors created by virtualizationmanager.
-allow $1 $1_virtualizationmanager:fd use;
-# Allow piping console log to the client
-allow { $1_virtualizationmanager crosvm } $1:fifo_file { ioctl getattr read write };
-# Allow client to read/write vsock created by virtualizationmanager to communicate with the VM
-# that it created. Notice that we do not grant permission to create a vsock;
-# the client can only connect to VMs that it owns.
-allow $1 $1_virtualizationmanager:vsock_socket { getattr getopt read write };
-# Allow client to inspect hypervisor capabilities
-get_prop($1, hypervisor_prop)
-# Allow client to read (but not open) the crashdump provided by virtualizationmanager
-allow $1 virtualizationservice_data_file:file { getattr read };
-# Allow virtualizationmanager to read the path of the client using /proc/{PID}/exe
-allow $1_virtualizationmanager $1:dir search;
-allow $1_virtualizationmanager $1:file read;
-allow $1_virtualizationmanager $1:lnk_file read;
-
-# Allow owner of a VM to kill the VM forcibly, by sending sigkill to the process group
-# where virtmgr is the leader
-allow $1 crosvm:process sigkill;
-') # virtualizationservice_use
-
-####################################
-# early_virtmgr_use(domain)
-# Allow domain to create and communicate with an early virtual machine using
-# early_virtmgr.
-define(`early_virtmgr_use', `
-type $1_early_virtmgr, domain, coredomain, early_virtmgr_domain;
-# Transition to early_virtmgr when the client executes it.
-domain_auto_trans($1, early_virtmgr_exec, $1_early_virtmgr)
-# Allow early_virtmgr to communicate over UDS with the client.
-allow { $1_early_virtmgr crosvm } $1:unix_stream_socket { ioctl getattr read write };
-# Let the client pass file descriptors to early_virtmgr and on to crosvm.
-allow { $1_early_virtmgr crosvm } $1:fd use;
-allow { $1_early_virtmgr crosvm } $1_tmpfs:file rw_file_perms;
-allow { $1_early_virtmgr crosvm } $1:memfd_file rw_no_ioctl_file_perms;
-# Let the client use file descriptors created by early_virtmgr.
-allow $1 $1_early_virtmgr:fd use;
-# Allow piping console log to the client
-allow { $1_early_virtmgr crosvm } $1:fifo_file { ioctl getattr read write };
-# Allow client to read/write vsock created by early_virtmgr to communicate with the VM
-# that it created. Notice that we do not grant permission to create a vsock;
-# the client can only connect to VMs that it owns.
-allow $1 $1_early_virtmgr:vsock_socket { getattr getopt read write };
-# Allow client to inspect hypervisor capabilities
-get_prop($1, hypervisor_prop)
-# Allow early_virtmgr to read the path of the client using /proc/{PID}/exe
-allow $1_early_virtmgr $1:dir search;
-allow $1_early_virtmgr $1:file read;
-allow $1_early_virtmgr $1:lnk_file read;
-# early_virtmgr to be client of secretkeeper HAL. It ferries SecretManagement messages from pVM
-# to HAL.
-hal_client_domain($1_early_virtmgr, hal_secretkeeper)
-') # early_virtmgr_use
-') # until_board_api
-
 #####################################
 # app_domain(domain)
 # Allow a base set of permissions required for all apps.
@@ -282,6 +207,13 @@ neverallow { domain -$1 -crash_dump userdebug_or_eng(`-llkd') -runas_app -simple
 # Allow a base set of permissions required for all untrusted apps.
 define(`untrusted_app_domain', `
 typeattribute $1 untrusted_app_all;
+')
+
+#####################################
+# priv_app_domain(domain)
+# Allow a base set of permissions required for all privileged apps.
+define(`priv_app_domain', `
+typeattribute $1 priv_app_all;
 ')
 
 #####################################
@@ -739,11 +671,9 @@ define(`use_credstore', `
 # use_omapi(domain)
 # Ability to use omapi.
 define(`use_omapi', `
-  starting_at_board_api(202604, `
   allow $1 secure_element_service:service_manager find;
   binder_call($1, omapi)
   binder_call(omapi, $1)
-  ')
 ')
 
 ###########################################
@@ -1007,7 +937,7 @@ define(`system_public_prop', `define_prop($1, system, public)')
 define(`system_vendor_config_prop', `
   system_public_prop($1)
   set_prop(vendor_init, $1)
-  neverallow { domain -init -vendor_init starting_at_board_api(202604, `-init_dev_config') } $1:property_service set;
+  neverallow { domain -init -vendor_init -init_dev_config } $1:property_service set;
 ')
 
 ###########################################
@@ -1180,13 +1110,13 @@ hal_client_domain(virtualizationmanager_vendor, hal_secretkeeper)
 # issue vendor-private smcs.
 hal_client_domain(virtualizationmanager_vendor, hal_vm_capabilities);
 # Allow virtualizationmanager to communicate over UDS with the client.
-allow { virtualizationmanager_vendor crosvm } $1:unix_stream_socket { ioctl getattr read write };
+allow { virtualizationmanager_vendor crosvm_domain } $1:unix_stream_socket { ioctl getattr getopt read write };
 # Let the client pass file descriptors to virtualizationmanager and on to crosvm.
-allow { virtualizationmanager_vendor crosvm } $1:fd use;
+allow { virtualizationmanager_vendor crosvm_domain } $1:fd use;
 # Let the client use file descriptors created by virtualizationmanager.
 allow $1 virtualizationmanager_vendor:fd use;
 # Allow piping console log to the client
-allow { virtualizationmanager_vendor crosvm } $1:fifo_file { ioctl getattr read write };
+allow { virtualizationmanager_vendor crosvm_domain } $1:fifo_file { ioctl getattr read write };
 # Allow client to read/write vsock created by virtualizationmanager to communicate with the VM
 # that it created. Notice that we do not grant permission to create a vsock;
 # the client can only connect to VMs that it owns.
@@ -1202,7 +1132,7 @@ allow virtualizationmanager_vendor $1:lnk_file read;
 
 # Allow owner of a VM to kill the VM forcibly, by sending sigkill to the process group
 # where virtmgr is the leader
-allow $1 crosvm:process sigkill;
+allow $1 crosvm_domain:process sigkill;
 ')
 
 ####################################
@@ -1213,14 +1143,14 @@ define(`early_virtmgr_vendor_use', `
 # Transition to early_virtmgr when the client executes it.
 domain_auto_trans($1, early_virtmgr_exec, early_virtmgr_vendor)
 # Allow early_virtmgr to communicate over UDS with the client.
-allow { early_virtmgr_vendor crosvm } $1:unix_stream_socket { ioctl getattr read write };
+allow { early_virtmgr_vendor crosvm_domain } $1:unix_stream_socket { ioctl getattr getopt read write };
 # Let the client pass file descriptors to early_virtmgr and on to crosvm.
-allow { early_virtmgr_vendor crosvm } $1:fd use;
-allow { early_virtmgr_vendor crosvm } $1_tmpfs:file rw_file_perms;
+allow { early_virtmgr_vendor crosvm_domain } $1:fd use;
+allow { early_virtmgr_vendor crosvm_domain } $1_tmpfs:file rw_file_perms;
 # Let the client use file descriptors created by early_virtmgr.
 allow $1 early_virtmgr_vendor:fd use;
 # Allow piping console log to the client
-allow { early_virtmgr_vendor crosvm } $1:fifo_file { ioctl getattr read write };
+allow { early_virtmgr_vendor crosvm_domain } $1:fifo_file { ioctl getattr read write };
 # Allow client to read/write vsock created by early_virtmgr to communicate with the VM
 # that it created. Notice that we do not grant permission to create a vsock;
 # the client can only connect to VMs that it owns.

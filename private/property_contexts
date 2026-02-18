@@ -55,6 +55,7 @@ persist.adb.tradeinmode u:object_r:adbd_tradeinmode_prop:s0
 persist.adb.test_tradeinmode u:object_r:adbd_tradeinmode_prop:s0
 persist.adb.wifi.       u:object_r:adbd_prop:s0
 persist.adb.tls_server.enable  u:object_r:system_adbd_prop:s0
+persist.adb.local_connect_timeout_ms u:object_r:adb_timeout_prop:s0
 
 persist.audio.          u:object_r:audio_prop:s0
 persist.bluetooth.      u:object_r:bluetooth_prop:s0
@@ -74,9 +75,12 @@ persist.log.tag         u:object_r:log_tag_prop:s0
 persist.mmc.            u:object_r:mmc_prop:s0
 persist.netd.stable_secret      u:object_r:netd_stable_secret_prop:s0
 persist.pm.mock-upgrade u:object_r:mock_ota_prop:s0
-persist.pcc.audit_mode.enabled      u:object_r:pcc_audit_mode_prop:s0 exact bool
-persist.pcc.audit_mode.max_log_files      u:object_r:pcc_audit_mode_prop:s0 exact int
-persist.pcc.audit_mode.log_file_max_size_kb      u:object_r:pcc_audit_mode_prop:s0 exact int
+persist.pcc.audit_mode.enabled                  u:object_r:pcc_audit_mode_prop:s0 exact bool
+persist.pcc.audit_mode.max_log_files            u:object_r:pcc_audit_mode_prop:s0 exact int
+persist.pcc.audit_mode.log_file_max_size_kb     u:object_r:pcc_audit_mode_prop:s0 exact int
+persist.pcc.audit_mode.batching.enabled         u:object_r:pcc_audit_mode_client_prop:s0 exact bool
+persist.pcc.audit_mode.batching.max_batch_size  u:object_r:pcc_audit_mode_client_prop:s0 exact int
+persist.pcc.audit_mode.batching.flush_time_ms   u:object_r:pcc_audit_mode_client_prop:s0 exact int
 persist.profcollectd.enabled    u:object_r:profcollectd_enabled_prop:s0     exact   bool
 persist.profcollectd.node_id    u:object_r:profcollectd_node_id_prop:s0     exact   string
 persist.sys.            u:object_r:system_prop:s0
@@ -852,6 +856,7 @@ ro.crypto.volume.options                        u:object_r:vold_config_prop:s0 e
 external_storage.projid.enabled   u:object_r:storage_config_prop:s0 exact bool
 external_storage.sdcardfs.enabled u:object_r:storage_config_prop:s0 exact bool
 external_storage.cross_user.enabled u:object_r:storage_config_prop:s0 exact bool
+external_storage.packedssa.enabled u:object_r:storage_config_prop:s0 exact bool
 ro.fuse.bpf.enabled u:object_r:storage_config_prop:s0 exact bool
 ro.fuse.bpf.is_running u:object_r:vold_status_prop:s0 exact bool
 
@@ -1040,7 +1045,7 @@ persist.arm64.memtag. u:object_r:arm64_memtag_prop:s0 prefix string
 # kcmdline props for dogfood experiments
 # All kcmdline properties share the kcmdline_prop context
 kcmdline.loaded     u:object_r:kcmdline_prop:s0 exact bool
-kcmdline.binder     u:object_r:kcmdline_prop:s0 exact enum c rust
+kcmdline.binder     u:object_r:kcmdline_prop:s0 exact enum c rust unset
 
 net.redirect_socket_calls.hooked u:object_r:socket_hook_prop:s0 exact bool
 
@@ -1457,6 +1462,7 @@ ro.hardware.vibrator             u:object_r:exported_default_prop:s0 exact strin
 ro.hardware.virtual_device       u:object_r:exported_default_prop:s0 exact string
 ro.hardware.vulkan               u:object_r:exported_default_prop:s0 exact string
 ro.hardware.16kb_cpu_unsupported u:object_r:exported_default_prop:s0 exact bool
+ro.hardware.16kb_hardware_unsupported u:object_r:exported_default_prop:s0 exact bool
 
 ro.hw_timeout_multiplier u:object_r:hw_timeout_multiplier_prop:s0 exact int
 
@@ -1637,7 +1643,15 @@ ro.gfx.driver.1          u:object_r:graphics_config_prop:s0 exact string
 ro.gfx.angle.supported   u:object_r:graphics_config_prop:s0 exact bool
 ro.gfx.driver_build_time u:object_r:graphics_config_prop:s0 exact int
 
-graphics.gpu.profiler.support              u:object_r:graphics_config_prop:s0 exact bool
+graphics.gpu.profiler.support                                  u:object_r:graphics_config_prop:s0 exact bool
+graphics.gpu.profiler.support.gpu_counters                     u:object_r:graphics_config_prop:s0 exact bool
+graphics.gpu.profiler.support.gpu_counters.period              u:object_r:graphics_config_prop:s0 exact bool
+graphics.gpu.profiler.support.gpu_counters.groups              u:object_r:graphics_config_prop:s0 exact bool
+graphics.gpu.profiler.support.gpu_counters.zeroes_optimization u:object_r:graphics_config_prop:s0 exact bool
+graphics.gpu.profiler.support.gpu_frequency                    u:object_r:graphics_config_prop:s0 exact bool
+graphics.gpu.profiler.support.render_stages                    u:object_r:graphics_config_prop:s0 exact bool
+graphics.gpu.profiler.support.render_stages.queue_submit       u:object_r:graphics_config_prop:s0 exact bool
+
 graphics.gpu.profiler.vulkan_layer_apk     u:object_r:graphics_config_prop:s0 exact string
 graphics.gpu.profiler.counter_producer_lib u:object_r:graphics_config_prop:s0 exact string
 persist.graphics.egl             u:object_r:graphics_config_writable_prop:s0 exact string
@@ -1838,10 +1852,6 @@ ro.usb.uvc.enabled      u:object_r:usb_uvc_enabled_prop:s0 exact bool
 # Userspace AOA property
 ro.usb.userspace.aoa.enabled      u:object_r:usb_userspace_aoa_enabled_prop:s0 exact bool
 
-# System UI notification properties
-persist.sysui.notification.ranking_update_ashmem u:object_r:persist_sysui_ranking_update_prop:s0 exact bool
-persist.sysui.notification.builder_extras_override u:object_r:persist_sysui_builder_extras_prop:s0 exact bool
-
 # Properties for Quick Start setup.
 ro.quick_start.oem_id u:object_r:quick_start_prop:s0 exact string
 ro.quick_start.device_id u:object_r:quick_start_prop:s0 exact string
@@ -1909,6 +1919,8 @@ trusty.widevine_vm.enabled           u:object_r:drm_config_prop:s0 exact bool
 # Sets the path used by Widevine HALs to find correct library for the widevine
 # service provider location
 widevine.liboemcrypto.path          u:object_r:drm_config_prop:s0 exact string
+# Indicates that content decryption will be done on the VM
+trusty.widevine_vm_with_decrypt.enabled u:object_r:drm_config_prop:s0 exact bool
 
 # Properties for mmd
 mmd. u:object_r:mmd_prop:s0
@@ -1940,3 +1952,6 @@ ro.gms.wallet.se_capability u:object_r:wallet_prop:s0 exact int
 
 # AiSeal properties
 service.aiseal. u:object_r:aiseal_prop:s0
+
+# Wear dynamic thermal profile property
+thermal.dynamic_config_profile    u:object_r:thermal_profile_prop:s0 exact enum default setup kids_setup kids
