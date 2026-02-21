@@ -192,6 +192,7 @@ var (
 		"aiseal_host":         EXCEPTION_NO_FUZZER,
 		"aiseal_internal":     EXCEPTION_NO_FUZZER,
 		"alarm":               EXCEPTION_NO_FUZZER,
+		"allowlist":           EXCEPTION_NO_FUZZER,
 		"android.hardware.automotive.evs.IEvsEnumerator/default":               EXCEPTION_NO_FUZZER,
 		"android.os.UpdateEngineService":                                       []string{"update_engine_service_fuzzer"},
 		"android.os.UpdateEngineStableService":                                 []string{"update_engine_service_fuzzer"},
