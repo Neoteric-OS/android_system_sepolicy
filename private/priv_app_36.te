@@ -20,3 +20,4 @@ priv_app_domain(priv_app_36)
 
 allow priv_app_36 domain:memfd_file ioctl;
 allowxperm priv_app_36 domain:memfd_file ioctl ashmem_ioctls;
+allow priv_app_36 ashmem_libcutils_device:chr_file open;

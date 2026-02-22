@@ -200,6 +200,25 @@ neverallow { appdomain -runas_app -shell -simpleperf -$1 } $1:file no_rw_file_pe
 # apps. llkd is excluded, as it needs ptrace access to inspect stack traces for
 # live lock conditions.
 neverallow { domain -$1 -crash_dump userdebug_or_eng(`-llkd') -runas_app -simpleperf } $1:process ptrace;
+# Allow list type transitions for anon_inode.
+# app_neverallows.te already blocks direct access by an untrusted_app_domain to a
+# domain:anon_inode, which forces the use of type transitions to access anon_inodes.
+# This neverallow further limits untrusted apps to only using an allowed list of target types.
+# This prevents policy writers from defining their own transitions to circumvent neverallow rules.
+# We must do this in a macro because the types are generated based on the given input domain.
+neverallow $1 ~$1_userfaultfd:anon_inode *;
+# Block io_uring.
+# Though the neverallow above blocks the use of our io_uring_use macro, there is nothing stopping a
+# policy writer from defining a transition to an allowlisted type from an io_uring anon_inode.
+#
+# E.g. one could write type_transition $1 $1:anon_inode $1_userfaultfd "[io_uring]";
+#
+# We block that here by claiming the transition for io_uring. sepolicy will fail to compile if two
+# rules with identical inputs have conflicting outputs. Note that trying to write a general
+# type transition without a name constraint will also be ineffective because named transitions
+# take precedence over unnamed transitions.
+type $1_block_io_uring;
+type_transition $1 $1:anon_inode $1_block_io_uring "[io_uring]";
 ')
 
 #####################################
