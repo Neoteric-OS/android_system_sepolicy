@@ -43,6 +43,14 @@ allow isolated_app_all { apk_tmp_file apk_private_tmp_file }:file { read getattr
 # is modified to change the secontext when accessing the lower filesystem.
 allow isolated_app_all { sdcard_type fuse media_rw_data_file }:file { read write append getattr lock map };
 
+# Isolated apps have the same SDK version as their parent app, which may have
+# SDK version 36 or lower, and therefore, rely on ashmem. For the sake of
+# simplicity (i.e. to avoid splitting this domain), grant access to ashmem
+# for all isolated apps.
+allow isolated_app_all domain:memfd_file ioctl;
+allowxperm isolated_app_all domain:memfd_file ioctl ashmem_ioctls;
+allow isolated_app_all ashmem_libcutils_device:chr_file open;
+
 #####
 ##### Neverallow
 #####

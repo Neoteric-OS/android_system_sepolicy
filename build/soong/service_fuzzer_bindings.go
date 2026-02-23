@@ -422,6 +422,7 @@ var (
 		"package":                                EXCEPTION_NO_FUZZER,
 		"package_native":                         EXCEPTION_NO_FUZZER,
 		"pcc_sandbox":                            EXCEPTION_NO_FUZZER,
+		"pcc_sandbox_native":                     EXCEPTION_NO_FUZZER,
 		"people":                                 EXCEPTION_NO_FUZZER,
 		"performance_hint":                       EXCEPTION_NO_FUZZER,
 		"permission":                             EXCEPTION_NO_FUZZER,

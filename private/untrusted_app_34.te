@@ -17,3 +17,4 @@ bluetooth_domain(untrusted_app_34)
 
 allow untrusted_app_34 domain:memfd_file ioctl;
 allowxperm untrusted_app_34 domain:memfd_file ioctl ashmem_ioctls;
+allow untrusted_app_34 ashmem_libcutils_device:chr_file open;

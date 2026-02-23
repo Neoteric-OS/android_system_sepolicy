@@ -1665,6 +1665,8 @@ neverallow {
   -untrusted_app_32
   -untrusted_app_34
   -priv_app_36
+  -isolated_app_all
+  -gmscore_app
 } domain:memfd_file ioctl;
 
 neverallowxperm {
@@ -1676,6 +1678,8 @@ neverallowxperm {
   -untrusted_app_32
   -untrusted_app_34
   -priv_app_36
+  -isolated_app_all
+  -gmscore_app
 } domain:memfd_file ioctl ashmem_ioctls;
 
 neverallow { domain -traced_probes -init -vendor_init } debugfs_tracing_printk_formats:file *;
