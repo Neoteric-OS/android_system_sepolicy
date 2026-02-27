@@ -8,7 +8,7 @@ r_dir_file({
   -pcc_component
   -isolated_app_all
   -network_stack
-  -platform_app
+  -platform_app_all
   -priv_app_all
   -shell
   -sdk_sandbox_all
@@ -23,7 +23,7 @@ userdebug_or_eng(`
     -pcc_component
     -isolated_app_all
     -network_stack
-    -platform_app
+    -platform_app_all
     -priv_app_all
     -shell
     -su
@@ -648,13 +648,13 @@ neverallow appdomain mediadrm_system_data_file:dir_file_class_set
     { create write setattr relabelfrom relabelto append unlink link rename };
 neverallow appdomain drm_data_file:dir_file_class_set
     { create write setattr relabelfrom relabelto append unlink link rename };
-neverallow { appdomain -platform_app }
+neverallow { appdomain -platform_app_all }
     apk_data_file:dir_file_class_set
     { create write setattr relabelfrom relabelto append unlink link rename };
-neverallow { appdomain -platform_app }
+neverallow { appdomain -platform_app_all }
     apk_private_data_file:dir_file_class_set
     { create write setattr relabelfrom relabelto append unlink link rename };
-neverallow { appdomain -platform_app }
+neverallow { appdomain -platform_app_all }
     apk_private_tmp_file:dir_file_class_set
     { create write setattr relabelfrom relabelto append unlink link rename };
 neverallow { appdomain -shell }
@@ -678,7 +678,7 @@ neverallow appdomain
     { create write setattr relabelfrom relabelto append unlink link rename };
 
 # access tmp apk files
-neverallow { appdomain -platform_app }
+neverallow { appdomain -platform_app_all }
     apk_tmp_file:dir_file_class_set
     { create write setattr relabelfrom relabelto append unlink link rename };
 
@@ -854,5 +854,5 @@ is_flag_enabled(RELEASE_UNLOCKED_STORAGE_API, `
 # Apps should not be able to open trace data files, they should depend upon traceur to pass a file descriptor.
 # 'write' is granted to allow apps to write heap dumps.
 allow appdomain trace_data_file:file { read write getattr };
-neverallow { appdomain -traceur_app -platform_app -system_app -shell } trace_data_file:file ~{ read write getattr };
-neverallow { appdomain -traceur_app -platform_app -system_app -shell } trace_data_file:dir *;
+neverallow { appdomain -traceur_app -platform_app_all -system_app -shell } trace_data_file:file ~{ read write getattr };
+neverallow { appdomain -traceur_app -platform_app_all -system_app -shell } trace_data_file:dir *;

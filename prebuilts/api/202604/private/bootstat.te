@@ -50,7 +50,7 @@ neverallow {
   -dumpstate
   userdebug_or_eng(`-incidentd')
   -init
-  -platform_app
+  -platform_app_all
   -recovery
   -shell
   -system_server

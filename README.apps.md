@@ -43,6 +43,9 @@ Apps that are signed with the platform key. These are installed within the
 system or vendor image. com.android.systemui is an example of an app running
 with this type.
 
+The `platform_app_all` attribute can be used to reference all the types
+described in this section.
+
 ## system_app
 Apps pre-installed on a device, signed by the platform key and running with the
 system UID. com.android.settings is an example of an app running with this

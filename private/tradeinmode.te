@@ -32,4 +32,4 @@ binder_call(tradeinmode, system_server)
 binder_call(tradeinmode, servicemanager)
 
 # Needed to run "content".
-binder_call(tradeinmode, platform_app)
+binder_call(tradeinmode, platform_app_all)
