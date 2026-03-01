@@ -447,6 +447,8 @@
 /system/bin/hw/android.frameworks.bufferhub@1.0-service           fwk_bufferhub_exec
 /system/bin/hw/android.system.suspend-service                     system_suspend_exec
 /system/bin/memcgv2_activation_depth.sh                           memcgv2_activation_depth_exec
+/system/bin/crash_dump32                                          crash_dump_exec
+/system/bin/crash_dump64                                          crash_dump_exec
 /system/etc/aconfig                                               system_aconfig_storage_file
 /system/etc/cgroups.json                                          cgroup_desc_file
 /system/etc/task_profiles/cgroups_0.json                          cgroup_desc_file

@@ -15,6 +15,7 @@ tmpfs_domain(crosvm_vu_snd)
 # crosvm_vu_snd needs to talk to crosvm_domain via virt queue which is implemented
 # as an anonymous memory (tmpfs) on the crosvm_domain side.
 allow crosvm_vu_snd crosvm_domain_tmpfs:file { read write getattr map };
+allow crosvm_vu_snd crosvm_domain:memfd_file { read write getattr map };
 
 # Allow using a socket path under /data/misc/virtualizationservice.
 # Allow crosvm_vu_snd to create unix socket for vhost-user-snd

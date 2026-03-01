@@ -369,7 +369,7 @@ userdebug_or_eng(`
 
 # allow shell access to services
 allow shell servicemanager:service_manager list;
-# don't allow shell to access GateKeeper service
+# don't allow shell to access GateKeeper & other security HAL services.
 # TODO: why is this so broad? Tightening candidate? It needs at list:
 # - dumpstate_service (so it can receive dumpstate progress updates)
 allow shell {
@@ -381,6 +381,7 @@ allow shell {
   -hal_keymint_service
   -hal_secureclock_service
   -hal_sharedsecret_service
+  -hal_secretkeeper_service
   -incident_service
   -installd_service
   -mdns_service
@@ -391,6 +392,7 @@ allow shell {
   -vold_service
   -default_android_service
   -virtualization_service
+  -virtualization_maintenance_service
 }:service_manager find;
 allow shell dumpstate:binder call;
 
@@ -532,7 +534,9 @@ neverallow shell {
   hal_keymint_service
   hal_secureclock_service
   hal_sharedsecret_service
+  hal_secretkeeper_service
   virtualization_service
+  virtualization_maintenance_service
 }:service_manager find;
 
 # Do not allow shell to hard link to any files.

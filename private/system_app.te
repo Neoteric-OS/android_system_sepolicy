@@ -117,6 +117,7 @@ allow system_app {
   -virtual_touchpad_service
   -vold_service
   -default_android_service
+  -virtualization_maintenance_service
 }:service_manager find;
 # suppress denials for services system_app should not be accessing.
 dontaudit system_app {
