@@ -209,6 +209,8 @@ attribute untrusted_app_all;
 starting_at_board_api(202604, `
 # All privileged apps
 attribute priv_app_all;
+# All platform apps
+attribute platform_app_all;
 ')
 
 # All apps with UID between AID_ISOLATED_START (99000) and AID_ISOLATED_END (99999).

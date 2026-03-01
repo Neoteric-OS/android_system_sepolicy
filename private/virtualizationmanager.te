@@ -39,7 +39,10 @@ binder_call(virtualizationmanager_domain, stats_service_server);
 binder_call(virtualizationmanager_domain,  system_server)
 allow virtualizationmanager_domain { package_native_service permission_service }:service_manager find;
 
+# Allow transitioning to a crosvm_vu_* domain for vhost-user processes. The crosvm_vu_* domains are
+# meant to have less permissions than main crosvm for better privilege isolation.
 domain_auto_trans(virtualizationmanager_domain,  crosvm_vu_fs_exec, crosvm_vu_fs)
+domain_auto_trans(virtualizationmanager_domain,  crosvm_vu_snd_exec, crosvm_vu_snd)
 
 # Let virtualizationmanager_domain kill crosvm.
 allow virtualizationmanager_domain crosvm_domain:process sigkill;
