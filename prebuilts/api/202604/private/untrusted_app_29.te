@@ -39,3 +39,4 @@ userdebug_or_eng(`
 
 allow untrusted_app_29 domain:memfd_file ioctl;
 allowxperm untrusted_app_29 domain:memfd_file ioctl ashmem_ioctls;
+allow untrusted_app_29 ashmem_libcutils_device:chr_file open;

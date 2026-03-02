@@ -156,3 +156,7 @@ is_flag_enabled(RELEASE_AVF_ENABLE_DEVICE_ASSIGNMENT, `
     # Only virtualizationservice and virtualizationmanager_domain can communicate to vfio_handler
     neverallow { domain -virtualizationmanager_domain -virtualizationservice -servicemanager } vfio_handler:binder call;
 ')
+
+# Opening up virtualization_maintenance_service to arbitray domains would allow
+# them to trigger VM deletions leading to data loss. Neverallow this.
+neverallow {domain -system_server -virtualizationservice -dumpstate -atrace -traceur_app} virtualization_maintenance_service:service_manager find;
