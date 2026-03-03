@@ -188,7 +188,8 @@ user=_sdksandbox isSdkSandboxAudit=true domain=sdk_sandbox_audit type=sdk_sandbo
 user=_app seinfo=app_zygote domain=app_zygote levelFrom=user
 user=_app seinfo=media domain=mediaprovider type=app_data_file levelFrom=user
 user=_app seinfo=native_app_zygote domain=native_app_zygote levelFrom=user
-user=_app seinfo=platform domain=platform_app type=app_data_file levelFrom=user
+user=_app minTargetSdkVersion=37 seinfo=platform domain=platform_app type=app_data_file levelFrom=user
+user=_app seinfo=platform domain=platform_app_36 type=app_data_file levelFrom=user
 user=_app isEphemeralApp=true domain=ephemeral_app type=app_data_file levelFrom=all
 user=_app minTargetSdkVersion=37 isPrivApp=true domain=priv_app type=privapp_data_file levelFrom=user
 user=_app isPrivApp=true domain=priv_app_36 type=privapp_data_file levelFrom=user

@@ -74,6 +74,10 @@ allow microdroid_payload encryptedstore_file:file create_file_perms;
 # Payload can access devices labeled as payload accessible.
 allow microdroid_payload payload_accessible_device:chr_file rw_file_perms;
 
+# Allow the Microdroid payload to execute shared libraries (.so files) located
+# within the test APK.
+allow microdroid_payload tenant_apk_file:file x_file_perms;
+
 # Never allow microdroid_payload to connect to vsock
 neverallow microdroid_payload self:vsock_socket connect;
 

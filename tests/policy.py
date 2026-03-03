@@ -17,7 +17,9 @@ import re
 import os
 import sys
 import platform
+
 import fc_sort
+import utils
 
 ###
 # Check whether the regex will match a file path starting with the provided
@@ -671,3 +673,17 @@ class TestPolicy:
             if sctx.entrypointpaths is not None:
                 for path in sctx.entrypointpaths:
                     print("\t\t"+str(path))
+
+def ReadLibsepolwrap(temp_dir):
+    """Extracts libsepolwrap.so within the binary distribution.
+
+    Make sure the following are added to your build target:
+        libs: ["pysepolwrap"],
+        data: [":libsepolwrap"],
+
+    Then, in your main executable, use:
+        with tempfile.TemporaryDirectory(ignore_cleanup_errors=True) as temp_dir:
+            libpath = policy.ReadLibsepolwrap(temp_dir)
+            pol = policy.Policy(options.policy, options.file_contexts, libpath)
+    """
+    return utils.extract_data(temp_dir, 'libsepolwrap.so')
