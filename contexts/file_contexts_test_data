@@ -363,7 +363,6 @@
 /system/bin/netutils-wrapper-1.0                                  netutils_wrapper_exec
 /system/bin/vold                                                  vold_exec
 /system/bin/netd                                                  netd_exec
-/system/bin/wificond                                              wificond_exec
 /system/bin/audioserver                                           audioserver_exec
 /system/bin/mediadrmserver                                        mediadrmserver_exec
 /system/bin/mediaserver                                           mediaserver_exec
@@ -802,6 +801,8 @@
 /system/system_ext/bin/hwservicemanager                           hwservicemanager_exec
 /system_ext/bin/hw/android.hidl.allocator@1.0-service             hal_allocator_default_exec
 /system/system_ext/bin/hw/android.hidl.allocator@1.0-service      hal_allocator_default_exec
+/system_ext/bin/wificond                                          wificond_exec
+/system/system_ext/bin/wificond                                   wificond_exec
 
 /system_ext/bin/rkp_cert_processor                                rkp_cert_processor_exec
 /system/system_ext/bin/rkp_cert_processor                         rkp_cert_processor_exec

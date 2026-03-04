@@ -377,3 +377,10 @@ filegroup {
         "com.android.webapp-file_contexts",
     ],
 }
+
+filegroup {
+    name: "com.android.bettertogether-file_contexts",
+    srcs: [
+        "com.android.bettertogether-file_contexts",
+    ],
+}

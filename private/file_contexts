@@ -294,7 +294,6 @@
 /system/bin/netutils-wrapper-1\.0    u:object_r:netutils_wrapper_exec:s0
 /system/bin/vold	u:object_r:vold_exec:s0
 /system/bin/netd	u:object_r:netd_exec:s0
-/system/bin/wificond	u:object_r:wificond_exec:s0
 /system/bin/ot-ctl      u:object_r:ot_ctl_exec:s0
 /system/bin/audioserver	u:object_r:audioserver_exec:s0
 /system/bin/mediadrmserver	u:object_r:mediadrmserver_exec:s0
@@ -562,6 +561,7 @@
 /(system_ext|system/system_ext)/bin/hw/android\.hidl\.allocator@1\.0-service u:object_r:hal_allocator_default_exec:s0
 /(system_ext|system/system_ext)/bin/rkp_cert_processor       u:object_r:rkp_cert_processor_exec:s0
 /(system_ext|system/system_ext)/bin/serialservice            u:object_r:serialservice_exec:s0
+/(system_ext|system/system_ext)/bin/wificond                 u:object_r:wificond_exec:s0
 
 /(system_ext|system/system_ext)/bin/canhalconfigurator(-aidl)? u:object_r:canhalconfigurator_exec:s0
 

@@ -2245,7 +2245,7 @@
 (typeattributeset persistent_properties_ready_prop_202504 (persistent_properties_ready_prop))
 (typeattributeset pinner_service_202504 (pinner_service))
 (typeattributeset pipefs_202504 (pipefs))
-(typeattributeset platform_app_202504 (platform_app))
+(typeattributeset platform_app_202504 (platform_app platform_app_36))
 (typeattributeset platform_compat_service_202504 (platform_compat_service))
 (typeattributeset pm_archiving_enabled_prop_202504 (pm_archiving_enabled_prop))
 (typeattributeset pmsg_device_202504 (pmsg_device))

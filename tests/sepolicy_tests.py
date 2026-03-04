@@ -14,14 +14,9 @@
 
 import argparse
 import os
-import pkgutil
-import shutil
 import sys
 import tempfile
 import policy
-
-SHARED_LIB_EXTENSION = ".dylib" if sys.platform == "darwin" else ".so"
-
 
 #############################################################
 # Tests
@@ -515,18 +510,6 @@ def do_main(libpath):
 
 
 if __name__ == "__main__":
-    temp_dir = tempfile.mkdtemp()
-    try:
-        libname = "libsepolwrap" + SHARED_LIB_EXTENSION
-        temp_lib_path = os.path.join(temp_dir, libname)
-        with open(temp_lib_path, "wb") as f:
-            blob = pkgutil.get_data("sepolicy_tests", libname)
-            if not blob:
-                sys.exit(
-                    "Error: libsepolwrap does not exist. Is this binary"
-                    " corrupted?\n"
-                )
-            f.write(blob)
-        do_main(temp_lib_path)
-    finally:
-        shutil.rmtree(temp_dir)
+    with tempfile.TemporaryDirectory(ignore_cleanup_errors=True) as temp_dir:
+        lib_path = policy.ReadLibsepolwrap(temp_dir)
+        do_main(lib_path)
