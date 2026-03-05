@@ -86,6 +86,10 @@ allow { appdomain -sdk_sandbox_all } mnt_media_rw_file:dir search;
 allow appdomain system_server:udp_socket {
         connect getattr read recvfrom sendto write getopt setopt };
 
+# apps should only use the dma-buf ioctl commands on a wrapfd, and nothing else.
+allow appdomain system_server_wrapfd:anon_inode rw_file_perms;
+allowxperm appdomain system_server_wrapfd:anon_inode ioctl dma_buf_ioctls;
+
 # Allow to read sendbug.preferred.domain
 get_prop(appdomain, sendbug_config_prop)
 
@@ -856,3 +860,6 @@ is_flag_enabled(RELEASE_UNLOCKED_STORAGE_API, `
 allow appdomain trace_data_file:file { read write getattr };
 neverallow { appdomain -traceur_app -platform_app_all -system_app -shell } trace_data_file:file ~{ read write getattr };
 neverallow { appdomain -traceur_app -platform_app_all -system_app -shell } trace_data_file:dir *;
+
+# Apps only need to use the dma-buf ioctls on wrapfds, and not the wrapfd ioctls.
+neverallowxperm appdomain system_server_wrapfd:anon_inode ioctl wrapfd_ioctls;

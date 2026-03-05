@@ -2396,3 +2396,17 @@ neverallow domain *:system x509_certificate_load;
 neverallow domain proc:filesystem associate;
 neverallow domain domain:dir { write add_name remove_name };
 neverallow domain domain:file create;
+
+# Only NPU manager, which runs inside of system_server, should be able
+# to interact with the wrapfd device node. This also prevents any other
+# domain from creating wrapfds.
+neverallow { domain -system_server } wrapfd_device:chr_file { open read write ioctl map };
+neverallowxperm { domain -system_server } wrapfd_device:chr_file ioctl wrapfd_dev_ioctls;
+
+# Only apps and the NPU manager should be able to interact with the wrapfds
+# produced by the NPU manager.
+neverallow {
+  domain
+  -appdomain
+  -system_server
+} system_server_wrapfd:anon_inode *;

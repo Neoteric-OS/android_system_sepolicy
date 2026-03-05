@@ -42,4 +42,5 @@
     wpa_user_data_file
     mmd_setup
     contextual_mode_service
+    system_server_wrapfd
   ))
