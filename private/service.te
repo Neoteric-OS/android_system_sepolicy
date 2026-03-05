@@ -4,7 +4,7 @@ type authentication_policy_service,  app_api_service, system_api_service, system
 
 type casefolding_remover_service,    service_manager_type;
 type contextual_mode_service,        app_api_service, system_server_service, service_manager_type;
-type attention_service,              system_server_service, service_manager_type;
+type attention_service,              app_api_service, system_server_service, service_manager_type;
 type bg_install_control_service,     system_api_service, system_server_service, service_manager_type;
 type binder_stats_consumer_service,  system_server_service, service_manager_type;
 type compos_service,                 service_manager_type;
@@ -12,7 +12,7 @@ type communal_service,               app_api_service, system_server_service, ser
 type content_restriction_service,    app_api_service, ephemeral_app_api_service, system_server_service, service_manager_type;
 type dynamic_system_service,         system_api_service, system_server_service, service_manager_type;
 type feature_flags_service,          app_api_service, system_server_service, service_manager_type;
-type files_service,                  app_api_service, ephemeral_app_api_service, system_server_service, service_manager_type;
+type file_service,                   app_api_service, ephemeral_app_api_service, system_server_service, service_manager_type;
 type fwk_devicestate_service, system_server_service, service_manager_type;
 type gsi_service,                    service_manager_type;
 type incidentcompanion_service,      app_api_service, system_api_service, system_server_service, service_manager_type;
@@ -51,6 +51,7 @@ type accessor_trusty_widevine_comm_service, service_manager_type;
 type trusty_widevine_comm_service, service_manager_type;
 type accessor_trusty_keymint_provisioning_service, service_manager_type;
 type accessor_trusty_keymint_provisioning_thal_service, service_manager_type;
+type accessor_trusty_keymint_secureclock_service, service_manager_type;
 
 is_flag_enabled(RELEASE_AVF_ENABLE_DEVICE_ASSIGNMENT, `
     type vfio_handler_service,          service_manager_type;
@@ -67,6 +68,7 @@ is_flag_enabled(RELEASE_AVF_ENABLE_MICROFUCHSIA, `
 ')
 
 type uce_service,                      service_manager_type;
+type ui_latency_stats_service,         system_api_service, system_server_service, service_manager_type;
 type wearable_sensing_service,         app_api_service, system_server_service, service_manager_type;
 type wifi_mainline_supplicant_service, service_manager_type;
 type dynamic_instrumentation_service,  app_api_service, system_server_service, service_manager_type;

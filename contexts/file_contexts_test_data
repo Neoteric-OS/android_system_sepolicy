@@ -288,6 +288,7 @@
 /dev/video99                                                      video_device
 /dev/vndbinder                                                    vndbinder_device
 /dev/watchdog                                                     watchdog_device
+/dev/wrapfd                                                       wrapfd_device
 /dev/xt_qtaguid                                                   qtaguid_device
 /dev/zero                                                         zero_device
 /dev/__properties__                                               properties_device
@@ -1253,6 +1254,7 @@
 /data/system_ce/9/shortcut_service/bitmaps/test                   shortcut_manager_icons
 
 /data/system_ce/0/appsearch/appsearch_storage                     appsearch_data_file
+/data/system_ce/0/AiSeal/kek                                      aiseal_data_file
 
 /data/system/users/10/photo.png                                   icon_file
 

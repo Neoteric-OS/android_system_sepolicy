@@ -119,34 +119,3 @@ neverallow perfetto dev_type:blk_file { read write };
 
 # ptrace any other process
 neverallow perfetto domain:process ptrace;
-
-# Disallows access to other /data files.
-neverallow perfetto {
-  data_file_type
-  -system_data_file
-  -system_data_root_file
-  -media_userdir_file
-  -system_userdir_file
-  -vendor_userdir_file
-  # TODO(b/72998741) Remove exemption. Further restricted in a subsequent
-  # neverallow. Currently only getattr and search are allowed.
-  -vendor_data_file
-  -perfetto_traces_data_file
-  -perfetto_traces_bugreport_data_file
-  -perfetto_traces_profiling_data_file
-  -perfetto_configs_data_file
-  with_native_coverage(`-method_trace_data_file')
-}:dir *;
-neverallow perfetto {
-  system_data_file
-  -perfetto_traces_data_file
-  -perfetto_traces_profiling_data_file
-}:dir ~{ getattr search };
-neverallow perfetto {
-  data_file_type
-  -perfetto_traces_data_file
-  -perfetto_traces_bugreport_data_file
-  -perfetto_traces_profiling_data_file
-  -perfetto_configs_data_file
-  with_native_coverage(`-method_trace_data_file')
-}:file ~write;

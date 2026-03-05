@@ -225,6 +225,7 @@
 /dev/video[0-9]*	u:object_r:video_device:s0
 /dev/vndbinder		u:object_r:vndbinder_device:s0
 /dev/watchdog		u:object_r:watchdog_device:s0
+/dev/wrapfd		u:object_r:wrapfd_device:s0
 /dev/xt_qtaguid	u:object_r:qtaguid_device:s0
 /dev/zero		u:object_r:zero_device:s0
 /dev/__properties__ u:object_r:properties_device:s0
@@ -881,6 +882,9 @@
 
 # AppSearch files (https://developer.android.com/develop/ui/views/search/appsearch)
 /data/system_ce/[0-9]+/appsearch(/.*)?          u:object_r:appsearch_data_file:s0
+
+# AiSeal files
+/data/system_ce/[0-9]+/AiSeal(/.*)?          u:object_r:aiseal_data_file:s0
 
 #############################
 # efs files

@@ -159,39 +159,6 @@ neverallow traced_probes dev_type:blk_file { read write };
 # ptrace any other app
 neverallow traced_probes domain:process ptrace;
 
-# Disallows access to /data files.
-neverallow traced_probes {
-  data_file_type
-  -apex_module_data_file
-  -apex_art_data_file
-  -apk_data_file
-  -dalvikcache_data_file
-  -system_data_file
-  -system_data_root_file
-  -media_userdir_file
-  -system_userdir_file
-  -vendor_userdir_file
-  -system_app_data_file
-  -backup_data_file
-  -bootstat_data_file
-  -update_engine_data_file
-  -update_engine_log_data_file
-  -user_profile_root_file
-  -user_profile_data_file
-  # TODO(b/72998741) Remove vendor_data_file exemption. Further restricted in a
-  # subsequent neverallow. Currently only getattr and search are allowed.
-  -vendor_data_file
-  with_native_coverage(`-method_trace_data_file')
-}:dir *;
-neverallow traced_probes system_data_file:dir ~{ getattr userdebug_or_eng(`open read') search };
-neverallow traced_probes {
-  data_file_type
-  -packages_list_file
-  with_native_coverage(`-method_trace_data_file')
-  -game_mode_intervention_list_file
-  -user_list_data_file
-}:file *;
-
 # Only init is allowed to enter the traced_probes domain via exec()
 neverallow { domain -init } traced_probes:process transition;
 neverallow * traced_probes:process dyntransition;

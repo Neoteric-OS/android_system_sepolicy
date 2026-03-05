@@ -192,6 +192,7 @@ domain_verification_service
 face_service
 feature_flags_service
 file_integrity_service
+file_service
 fingerprint_service
 fwk_stats_service
 hdmi_control_service

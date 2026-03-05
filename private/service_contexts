@@ -200,6 +200,7 @@ android.widevine.trusty.commservice.ICommService/widevine_vm u:object_r:trusty_w
 android.os.IAccessor/IKeyMintProvisioningService/security_vm_keymint u:object_r:accessor_trusty_keymint_provisioning_service:s0
 com.android.trusty.rust.KeyMintProvisioningService.V1 u:object_r:accessor_trusty_keymint_provisioning_service:s0
 android.os.IAccessor/IProvisioning/security_vm_keymint u:object_r:accessor_trusty_keymint_provisioning_thal_service:s0
+android.os.IAccessor/ISecureClock/security_vm_keymint u:object_r:accessor_trusty_keymint_secureclock_service:s0
 
 is_flag_enabled(RELEASE_AVF_ENABLE_DEVICE_ASSIGNMENT, `
     android.system.virtualizationservice_internal.IVfioHandler u:object_r:vfio_handler_service:s0
@@ -311,7 +312,7 @@ ethernet                                  u:object_r:ethernet_service:s0
 face                                      u:object_r:face_service:s0
 feature_flags                             u:object_r:feature_flags_service:s0
 file_integrity                            u:object_r:file_integrity_service:s0
-files                                     u:object_r:files_service:s0
+file                                      u:object_r:file_service:s0
 fingerprint                               u:object_r:fingerprint_service:s0
 font                                      u:object_r:font_service:s0
 android.hardware.fingerprint.IFingerprintDaemon u:object_r:fingerprintd_service:s0
@@ -527,6 +528,7 @@ tv_interactive_app                        u:object_r:tv_iapp_service:s0
 tv_input                                  u:object_r:tv_input_service:s0
 tv_tuner_resource_mgr                     u:object_r:tv_tuner_resource_mgr_service:s0
 uce                                       u:object_r:uce_service:s0
+ui_latency_stats                          u:object_r:ui_latency_stats_service:s0
 uimode                                    u:object_r:uimode_service:s0
 updatelock                                u:object_r:updatelock_service:s0
 uri_grants                                u:object_r:uri_grants_service:s0
