@@ -79,8 +79,21 @@ allow domain zero_device:chr_file rw_file_perms;
 # /dev/ashmem is being deprecated by means of constraining and eventually
 # removing all "open" permissions. We preserve the other permissions.
 allow domain ashmem_device:chr_file { getattr read ioctl lock map append write };
-# This device is used by libcutils, which is accessible to everyone.
-allow domain ashmem_libcutils_device:chr_file rw_file_perms;
+
+# Everyone can interact with ashmem, but it can only be opened as follows:
+#
+# If a device has vendor API level 202604 or higher, then only applications that
+# target SDK version 36 or older can open the ashmem character device that
+# libcutils uses, and thus allocate an ashmem buffer.
+#
+# If the device has vendor API level 202504 or lower, then the libcutils ashmem
+# device can be opened by anyone.
+#
+# This is achieved by modifying the vendor SELinux policy to include the correct
+# set of rules regarding "open" permissions based on the vendor API level.
+#
+# The relevant rules are located in the vendor/ashmem directory.
+allow domain ashmem_libcutils_device:chr_file { getattr read ioctl lock map append write };
 
 allow domain self:memfd_file { create read write getattr map };
 

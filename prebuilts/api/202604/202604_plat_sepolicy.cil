@@ -23861,129 +23861,129 @@
 (allow domain ashmem_device (chr_file (ioctl read write getattr lock append map)))
 ;;* lme
 
-;;* lmx 83 system/sepolicy/private/domain.te
+;;* lmx 96 system/sepolicy/private/domain.te
 
-(allow domain ashmem_libcutils_device (chr_file (ioctl read write getattr lock append map open watch watch_reads)))
+(allow domain ashmem_libcutils_device (chr_file (ioctl read write getattr lock append map)))
 ;;* lme
 
-;;* lmx 85 system/sepolicy/private/domain.te
+;;* lmx 98 system/sepolicy/private/domain.te
 
 (allow domain self (memfd_file (read write create getattr map)))
 ;;* lme
 
-;;* lmx 88 system/sepolicy/private/domain.te
+;;* lmx 101 system/sepolicy/private/domain.te
 
 (allow base_typeattr_401 binder_device (chr_file (ioctl read write getattr lock append map open watch watch_reads)))
 ;;* lme
 
-;;* lmx 89 system/sepolicy/private/domain.te
+;;* lmx 102 system/sepolicy/private/domain.te
 
 (allow base_typeattr_401 servicemanager_prop (file (read getattr map open)))
 ;;* lme
 
 (dontaudit domain hwservicemanager_exec (file (ioctl read getattr lock map open watch watch_reads)))
-;;* lmx 97 system/sepolicy/private/domain.te
+;;* lmx 110 system/sepolicy/private/domain.te
 
 (allowx domain binder_device (ioctl chr_file (0x6201 0x6203 (range 0x6205 0x6209) (range 0x620b 0x620d) (range 0x6210 0x6211))))
 ;;* lme
 
-;;* lmx 100 system/sepolicy/private/domain.te
+;;* lmx 113 system/sepolicy/private/domain.te
 
 (allow domain binderfs (dir (getattr search)))
 ;;* lme
 
-;;* lmx 101 system/sepolicy/private/domain.te
+;;* lmx 114 system/sepolicy/private/domain.te
 
 (allow domain binderfs_logs_proc (dir (search)))
 ;;* lme
 
-;;* lmx 102 system/sepolicy/private/domain.te
+;;* lmx 115 system/sepolicy/private/domain.te
 
 (allow domain binderfs_features (dir (search)))
 ;;* lme
 
-;;* lmx 103 system/sepolicy/private/domain.te
+;;* lmx 116 system/sepolicy/private/domain.te
 
 (allow domain binderfs_features (file (ioctl read getattr lock map open watch watch_reads)))
 ;;* lme
 
-;;* lmx 105 system/sepolicy/private/domain.te
+;;* lmx 118 system/sepolicy/private/domain.te
 
 (allow base_typeattr_402 hwbinder_device (chr_file (ioctl read write getattr lock append map open watch watch_reads)))
 ;;* lme
 
-;;* lmx 106 system/sepolicy/private/domain.te
+;;* lmx 119 system/sepolicy/private/domain.te
 
 (allow domain ptmx_device (chr_file (ioctl read write getattr lock append map open watch watch_reads)))
 ;;* lme
 
-;;* lmx 107 system/sepolicy/private/domain.te
+;;* lmx 120 system/sepolicy/private/domain.te
 
 (allow domain random_device (chr_file (ioctl read write getattr lock append map open watch watch_reads)))
 ;;* lme
 
-;;* lmx 108 system/sepolicy/private/domain.te
+;;* lmx 121 system/sepolicy/private/domain.te
 
 (allow domain proc_random (dir (ioctl read getattr lock open watch watch_reads search)))
 ;;* lme
 
-;;* lmx 109 system/sepolicy/private/domain.te
+;;* lmx 122 system/sepolicy/private/domain.te
 
 (allow domain proc_random (file (ioctl read getattr lock map open watch watch_reads)))
 ;;* lme
 
-;;* lmx 110 system/sepolicy/private/domain.te
+;;* lmx 123 system/sepolicy/private/domain.te
 
 (allow domain properties_device (dir (getattr search)))
 ;;* lme
 
-;;* lmx 111 system/sepolicy/private/domain.te
+;;* lmx 124 system/sepolicy/private/domain.te
 
 (allow domain properties_serial (file (ioctl read getattr lock map open watch watch_reads)))
 ;;* lme
 
-;;* lmx 112 system/sepolicy/private/domain.te
+;;* lmx 125 system/sepolicy/private/domain.te
 
 (allow domain property_info (file (ioctl read getattr lock map open watch watch_reads)))
 ;;* lme
 
-;;* lmx 116 system/sepolicy/private/domain.te
+;;* lmx 129 system/sepolicy/private/domain.te
 
 (allow domain log_property_type (file (read getattr map open)))
 ;;* lme
 
 (dontaudit domain property_type (file (audit_access)))
-;;* lmx 118 system/sepolicy/private/domain.te
+;;* lmx 131 system/sepolicy/private/domain.te
 
 (allow domain property_contexts_file (file (ioctl read getattr lock map open watch watch_reads)))
 ;;* lme
 
-;;* lmx 120 system/sepolicy/private/domain.te
+;;* lmx 133 system/sepolicy/private/domain.te
 
 (allow domain init (key (search)))
 ;;* lme
 
-;;* lmx 121 system/sepolicy/private/domain.te
+;;* lmx 134 system/sepolicy/private/domain.te
 
 (allow domain vold (key (search)))
 ;;* lme
 
-;;* lmx 124 system/sepolicy/private/domain.te
+;;* lmx 137 system/sepolicy/private/domain.te
 
 (allow domain logdw_socket (sock_file (write)))
 ;;* lme
 
-;;* lmx 124 system/sepolicy/private/domain.te
+;;* lmx 137 system/sepolicy/private/domain.te
 
 (allow domain logd (unix_dgram_socket (sendto)))
 ;;* lme
 
-;;* lmx 124 system/sepolicy/private/domain.te
+;;* lmx 137 system/sepolicy/private/domain.te
 
 (allow domain pmsg_device (chr_file (write lock append map open)))
 ;;* lme
 
-;;* lmx 132 system/sepolicy/private/domain.te
+;;* lmx 145 system/sepolicy/private/domain.te
 
 (allow domain system_file (dir (ioctl read getattr lock open watch watch_reads search)))
 (allow domain system_lib_file (dir (ioctl read getattr lock open watch watch_reads search)))
@@ -23991,288 +23991,288 @@
 (allow domain system_security_cacerts_file (dir (ioctl read getattr lock open watch watch_reads search)))
 ;;* lme
 
-;;* lmx 133 system/sepolicy/private/domain.te
+;;* lmx 146 system/sepolicy/private/domain.te
 
 (allow domain system_file (lnk_file (read getattr)))
 ;;* lme
 
-;;* lmx 137 system/sepolicy/private/domain.te
+;;* lmx 150 system/sepolicy/private/domain.te
 
 (allow domain system_seccomp_policy_file (file (ioctl read getattr lock map open watch watch_reads)))
 ;;* lme
 
-;;* lmx 139 system/sepolicy/private/domain.te
+;;* lmx 152 system/sepolicy/private/domain.te
 
 (allow domain system_security_cacerts_file (file (ioctl read getattr lock map open watch watch_reads)))
 ;;* lme
 
-;;* lmx 140 system/sepolicy/private/domain.te
+;;* lmx 153 system/sepolicy/private/domain.te
 
 (allow domain system_group_file (file (ioctl read getattr lock map open watch watch_reads)))
 ;;* lme
 
-;;* lmx 141 system/sepolicy/private/domain.te
+;;* lmx 154 system/sepolicy/private/domain.te
 
 (allow domain system_passwd_file (file (ioctl read getattr lock map open watch watch_reads)))
 ;;* lme
 
-;;* lmx 142 system/sepolicy/private/domain.te
+;;* lmx 155 system/sepolicy/private/domain.te
 
 (allow domain system_linker_exec (file (read getattr map execute open)))
 ;;* lme
 
-;;* lmx 143 system/sepolicy/private/domain.te
+;;* lmx 156 system/sepolicy/private/domain.te
 
 (allow domain system_linker_config_file (file (ioctl read getattr lock map open watch watch_reads)))
 ;;* lme
 
-;;* lmx 144 system/sepolicy/private/domain.te
+;;* lmx 157 system/sepolicy/private/domain.te
 
 (allow domain system_lib_file (file (read getattr map execute open)))
 ;;* lme
 
-;;* lmx 146 system/sepolicy/private/domain.te
+;;* lmx 159 system/sepolicy/private/domain.te
 
 (allow domain system_linker_exec (lnk_file (read getattr open)))
 ;;* lme
 
-;;* lmx 147 system/sepolicy/private/domain.te
+;;* lmx 160 system/sepolicy/private/domain.te
 
 (allow domain system_lib_file (lnk_file (read getattr open)))
 ;;* lme
 
-;;* lmx 149 system/sepolicy/private/domain.te
+;;* lmx 162 system/sepolicy/private/domain.te
 
 (allow domain system_event_log_tags_file (file (ioctl read getattr lock map open watch watch_reads)))
 ;;* lme
 
-;;* lmx 151 system/sepolicy/private/domain.te
+;;* lmx 164 system/sepolicy/private/domain.te
 
 (allow appdomain system_file (file (read getattr map execute open)))
 (allow coredomain system_file (file (read getattr map execute open)))
 ;;* lme
 
-;;* lmx 165 system/sepolicy/private/domain.te
+;;* lmx 178 system/sepolicy/private/domain.te
 
 (allow domain vendor_hal_file (dir (ioctl read getattr lock open watch watch_reads search)))
 ;;* lme
 
-;;* lmx 168 system/sepolicy/private/domain.te
+;;* lmx 181 system/sepolicy/private/domain.te
 
 (allow domain same_process_hal_file (dir (ioctl read getattr lock open watch watch_reads search)))
 ;;* lme
 
-;;* lmx 172 system/sepolicy/private/domain.te
+;;* lmx 185 system/sepolicy/private/domain.te
 
 (allow base_typeattr_241 same_process_hal_file (file (read getattr map execute open)))
 ;;* lme
 
-;;* lmx 176 system/sepolicy/private/domain.te
+;;* lmx 189 system/sepolicy/private/domain.te
 
 (allow domain vndk_sp_file (dir (ioctl read getattr lock open watch watch_reads search)))
 ;;* lme
 
-;;* lmx 177 system/sepolicy/private/domain.te
+;;* lmx 190 system/sepolicy/private/domain.te
 
 (allow domain vndk_sp_file (file (read getattr map execute open)))
 ;;* lme
 
-;;* lmx 180 system/sepolicy/private/domain.te
+;;* lmx 193 system/sepolicy/private/domain.te
 
 (allow domain vendor_configs_file (dir (ioctl read getattr lock open watch watch_reads search)))
 ;;* lme
 
-;;* lmx 181 system/sepolicy/private/domain.te
+;;* lmx 194 system/sepolicy/private/domain.te
 
 (allow domain vendor_configs_file (file (read getattr map open)))
 ;;* lme
 
-;;* lmx 183 system/sepolicy/private/domain.te
+;;* lmx 196 system/sepolicy/private/domain.te
 
 (allow domain vendor_file_type (lnk_file (read getattr open)))
 ;;* lme
 
-;;* lmx 183 system/sepolicy/private/domain.te
+;;* lmx 196 system/sepolicy/private/domain.te
 
 (allow domain vendor_file (dir (getattr search)))
 ;;* lme
 
-;;* lmx 183 system/sepolicy/private/domain.te
+;;* lmx 196 system/sepolicy/private/domain.te
 
 (allow base_typeattr_241 vendor_file_type (dir (ioctl read getattr lock open watch watch_reads search)))
 ;;* lme
 
-;;* lmx 183 system/sepolicy/private/domain.te
+;;* lmx 196 system/sepolicy/private/domain.te
 
 (allow base_typeattr_241 vendor_file_type (file (read getattr map execute open)))
 ;;* lme
 
-;;* lmx 183 system/sepolicy/private/domain.te
+;;* lmx 196 system/sepolicy/private/domain.te
 
 (allow base_typeattr_241 vendor_file_type (lnk_file (read getattr)))
 ;;* lme
 
-;;* lmx 200 system/sepolicy/private/domain.te
+;;* lmx 213 system/sepolicy/private/domain.te
 
 (allow domain sysfs (lnk_file (read getattr)))
 ;;* lme
 
-;;* lmx 204 system/sepolicy/private/domain.te
+;;* lmx 217 system/sepolicy/private/domain.te
 
 (allow domain system_zoneinfo_file (file (ioctl read getattr lock map open watch watch_reads)))
 ;;* lme
 
-;;* lmx 205 system/sepolicy/private/domain.te
+;;* lmx 218 system/sepolicy/private/domain.te
 
 (allow domain system_zoneinfo_file (dir (ioctl read getattr lock open watch watch_reads search)))
 ;;* lme
 
-;;* lmx 208 system/sepolicy/private/domain.te
+;;* lmx 221 system/sepolicy/private/domain.te
 
 (allow domain sysfs_devices_system_cpu (dir (ioctl read getattr lock open watch watch_reads search)))
 ;;* lme
 
-;;* lmx 208 system/sepolicy/private/domain.te
+;;* lmx 221 system/sepolicy/private/domain.te
 
 (allow domain sysfs_devices_system_cpu (file (ioctl read getattr lock map open watch watch_reads)))
 (allow domain sysfs_devices_system_cpu (lnk_file (ioctl read getattr lock map open watch watch_reads)))
 ;;* lme
 
-;;* lmx 210 system/sepolicy/private/domain.te
+;;* lmx 223 system/sepolicy/private/domain.te
 
 (allow domain sysfs_usb (dir (ioctl read getattr lock open watch watch_reads search)))
 ;;* lme
 
-;;* lmx 210 system/sepolicy/private/domain.te
+;;* lmx 223 system/sepolicy/private/domain.te
 
 (allow domain sysfs_usb (file (ioctl read getattr lock map open watch watch_reads)))
 (allow domain sysfs_usb (lnk_file (ioctl read getattr lock map open watch watch_reads)))
 ;;* lme
 
-;;* lmx 214 system/sepolicy/private/domain.te
+;;* lmx 227 system/sepolicy/private/domain.te
 
 (allow domain sysfs_transparent_hugepage (dir (search)))
 ;;* lme
 
-;;* lmx 215 system/sepolicy/private/domain.te
+;;* lmx 228 system/sepolicy/private/domain.te
 
 (allow domain sysfs_transparent_hugepage (file (ioctl read getattr lock map open watch watch_reads)))
 ;;* lme
 
-;;* lmx 224 system/sepolicy/private/domain.te
+;;* lmx 237 system/sepolicy/private/domain.te
 
 (allow appdomain system_data_file (dir (getattr)))
 (allow coredomain system_data_file (dir (getattr)))
 ;;* lme
 
-;;* lmx 227 system/sepolicy/private/domain.te
+;;* lmx 240 system/sepolicy/private/domain.te
 
 (allow domain system_data_root_file (dir (getattr search)))
 ;;* lme
 
-;;* lmx 231 system/sepolicy/private/domain.te
+;;* lmx 244 system/sepolicy/private/domain.te
 
 (allow domain system_data_file (dir (search)))
 ;;* lme
 
-;;* lmx 235 system/sepolicy/private/domain.te
+;;* lmx 248 system/sepolicy/private/domain.te
 
 (allow appdomain system_userdir_file (dir (getattr search)))
 (allow coredomain system_userdir_file (dir (getattr search)))
 ;;* lme
 
-;;* lmx 238 system/sepolicy/private/domain.te
+;;* lmx 251 system/sepolicy/private/domain.te
 
 (allow appdomain media_userdir_file (dir (search)))
 (allow coredomain media_userdir_file (dir (search)))
 ;;* lme
 
-;;* lmx 240 system/sepolicy/private/domain.te
+;;* lmx 253 system/sepolicy/private/domain.te
 
 (allow domain vendor_userdir_file (dir (getattr search)))
 ;;* lme
 
-;;* lmx 241 system/sepolicy/private/domain.te
+;;* lmx 254 system/sepolicy/private/domain.te
 
 (allow domain vendor_data_file (dir (getattr search)))
 ;;* lme
 
-;;* lmx 244 system/sepolicy/private/domain.te
+;;* lmx 257 system/sepolicy/private/domain.te
 
 (allow domain proc (lnk_file (read getattr)))
 ;;* lme
 
-;;* lmx 247 system/sepolicy/private/domain.te
+;;* lmx 260 system/sepolicy/private/domain.te
 
 (allow domain proc_cpuinfo (file (ioctl read getattr lock map open watch watch_reads)))
 ;;* lme
 
-;;* lmx 250 system/sepolicy/private/domain.te
+;;* lmx 263 system/sepolicy/private/domain.te
 
 (allow domain dev_cpu_variant (file (ioctl read getattr lock map open watch watch_reads)))
 ;;* lme
 
-;;* lmx 253 system/sepolicy/private/domain.te
+;;* lmx 266 system/sepolicy/private/domain.te
 
 (allow domain proc_perf (file (ioctl read getattr lock map open watch watch_reads)))
 ;;* lme
 
-;;* lmx 256 system/sepolicy/private/domain.te
+;;* lmx 269 system/sepolicy/private/domain.te
 
 (allow domain selinuxfs (dir (search)))
 ;;* lme
 
-;;* lmx 257 system/sepolicy/private/domain.te
+;;* lmx 270 system/sepolicy/private/domain.te
 
 (allow domain selinuxfs (file (getattr)))
 ;;* lme
 
-;;* lmx 258 system/sepolicy/private/domain.te
+;;* lmx 271 system/sepolicy/private/domain.te
 
 (allow domain sysfs (dir (search)))
 ;;* lme
 
-;;* lmx 259 system/sepolicy/private/domain.te
+;;* lmx 272 system/sepolicy/private/domain.te
 
 (allow domain selinuxfs (filesystem (getattr)))
 ;;* lme
 
-;;* lmx 264 system/sepolicy/private/domain.te
+;;* lmx 277 system/sepolicy/private/domain.te
 
 (allow domain debugfs (dir (search)))
 ;;* lme
 
-;;* lmx 265 system/sepolicy/private/domain.te
+;;* lmx 278 system/sepolicy/private/domain.te
 
 (allow domain debugfs_tracing (dir (search)))
 ;;* lme
 
-;;* lmx 266 system/sepolicy/private/domain.te
+;;* lmx 279 system/sepolicy/private/domain.te
 
 (allow domain debugfs_tracing_debug (dir (search)))
 ;;* lme
 
-;;* lmx 267 system/sepolicy/private/domain.te
+;;* lmx 280 system/sepolicy/private/domain.te
 
 (allow domain debugfs_trace_marker (file (write lock append map open)))
 ;;* lme
 
-;;* lmx 276 system/sepolicy/private/domain.te
+;;* lmx 289 system/sepolicy/private/domain.te
 
 (allow domain self (lockdown (integrity confidentiality)))
 ;;* lme
 
-;;* lmx 279 system/sepolicy/private/domain.te
+;;* lmx 292 system/sepolicy/private/domain.te
 
 (allow domain fs_type (filesystem (getattr)))
 ;;* lme
 
-;;* lmx 280 system/sepolicy/private/domain.te
+;;* lmx 293 system/sepolicy/private/domain.te
 
 (allow domain fs_type (dir (getattr)))
 ;;* lme
 
-;;* lmx 288 system/sepolicy/private/domain.te
+;;* lmx 301 system/sepolicy/private/domain.te
 
 (allowx domain domain (ioctl tcp_socket ((range 0x5401 0x5404) 0x540b (range 0x540e 0x5411) (range 0x5413 0x5414) (range 0x5450 0x5451))))
 (allowx domain domain (ioctl udp_socket ((range 0x5401 0x5404) 0x540b (range 0x540e 0x5411) (range 0x5413 0x5414) (range 0x5450 0x5451))))
@@ -24280,7 +24280,7 @@
 (allowx domain domain (ioctl icmp_socket ((range 0x5401 0x5404) 0x540b (range 0x540e 0x5411) (range 0x5413 0x5414) (range 0x5450 0x5451))))
 ;;* lme
 
-;;* lmx 288 system/sepolicy/private/domain.te
+;;* lmx 301 system/sepolicy/private/domain.te
 
 (allowx domain domain (ioctl tcp_socket ((range 0x8906 0x8907) 0x8910 (range 0x8912 0x8913) 0x8915 0x8917 0x8919 0x891b 0x8921 0x8933 0x8938 0x8942)))
 (allowx domain domain (ioctl udp_socket ((range 0x8906 0x8907) 0x8910 (range 0x8912 0x8913) 0x8915 0x8917 0x8919 0x891b 0x8921 0x8933 0x8938 0x8942)))
@@ -24288,7 +24288,7 @@
 (allowx domain domain (ioctl icmp_socket ((range 0x8906 0x8907) 0x8910 (range 0x8912 0x8913) 0x8915 0x8917 0x8919 0x891b 0x8921 0x8933 0x8938 0x8942)))
 ;;* lme
 
-;;* lmx 288 system/sepolicy/private/domain.te
+;;* lmx 301 system/sepolicy/private/domain.te
 
 (allowx domain domain (ioctl tcp_socket (0x8b01 0x8b05 0x8b07 0x8b09 0x8b0b 0x8b0d 0x8b0f (range 0x8b11 0x8b13) 0x8b21 0x8b23 0x8b25 0x8b27 0x8b29 0x8b2d)))
 (allowx domain domain (ioctl udp_socket (0x8b01 0x8b05 0x8b07 0x8b09 0x8b0b 0x8b0d 0x8b0f (range 0x8b11 0x8b13) 0x8b21 0x8b23 0x8b25 0x8b27 0x8b29 0x8b2d)))
@@ -24296,7 +24296,7 @@
 (allowx domain domain (ioctl icmp_socket (0x8b01 0x8b05 0x8b07 0x8b09 0x8b0b 0x8b0d 0x8b0f (range 0x8b11 0x8b13) 0x8b21 0x8b23 0x8b25 0x8b27 0x8b29 0x8b2d)))
 ;;* lme
 
-;;* lmx 291 system/sepolicy/private/domain.te
+;;* lmx 304 system/sepolicy/private/domain.te
 
 (allowx domain domain (ioctl unix_stream_socket (0x5401 0x5411 (range 0x5413 0x5414) 0x541b (range 0x5450 0x5451))))
 (allowx domain domain (ioctl unix_dgram_socket (0x5401 0x5411 (range 0x5413 0x5414) 0x541b (range 0x5450 0x5451))))
@@ -24304,12 +24304,12 @@
 (allowx domain pdx_channel_socket_type (ioctl unix_dgram_socket (0x5401 0x5411 (range 0x5413 0x5414) 0x541b (range 0x5450 0x5451))))
 ;;* lme
 
-;;* lmx 297 system/sepolicy/private/domain.te
+;;* lmx 310 system/sepolicy/private/domain.te
 
 (allowx domain devpts (ioctl chr_file ((range 0x5401 0x5404) 0x540b (range 0x540e 0x5411) (range 0x5413 0x5414) (range 0x5450 0x5451))))
 ;;* lme
 
-;;* lmx 302 system/sepolicy/private/domain.te
+;;* lmx 315 system/sepolicy/private/domain.te
 
 (allowx domain dev_type (ioctl file ((range 0x5450 0x5451))))
 (allowx domain dev_type (ioctl dir ((range 0x5450 0x5451))))
@@ -24337,620 +24337,620 @@
 (allowx domain file_type (ioctl fifo_file ((range 0x5450 0x5451))))
 ;;* lme
 
-;;* lmx 306 system/sepolicy/private/domain.te
+;;* lmx 319 system/sepolicy/private/domain.te
 
 (allowx domain tun_device (ioctl chr_file ((range 0x5450 0x5451))))
 ;;* lme
 
-;;* lmx 312 system/sepolicy/private/domain.te
+;;* lmx 325 system/sepolicy/private/domain.te
 
 (allowx domain fs_type (ioctl file (0x5401)))
 (allowx domain file_type (ioctl file (0x5401)))
 ;;* lme
 
-;;* lmx 313 system/sepolicy/private/domain.te
+;;* lmx 326 system/sepolicy/private/domain.te
 
 (allowx domain domain (ioctl fifo_file (0x5401)))
 ;;* lme
 
-;;* lmx 317 system/sepolicy/private/domain.te
+;;* lmx 330 system/sepolicy/private/domain.te
 
 (allowx domain dev_type (ioctl blk_file (0x1268 0x1272)))
 ;;* lme
 
-;;* lmx 330 system/sepolicy/private/domain.te
+;;* lmx 343 system/sepolicy/private/domain.te
 
 (allowx domain file_type (ioctl file ((range 0xf501 0xf502) 0xf505 (range 0xf50c 0xf50e))))
 (allowx domain sdcard_type (ioctl file ((range 0xf501 0xf502) 0xf505 (range 0xf50c 0xf50e))))
 ;;* lme
 
-;;* lmx 334 system/sepolicy/private/domain.te
+;;* lmx 347 system/sepolicy/private/domain.te
 
 (allow base_typeattr_403 hwservice_manager_type (hwservice_manager (add find)))
 ;;* lme
 
-;;* lmx 337 system/sepolicy/private/domain.te
+;;* lmx 350 system/sepolicy/private/domain.te
 
 (allow base_typeattr_403 vndservice_manager_type (service_manager (add find)))
 ;;* lme
 
-;;* lmx 349 system/sepolicy/private/domain.te
+;;* lmx 362 system/sepolicy/private/domain.te
 
 (allow base_typeattr_404 binder_stats_consumer_service (service_manager (find)))
 ;;* lme
 
-;;* lmx 359 system/sepolicy/private/domain.te
+;;* lmx 372 system/sepolicy/private/domain.te
 
 (allow base_typeattr_404 system_server (binder (call)))
 ;;* lme
 
-;;* lmx 367 system/sepolicy/private/domain.te
+;;* lmx 380 system/sepolicy/private/domain.te
 
 (allow domain apex_mnt_dir (dir (getattr search)))
 ;;* lme
 
-;;* lmx 368 system/sepolicy/private/domain.te
+;;* lmx 381 system/sepolicy/private/domain.te
 
 (allow domain apex_mnt_dir (lnk_file (ioctl read getattr lock map open watch watch_reads)))
 ;;* lme
 
-;;* lmx 371 system/sepolicy/private/domain.te
+;;* lmx 384 system/sepolicy/private/domain.te
 
 (allow domain sysfs_pgsize_migration (dir (search)))
 ;;* lme
 
-;;* lmx 372 system/sepolicy/private/domain.te
+;;* lmx 385 system/sepolicy/private/domain.te
 
 (allow domain sysfs_pgsize_migration (file (ioctl read getattr lock map open watch watch_reads)))
 ;;* lme
 
-;;* lmx 376 system/sepolicy/private/domain.te
+;;* lmx 389 system/sepolicy/private/domain.te
 
 (allow domain bionic_linker_16kb_app_compat_prop (file (read getattr map open)))
 ;;* lme
 
-;;* lmx 380 system/sepolicy/private/domain.te
+;;* lmx 393 system/sepolicy/private/domain.te
 
 (allow domain device_config_media_native_prop (file (read getattr map open)))
 ;;* lme
 
-;;* lmx 386 system/sepolicy/private/domain.te
+;;* lmx 399 system/sepolicy/private/domain.te
 
 (allow domain crash_dump_exec (file (read getattr map execute open)))
 ;;* lme
 
-;;* lmx 386 system/sepolicy/private/domain.te
+;;* lmx 399 system/sepolicy/private/domain.te
 
 (allow domain crash_dump (process (transition)))
 ;;* lme
 
-;;* lmx 386 system/sepolicy/private/domain.te
+;;* lmx 399 system/sepolicy/private/domain.te
 
 (allow crash_dump crash_dump_exec (file (read getattr map execute open entrypoint)))
 ;;* lme
 
-;;* lmx 386 system/sepolicy/private/domain.te
+;;* lmx 399 system/sepolicy/private/domain.te
 
 (allow crash_dump domain (process (sigchld)))
 ;;* lme
 
 (dontaudit domain crash_dump (process (noatsecure)))
-;;* lmx 386 system/sepolicy/private/domain.te
+;;* lmx 399 system/sepolicy/private/domain.te
 
 (allow domain crash_dump (process (siginh rlimitinh)))
 ;;* lme
 
 (typetransition domain crash_dump_exec process crash_dump)
-;;* lmx 387 system/sepolicy/private/domain.te
+;;* lmx 400 system/sepolicy/private/domain.te
 
 (allow domain crash_dump (process (sigchld)))
 ;;* lme
 
-;;* lmx 393 system/sepolicy/private/domain.te
+;;* lmx 406 system/sepolicy/private/domain.te
 
 (allow domain heapprofd_prop (file (read getattr map open)))
 ;;* lme
 
-;;* lmx 416 system/sepolicy/private/domain.te
+;;* lmx 429 system/sepolicy/private/domain.te
 
 (allow heapprofd base_typeattr_405 (process (signal)))
 ;;* lme
 
-;;* lmx 416 system/sepolicy/private/domain.te
+;;* lmx 429 system/sepolicy/private/domain.te
 
 (allow base_typeattr_405 heapprofd_socket (sock_file (write)))
 ;;* lme
 
-;;* lmx 416 system/sepolicy/private/domain.te
+;;* lmx 429 system/sepolicy/private/domain.te
 
 (allow base_typeattr_405 heapprofd (unix_stream_socket (connectto)))
 ;;* lme
 
-;;* lmx 416 system/sepolicy/private/domain.te
+;;* lmx 429 system/sepolicy/private/domain.te
 
 (allow heapprofd base_typeattr_405 (fd (use)))
 ;;* lme
 
-;;* lmx 416 system/sepolicy/private/domain.te
+;;* lmx 429 system/sepolicy/private/domain.te
 
 (allow base_typeattr_405 heapprofd_tmpfs (file (read write getattr map)))
 ;;* lme
 
-;;* lmx 416 system/sepolicy/private/domain.te
+;;* lmx 429 system/sepolicy/private/domain.te
 
 (allow base_typeattr_405 heapprofd (memfd_file (read write getattr map)))
 ;;* lme
 
-;;* lmx 416 system/sepolicy/private/domain.te
+;;* lmx 429 system/sepolicy/private/domain.te
 
 (allow base_typeattr_405 heapprofd (fd (use)))
 ;;* lme
 
-;;* lmx 416 system/sepolicy/private/domain.te
+;;* lmx 429 system/sepolicy/private/domain.te
 
 (allow heapprofd base_typeattr_405 (file (ioctl read write getattr lock append map open watch watch_reads)))
 ;;* lme
 
-;;* lmx 416 system/sepolicy/private/domain.te
+;;* lmx 429 system/sepolicy/private/domain.te
 
 (allow heapprofd base_typeattr_405 (dir (ioctl read getattr lock open watch watch_reads search)))
 ;;* lme
 
-;;* lmx 430 system/sepolicy/private/domain.te
+;;* lmx 443 system/sepolicy/private/domain.te
 
 (allow traced_perf base_typeattr_406 (file (ioctl read getattr lock map open watch watch_reads)))
 ;;* lme
 
-;;* lmx 430 system/sepolicy/private/domain.te
+;;* lmx 443 system/sepolicy/private/domain.te
 
 (allow traced_perf base_typeattr_406 (dir (ioctl read getattr lock open watch watch_reads search)))
 ;;* lme
 
-;;* lmx 430 system/sepolicy/private/domain.te
+;;* lmx 443 system/sepolicy/private/domain.te
 
 (allow traced_perf base_typeattr_406 (process (signal)))
 ;;* lme
 
-;;* lmx 430 system/sepolicy/private/domain.te
+;;* lmx 443 system/sepolicy/private/domain.te
 
 (allow base_typeattr_406 traced_perf_socket (sock_file (write)))
 ;;* lme
 
-;;* lmx 430 system/sepolicy/private/domain.te
+;;* lmx 443 system/sepolicy/private/domain.te
 
 (allow base_typeattr_406 traced_perf (unix_stream_socket (connectto)))
 ;;* lme
 
-;;* lmx 430 system/sepolicy/private/domain.te
+;;* lmx 443 system/sepolicy/private/domain.te
 
 (allow traced_perf base_typeattr_406 (fd (use)))
 ;;* lme
 
-;;* lmx 440 system/sepolicy/private/domain.te
+;;* lmx 453 system/sepolicy/private/domain.te
 
 (allow domain sysfs_fs_incfs_features (dir (ioctl read getattr lock open watch watch_reads search)))
 ;;* lme
 
-;;* lmx 440 system/sepolicy/private/domain.te
+;;* lmx 453 system/sepolicy/private/domain.te
 
 (allow domain sysfs_fs_incfs_features (file (ioctl read getattr lock map open watch watch_reads)))
 (allow domain sysfs_fs_incfs_features (lnk_file (ioctl read getattr lock map open watch watch_reads)))
 ;;* lme
 
-;;* lmx 443 system/sepolicy/private/domain.te
+;;* lmx 456 system/sepolicy/private/domain.te
 
 (allow domain sysfs_fs_fuse_features (dir (ioctl read getattr lock open watch watch_reads search)))
 ;;* lme
 
-;;* lmx 443 system/sepolicy/private/domain.te
+;;* lmx 456 system/sepolicy/private/domain.te
 
 (allow domain sysfs_fs_fuse_features (file (ioctl read getattr lock map open watch watch_reads)))
 (allow domain sysfs_fs_fuse_features (lnk_file (ioctl read getattr lock map open watch watch_reads)))
 ;;* lme
 
-;;* lmx 446 system/sepolicy/private/domain.te
+;;* lmx 459 system/sepolicy/private/domain.te
 
 (allow base_typeattr_407 cgroup (dir (write lock open add_name remove_name search)))
 ;;* lme
 
-;;* lmx 447 system/sepolicy/private/domain.te
+;;* lmx 460 system/sepolicy/private/domain.te
 
 (allow base_typeattr_407 cgroup (file (write lock append map open)))
 ;;* lme
 
-;;* lmx 449 system/sepolicy/private/domain.te
+;;* lmx 462 system/sepolicy/private/domain.te
 
 (allow base_typeattr_407 cgroup_v2 (dir (write lock open add_name remove_name search)))
 ;;* lme
 
-;;* lmx 450 system/sepolicy/private/domain.te
+;;* lmx 463 system/sepolicy/private/domain.te
 
 (allow base_typeattr_407 cgroup_v2 (file (write lock append map open)))
 ;;* lme
 
-;;* lmx 452 system/sepolicy/private/domain.te
+;;* lmx 465 system/sepolicy/private/domain.te
 
 (allow domain cgroup_desc_file (file (ioctl read getattr lock map open watch watch_reads)))
 ;;* lme
 
-;;* lmx 453 system/sepolicy/private/domain.te
+;;* lmx 466 system/sepolicy/private/domain.te
 
 (allow domain cgroup_rc_file (dir (search)))
 ;;* lme
 
-;;* lmx 454 system/sepolicy/private/domain.te
+;;* lmx 467 system/sepolicy/private/domain.te
 
 (allow domain cgroup_rc_file (file (ioctl read getattr lock map open watch watch_reads)))
 ;;* lme
 
-;;* lmx 455 system/sepolicy/private/domain.te
+;;* lmx 468 system/sepolicy/private/domain.te
 
 (allow domain task_profiles_file (file (ioctl read getattr lock map open watch watch_reads)))
 ;;* lme
 
-;;* lmx 456 system/sepolicy/private/domain.te
+;;* lmx 469 system/sepolicy/private/domain.te
 
 (allow domain vendor_cgroup_desc_file (file (ioctl read getattr lock map open watch watch_reads)))
 ;;* lme
 
-;;* lmx 457 system/sepolicy/private/domain.te
+;;* lmx 470 system/sepolicy/private/domain.te
 
 (allow domain vendor_task_profiles_file (file (ioctl read getattr lock map open watch watch_reads)))
 ;;* lme
 
-;;* lmx 458 system/sepolicy/private/domain.te
+;;* lmx 471 system/sepolicy/private/domain.te
 
 (allow domain libprocessgroup_metadata_file (dir (ioctl read getattr lock open watch watch_reads search)))
 ;;* lme
 
-;;* lmx 459 system/sepolicy/private/domain.te
+;;* lmx 472 system/sepolicy/private/domain.te
 
 (allow domain libprocessgroup_metadata_file (file (ioctl read getattr lock map open watch watch_reads)))
 ;;* lme
 
-;;* lmx 463 system/sepolicy/private/domain.te
+;;* lmx 476 system/sepolicy/private/domain.te
 
 (allow domain use_memfd_prop (file (read getattr map open)))
 ;;* lme
 
-;;* lmx 466 system/sepolicy/private/domain.te
+;;* lmx 479 system/sepolicy/private/domain.te
 
 (allow domain module_sdkextensions_prop (file (read getattr map open)))
 ;;* lme
 
-;;* lmx 469 system/sepolicy/private/domain.te
+;;* lmx 482 system/sepolicy/private/domain.te
 
 (allow domain bq_config_prop (file (read getattr map open)))
 ;;* lme
 
-;;* lmx 472 system/sepolicy/private/domain.te
+;;* lmx 485 system/sepolicy/private/domain.te
 
 (allow domain permissive_mte_prop (file (read getattr map open)))
 ;;* lme
 
-;;* lmx 477 system/sepolicy/private/domain.te
+;;* lmx 490 system/sepolicy/private/domain.te
 
 (allow domain device_config_memory_safety_native_boot_prop (file (read getattr map open)))
 ;;* lme
 
-;;* lmx 478 system/sepolicy/private/domain.te
+;;* lmx 491 system/sepolicy/private/domain.te
 
 (allow domain device_config_memory_safety_native_prop (file (read getattr map open)))
 ;;* lme
 
-;;* lmx 479 system/sepolicy/private/domain.te
+;;* lmx 492 system/sepolicy/private/domain.te
 
 (allow domain device_config_runtime_native_boot_prop (file (read getattr map open)))
 ;;* lme
 
-;;* lmx 480 system/sepolicy/private/domain.te
+;;* lmx 493 system/sepolicy/private/domain.te
 
 (allow domain device_config_runtime_native_prop (file (read getattr map open)))
 ;;* lme
 
-;;* lmx 490 system/sepolicy/private/domain.te
+;;* lmx 503 system/sepolicy/private/domain.te
 
 (allow appdomain core_property_type (file (read getattr map open)))
 (allow coredomain core_property_type (file (read getattr map open)))
 (allow shell core_property_type (file (read getattr map open)))
 ;;* lme
 
-;;* lmx 490 system/sepolicy/private/domain.te
+;;* lmx 503 system/sepolicy/private/domain.te
 
 (allow appdomain exported3_system_prop (file (read getattr map open)))
 (allow coredomain exported3_system_prop (file (read getattr map open)))
 (allow shell exported3_system_prop (file (read getattr map open)))
 ;;* lme
 
-;;* lmx 490 system/sepolicy/private/domain.te
+;;* lmx 503 system/sepolicy/private/domain.te
 
 (allow appdomain exported_camera_prop (file (read getattr map open)))
 (allow coredomain exported_camera_prop (file (read getattr map open)))
 (allow shell exported_camera_prop (file (read getattr map open)))
 ;;* lme
 
-;;* lmx 490 system/sepolicy/private/domain.te
+;;* lmx 503 system/sepolicy/private/domain.te
 
 (allow coredomain userspace_reboot_exported_prop (file (read getattr map open)))
 (allow shell userspace_reboot_exported_prop (file (read getattr map open)))
 ;;* lme
 
-;;* lmx 490 system/sepolicy/private/domain.te
+;;* lmx 503 system/sepolicy/private/domain.te
 
 (allow coredomain userspace_reboot_log_prop (file (read getattr map open)))
 (allow shell userspace_reboot_log_prop (file (read getattr map open)))
 ;;* lme
 
-;;* lmx 490 system/sepolicy/private/domain.te
+;;* lmx 503 system/sepolicy/private/domain.te
 
 (allow coredomain userspace_reboot_test_prop (file (read getattr map open)))
 (allow shell userspace_reboot_test_prop (file (read getattr map open)))
 ;;* lme
 
-;;* lmx 490 system/sepolicy/private/domain.te
+;;* lmx 503 system/sepolicy/private/domain.te
 
 (allow base_typeattr_408 vendor_default_prop (file (read getattr map open)))
 ;;* lme
 
-;;* lmx 502 system/sepolicy/private/domain.te
+;;* lmx 515 system/sepolicy/private/domain.te
 
 (allow domain aaudio_config_prop (file (read getattr map open)))
 ;;* lme
 
-;;* lmx 503 system/sepolicy/private/domain.te
+;;* lmx 516 system/sepolicy/private/domain.te
 
 (allow domain apexd_select_prop (file (read getattr map open)))
 ;;* lme
 
-;;* lmx 504 system/sepolicy/private/domain.te
+;;* lmx 517 system/sepolicy/private/domain.te
 
 (allow domain arm64_memtag_prop (file (read getattr map open)))
 ;;* lme
 
-;;* lmx 505 system/sepolicy/private/domain.te
+;;* lmx 518 system/sepolicy/private/domain.te
 
 (allow domain bluetooth_config_prop (file (read getattr map open)))
 ;;* lme
 
-;;* lmx 506 system/sepolicy/private/domain.te
+;;* lmx 519 system/sepolicy/private/domain.te
 
 (allow domain bootloader_prop (file (read getattr map open)))
 ;;* lme
 
-;;* lmx 507 system/sepolicy/private/domain.te
+;;* lmx 520 system/sepolicy/private/domain.te
 
 (allow domain build_odm_prop (file (read getattr map open)))
 ;;* lme
 
-;;* lmx 508 system/sepolicy/private/domain.te
+;;* lmx 521 system/sepolicy/private/domain.te
 
 (allow domain build_prop (file (read getattr map open)))
 ;;* lme
 
-;;* lmx 509 system/sepolicy/private/domain.te
+;;* lmx 522 system/sepolicy/private/domain.te
 
 (allow domain build_vendor_prop (file (read getattr map open)))
 ;;* lme
 
-;;* lmx 510 system/sepolicy/private/domain.te
+;;* lmx 523 system/sepolicy/private/domain.te
 
 (allow domain debug_prop (file (read getattr map open)))
 ;;* lme
 
-;;* lmx 511 system/sepolicy/private/domain.te
+;;* lmx 524 system/sepolicy/private/domain.te
 
 (allow domain exported_config_prop (file (read getattr map open)))
 ;;* lme
 
-;;* lmx 512 system/sepolicy/private/domain.te
+;;* lmx 525 system/sepolicy/private/domain.te
 
 (allow domain exported_default_prop (file (read getattr map open)))
 ;;* lme
 
-;;* lmx 513 system/sepolicy/private/domain.te
+;;* lmx 526 system/sepolicy/private/domain.te
 
 (allow domain exported_dumpstate_prop (file (read getattr map open)))
 ;;* lme
 
-;;* lmx 514 system/sepolicy/private/domain.te
+;;* lmx 527 system/sepolicy/private/domain.te
 
 (allow domain exported_secure_prop (file (read getattr map open)))
 ;;* lme
 
-;;* lmx 515 system/sepolicy/private/domain.te
+;;* lmx 528 system/sepolicy/private/domain.te
 
 (allow domain exported_system_prop (file (read getattr map open)))
 ;;* lme
 
-;;* lmx 516 system/sepolicy/private/domain.te
+;;* lmx 529 system/sepolicy/private/domain.te
 
 (allow domain fingerprint_prop (file (read getattr map open)))
 ;;* lme
 
-;;* lmx 517 system/sepolicy/private/domain.te
+;;* lmx 530 system/sepolicy/private/domain.te
 
 (allow domain framework_status_prop (file (read getattr map open)))
 ;;* lme
 
-;;* lmx 518 system/sepolicy/private/domain.te
+;;* lmx 531 system/sepolicy/private/domain.te
 
 (allow domain gwp_asan_prop (file (read getattr map open)))
 ;;* lme
 
-;;* lmx 519 system/sepolicy/private/domain.te
+;;* lmx 532 system/sepolicy/private/domain.te
 
 (allow domain hal_instrumentation_prop (file (read getattr map open)))
 ;;* lme
 
-;;* lmx 520 system/sepolicy/private/domain.te
+;;* lmx 533 system/sepolicy/private/domain.te
 
 (allow domain hw_timeout_multiplier_prop (file (read getattr map open)))
 ;;* lme
 
-;;* lmx 521 system/sepolicy/private/domain.te
+;;* lmx 534 system/sepolicy/private/domain.te
 
 (allow domain init_service_status_prop (file (read getattr map open)))
 ;;* lme
 
-;;* lmx 522 system/sepolicy/private/domain.te
+;;* lmx 535 system/sepolicy/private/domain.te
 
 (allow domain libc_debug_prop (file (read getattr map open)))
 ;;* lme
 
-;;* lmx 523 system/sepolicy/private/domain.te
+;;* lmx 536 system/sepolicy/private/domain.te
 
 (allow domain locale_prop (file (read getattr map open)))
 ;;* lme
 
-;;* lmx 524 system/sepolicy/private/domain.te
+;;* lmx 537 system/sepolicy/private/domain.te
 
 (allow domain logd_prop (file (read getattr map open)))
 ;;* lme
 
-;;* lmx 525 system/sepolicy/private/domain.te
+;;* lmx 538 system/sepolicy/private/domain.te
 
 (allow domain mediadrm_config_prop (file (read getattr map open)))
 ;;* lme
 
-;;* lmx 526 system/sepolicy/private/domain.te
+;;* lmx 539 system/sepolicy/private/domain.te
 
 (allow domain property_service_version_prop (file (read getattr map open)))
 ;;* lme
 
-;;* lmx 527 system/sepolicy/private/domain.te
+;;* lmx 540 system/sepolicy/private/domain.te
 
 (allow domain service_sf_present_timestamp_prop (file (read getattr map open)))
 ;;* lme
 
-;;* lmx 528 system/sepolicy/private/domain.te
+;;* lmx 541 system/sepolicy/private/domain.te
 
 (allow domain soc_prop (file (read getattr map open)))
 ;;* lme
 
-;;* lmx 529 system/sepolicy/private/domain.te
+;;* lmx 542 system/sepolicy/private/domain.te
 
 (allow domain socket_hook_prop (file (read getattr map open)))
 ;;* lme
 
-;;* lmx 530 system/sepolicy/private/domain.te
+;;* lmx 543 system/sepolicy/private/domain.te
 
 (allow domain strongbox_prop (file (read getattr map open)))
 ;;* lme
 
-;;* lmx 531 system/sepolicy/private/domain.te
+;;* lmx 544 system/sepolicy/private/domain.te
 
 (allow domain surfaceflinger_prop (file (read getattr map open)))
 ;;* lme
 
-;;* lmx 532 system/sepolicy/private/domain.te
+;;* lmx 545 system/sepolicy/private/domain.te
 
 (allow domain telephony_status_prop (file (read getattr map open)))
 ;;* lme
 
-;;* lmx 533 system/sepolicy/private/domain.te
+;;* lmx 546 system/sepolicy/private/domain.te
 
 (allow domain timezone_prop (file (read getattr map open)))
 ;;* lme
 
-;;* lmx 534 system/sepolicy/private/domain.te
+;;* lmx 547 system/sepolicy/private/domain.te
 
 (allow base_typeattr_409 userdebug_or_eng_prop (file (read getattr map open)))
 ;;* lme
 
-;;* lmx 535 system/sepolicy/private/domain.te
+;;* lmx 548 system/sepolicy/private/domain.te
 
 (allow domain vendor_socket_hook_prop (file (read getattr map open)))
 ;;* lme
 
-;;* lmx 536 system/sepolicy/private/domain.te
+;;* lmx 549 system/sepolicy/private/domain.te
 
 (allow domain vndk_prop (file (read getattr map open)))
 ;;* lme
 
-;;* lmx 537 system/sepolicy/private/domain.te
+;;* lmx 550 system/sepolicy/private/domain.te
 
 (allow domain vold_status_prop (file (read getattr map open)))
 ;;* lme
 
-;;* lmx 538 system/sepolicy/private/domain.te
+;;* lmx 551 system/sepolicy/private/domain.te
 
 (allow domain vts_config_prop (file (read getattr map open)))
 ;;* lme
 
-;;* lmx 541 system/sepolicy/private/domain.te
+;;* lmx 554 system/sepolicy/private/domain.te
 
 (allow domain binder_cache_bluetooth_server_prop (file (read getattr map open)))
 ;;* lme
 
-;;* lmx 542 system/sepolicy/private/domain.te
+;;* lmx 555 system/sepolicy/private/domain.te
 
 (allow domain binder_cache_system_server_prop (file (read getattr map open)))
 ;;* lme
 
-;;* lmx 543 system/sepolicy/private/domain.te
+;;* lmx 556 system/sepolicy/private/domain.te
 
 (allow domain binder_cache_telephony_server_prop (file (read getattr map open)))
 ;;* lme
 
-;;* lmx 547 system/sepolicy/private/domain.te
+;;* lmx 560 system/sepolicy/private/domain.te
 
 (allow domain kernel (key (search)))
 ;;* lme
 
-;;* lmx 552 system/sepolicy/private/domain.te
+;;* lmx 565 system/sepolicy/private/domain.te
 
 (allow domain linkerconfig_file (dir (search)))
 ;;* lme
 
-;;* lmx 553 system/sepolicy/private/domain.te
+;;* lmx 566 system/sepolicy/private/domain.te
 
 (allow domain linkerconfig_file (file (ioctl read getattr lock map open watch watch_reads)))
 ;;* lme
 
-;;* lmx 556 system/sepolicy/private/domain.te
+;;* lmx 569 system/sepolicy/private/domain.te
 
 (allow domain boringssl_self_test_marker (dir (search)))
 ;;* lme
 
-;;* lmx 560 system/sepolicy/private/domain.te
+;;* lmx 573 system/sepolicy/private/domain.te
 
 (allow domain log_file_logger_prop (file (read getattr map open)))
 ;;* lme
 
-;;* lmx 563 system/sepolicy/private/domain.te
+;;* lmx 576 system/sepolicy/private/domain.te
 
 (allow domain prng_seeder_socket (sock_file (write)))
 ;;* lme
 
-;;* lmx 563 system/sepolicy/private/domain.te
+;;* lmx 576 system/sepolicy/private/domain.te
 
 (allow domain prng_seeder (unix_stream_socket (connectto)))
 ;;* lme
 
-;;* lmx 594 system/sepolicy/private/domain.te
+;;* lmx 607 system/sepolicy/private/domain.te
 
 (allow base_typeattr_410 shell_exec (file (ioctl read getattr lock map execute open watch watch_reads execute_no_trans)))
 (allow base_typeattr_410 toolbox_exec (file (ioctl read getattr lock map execute open watch watch_reads execute_no_trans)))
 ;;* lme
 
-;;* lmx 599 system/sepolicy/private/domain.te
+;;* lmx 612 system/sepolicy/private/domain.te
 
 (allow domain aconfig_storage_metadata_file (dir (ioctl read getattr lock open watch watch_reads search)))
 ;;* lme
 
-;;* lmx 599 system/sepolicy/private/domain.te
+;;* lmx 612 system/sepolicy/private/domain.te
 
 (allow domain aconfig_storage_metadata_file (file (ioctl read getattr lock map open watch watch_reads)))
 (allow domain aconfig_storage_metadata_file (lnk_file (ioctl read getattr lock map open watch watch_reads)))
 ;;* lme
 
-;;* lmx 603 system/sepolicy/private/domain.te
+;;* lmx 616 system/sepolicy/private/domain.te
 
 (allow appdomain system_aconfig_storage_file (dir (ioctl read getattr lock open watch watch_reads search)))
 (allow coredomain system_aconfig_storage_file (dir (ioctl read getattr lock open watch watch_reads search)))
 ;;* lme
 
-;;* lmx 603 system/sepolicy/private/domain.te
+;;* lmx 616 system/sepolicy/private/domain.te
 
 (allow appdomain system_aconfig_storage_file (file (ioctl read getattr lock map open watch watch_reads)))
 (allow appdomain system_aconfig_storage_file (lnk_file (ioctl read getattr lock map open watch watch_reads)))
@@ -24958,12 +24958,12 @@
 (allow coredomain system_aconfig_storage_file (lnk_file (ioctl read getattr lock map open watch watch_reads)))
 ;;* lme
 
-;;* lmx 607 system/sepolicy/private/domain.te
+;;* lmx 620 system/sepolicy/private/domain.te
 
 (allow domain metadata_file (dir (search)))
 ;;* lme
 
-;;* lmx 620 system/sepolicy/private/domain.te
+;;* lmx 633 system/sepolicy/private/domain.te
 
 (neverallowx base_typeattr_248 base_typeattr_248 (ioctl file (0x0)))
 (neverallowx base_typeattr_248 base_typeattr_248 (ioctl dir (0x0)))
@@ -25030,7 +25030,7 @@
 (neverallowx base_typeattr_248 base_typeattr_248 (ioctl xdp_socket (0x0)))
 ;;* lme
 
-;;* lmx 624 system/sepolicy/private/domain.te
+;;* lmx 637 system/sepolicy/private/domain.te
 
 (neverallowx domain domain (ioctl socket (0x8905)))
 (neverallowx domain domain (ioctl tcp_socket (0x8905)))
@@ -25091,12 +25091,12 @@
 (neverallowx domain domain (ioctl xdp_socket (0x8905)))
 ;;* lme
 
-;;* lmx 629 system/sepolicy/private/domain.te
+;;* lmx 642 system/sepolicy/private/domain.te
 
 (neverallowx base_typeattr_248 devpts (ioctl chr_file (0x5412)))
 ;;* lme
 
-;;* lmx 632 system/sepolicy/private/domain.te
+;;* lmx 645 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_411 unlabeled (file (create)))
 (neverallow base_typeattr_411 unlabeled (dir (create)))
@@ -25107,149 +25107,149 @@
 (neverallow base_typeattr_411 unlabeled (fifo_file (create)))
 ;;* lme
 
-;;* lmx 642 system/sepolicy/private/domain.te
+;;* lmx 655 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_412 self (capability (mknod)))
 (neverallow base_typeattr_412 self (cap_userns (mknod)))
 ;;* lme
 
-;;* lmx 645 system/sepolicy/private/domain.te
+;;* lmx 658 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_248 self (memprotect (mmap_zero)))
 ;;* lme
 
-;;* lmx 648 system/sepolicy/private/domain.te
+;;* lmx 661 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_248 self (capability2 (mac_override)))
 (neverallow base_typeattr_248 self (cap2_userns (mac_override)))
 ;;* lme
 
-;;* lmx 654 system/sepolicy/private/domain.te
+;;* lmx 667 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_413 self (capability2 (mac_admin)))
 (neverallow base_typeattr_413 self (cap2_userns (mac_admin)))
 ;;* lme
 
-;;* lmx 658 system/sepolicy/private/domain.te
+;;* lmx 671 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_248 kernel (security (load_policy)))
 ;;* lme
 
-;;* lmx 664 system/sepolicy/private/domain.te
+;;* lmx 677 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_248 kernel (security (setenforce)))
 ;;* lme
 
-;;* lmx 665 system/sepolicy/private/domain.te
+;;* lmx 678 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_414 kernel (security (setcheckreqprot)))
 ;;* lme
 
-;;* lmx 668 system/sepolicy/private/domain.te
+;;* lmx 681 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_248 kernel (security (setbool)))
 ;;* lme
 
-;;* lmx 673 system/sepolicy/private/domain.te
+;;* lmx 686 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_247 kernel (security (setsecparam)))
 ;;* lme
 
-;;* lmx 681 system/sepolicy/private/domain.te
+;;* lmx 694 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_415 hw_random_device (chr_file (ioctl read write create getattr setattr lock relabelfrom relabelto append map unlink link rename execute quotaon mounton audit_access open execmod watch watch_mount watch_sb watch_with_perm watch_reads execute_no_trans entrypoint)))
 ;;* lme
 
-;;* lmx 687 system/sepolicy/private/domain.te
+;;* lmx 700 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_416 keychord_device (chr_file (ioctl read write create getattr setattr lock relabelfrom relabelto append map unlink link rename execute quotaon mounton audit_access open execmod watch watch_mount watch_sb watch_with_perm watch_reads execute_no_trans entrypoint)))
 ;;* lme
 
-;;* lmx 690 system/sepolicy/private/domain.te
+;;* lmx 703 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_248 base_typeattr_417 (file (entrypoint)))
 ;;* lme
 
 (dontaudit domain postinstall_mnt_dir (dir (audit_access)))
 (dontaudit domain statsd_atoms_list_file (dir (audit_access)))
-;;* lmx 706 system/sepolicy/private/domain.te
+;;* lmx 719 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_416 port_device (chr_file (ioctl read write create getattr setattr lock relabelfrom relabelto append map unlink link rename execute quotaon mounton audit_access open execmod watch watch_mount watch_sb watch_with_perm watch_reads execute_no_trans entrypoint)))
 ;;* lme
 
-;;* lmx 707 system/sepolicy/private/domain.te
+;;* lmx 720 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_248 port_device (chr_file (ioctl read write lock relabelfrom append map link rename execute quotaon mounton audit_access open execmod watch watch_mount watch_sb watch_with_perm watch_reads execute_no_trans entrypoint)))
 ;;* lme
 
-;;* lmx 710 system/sepolicy/private/domain.te
+;;* lmx 723 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_247 usermodehelper (file (write append)))
 ;;* lme
 
-;;* lmx 711 system/sepolicy/private/domain.te
+;;* lmx 724 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_418 sysfs_usermodehelper (file (write append)))
 ;;* lme
 
-;;* lmx 712 system/sepolicy/private/domain.te
+;;* lmx 725 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_359 proc_security (file (read write append open)))
 ;;* lme
 
-;;* lmx 716 system/sepolicy/private/domain.te
+;;* lmx 729 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_248 init (binder (impersonate call set_context_mgr transfer)))
 ;;* lme
 
-;;* lmx 717 system/sepolicy/private/domain.te
+;;* lmx 730 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_248 vendor_init (binder (impersonate call set_context_mgr transfer)))
 ;;* lme
 
-;;* lmx 726 system/sepolicy/private/domain.te
+;;* lmx 739 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_359 binderfs_logs (file (ioctl read write create setattr lock relabelfrom append unlink link rename open watch watch_mount watch_sb watch_with_perm watch_reads)))
 (neverallow base_typeattr_359 binderfs_logs_proc (file (ioctl read write create setattr lock relabelfrom append unlink link rename open watch watch_mount watch_sb watch_with_perm watch_reads)))
 ;;* lme
 
-;;* lmx 727 system/sepolicy/private/domain.te
+;;* lmx 740 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_419 binderfs_logs_state_hashed (file (ioctl read write create setattr lock relabelfrom append unlink link rename open watch watch_mount watch_sb watch_with_perm watch_reads)))
 ;;* lme
 
-;;* lmx 728 system/sepolicy/private/domain.te
+;;* lmx 741 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_420 binderfs_logs_stats (file (ioctl read write create setattr lock relabelfrom append unlink link rename open watch watch_mount watch_sb watch_with_perm watch_reads)))
 ;;* lme
 
-;;* lmx 735 system/sepolicy/private/domain.te
+;;* lmx 748 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_359 binderfs_logs_transactions (file (ioctl read write create setattr lock relabelfrom append unlink link rename open watch watch_mount watch_sb watch_with_perm watch_reads)))
 ;;* lme
 
-;;* lmx 739 system/sepolicy/private/domain.te
+;;* lmx 752 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_420 binderfs_logs_transaction_history (file (ioctl read write create setattr lock relabelfrom append unlink link rename open watch watch_mount watch_sb watch_with_perm watch_reads)))
 ;;* lme
 
-;;* lmx 743 system/sepolicy/private/domain.te
+;;* lmx 756 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_421 block_device (blk_file (read write open)))
 ;;* lme
 
-;;* lmx 748 system/sepolicy/private/domain.te
+;;* lmx 761 system/sepolicy/private/domain.te
 
 (neverallow domain base_typeattr_248 (chr_file (rename)))
 (neverallow domain base_typeattr_248 (blk_file (rename)))
 ;;* lme
 
-;;* lmx 752 system/sepolicy/private/domain.te
+;;* lmx 765 system/sepolicy/private/domain.te
 
 (neverallow domain device (chr_file (read write open)))
 ;;* lme
 
-;;* lmx 755 system/sepolicy/private/domain.te
+;;* lmx 768 system/sepolicy/private/domain.te
 
 (neverallow domain cache_file (file (execute)))
 (neverallow domain cache_backup_file (file (execute)))
@@ -25257,7 +25257,7 @@
 (neverallow domain cache_recovery_file (file (execute)))
 ;;* lme
 
-;;* lmx 758 system/sepolicy/private/domain.te
+;;* lmx 771 system/sepolicy/private/domain.te
 
 (neverallow domain nativetest_data_file (file (write create setattr relabelfrom append unlink link rename)))
 (neverallow domain nativetest_data_file (lnk_file (write create setattr relabelfrom append unlink link rename)))
@@ -25267,17 +25267,17 @@
 (neverallow domain nativetest_data_file (fifo_file (write create setattr relabelfrom append unlink link rename)))
 ;;* lme
 
-;;* lmx 759 system/sepolicy/private/domain.te
+;;* lmx 772 system/sepolicy/private/domain.te
 
 (neverallow domain nativetest_data_file (dir (write create setattr relabelfrom link rename add_name remove_name reparent rmdir)))
 ;;* lme
 
-;;* lmx 760 system/sepolicy/private/domain.te
+;;* lmx 773 system/sepolicy/private/domain.te
 
 (neverallow domain nativetest_data_file (file (execute execute_no_trans)))
 ;;* lme
 
-;;* lmx 762 system/sepolicy/private/domain.te
+;;* lmx 775 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_422 shell_test_data_file (file (write create setattr relabelfrom append unlink link rename)))
 (neverallow base_typeattr_422 shell_test_data_file (lnk_file (write create setattr relabelfrom append unlink link rename)))
@@ -25287,52 +25287,52 @@
 (neverallow base_typeattr_422 shell_test_data_file (fifo_file (write create setattr relabelfrom append unlink link rename)))
 ;;* lme
 
-;;* lmx 763 system/sepolicy/private/domain.te
+;;* lmx 776 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_422 shell_test_data_file (dir (write create setattr relabelfrom link rename add_name remove_name reparent rmdir)))
 ;;* lme
 
-;;* lmx 764 system/sepolicy/private/domain.te
+;;* lmx 777 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_423 shell_test_data_file (file (ioctl read write create getattr setattr lock relabelfrom relabelto append map unlink link rename execute quotaon mounton audit_access open execmod watch watch_mount watch_sb watch_with_perm watch_reads execute_no_trans entrypoint)))
 ;;* lme
 
-;;* lmx 765 system/sepolicy/private/domain.te
+;;* lmx 778 system/sepolicy/private/domain.te
 
 (neverallow heapprofd shell_test_data_file (file (write create setattr relabelfrom append unlink link rename execute execute_no_trans)))
 ;;* lme
 
-;;* lmx 766 system/sepolicy/private/domain.te
+;;* lmx 779 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_422 shell_test_data_file (sock_file (ioctl read write create getattr setattr lock relabelfrom relabelto append map unlink link rename execute quotaon mounton audit_access open execmod watch watch_mount watch_sb watch_with_perm watch_reads)))
 ;;* lme
 
-;;* lmx 769 system/sepolicy/private/domain.te
+;;* lmx 782 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_247 property_data_file (dir (write create setattr relabelfrom link rename add_name remove_name reparent rmdir)))
 ;;* lme
 
-;;* lmx 770 system/sepolicy/private/domain.te
+;;* lmx 783 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_247 property_data_file (file (write create setattr relabelfrom append unlink link rename execute execute_no_trans)))
 ;;* lme
 
-;;* lmx 771 system/sepolicy/private/domain.te
+;;* lmx 784 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_247 property_type (file (write create setattr relabelfrom append unlink link rename execute execute_no_trans)))
 ;;* lme
 
-;;* lmx 772 system/sepolicy/private/domain.te
+;;* lmx 785 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_247 properties_device (file (write create setattr relabelfrom append unlink link rename execute execute_no_trans)))
 ;;* lme
 
-;;* lmx 773 system/sepolicy/private/domain.te
+;;* lmx 786 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_247 properties_serial (file (write create setattr relabelfrom append unlink link rename execute execute_no_trans)))
 ;;* lme
 
-;;* lmx 789 system/sepolicy/private/domain.te
+;;* lmx 802 system/sepolicy/private/domain.te
 
 (neverallow domain exec_type (file (write create setattr relabelfrom append unlink link rename)))
 (neverallow domain exec_type (dir (write create setattr relabelfrom append unlink link rename)))
@@ -25357,7 +25357,7 @@
 (neverallow domain vendor_file_type (fifo_file (write create setattr relabelfrom append unlink link rename)))
 ;;* lme
 
-;;* lmx 791 system/sepolicy/private/domain.te
+;;* lmx 804 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_414 exec_type (file (relabelto)))
 (neverallow base_typeattr_414 exec_type (dir (relabelto)))
@@ -25382,7 +25382,7 @@
 (neverallow base_typeattr_414 vendor_file_type (fifo_file (relabelto)))
 ;;* lme
 
-;;* lmx 797 system/sepolicy/private/domain.te
+;;* lmx 810 system/sepolicy/private/domain.te
 
 (neverallow domain exec_type (file (mounton)))
 (neverallow domain exec_type (dir (mounton)))
@@ -25393,17 +25393,17 @@
 (neverallow domain exec_type (fifo_file (mounton)))
 ;;* lme
 
-;;* lmx 800 system/sepolicy/private/domain.te
+;;* lmx 813 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_248 rootfs (file (write create setattr relabelto append unlink link rename)))
 ;;* lme
 
-;;* lmx 804 system/sepolicy/private/domain.te
+;;* lmx 817 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_248 base_typeattr_424 (filesystem (relabelto)))
 ;;* lme
 
-;;* lmx 810 system/sepolicy/private/domain.te
+;;* lmx 823 system/sepolicy/private/domain.te
 
 (neverallow domain contextmount_type (file (create setattr relabelfrom relabelto append link rename)))
 (neverallow domain contextmount_type (dir (create setattr relabelfrom relabelto append link rename)))
@@ -25414,7 +25414,7 @@
 (neverallow domain contextmount_type (fifo_file (create setattr relabelfrom relabelto append link rename)))
 ;;* lme
 
-;;* lmx 811 system/sepolicy/private/domain.te
+;;* lmx 824 system/sepolicy/private/domain.te
 
 (neverallow domain contextmount_type (file (write unlink)))
 (neverallow domain contextmount_type (dir (write unlink)))
@@ -25425,183 +25425,183 @@
 (neverallow domain contextmount_type (fifo_file (write unlink)))
 ;;* lme
 
-;;* lmx 818 system/sepolicy/private/domain.te
+;;* lmx 831 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_248 default_android_service (service_manager (add find list)))
 ;;* lme
 
-;;* lmx 819 system/sepolicy/private/domain.te
+;;* lmx 832 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_248 default_android_vndservice (service_manager (add find list)))
 ;;* lme
 
-;;* lmx 820 system/sepolicy/private/domain.te
+;;* lmx 833 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_248 default_android_hwservice (hwservice_manager (add find list)))
 ;;* lme
 
-;;* lmx 829 system/sepolicy/private/domain.te
+;;* lmx 842 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_248 hidl_base_hwservice (hwservice_manager (find)))
 ;;* lme
 
-;;* lmx 833 system/sepolicy/private/domain.te
+;;* lmx 846 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_359 mmc_prop (property_service (set)))
 ;;* lme
 
-;;* lmx 834 system/sepolicy/private/domain.te
+;;* lmx 847 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_359 vndk_prop (property_service (set)))
 ;;* lme
 
-;;* lmx 836 system/sepolicy/private/domain.te
+;;* lmx 849 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_247 mmc_prop (property_service (set)))
 ;;* lme
 
-;;* lmx 836 system/sepolicy/private/domain.te
+;;* lmx 849 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_359 exported_default_prop (property_service (set)))
 ;;* lme
 
-;;* lmx 836 system/sepolicy/private/domain.te
+;;* lmx 849 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_247 exported_secure_prop (property_service (set)))
 ;;* lme
 
-;;* lmx 836 system/sepolicy/private/domain.te
+;;* lmx 849 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_359 vendor_default_prop (property_service (set)))
 ;;* lme
 
-;;* lmx 836 system/sepolicy/private/domain.te
+;;* lmx 849 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_359 storage_config_prop (property_service (set)))
 ;;* lme
 
-;;* lmx 836 system/sepolicy/private/domain.te
+;;* lmx 849 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_359 hw_timeout_multiplier_prop (property_service (set)))
 ;;* lme
 
-;;* lmx 845 system/sepolicy/private/domain.te
+;;* lmx 858 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_425 exported_pm_prop (property_service (set)))
 ;;* lme
 
-;;* lmx 845 system/sepolicy/private/domain.te
+;;* lmx 858 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_426 exported_pm_prop (file (ioctl read write create setattr lock relabelfrom append unlink link rename open watch watch_mount watch_sb watch_with_perm watch_reads)))
 ;;* lme
 
-;;* lmx 851 system/sepolicy/private/domain.te
+;;* lmx 864 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_419 future_pm_prop (property_service (set)))
 ;;* lme
 
-;;* lmx 852 system/sepolicy/private/domain.te
+;;* lmx 865 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_419 future_pm_prop (file (ioctl read write create setattr lock relabelfrom append unlink link rename open watch watch_mount watch_sb watch_with_perm watch_reads)))
 ;;* lme
 
 (dontaudit domain future_pm_prop (file (read)))
-;;* lmx 858 system/sepolicy/private/domain.te
+;;* lmx 871 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_247 aac_drc_prop (property_service (set)))
 ;;* lme
 
-;;* lmx 859 system/sepolicy/private/domain.te
+;;* lmx 872 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_247 build_prop (property_service (set)))
 ;;* lme
 
-;;* lmx 860 system/sepolicy/private/domain.te
+;;* lmx 873 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_247 userdebug_or_eng_prop (property_service (set)))
 ;;* lme
 
-;;* lmx 882 system/sepolicy/private/domain.te
+;;* lmx 895 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_427 serialno_prop (file (ioctl read getattr lock map open watch watch_reads)))
 ;;* lme
 
-;;* lmx 890 system/sepolicy/private/domain.te
+;;* lmx 903 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_428 frp_block_device (blk_file (ioctl read write create setattr lock relabelfrom append unlink link rename open watch watch_mount watch_sb watch_with_perm watch_reads)))
 ;;* lme
 
-;;* lmx 904 system/sepolicy/private/domain.te
+;;* lmx 917 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_429 metadata_block_device (blk_file (ioctl read write lock append link rename open)))
 ;;* lme
 
-;;* lmx 915 system/sepolicy/private/domain.te
+;;* lmx 928 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_430 system_block_device (blk_file (write append)))
 ;;* lme
 
-;;* lmx 918 system/sepolicy/private/domain.te
+;;* lmx 931 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_431 base_typeattr_248 (binder (set_context_mgr)))
 ;;* lme
 
-;;* lmx 920 system/sepolicy/private/domain.te
+;;* lmx 933 system/sepolicy/private/domain.te
 
 (neverallow servicemanager hwbinder_device (chr_file (ioctl read write create setattr lock relabelfrom append unlink link rename open watch watch_mount watch_sb watch_with_perm watch_reads)))
 ;;* lme
 
-;;* lmx 921 system/sepolicy/private/domain.te
+;;* lmx 934 system/sepolicy/private/domain.te
 
 (neverallow servicemanager vndbinder_device (chr_file (ioctl read write create setattr lock relabelfrom append unlink link rename open watch watch_mount watch_sb watch_with_perm watch_reads)))
 ;;* lme
 
-;;* lmx 922 system/sepolicy/private/domain.te
+;;* lmx 935 system/sepolicy/private/domain.te
 
 (neverallow hwservicemanager binder_device (chr_file (ioctl read write create setattr lock relabelfrom append unlink link rename open watch watch_mount watch_sb watch_with_perm watch_reads)))
 ;;* lme
 
-;;* lmx 923 system/sepolicy/private/domain.te
+;;* lmx 936 system/sepolicy/private/domain.te
 
 (neverallow hwservicemanager vndbinder_device (chr_file (ioctl read write create setattr lock relabelfrom append unlink link rename open watch watch_mount watch_sb watch_with_perm watch_reads)))
 ;;* lme
 
-;;* lmx 924 system/sepolicy/private/domain.te
+;;* lmx 937 system/sepolicy/private/domain.te
 
 (neverallow vndservicemanager binder_device (chr_file (ioctl read write create setattr lock relabelfrom append unlink link rename open watch watch_mount watch_sb watch_with_perm watch_reads)))
 ;;* lme
 
-;;* lmx 925 system/sepolicy/private/domain.te
+;;* lmx 938 system/sepolicy/private/domain.te
 
 (neverallow vndservicemanager hwbinder_device (chr_file (ioctl read write create setattr lock relabelfrom append unlink link rename open watch watch_mount watch_sb watch_with_perm watch_reads)))
 ;;* lme
 
-;;* lmx 927 system/sepolicy/private/domain.te
+;;* lmx 940 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_432 base_typeattr_433 (service_manager (find)))
 ;;* lme
 
-;;* lmx 966 system/sepolicy/private/domain.te
+;;* lmx 979 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_434 vndbinder_device (chr_file (ioctl read write getattr lock append map open watch watch_reads)))
 ;;* lme
 
-;;* lmx 974 system/sepolicy/private/domain.te
+;;* lmx 987 system/sepolicy/private/domain.te
 
 (neverallow ueventd vndbinder_device (chr_file (ioctl read write append)))
 ;;* lme
 
-;;* lmx 977 system/sepolicy/private/domain.te
+;;* lmx 990 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_435 vndservice_manager_type (service_manager (add find list)))
 ;;* lme
 
-;;* lmx 984 system/sepolicy/private/domain.te
+;;* lmx 997 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_435 vndservicemanager (binder (impersonate call set_context_mgr transfer)))
 ;;* lme
 
-;;* lmx 1001 system/sepolicy/private/domain.te
+;;* lmx 1014 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_436 base_typeattr_437 (socket (connect sendto)))
 (neverallow base_typeattr_436 base_typeattr_437 (tcp_socket (connect sendto)))
@@ -25662,29 +25662,29 @@
 (neverallow base_typeattr_436 base_typeattr_437 (xdp_socket (connect sendto)))
 ;;* lme
 
-;;* lmx 1001 system/sepolicy/private/domain.te
+;;* lmx 1014 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_436 base_typeattr_437 (unix_stream_socket (connectto)))
 ;;* lme
 
-;;* lmx 1014 system/sepolicy/private/domain.te
+;;* lmx 1027 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_438 core_data_file_type (sock_file (create setattr lock relabelfrom relabelto map unlink link rename execute quotaon mounton audit_access open execmod watch watch_mount watch_sb watch_with_perm watch_reads)))
 (neverallow base_typeattr_438 coredomain_socket (sock_file (create setattr lock relabelfrom relabelto map unlink link rename execute quotaon mounton audit_access open execmod watch watch_mount watch_sb watch_with_perm watch_reads)))
 (neverallow base_typeattr_438 unlabeled (sock_file (create setattr lock relabelfrom relabelto map unlink link rename execute quotaon mounton audit_access open execmod watch watch_mount watch_sb watch_with_perm watch_reads)))
 ;;* lme
 
-;;* lmx 1028 system/sepolicy/private/domain.te
+;;* lmx 1041 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_432 base_typeattr_439 (sock_file (create setattr lock relabelfrom relabelto map unlink link rename execute quotaon mounton audit_access open execmod watch watch_mount watch_sb watch_with_perm watch_reads)))
 ;;* lme
 
-;;* lmx 1044 system/sepolicy/private/domain.te
+;;* lmx 1057 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_440 base_typeattr_441 (sock_file (create setattr lock relabelfrom relabelto map unlink link rename execute quotaon mounton audit_access open execmod watch watch_mount watch_sb watch_with_perm watch_reads)))
 ;;* lme
 
-;;* lmx 1068 system/sepolicy/private/domain.te
+;;* lmx 1081 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_442 base_typeattr_443 (file (create setattr lock relabelfrom relabelto unlink link rename execute quotaon mounton audit_access open execmod watch watch_mount watch_sb watch_with_perm watch_reads execute_no_trans entrypoint)))
 (neverallow base_typeattr_442 base_typeattr_443 (lnk_file (create setattr lock relabelfrom relabelto unlink link rename execute quotaon mounton audit_access open execmod watch watch_mount watch_sb watch_with_perm watch_reads)))
@@ -25694,7 +25694,7 @@
 (neverallow base_typeattr_442 base_typeattr_443 (fifo_file (create setattr lock relabelfrom relabelto unlink link rename execute quotaon mounton audit_access open execmod watch watch_mount watch_sb watch_with_perm watch_reads)))
 ;;* lme
 
-;;* lmx 1068 system/sepolicy/private/domain.te
+;;* lmx 1081 system/sepolicy/private/domain.te
 
 (neverallow crosvm_domain base_typeattr_444 (file (create setattr lock relabelfrom relabelto unlink link rename execute quotaon mounton audit_access open execmod watch watch_mount watch_sb watch_with_perm watch_reads execute_no_trans entrypoint)))
 (neverallow crosvm_domain base_typeattr_444 (lnk_file (create setattr lock relabelfrom relabelto unlink link rename execute quotaon mounton audit_access open execmod watch watch_mount watch_sb watch_with_perm watch_reads)))
@@ -25710,12 +25710,12 @@
 (neverallow crosvm_vu_fs base_typeattr_444 (fifo_file (create setattr lock relabelfrom relabelto unlink link rename execute quotaon mounton audit_access open execmod watch watch_mount watch_sb watch_with_perm watch_reads)))
 ;;* lme
 
-;;* lmx 1094 system/sepolicy/private/domain.te
+;;* lmx 1107 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_445 base_typeattr_446 (dir (ioctl read write create getattr setattr lock relabelfrom relabelto append map unlink link rename execute quotaon mounton audit_access open execmod watch watch_mount watch_sb watch_with_perm watch_reads add_name remove_name reparent search rmdir)))
 ;;* lme
 
-;;* lmx 1111 system/sepolicy/private/domain.te
+;;* lmx 1124 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_447 core_data_file_type (file (create setattr lock relabelfrom relabelto unlink link rename execute quotaon mounton audit_access open execmod watch watch_mount watch_sb watch_with_perm watch_reads execute_no_trans entrypoint)))
 (neverallow base_typeattr_447 core_data_file_type (lnk_file (create setattr lock relabelfrom relabelto unlink link rename execute quotaon mounton audit_access open execmod watch watch_mount watch_sb watch_with_perm watch_reads)))
@@ -25725,7 +25725,7 @@
 (neverallow base_typeattr_447 core_data_file_type (fifo_file (create setattr lock relabelfrom relabelto unlink link rename execute quotaon mounton audit_access open execmod watch watch_mount watch_sb watch_with_perm watch_reads)))
 ;;* lme
 
-;;* lmx 1111 system/sepolicy/private/domain.te
+;;* lmx 1124 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_448 base_typeattr_449 (file (create setattr lock relabelfrom relabelto unlink link rename execute quotaon mounton audit_access open execmod watch watch_mount watch_sb watch_with_perm watch_reads execute_no_trans entrypoint)))
 (neverallow base_typeattr_448 base_typeattr_449 (lnk_file (create setattr lock relabelfrom relabelto unlink link rename execute quotaon mounton audit_access open execmod watch watch_mount watch_sb watch_with_perm watch_reads)))
@@ -25735,37 +25735,37 @@
 (neverallow base_typeattr_448 base_typeattr_449 (fifo_file (create setattr lock relabelfrom relabelto unlink link rename execute quotaon mounton audit_access open execmod watch watch_mount watch_sb watch_with_perm watch_reads)))
 ;;* lme
 
-;;* lmx 1111 system/sepolicy/private/domain.te
+;;* lmx 1124 system/sepolicy/private/domain.te
 
 (neverallow vendor_init unencrypted_data_file (file (write create setattr relabelfrom relabelto append unlink link rename execute quotaon mounton audit_access execmod watch_mount watch_sb watch_with_perm execute_no_trans entrypoint)))
 ;;* lme
 
-;;* lmx 1135 system/sepolicy/private/domain.te
+;;* lmx 1148 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_447 base_typeattr_450 (dir (ioctl read write create getattr setattr lock relabelfrom relabelto append map unlink link rename execute quotaon mounton audit_access open execmod watch watch_mount watch_sb watch_with_perm watch_reads add_name remove_name reparent search rmdir)))
 ;;* lme
 
-;;* lmx 1135 system/sepolicy/private/domain.te
+;;* lmx 1148 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_448 base_typeattr_451 (dir (ioctl read write create getattr setattr lock relabelfrom relabelto append map unlink link rename execute quotaon mounton audit_access open execmod watch watch_mount watch_sb watch_with_perm watch_reads add_name remove_name reparent search rmdir)))
 ;;* lme
 
-;;* lmx 1135 system/sepolicy/private/domain.te
+;;* lmx 1148 system/sepolicy/private/domain.te
 
 (neverallow vendor_init unencrypted_data_file (dir (ioctl read write create getattr setattr lock relabelfrom relabelto append map unlink link rename execute quotaon mounton audit_access open execmod watch watch_mount watch_sb watch_with_perm watch_reads add_name remove_name reparent rmdir)))
 ;;* lme
 
-;;* lmx 1167 system/sepolicy/private/domain.te
+;;* lmx 1180 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_452 system_data_file (dir (ioctl read write create setattr lock relabelfrom relabelto append map unlink link rename execute quotaon mounton audit_access open execmod watch watch_mount watch_sb watch_with_perm watch_reads add_name remove_name reparent rmdir)))
 ;;* lme
 
-;;* lmx 1179 system/sepolicy/private/domain.te
+;;* lmx 1192 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_453 vendor_data_file (dir (ioctl read write create setattr lock relabelfrom relabelto append map unlink link rename execute quotaon mounton audit_access open execmod watch watch_mount watch_sb watch_with_perm watch_reads add_name remove_name reparent rmdir)))
 ;;* lme
 
-;;* lmx 1192 system/sepolicy/private/domain.te
+;;* lmx 1205 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_454 vendor_data_file (file (create setattr lock relabelfrom relabelto unlink link rename execute quotaon mounton audit_access open execmod watch watch_mount watch_sb watch_with_perm watch_reads execute_no_trans entrypoint)))
 (neverallow base_typeattr_454 vendor_data_file (lnk_file (create setattr lock relabelfrom relabelto unlink link rename execute quotaon mounton audit_access open execmod watch watch_mount watch_sb watch_with_perm watch_reads)))
@@ -25775,92 +25775,92 @@
 (neverallow base_typeattr_454 vendor_data_file (fifo_file (create setattr lock relabelfrom relabelto unlink link rename execute quotaon mounton audit_access open execmod watch watch_mount watch_sb watch_with_perm watch_reads)))
 ;;* lme
 
-;;* lmx 1203 system/sepolicy/private/domain.te
+;;* lmx 1216 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_455 vendor_shell_exec (file (execute execute_no_trans)))
 ;;* lme
 
-;;* lmx 1215 system/sepolicy/private/domain.te
+;;* lmx 1228 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_456 base_typeattr_457 (file (execute execute_no_trans entrypoint)))
 ;;* lme
 
-;;* lmx 1240 system/sepolicy/private/domain.te
+;;* lmx 1253 system/sepolicy/private/domain.te
 
 (neverallow coredomain base_typeattr_458 (file (entrypoint)))
 ;;* lme
 
-;;* lmx 1240 system/sepolicy/private/domain.te
+;;* lmx 1253 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_241 base_typeattr_459 (file (entrypoint)))
 ;;* lme
 
-;;* lmx 1257 system/sepolicy/private/domain.te
+;;* lmx 1270 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_460 base_typeattr_461 (file (execute)))
 ;;* lme
 
-;;* lmx 1277 system/sepolicy/private/domain.te
+;;* lmx 1290 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_462 base_typeattr_463 (file (execute_no_trans)))
 ;;* lme
 
-;;* lmx 1289 system/sepolicy/private/domain.te
+;;* lmx 1302 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_456 base_typeattr_464 (file (ioctl read write create getattr setattr lock relabelfrom relabelto append map unlink link rename execute quotaon mounton audit_access open execmod watch watch_mount watch_sb watch_with_perm watch_reads execute_no_trans entrypoint)))
 ;;* lme
 
-;;* lmx 1329 system/sepolicy/private/domain.te
+;;* lmx 1342 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_465 zygote (unix_stream_socket (connectto)))
 ;;* lme
 
-;;* lmx 1330 system/sepolicy/private/domain.te
+;;* lmx 1343 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_413 zygote_socket (sock_file (write)))
 ;;* lme
 
-;;* lmx 1332 system/sepolicy/private/domain.te
+;;* lmx 1345 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_466 webview_zygote (unix_stream_socket (connectto)))
 ;;* lme
 
-;;* lmx 1333 system/sepolicy/private/domain.te
+;;* lmx 1346 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_413 webview_zygote (sock_file (write)))
 ;;* lme
 
-;;* lmx 1334 system/sepolicy/private/domain.te
+;;* lmx 1347 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_413 app_zygote (sock_file (write)))
 ;;* lme
 
-;;* lmx 1335 system/sepolicy/private/domain.te
+;;* lmx 1348 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_413 native_app_zygote (sock_file (write)))
 ;;* lme
 
-;;* lmx 1337 system/sepolicy/private/domain.te
+;;* lmx 1350 system/sepolicy/private/domain.te
 
 (neverallow domain tombstoned_crash_socket (unix_stream_socket (connectto)))
 ;;* lme
 
-;;* lmx 1341 system/sepolicy/private/domain.te
+;;* lmx 1354 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_467 tombstoned_intercept_socket (sock_file (write)))
 ;;* lme
 
-;;* lmx 1342 system/sepolicy/private/domain.te
+;;* lmx 1355 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_467 tombstoned_intercept_socket (unix_stream_socket (connectto)))
 ;;* lme
 
-;;* lmx 1345 system/sepolicy/private/domain.te
+;;* lmx 1358 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_468 heapdump_data_file (file (read)))
 ;;* lme
 
-;;* lmx 1363 system/sepolicy/private/domain.te
+;;* lmx 1376 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_248 base_typeattr_248 (sem (create destroy getattr setattr read write associate unix_read unix_write)))
 (neverallow base_typeattr_248 base_typeattr_248 (msg (send receive)))
@@ -25868,7 +25868,7 @@
 (neverallow base_typeattr_248 base_typeattr_248 (shm (create destroy getattr setattr read write associate unix_read unix_write lock)))
 ;;* lme
 
-;;* lmx 1370 system/sepolicy/private/domain.te
+;;* lmx 1383 system/sepolicy/private/domain.te
 
 (neverallow domain dev_type (lnk_file (mounton)))
 (neverallow domain dev_type (sock_file (mounton)))
@@ -25881,136 +25881,136 @@
 (neverallow domain file_type (fifo_file (mounton)))
 ;;* lme
 
-;;* lmx 1375 system/sepolicy/private/domain.te
+;;* lmx 1388 system/sepolicy/private/domain.te
 
 (neverallow domain su_exec (file (execute execute_no_trans)))
 ;;* lme
 
-;;* lmx 1390 system/sepolicy/private/domain.te
+;;* lmx 1403 system/sepolicy/private/domain.te
 
 (neverallow domain base_typeattr_469 (file (execmod)))
 ;;* lme
 
-;;* lmx 1395 system/sepolicy/private/domain.te
+;;* lmx 1408 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_248 self (process (execstack execheap)))
 ;;* lme
 
-;;* lmx 1404 system/sepolicy/private/domain.te
+;;* lmx 1417 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_470 file_type (file (execmod)))
 ;;* lme
 
-;;* lmx 1412 system/sepolicy/private/domain.te
+;;* lmx 1425 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_471 domain (process (transition dyntransition)))
 ;;* lme
 
-;;* lmx 1431 system/sepolicy/private/domain.te
+;;* lmx 1444 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_472 system_data_file (file (write create setattr relabelfrom append unlink link rename)))
 ;;* lme
 
-;;* lmx 1434 system/sepolicy/private/domain.te
+;;* lmx 1447 system/sepolicy/private/domain.te
 
 (neverallow installd system_data_file (file (write create setattr relabelto append link rename execute quotaon mounton audit_access execmod watch_mount watch_sb watch_with_perm execute_no_trans entrypoint)))
 ;;* lme
 
-;;* lmx 1447 system/sepolicy/private/domain.te
+;;* lmx 1460 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_473 shell (process (transition dyntransition)))
 ;;* lme
 
-;;* lmx 1471 system/sepolicy/private/domain.te
+;;* lmx 1484 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_474 base_typeattr_475 (process (transition dyntransition)))
 ;;* lme
 
-;;* lmx 1486 system/sepolicy/private/domain.te
+;;* lmx 1499 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_476 isolated_app (process (transition dyntransition)))
 ;;* lme
 
-;;* lmx 1495 system/sepolicy/private/domain.te
+;;* lmx 1508 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_477 app_data_file (lnk_file (read)))
 (neverallow base_typeattr_477 privapp_data_file (lnk_file (read)))
 ;;* lme
 
-;;* lmx 1502 system/sepolicy/private/domain.te
+;;* lmx 1515 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_248 base_typeattr_478 (service_manager (list)))
 ;;* lme
 
-;;* lmx 1507 system/sepolicy/private/domain.te
+;;* lmx 1520 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_248 base_typeattr_479 (hwservice_manager (list)))
 ;;* lme
 
-;;* lmx 1526 system/sepolicy/private/domain.te
+;;* lmx 1539 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_248 domain (file (execute execute_no_trans entrypoint)))
 ;;* lme
 
-;;* lmx 1532 system/sepolicy/private/domain.te
+;;* lmx 1545 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_419 debugfs (file (ioctl read write create setattr lock relabelfrom append unlink link rename open watch watch_mount watch_sb watch_with_perm watch_reads)))
 (neverallow base_typeattr_419 debugfs (lnk_file (ioctl read write create setattr lock relabelfrom append unlink link rename open watch watch_mount watch_sb watch_with_perm watch_reads)))
 ;;* lme
 
-;;* lmx 1535 system/sepolicy/private/domain.te
+;;* lmx 1548 system/sepolicy/private/domain.te
 
 (neverallow domain debugfs_type (file (execute execute_no_trans)))
 ;;* lme
 
-;;* lmx 1538 system/sepolicy/private/domain.te
+;;* lmx 1551 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_480 fusectlfs (file (ioctl read write create setattr lock relabelfrom append unlink link rename open watch watch_mount watch_sb watch_with_perm watch_reads)))
 ;;* lme
 
-;;* lmx 1548 system/sepolicy/private/domain.te
+;;* lmx 1561 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_481 profman_exec (file (execute execute_no_trans)))
 ;;* lme
 
-;;* lmx 1553 system/sepolicy/private/domain.te
+;;* lmx 1566 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_248 base_typeattr_482 (system (module_load)))
 ;;* lme
 
-;;* lmx 1557 system/sepolicy/private/domain.te
+;;* lmx 1570 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_248 self (capability (setfcap)))
 (neverallow base_typeattr_248 self (cap_userns (setfcap)))
 ;;* lme
 
-;;* lmx 1560 system/sepolicy/private/domain.te
+;;* lmx 1573 system/sepolicy/private/domain.te
 
 (neverallow domain crash_dump (process (noatsecure)))
 ;;* lme
 
-;;* lmx 1564 system/sepolicy/private/domain.te
+;;* lmx 1577 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_483 coredomain_hwservice (hwservice_manager (add)))
 ;;* lme
 
-;;* lmx 1569 system/sepolicy/private/domain.te
+;;* lmx 1582 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_248 same_process_hwservice (hwservice_manager (add)))
 ;;* lme
 
-;;* lmx 1580 system/sepolicy/private/domain.te
+;;* lmx 1593 system/sepolicy/private/domain.te
 
 (neverallow domain proc_type (dir (write create link rename add_name remove_name reparent rmdir)))
 (neverallow domain sysfs_type (dir (write create link rename add_name remove_name reparent rmdir)))
 ;;* lme
 
-;;* lmx 1583 system/sepolicy/private/domain.te
+;;* lmx 1596 system/sepolicy/private/domain.te
 
 (neverallow domain cgroup (file (create)))
 ;;* lme
 
-;;* lmx 1584 system/sepolicy/private/domain.te
+;;* lmx 1597 system/sepolicy/private/domain.te
 
 (neverallow domain cgroup_v2 (file (create)))
 ;;* lme
@@ -26019,94 +26019,94 @@
 (dontaudit domain sysfs_type (dir (write)))
 (dontaudit domain cgroup (file (create)))
 (dontaudit domain cgroup_v2 (file (create)))
-;;* lmx 1607 system/sepolicy/private/domain.te
+;;* lmx 1620 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_484 mnt_vendor_file (dir (ioctl read write create getattr setattr lock relabelfrom relabelto append map unlink link rename execute quotaon mounton audit_access open execmod watch watch_mount watch_sb watch_with_perm watch_reads add_name remove_name reparent search rmdir)))
 ;;* lme
 
-;;* lmx 1610 system/sepolicy/private/domain.te
+;;* lmx 1623 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_485 vendor_public_lib_file (file (execute execute_no_trans)))
 (neverallow base_typeattr_485 vendor_public_framework_file (file (execute execute_no_trans)))
 ;;* lme
 
-;;* lmx 1622 system/sepolicy/private/domain.te
+;;* lmx 1635 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_241 mnt_product_file (dir (ioctl read write create getattr setattr lock relabelfrom relabelto append map unlink link rename execute quotaon mounton audit_access open execmod watch watch_mount watch_sb watch_with_perm watch_reads add_name remove_name reparent search rmdir)))
 ;;* lme
 
-;;* lmx 1625 system/sepolicy/private/domain.te
+;;* lmx 1638 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_486 sysfs_batteryinfo (file (read open)))
 ;;* lme
 
-;;* lmx 1648 system/sepolicy/private/domain.te
+;;* lmx 1661 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_487 hal_codec2_hwservice (hwservice_manager (add)))
 ;;* lme
 
-;;* lmx 1657 system/sepolicy/private/domain.te
+;;* lmx 1670 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_488 ashmem_device (chr_file (open)))
 ;;* lme
 
-;;* lmx 1671 system/sepolicy/private/domain.te
+;;* lmx 1684 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_489 domain (memfd_file (ioctl)))
 ;;* lme
 
-;;* lmx 1685 system/sepolicy/private/domain.te
+;;* lmx 1698 system/sepolicy/private/domain.te
 
 (neverallowx base_typeattr_489 domain (ioctl memfd_file ((range 0x7701 0x770b))))
 ;;* lme
 
-;;* lmx 1687 system/sepolicy/private/domain.te
+;;* lmx 1700 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_490 debugfs_tracing_printk_formats (file (ioctl read write create getattr setattr lock relabelfrom relabelto append map unlink link rename execute quotaon mounton audit_access open execmod watch watch_mount watch_sb watch_with_perm watch_reads execute_no_trans entrypoint)))
 ;;* lme
 
-;;* lmx 1710 system/sepolicy/private/domain.te
+;;* lmx 1723 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_491 misc_block_device (blk_file (ioctl read write lock relabelfrom append link rename open)))
 ;;* lme
 
-;;* lmx 1724 system/sepolicy/private/domain.te
+;;* lmx 1737 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_492 self (capability (sys_ptrace)))
 (neverallow base_typeattr_492 self (cap_userns (sys_ptrace)))
 ;;* lme
 
-;;* lmx 1727 system/sepolicy/private/domain.te
+;;* lmx 1740 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_493 base_typeattr_248 (keystore2_key (gen_unique_id)))
 ;;* lme
 
-;;* lmx 1728 system/sepolicy/private/domain.te
+;;* lmx 1741 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_413 base_typeattr_248 (keystore2_key (use_dev_id)))
 ;;* lme
 
-;;* lmx 1729 system/sepolicy/private/domain.te
+;;* lmx 1742 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_413 keystore (keystore2 (clear_ns lock reset unlock)))
 ;;* lme
 
-;;* lmx 1736 system/sepolicy/private/domain.te
+;;* lmx 1749 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_359 debugfs_tracing_debug (file (ioctl read write create setattr lock relabelfrom append unlink link rename open watch watch_mount watch_sb watch_with_perm watch_reads)))
 ;;* lme
 
-;;* lmx 1745 system/sepolicy/private/domain.te
+;;* lmx 1758 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_468 dropbox_data_file (dir (ioctl read write create getattr setattr lock relabelfrom relabelto append map unlink link rename execute quotaon mounton audit_access open execmod watch watch_mount watch_sb watch_with_perm watch_reads add_name remove_name reparent search rmdir)))
 ;;* lme
 
-;;* lmx 1751 system/sepolicy/private/domain.te
+;;* lmx 1764 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_468 dropbox_data_file (file (ioctl write create setattr lock relabelfrom relabelto append map unlink link rename execute quotaon mounton audit_access open execmod watch watch_mount watch_sb watch_with_perm watch_reads execute_no_trans entrypoint)))
 ;;* lme
 
-;;* lmx 1764 system/sepolicy/private/domain.te
+;;* lmx 1777 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_477 app_data_file (file (create unlink)))
 (neverallow base_typeattr_477 app_data_file (dir (create unlink)))
@@ -26124,19 +26124,19 @@
 (neverallow base_typeattr_477 privapp_data_file (fifo_file (create unlink)))
 ;;* lme
 
-;;* lmx 1795 system/sepolicy/private/domain.te
+;;* lmx 1808 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_494 app_data_file (dir (ioctl read write create getattr setattr lock relabelfrom relabelto append map unlink link rename execute quotaon mounton audit_access open execmod watch watch_mount watch_sb watch_with_perm watch_reads add_name remove_name reparent search rmdir)))
 (neverallow base_typeattr_494 privapp_data_file (dir (ioctl read write create getattr setattr lock relabelfrom relabelto append map unlink link rename execute quotaon mounton audit_access open execmod watch watch_mount watch_sb watch_with_perm watch_reads add_name remove_name reparent search rmdir)))
 ;;* lme
 
-;;* lmx 1837 system/sepolicy/private/domain.te
+;;* lmx 1850 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_495 app_data_file (dir (write create setattr relabelfrom relabelto append map unlink link rename execute quotaon mounton audit_access execmod watch_mount watch_sb watch_with_perm add_name remove_name reparent rmdir)))
 (neverallow base_typeattr_495 privapp_data_file (dir (write create setattr relabelfrom relabelto append map unlink link rename execute quotaon mounton audit_access execmod watch_mount watch_sb watch_with_perm add_name remove_name reparent rmdir)))
 ;;* lme
 
-;;* lmx 1861 system/sepolicy/private/domain.te
+;;* lmx 1874 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_496 app_data_file (file (open)))
 (neverallow base_typeattr_496 app_data_file (lnk_file (open)))
@@ -26152,7 +26152,7 @@
 (neverallow base_typeattr_496 privapp_data_file (fifo_file (open)))
 ;;* lme
 
-;;* lmx 1872 system/sepolicy/private/domain.te
+;;* lmx 1885 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_477 app_data_file (file (create unlink)))
 (neverallow base_typeattr_477 app_data_file (dir (create unlink)))
@@ -26170,7 +26170,7 @@
 (neverallow base_typeattr_477 privapp_data_file (fifo_file (create unlink)))
 ;;* lme
 
-;;* lmx 1882 system/sepolicy/private/domain.te
+;;* lmx 1895 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_497 app_data_file (file (relabelfrom relabelto)))
 (neverallow base_typeattr_497 app_data_file (dir (relabelfrom relabelto)))
@@ -26188,145 +26188,145 @@
 (neverallow base_typeattr_497 privapp_data_file (fifo_file (relabelfrom relabelto)))
 ;;* lme
 
-;;* lmx 1907 system/sepolicy/private/domain.te
+;;* lmx 1920 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_498 staging_data_file (dir (ioctl read write create getattr setattr lock relabelfrom relabelto append map unlink link rename execute quotaon mounton audit_access open execmod watch watch_mount watch_sb watch_with_perm watch_reads add_name remove_name reparent search rmdir)))
 ;;* lme
 
-;;* lmx 1922 system/sepolicy/private/domain.te
+;;* lmx 1935 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_499 staging_data_file (file (ioctl read write create getattr setattr lock relabelfrom relabelto append map unlink link rename execute quotaon mounton audit_access open execmod watch watch_mount watch_sb watch_with_perm watch_reads execute_no_trans entrypoint)))
 ;;* lme
 
-;;* lmx 1924 system/sepolicy/private/domain.te
+;;* lmx 1937 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_500 staging_data_file (dir (write create setattr relabelfrom link rename add_name remove_name reparent rmdir)))
 ;;* lme
 
-;;* lmx 1929 system/sepolicy/private/domain.te
+;;* lmx 1942 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_501 staging_data_file (file (write create setattr relabelfrom append unlink link rename execute execute_no_trans)))
 ;;* lme
 
-;;* lmx 1933 system/sepolicy/private/domain.te
+;;* lmx 1946 system/sepolicy/private/domain.te
 
 (neverallow apexd staging_data_file (file (write create setattr relabelfrom append execute execute_no_trans)))
 ;;* lme
 
-;;* lmx 1940 system/sepolicy/private/domain.te
+;;* lmx 1953 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_502 base_typeattr_503 (file (execute)))
 ;;* lme
 
-;;* lmx 1972 system/sepolicy/private/domain.te
+;;* lmx 1985 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_504 base_typeattr_505 (file (execute)))
 ;;* lme
 
-;;* lmx 1979 system/sepolicy/private/domain.te
+;;* lmx 1992 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_359 cgroup_rc_file (file (write create setattr relabelfrom append unlink link rename)))
 ;;* lme
 
-;;* lmx 1990 system/sepolicy/private/domain.te
+;;* lmx 2003 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_506 dalvikcache_data_file (file (write create setattr relabelfrom append unlink link rename)))
 ;;* lme
 
-;;* lmx 2000 system/sepolicy/private/domain.te
+;;* lmx 2013 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_506 dalvikcache_data_file (dir (write create setattr relabelfrom link rename add_name remove_name reparent rmdir)))
 ;;* lme
 
-;;* lmx 2015 system/sepolicy/private/domain.te
+;;* lmx 2028 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_507 apex_art_data_file (file (write create setattr relabelfrom append unlink link rename)))
 ;;* lme
 
-;;* lmx 2028 system/sepolicy/private/domain.te
+;;* lmx 2041 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_507 apex_art_data_file (dir (write create setattr relabelfrom link rename add_name remove_name reparent rmdir)))
 ;;* lme
 
-;;* lmx 2041 system/sepolicy/private/domain.te
+;;* lmx 2054 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_287 base_typeattr_295 (file (execute execute_no_trans)))
 ;;* lme
 
-;;* lmx 2071 system/sepolicy/private/domain.te
+;;* lmx 2084 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_508 self (capability (dac_override)))
 (neverallow base_typeattr_508 self (cap_userns (dac_override)))
 ;;* lme
 
-;;* lmx 2081 system/sepolicy/private/domain.te
+;;* lmx 2094 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_509 self (capability (dac_read_search)))
 (neverallow base_typeattr_509 self (cap_userns (dac_read_search)))
 ;;* lme
 
-;;* lmx 2101 system/sepolicy/private/domain.te
+;;* lmx 2114 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_510 base_typeattr_511 (filesystem (mount remount relabelfrom relabelto)))
 ;;* lme
 
-;;* lmx 2103 system/sepolicy/private/domain.te
+;;* lmx 2116 system/sepolicy/private/domain.te
 
 (neverallow domain base_typeattr_512 (filesystem (mount remount relabelfrom relabelto)))
 ;;* lme
 
-;;* lmx 2122 system/sepolicy/private/domain.te
+;;* lmx 2135 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_513 self (capability (sys_rawio)))
 (neverallow base_typeattr_513 self (cap_userns (sys_rawio)))
 ;;* lme
 
-;;* lmx 2131 system/sepolicy/private/domain.te
+;;* lmx 2144 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_514 mirror_data_file (dir (ioctl read write create getattr setattr lock relabelfrom relabelto append map unlink link rename execute quotaon mounton audit_access open execmod watch watch_mount watch_sb watch_with_perm watch_reads add_name remove_name reparent search rmdir)))
 ;;* lme
 
-;;* lmx 2134 system/sepolicy/private/domain.te
+;;* lmx 2147 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_425 net_dns_prop (property_service (set)))
 ;;* lme
 
-;;* lmx 2135 system/sepolicy/private/domain.te
+;;* lmx 2148 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_420 net_dns_prop (file (read)))
 ;;* lme
 
-;;* lmx 2138 system/sepolicy/private/domain.te
+;;* lmx 2151 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_468 pm_prop (property_service (set)))
 ;;* lme
 
-;;* lmx 2139 system/sepolicy/private/domain.te
+;;* lmx 2152 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_241 pm_prop (file (ioctl read write create setattr lock relabelfrom append unlink link rename open watch watch_mount watch_sb watch_with_perm watch_reads)))
 ;;* lme
 
-;;* lmx 2142 system/sepolicy/private/domain.te
+;;* lmx 2155 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_515 firstboot_prop (file (ioctl read getattr lock map open watch watch_reads)))
 ;;* lme
 
-;;* lmx 2146 system/sepolicy/private/domain.te
+;;* lmx 2159 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_516 dalvik_config_prop (property_service (set)))
 ;;* lme
 
-;;* lmx 2149 system/sepolicy/private/domain.te
+;;* lmx 2162 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_359 debugfs_kprobes (file (ioctl read write create getattr setattr lock relabelfrom relabelto append map unlink link rename execute quotaon mounton audit_access open execmod watch watch_mount watch_sb watch_with_perm watch_reads execute_no_trans entrypoint)))
 ;;* lme
 
-;;* lmx 2153 system/sepolicy/private/domain.te
+;;* lmx 2166 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_517 vendor_file (file (write create setattr relabelfrom append unlink link rename execute open execute_no_trans)))
 ;;* lme
 
-;;* lmx 2172 system/sepolicy/private/domain.te
+;;* lmx 2185 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_518 base_typeattr_519 (socket (connect sendto)))
 (neverallow base_typeattr_518 base_typeattr_519 (tcp_socket (connect sendto)))
@@ -26387,32 +26387,32 @@
 (neverallow base_typeattr_518 base_typeattr_519 (xdp_socket (connect sendto)))
 ;;* lme
 
-;;* lmx 2172 system/sepolicy/private/domain.te
+;;* lmx 2185 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_518 base_typeattr_519 (unix_stream_socket (connectto)))
 ;;* lme
 
-;;* lmx 2193 system/sepolicy/private/domain.te
+;;* lmx 2206 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_520 base_typeattr_521 (file (ioctl read write create getattr setattr lock relabelfrom relabelto append map unlink link rename execute quotaon mounton audit_access open execmod watch watch_mount watch_sb watch_with_perm watch_reads execute_no_trans entrypoint)))
 ;;* lme
 
-;;* lmx 2246 system/sepolicy/private/domain.te
+;;* lmx 2259 system/sepolicy/private/domain.te
 
 (neverallow domain mlsvendorcompat (process (fork)))
 ;;* lme
 
-;;* lmx 2262 system/sepolicy/private/domain.te
+;;* lmx 2275 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_522 base_typeattr_248 (binder (impersonate call set_context_mgr transfer)))
 ;;* lme
 
-;;* lmx 2263 system/sepolicy/private/domain.te
+;;* lmx 2276 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_248 base_typeattr_522 (binder (impersonate call set_context_mgr transfer)))
 ;;* lme
 
-;;* lmx 2276 system/sepolicy/private/domain.te
+;;* lmx 2289 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_523 system_file_type (file (mounton)))
 (neverallow base_typeattr_523 system_file_type (dir (mounton)))
@@ -26430,32 +26430,32 @@
 (neverallow base_typeattr_523 vendor_file_type (fifo_file (mounton)))
 ;;* lme
 
-;;* lmx 2285 system/sepolicy/private/domain.te
+;;* lmx 2298 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_419 mm_events_config_prop (file (ioctl read write create setattr lock relabelfrom append unlink link rename open watch watch_mount watch_sb watch_with_perm watch_reads)))
 ;;* lme
 
-;;* lmx 2305 system/sepolicy/private/domain.te
+;;* lmx 2318 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_524 proc_kallsyms (file (ioctl read write create getattr setattr lock relabelfrom relabelto append map unlink link rename execute quotaon mounton audit_access open execmod watch watch_mount watch_sb watch_with_perm watch_reads execute_no_trans entrypoint)))
 ;;* lme
 
-;;* lmx 2311 system/sepolicy/private/domain.te
+;;* lmx 2324 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_525 base_typeattr_526 (file (ioctl read write create setattr lock relabelfrom append unlink link rename open watch watch_mount watch_sb watch_with_perm watch_reads)))
 ;;* lme
 
-;;* lmx 2327 system/sepolicy/private/domain.te
+;;* lmx 2340 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_527 sysfs_devices_cs_etm (file (write create setattr relabelfrom append unlink link rename)))
 ;;* lme
 
-;;* lmx 2338 system/sepolicy/private/domain.te
+;;* lmx 2351 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_528 self (capability2 (perfmon)))
 ;;* lme
 
-;;* lmx 2350 system/sepolicy/private/domain.te
+;;* lmx 2363 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_529 system_app_data_file (file (create unlink open)))
 (neverallow base_typeattr_529 system_app_data_file (dir (create unlink open)))
@@ -26466,7 +26466,7 @@
 (neverallow base_typeattr_529 system_app_data_file (fifo_file (create unlink open)))
 ;;* lme
 
-;;* lmx 2358 system/sepolicy/private/domain.te
+;;* lmx 2371 system/sepolicy/private/domain.te
 
 (neverallow untrusted_app_all system_app_data_file (file (create unlink open)))
 (neverallow untrusted_app_all system_app_data_file (dir (create unlink open)))
@@ -26512,65 +26512,65 @@
 (neverallow pcc_component system_app_data_file (fifo_file (create unlink open)))
 ;;* lme
 
-;;* lmx 2360 system/sepolicy/private/domain.te
+;;* lmx 2373 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_247 mtectrl (process (transition dyntransition)))
 ;;* lme
 
-;;* lmx 2361 system/sepolicy/private/domain.te
+;;* lmx 2374 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_247 kcmdlinectrl (process (transition dyntransition)))
 ;;* lme
 
-;;* lmx 2364 system/sepolicy/private/domain.te
+;;* lmx 2377 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_530 checkin_data_file (file (ioctl read write create getattr setattr lock relabelfrom relabelto append map unlink link rename execute quotaon mounton audit_access open execmod watch watch_mount watch_sb watch_with_perm watch_reads execute_no_trans entrypoint)))
 (neverallow base_typeattr_530 checkin_data_file (dir (ioctl read write create getattr setattr lock relabelfrom relabelto append map unlink link rename execute quotaon mounton audit_access open execmod watch watch_mount watch_sb watch_with_perm watch_reads add_name remove_name reparent search rmdir)))
 ;;* lme
 
-;;* lmx 2366 system/sepolicy/private/domain.te
+;;* lmx 2379 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_523 proc (file (mounton)))
 (neverallow base_typeattr_523 proc (dir (mounton)))
 ;;* lme
 
-;;* lmx 2367 system/sepolicy/private/domain.te
+;;* lmx 2380 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_531 proc_type (file (mounton)))
 (neverallow base_typeattr_531 proc_type (dir (mounton)))
 ;;* lme
 
-;;* lmx 2371 system/sepolicy/private/domain.te
+;;* lmx 2384 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_532 sysfs_pgsize_migration (file (write create setattr relabelfrom append unlink link rename)))
 ;;* lme
 
-;;* lmx 2394 system/sepolicy/private/domain.te
+;;* lmx 2407 system/sepolicy/private/domain.te
 
 (neverallow base_typeattr_533 base_typeattr_248 (vsock_socket (create bind connect accept)))
 ;;* lme
 
-;;* lmx 2397 system/sepolicy/private/domain.te
+;;* lmx 2410 system/sepolicy/private/domain.te
 
 (neverallow domain base_typeattr_248 (system (kexec_image_load kexec_initramfs_load)))
 ;;* lme
 
-;;* lmx 2400 system/sepolicy/private/domain.te
+;;* lmx 2413 system/sepolicy/private/domain.te
 
 (neverallow domain base_typeattr_248 (system (x509_certificate_load)))
 ;;* lme
 
-;;* lmx 2405 system/sepolicy/private/domain.te
+;;* lmx 2418 system/sepolicy/private/domain.te
 
 (neverallow domain proc (filesystem (associate)))
 ;;* lme
 
-;;* lmx 2406 system/sepolicy/private/domain.te
+;;* lmx 2419 system/sepolicy/private/domain.te
 
 (neverallow domain domain (dir (write add_name remove_name)))
 ;;* lme
 
-;;* lmx 2407 system/sepolicy/private/domain.te
+;;* lmx 2420 system/sepolicy/private/domain.te
 
 (neverallow domain domain (file (create)))
 ;;* lme

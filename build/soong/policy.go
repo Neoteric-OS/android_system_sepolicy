@@ -226,6 +226,13 @@ func (c *policyConf) enforceDebugfsRestrictions(ctx android.ModuleContext) strin
 	return strconv.FormatBool(ctx.DeviceConfig().BuildDebugfsRestrictionsEnabled())
 }
 
+func (c *policyConf) restrictAshmemUsage(ctx android.ModuleContext) string {
+	if c.cts() {
+		return "cts"
+	}
+	return strconv.FormatBool(ctx.DeviceConfig().RestrictsAshmemUsage())
+}
+
 func (c *policyConf) mlsCats() int {
 	return proptools.IntDefault(c.properties.Mls_cats, MlsCats)
 }
@@ -283,6 +290,7 @@ func (c *policyConf) transformPolicyToConf(ctx android.ModuleContext) android.Ou
 		FlagWithArg("-D target_requires_insecure_execmem_for_swiftshader=", strconv.FormatBool(ctx.DeviceConfig().RequiresInsecureExecmemForSwiftshader())).
 		FlagWithArg("-D target_enforce_debugfs_restriction=", c.enforceDebugfsRestrictions(ctx)).
 		FlagWithArg("-D target_recovery=", strconv.FormatBool(c.isTargetRecovery())).
+		FlagWithArg("-D target_restricts_ashmem_usage=", c.restrictAshmemUsage(ctx)).
 		Flag(boardApiLevelToM4Macro(ctx, c.properties.Board_api_level)).
 		Flags(flagsToM4Macros(flags)).
 		Flag("-s").

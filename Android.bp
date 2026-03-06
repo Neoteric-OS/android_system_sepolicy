@@ -143,6 +143,11 @@ system_ext_public_policy = [":se_build_files{.system_ext_public}"]
 system_ext_private_policy = [":se_build_files{.system_ext_private}"]
 product_public_policy = [":se_build_files{.product_public}"]
 product_private_policy = [":se_build_files{.product_private}"]
+vendor_policy = [
+    ":se_build_files{.plat_vendor}",
+    ":se_build_files{.vendor}",
+    ":ashmem_build_file",
+]
 
 // reqd_policy_mask - a policy.conf file which contains only the bare minimum
 // policy necessary to use checkpolicy.
@@ -408,6 +413,14 @@ se_versioned_policy {
     vendor: true,
 }
 
+filegroup {
+    name: "ashmem_build_file",
+    srcs: select(soong_config_variable("ANDROID", "TARGET_RESTRICTS_ASHMEM_USAGE"), {
+        false: ["vendor/ashmem/ashmem_allow.te"],
+        default: [],
+    }),
+}
+
 // vendor_policy.cil - the vendor sepolicy. This needs attributization and to be combined
 // with the platform-provided policy.  It makes use of the reqd_policy_mask files from private
 // policy and the platform public policy files in order to use checkpolicy.
@@ -417,10 +430,8 @@ se_policy_conf {
     srcs: plat_public_policy +
         system_ext_public_policy +
         product_public_policy +
-        reqd_mask_policy + [
-            ":se_build_files{.plat_vendor}",
-            ":se_build_files{.vendor}",
-        ],
+        reqd_mask_policy +
+        vendor_policy,
     vendor: true,
     installable: false,
 }
@@ -459,11 +470,9 @@ se_policy_conf {
     srcs: plat_public_policy +
         system_ext_public_policy +
         product_public_policy +
-        reqd_mask_policy + [
-            ":se_build_files{.plat_vendor}",
-            ":se_build_files{.vendor}",
-            ":se_build_files{.odm}",
-        ],
+        reqd_mask_policy +
+        vendor_policy +
+        [":se_build_files{.odm}"],
     device_specific: true,
     installable: false,
 }
@@ -716,11 +725,9 @@ se_policy_conf {
         system_ext_public_policy +
         system_ext_private_policy +
         product_public_policy +
-        product_private_policy + [
-            ":se_build_files{.plat_vendor}",
-            ":se_build_files{.vendor}",
-            ":se_build_files{.odm}",
-        ],
+        product_private_policy +
+        vendor_policy +
+        [":se_build_files{.odm}"],
     target_recovery: true,
     installable: false,
     recovery: true,
@@ -917,11 +924,9 @@ se_neverallow_test {
         system_ext_public_policy +
         system_ext_private_policy +
         product_public_policy +
-        product_private_policy + [
-            ":se_build_files{.plat_vendor}",
-            ":se_build_files{.vendor}",
-            ":se_build_files{.odm}",
-        ],
+        product_private_policy +
+        vendor_policy +
+        [":se_build_files{.odm}"],
 }
 
 //////////////////////////////////
