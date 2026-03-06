@@ -30,3 +30,5 @@
 (dontaudit virtualizationmanager crosvm (process (noatsecure)))
 (allow virtualizationmanager crosvm (process (siginh rlimitinh)))
 (typetransition virtualizationmanager crosvm_exec process crosvm)
+
+(allow domain ashmem_libcutils_device (chr_file (open)))

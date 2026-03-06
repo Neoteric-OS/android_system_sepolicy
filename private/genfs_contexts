@@ -297,6 +297,7 @@ genfscon tracefs /events/fence/                                          u:objec
 genfscon tracefs /events/dma_fence/                                      u:object_r:debugfs_tracing:s0
 genfscon tracefs /events/filemap/mm_filemap_add_to_page_cache/           u:object_r:debugfs_tracing:s0
 genfscon tracefs /events/filemap/mm_filemap_delete_from_page_cache/      u:object_r:debugfs_tracing:s0
+genfscon tracefs /events/kmem/dmabuf_rss_stat/                           u:object_r:debugfs_tracing:s0
 genfscon tracefs /events/kmem/rss_stat/                                  u:object_r:debugfs_tracing:s0
 genfscon tracefs /events/kmem/mm_calculate_totalreserve_pages/           u:object_r:debugfs_tracing:s0
 genfscon tracefs /events/mm_event/mm_event_record/                       u:object_r:debugfs_tracing:s0

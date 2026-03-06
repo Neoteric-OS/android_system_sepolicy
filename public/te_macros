@@ -206,7 +206,7 @@ neverallow { domain -$1 -crash_dump userdebug_or_eng(`-llkd') -runas_app -simple
 # This neverallow further limits untrusted apps to only using an allowed list of target types.
 # This prevents policy writers from defining their own transitions to circumvent neverallow rules.
 # We must do this in a macro because the types are generated based on the given input domain.
-neverallow $1 ~$1_userfaultfd:anon_inode *;
+neverallow $1 ~{ $1_userfaultfd system_server_wrapfd }:anon_inode *;
 # Block io_uring.
 # Though the neverallow above blocks the use of our io_uring_use macro, there is nothing stopping a
 # policy writer from defining a transition to an allowlisted type from an io_uring anon_inode.
@@ -219,6 +219,9 @@ neverallow $1 ~$1_userfaultfd:anon_inode *;
 # take precedence over unnamed transitions.
 type $1_block_io_uring;
 type_transition $1 $1:anon_inode $1_block_io_uring "[io_uring]";
+# Block this domain from making its own wrapfds.
+type $1_wrapfd;
+type_transition $1 $1:anon_inode $1_wrapfd "[wrapfd]";
 ')
 
 #####################################
