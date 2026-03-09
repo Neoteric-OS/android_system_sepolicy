@@ -1671,31 +1671,18 @@ neverallow {
 
 neverallow {
   domain
-  -untrusted_app_25
-  -untrusted_app_27
-  -untrusted_app_29
-  -untrusted_app_30
-  -untrusted_app_32
-  -untrusted_app_34
-  -priv_app_36
+  -appdomain
   -isolated_app_all
-  -gmscore_app
-  -platform_app_36
 } domain:memfd_file ioctl;
 
 neverallowxperm {
   domain
-  -untrusted_app_25
-  -untrusted_app_27
-  -untrusted_app_29
-  -untrusted_app_30
-  -untrusted_app_32
-  -untrusted_app_34
-  -priv_app_36
+  -appdomain
   -isolated_app_all
-  -gmscore_app
-  -platform_app_36
 } domain:memfd_file ioctl ashmem_ioctls;
+
+neverallow { platform_app priv_app untrusted_app } domain:memfd_file ioctl;
+neverallowxperm { platform_app priv_app untrusted_app } domain:memfd_file ioctl ashmem_ioctls;
 
 neverallow { domain -traced_probes -init -vendor_init } debugfs_tracing_printk_formats:file *;
 

@@ -550,6 +550,35 @@ allow appdomain hal_contexthub:fd use;
 allow hal_contexthub appdomain:fd use;
 allow appdomain hal_contexthub:memfd_file { getattr read write map };
 
+# Allow ashmem to be used by all apps, except those in the platform_app,
+# priv_app, and untrusted_app domains. Those apps target SDK versions 37
+# and higher, and therefore, should be using memfd. In the future, this
+# will be restricted so that no domain can use ashmem. Other apps outside
+# of those domains may still be using target SDK version 36 and therefore
+# require access to ashmem.
+allow {
+  appdomain
+  -platform_app
+  -priv_app
+  -untrusted_app
+} ashmem_libcutils_device:chr_file open;
+
+# Allow older apps to use ashmem ioctls on memfds in case they assume that
+# all shared memory fds are ashmem fds.
+allow {
+  appdomain
+  -platform_app
+  -priv_app
+  -untrusted_app
+} domain:memfd_file ioctl;
+
+allowxperm {
+  appdomain
+  -platform_app
+  -priv_app
+  -untrusted_app
+} domain:memfd_file ioctl ashmem_ioctls;
+
 ###
 ### Neverallow rules
 ###
