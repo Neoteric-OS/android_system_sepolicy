@@ -1255,6 +1255,9 @@
 /data/system_de/0/ringtones                                       ringtone_file
 /data/system_de/0/ringtones/test                                  ringtone_file
 
+/data/system_ce/0/audit_logs                                      pcc_auditlogs_data_file
+/data/system_ce/0/audit_logs/audit_log.0.bin                      pcc_auditlogs_data_file
+
 /data/system_ce/0/shortcut_service/bitmaps                        shortcut_manager_icons
 /data/system_ce/9/shortcut_service/bitmaps/test                   shortcut_manager_icons
 
