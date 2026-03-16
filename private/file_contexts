@@ -890,9 +890,6 @@
 # AiSeal files
 /data/system_ce/[0-9]+/AiSeal(/.*)?          u:object_r:aiseal_data_file:s0
 
-# Private Compute audit logs
-/data/system_ce/[0-9]+/audit_logs(/.*)?   u:object_r:pcc_auditlogs_data_file:s0
-
 #############################
 # efs files
 #
