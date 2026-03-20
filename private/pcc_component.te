@@ -27,6 +27,7 @@ allow pcc_component app_data_file:file     { r_file_perms execute };
 
 allow pcc_component pcc_data_file:dir create_dir_perms;
 allow pcc_component pcc_data_file:file create_file_perms;
+allow pcc_component pcc_data_file:lnk_file create_file_perms;
 
 # Follow priv-app symlinks. This is used for dynamite functionality.
 allow pcc_component privapp_data_file:lnk_file r_file_perms;

@@ -62,15 +62,6 @@ set_prop(init, userspace_reboot_exported_prop)
 # Allow the media variant properties to be set in init.
 set_prop(init, media_variant_prop)
 
-# Second-stage init performs a test for whether the kernel has SELinux hooks
-# for the perf_event_open() syscall. This is done by testing for the syscall
-# outcomes corresponding to this policy.
-# TODO(b/137092007): this can be removed once the platform stops supporting
-# kernels that precede the perf_event_open hooks (Android common kernels 4.4
-# and 4.9).
-allow init self:perf_event { open cpu };
-allow init self:global_capability2_class_set perfmon;
-
 # Allow opening /proc/kallsyms so that on boot, init can create and retain an
 # fd with the full address visibility (which is evaluated on open and persists
 # for the lifetime of the open file description). This fd can then be shared
@@ -876,11 +867,7 @@ neverallow { domain -init -toolbox -vendor_init -vold -userdata_alias_remove -ca
 # Only init is allowed to set userspace reboot related properties.
 neverallow { domain -init } userspace_reboot_exported_prop:property_service set;
 
-neverallow init self:perf_event { kernel tracepoint read write };
-dontaudit init self:perf_event { kernel tracepoint read write };
-
-# Only init is allowed to set the sysprop indicating whether perf_event_open()
-# SELinux hooks were detected.
+# Only init can write sys.init.perf_lsm_hooks
 neverallow { domain -init } init_perf_lsm_hooks_prop:property_service set;
 
 # Only init can write vts.native_server.on

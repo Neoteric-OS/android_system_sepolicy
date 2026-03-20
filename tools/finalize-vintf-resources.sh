@@ -238,7 +238,7 @@ prebuilt_etc {
 }
 EOF
 
-sed -i 's/^\("plat_sepolicy_genfs_'$ver'.cil",\)/\1"plat_sepolicy_genfs_'$next_ver'.cil",/g' \
+sed -i 's/\("plat_sepolicy_genfs_'$ver'.cil",\)/\1"plat_sepolicy_genfs_'$next_ver'.cil",/g' \
     $top/system/sepolicy/Android.bp
 
 

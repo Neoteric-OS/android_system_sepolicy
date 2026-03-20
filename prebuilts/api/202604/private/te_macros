@@ -100,4 +100,17 @@ allow $1 aisealhostservice:vsock_socket { getattr getopt read write };
 get_prop($1, aiseal_prop)
 ')
 
+#####################################
+# enforce_ashmem_restriction
+# SELinux rules which apply to devices that restrict ashmem usage.
+# The keyword "cts" is used to insert markers to only CTS test the neverallows
+# added by the macro for devices conforming to VSR API level 202604 and newer.
+#
+define(`enforce_ashmem_restriction', ifelse(target_restricts_ashmem_usage, `true', $1,
+ifelse(target_restricts_ashmem_usage, `cts',
+# BEGIN_LAUNCHING_WITH_VSR_202604_ONLY -- this marker is used by CTS -- do not modify
+$1
+# END_LAUNCHING_WITH_VSR_202604_ONLY -- this marker is used by CTS -- do not modify
+, )))
+
 divert(0)

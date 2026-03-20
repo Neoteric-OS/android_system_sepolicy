@@ -437,7 +437,7 @@ se_policy_conf {
 }
 
 se_policy_cil {
-    name: "vendor_sepolicy.cil.raw",
+    name: "vendor_sepolicy.unversioned.cil",
     src: ":vendor_sepolicy.conf",
     filter_out: [":reqd_policy_mask.cil"],
     secilc_check: false, // will be done in se_versioned_policy module
@@ -448,7 +448,7 @@ se_policy_cil {
 se_versioned_policy {
     name: "vendor_sepolicy.cil",
     base: ":pub_policy.cil",
-    target_policy: ":vendor_sepolicy.cil.raw",
+    target_policy: ":vendor_sepolicy.unversioned.cil",
     version: "vendor",
     dependent_cils: [
         ":plat_sepolicy.cil",
@@ -478,11 +478,11 @@ se_policy_conf {
 }
 
 se_policy_cil {
-    name: "odm_sepolicy.cil.raw",
+    name: "odm_sepolicy.unversioned.cil",
     src: ":odm_sepolicy.conf",
     filter_out: [
         ":reqd_policy_mask.cil",
-        ":vendor_sepolicy.cil.raw",
+        ":vendor_sepolicy.unversioned.cil",
     ],
     secilc_check: false, // will be done in se_versioned_policy module
     device_specific: true,
@@ -492,7 +492,7 @@ se_policy_cil {
 se_versioned_policy {
     name: "odm_sepolicy.cil",
     base: ":pub_policy.cil",
-    target_policy: ":odm_sepolicy.cil.raw",
+    target_policy: ":odm_sepolicy.unversioned.cil",
     version: "vendor",
     dependent_cils: [
         ":plat_sepolicy.cil",
