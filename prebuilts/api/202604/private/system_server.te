@@ -280,7 +280,7 @@ allowxperm system_server wrapfd_device:chr_file ioctl wrapfd_dev_ioctls;
 
 # Allow NpuManager to utilize wrapfds
 until_board_api(202604, `
-  type system_server_wrapfd mlstrustedobject;
+  type system_server_wrapfd, mlstrustedobject;
 ')
 type_transition system_server system_server:anon_inode system_server_wrapfd "[wrapfd]";
 allow system_server system_server_wrapfd:anon_inode { create ioctl read write getattr map };
