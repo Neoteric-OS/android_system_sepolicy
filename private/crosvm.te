@@ -126,10 +126,6 @@ is_flag_enabled(RELEASE_AVF_SUPPORT_CUSTOM_VM_WITH_PARAVIRTUALIZED_DEVICES, `
   # non-vendor domains are handled by virtualizationservice_use macro
   hal_client_domain(crosvm_vendor, hal_graphics_allocator)
 
-  # Allow crosvm to play sound.
-  binder_call(crosvm_domain, audioserver)
-  allow crosvm_domain audioserver_service:service_manager find;
-
   allow crosvm_domain mnt_user_file:dir search;
 
   allow crosvm_domain hal_graphics_composer:fd use;
@@ -242,6 +238,7 @@ neverallow {
   domain
   -crosvm_domain
   -crosvm_vu_fs
+  -crosvm_vu_snd
   -virtualizationmanager_domain
   -vmlauncher_app
   userdebug_or_eng(`-overlay_remounter')

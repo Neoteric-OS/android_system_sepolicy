@@ -27,3 +27,10 @@ allow usbauthservice device:dir r_dir_perms;
 # Allow usbauthservice to access usb devices.
 allow usbauthservice usb_device:dir r_dir_perms;
 allow usbauthservice usb_device:chr_file { getattr open read write };
+
+# Allow usbauthservice to access /proc/mounts
+allow usbauthservice proc_mounts:file r_file_perms;
+
+# Allow usbauthservice access to /sys/class/block
+r_dir_file(usbauthservice, sysfs_dm)
+r_dir_file(usbauthservice, sysfs_block)

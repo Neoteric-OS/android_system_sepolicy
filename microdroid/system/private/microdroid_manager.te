@@ -241,6 +241,7 @@ set_prop(microdroid_manager, traced_enabled_prop);
 # child process into set of allowed domains.
 allow microdroid_manager self:process setexec;
 domain_trans(microdroid_manager, microdroid_app_exec, appsearch_tenant);
+domain_trans(microdroid_manager, microdroid_app_exec, aiseal_agent_tenant);
 
 # For credential encrypted storage, allow use of file encryption ioclts
 allowxperm microdroid_manager encryptedstore_file:dir ioctl {

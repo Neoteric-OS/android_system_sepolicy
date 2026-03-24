@@ -54,3 +54,8 @@ allow mmd_setup sysfs_block:dir r_dir_perms;
 
 # swapon syscall
 allow mmd_setup self:capability sys_admin;
+
+# Allow mmd_setup to chown/chmod zram sysfs and device files.
+allow mmd_setup self:capability chown;
+allow mmd_setup sysfs_zram:file { getattr setattr};
+allow mmd_setup { ram_device swap_block_device }:blk_file { getattr setattr };

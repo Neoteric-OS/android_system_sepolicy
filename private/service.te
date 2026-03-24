@@ -1,4 +1,5 @@
 type activity_structured_service,    system_api_service, system_server_service, service_manager_type;
+type allowlist_service,              app_api_service, system_server_service, service_manager_type;
 type ambient_context_service,        app_api_service, system_server_service, service_manager_type;
 type authentication_policy_service,  app_api_service, system_api_service, system_server_service, service_manager_type;
 
@@ -22,6 +23,7 @@ type mediatuner_service,             app_api_service, service_manager_type;
 type mmd_service,                    service_manager_type;
 type on_device_intelligence_service, app_api_service, system_server_service, service_manager_type, isolated_compute_allowed_service;
 type content_safety_service,         app_api_service, system_server_service, service_manager_type, isolated_compute_allowed_service;
+type pcc_sandbox_native_service,     app_api_service, system_server_service, service_manager_type;
 type pcc_sandbox_service,            app_api_service, system_server_service, service_manager_type;
 type personal_context_service,       app_api_service, ephemeral_app_api_service, system_server_service, service_manager_type;
 type profcollectd_service,           service_manager_type;
@@ -51,6 +53,8 @@ type accessor_trusty_widevine_comm_service, service_manager_type;
 type trusty_widevine_comm_service, service_manager_type;
 type accessor_trusty_keymint_provisioning_service, service_manager_type;
 type accessor_trusty_keymint_provisioning_thal_service, service_manager_type;
+type trusty_keymint_provisioning_thal_service, service_manager_type;
+
 type accessor_trusty_keymint_secureclock_service, service_manager_type;
 
 is_flag_enabled(RELEASE_AVF_ENABLE_DEVICE_ASSIGNMENT, `

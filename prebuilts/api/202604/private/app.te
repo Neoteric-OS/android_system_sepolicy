@@ -8,7 +8,7 @@ r_dir_file({
   -pcc_component
   -isolated_app_all
   -network_stack
-  -platform_app
+  -platform_app_all
   -priv_app_all
   -shell
   -sdk_sandbox_all
@@ -23,7 +23,7 @@ userdebug_or_eng(`
     -pcc_component
     -isolated_app_all
     -network_stack
-    -platform_app
+    -platform_app_all
     -priv_app_all
     -shell
     -su
@@ -85,6 +85,10 @@ allow { appdomain -sdk_sandbox_all } mnt_media_rw_file:dir search;
 # modify them other than to connect
 allow appdomain system_server:udp_socket {
         connect getattr read recvfrom sendto write getopt setopt };
+
+# apps should only use the dma-buf ioctl commands on a wrapfd, and nothing else.
+allow appdomain system_server_wrapfd:anon_inode rw_file_perms;
+allowxperm appdomain system_server_wrapfd:anon_inode ioctl dma_buf_ioctls;
 
 # Allow to read sendbug.preferred.domain
 get_prop(appdomain, sendbug_config_prop)
@@ -546,6 +550,35 @@ allow appdomain hal_contexthub:fd use;
 allow hal_contexthub appdomain:fd use;
 allow appdomain hal_contexthub:memfd_file { getattr read write map };
 
+# Allow ashmem to be used by all apps, except those in the platform_app,
+# priv_app, and untrusted_app domains. Those apps target SDK versions 37
+# and higher, and therefore, should be using memfd. In the future, this
+# will be restricted so that no domain can use ashmem. Other apps outside
+# of those domains may still be using target SDK version 36 and therefore
+# require access to ashmem.
+allow {
+  appdomain
+  -platform_app
+  -priv_app
+  -untrusted_app
+} ashmem_libcutils_device:chr_file open;
+
+# Allow older apps to use ashmem ioctls on memfds in case they assume that
+# all shared memory fds are ashmem fds.
+allow {
+  appdomain
+  -platform_app
+  -priv_app
+  -untrusted_app
+} domain:memfd_file ioctl;
+
+allowxperm {
+  appdomain
+  -platform_app
+  -priv_app
+  -untrusted_app
+} domain:memfd_file ioctl ashmem_ioctls;
+
 ###
 ### Neverallow rules
 ###
@@ -648,13 +681,13 @@ neverallow appdomain mediadrm_system_data_file:dir_file_class_set
     { create write setattr relabelfrom relabelto append unlink link rename };
 neverallow appdomain drm_data_file:dir_file_class_set
     { create write setattr relabelfrom relabelto append unlink link rename };
-neverallow { appdomain -platform_app }
+neverallow { appdomain -platform_app_all }
     apk_data_file:dir_file_class_set
     { create write setattr relabelfrom relabelto append unlink link rename };
-neverallow { appdomain -platform_app }
+neverallow { appdomain -platform_app_all }
     apk_private_data_file:dir_file_class_set
     { create write setattr relabelfrom relabelto append unlink link rename };
-neverallow { appdomain -platform_app }
+neverallow { appdomain -platform_app_all }
     apk_private_tmp_file:dir_file_class_set
     { create write setattr relabelfrom relabelto append unlink link rename };
 neverallow { appdomain -shell }
@@ -678,7 +711,7 @@ neverallow appdomain
     { create write setattr relabelfrom relabelto append unlink link rename };
 
 # access tmp apk files
-neverallow { appdomain -platform_app }
+neverallow { appdomain -platform_app_all }
     apk_tmp_file:dir_file_class_set
     { create write setattr relabelfrom relabelto append unlink link rename };
 
@@ -854,5 +887,8 @@ is_flag_enabled(RELEASE_UNLOCKED_STORAGE_API, `
 # Apps should not be able to open trace data files, they should depend upon traceur to pass a file descriptor.
 # 'write' is granted to allow apps to write heap dumps.
 allow appdomain trace_data_file:file { read write getattr };
-neverallow { appdomain -traceur_app -platform_app -system_app -shell } trace_data_file:file ~{ read write getattr };
-neverallow { appdomain -traceur_app -platform_app -system_app -shell } trace_data_file:dir *;
+neverallow { appdomain -traceur_app -platform_app_all -system_app -shell } trace_data_file:file ~{ read write getattr };
+neverallow { appdomain -traceur_app -platform_app_all -system_app -shell } trace_data_file:dir *;
+
+# Apps only need to use the dma-buf ioctls on wrapfds, and not the wrapfd ioctls.
+neverallowxperm appdomain system_server_wrapfd:anon_inode ioctl wrapfd_ioctls;

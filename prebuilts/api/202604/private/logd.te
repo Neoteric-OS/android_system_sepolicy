@@ -34,7 +34,7 @@ neverallow {
 neverallow {
   appdomain
   -bluetooth
-  -platform_app
+  -platform_app_all
   -priv_app_all
   -radio
   -shell

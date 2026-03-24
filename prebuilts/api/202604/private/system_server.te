@@ -274,6 +274,18 @@ allow system_server fs_bpf_dmabuf:file { getattr open read };
 # for dumpsys meminfo
 allow system_server dmabuf_heap_device:dir r_dir_perms;
 
+# Allow NpuManager to access /dev/wrapfd
+allow system_server wrapfd_device:chr_file r_file_perms;
+allowxperm system_server wrapfd_device:chr_file ioctl wrapfd_dev_ioctls;
+
+# Allow NpuManager to utilize wrapfds
+until_board_api(202604, `
+  type system_server_wrapfd mlstrustedobject;
+')
+type_transition system_server system_server:anon_inode system_server_wrapfd "[wrapfd]";
+allow system_server system_server_wrapfd:anon_inode { create ioctl read write getattr map };
+allowxperm system_server system_server_wrapfd:anon_inode ioctl wrapfd_ioctls;
+
 # Allow reading /proc/vmstat for the oom kill count
 allow system_server proc_vmstat:file r_file_perms;
 

@@ -311,6 +311,8 @@
 /system/lib/bootstrap/test                                        system_bootstrap_lib_file
 /system/lib64/bootstrap/test                                      system_bootstrap_lib_file
 /system/bin/mm_events                                             mm_events_exec
+/system/bin/aflags                                                aflags_exec
+/system/bin/device_config                                         device_config_exec
 /system/bin/atrace                                                atrace_exec
 /system/bin/auditctl                                              auditctl_exec
 /system/bin/bcc                                                   rs_exec
@@ -363,7 +365,6 @@
 /system/bin/netutils-wrapper-1.0                                  netutils_wrapper_exec
 /system/bin/vold                                                  vold_exec
 /system/bin/netd                                                  netd_exec
-/system/bin/wificond                                              wificond_exec
 /system/bin/audioserver                                           audioserver_exec
 /system/bin/mediadrmserver                                        mediadrmserver_exec
 /system/bin/mediaserver                                           mediaserver_exec
@@ -447,6 +448,8 @@
 /system/bin/hw/android.frameworks.bufferhub@1.0-service           fwk_bufferhub_exec
 /system/bin/hw/android.system.suspend-service                     system_suspend_exec
 /system/bin/memcgv2_activation_depth.sh                           memcgv2_activation_depth_exec
+/system/bin/crash_dump32                                          crash_dump_exec
+/system/bin/crash_dump64                                          crash_dump_exec
 /system/etc/aconfig                                               system_aconfig_storage_file
 /system/etc/cgroups.json                                          cgroup_desc_file
 /system/etc/task_profiles/cgroups_0.json                          cgroup_desc_file
@@ -800,6 +803,8 @@
 /system/system_ext/bin/hwservicemanager                           hwservicemanager_exec
 /system_ext/bin/hw/android.hidl.allocator@1.0-service             hal_allocator_default_exec
 /system/system_ext/bin/hw/android.hidl.allocator@1.0-service      hal_allocator_default_exec
+/system_ext/bin/wificond                                          wificond_exec
+/system/system_ext/bin/wificond                                   wificond_exec
 
 /system_ext/bin/rkp_cert_processor                                rkp_cert_processor_exec
 /system/system_ext/bin/rkp_cert_processor                         rkp_cert_processor_exec

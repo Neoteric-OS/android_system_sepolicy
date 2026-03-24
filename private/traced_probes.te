@@ -144,6 +144,9 @@ get_prop(traced_probes, debug_tracing_desktop_mode_visible_tasks_prop)
 # traced_relay service in the VMs based on the value.
 set_prop(traced_probes, avf_vm_traced_relay_enabled_prop)
 
+# Allow traced_probes to run aflags to query flags status.
+domain_auto_trans(traced_probes, aflags_exec, aflags)
+
 ###
 ### Neverallow rules
 ###

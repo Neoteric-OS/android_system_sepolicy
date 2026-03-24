@@ -59,6 +59,7 @@ allow vold_prepare_subdirs {
     wpa_user_data_file
     apex_wifi_data_file
 }:file { getattr unlink };
+allow vold_prepare_subdirs rollback_data_file:lnk_file { getattr unlink };
 allow vold_prepare_subdirs apex_mnt_dir:dir { open read };
 allow vold_prepare_subdirs mnt_expand_file:dir search;
 allow vold_prepare_subdirs user_profile_data_file:dir { search getattr relabelfrom };

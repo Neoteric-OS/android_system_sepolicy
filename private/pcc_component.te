@@ -204,6 +204,7 @@ mediatranscoding_service
 mediatuner_service
 nearby_service
 on_device_intelligence_service
+pcc_sandbox_native_service
 pcc_sandbox_service
 people_service
 persistent_data_block_service

@@ -29,7 +29,6 @@ processes are generic to all vendors, such as sh / toybox / etc.
 import argparse
 import collections
 import os
-import pkgutil
 import re
 import subprocess
 import sys
@@ -39,8 +38,6 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 import fc_sort
 import policy
 import yaml
-
-SHARED_LIB_EXTENSION = '.dylib' if sys.platform == 'darwin' else '.so'
 
 App = collections.namedtuple("App", ["package_name", "apk_name"])
 ContextEntry = collections.namedtuple("ContextEntry", ["partition", "values"])
@@ -582,12 +579,5 @@ def do_main(libpath):
 
 if __name__ == '__main__':
     with tempfile.TemporaryDirectory(ignore_cleanup_errors=True) as temp_dir:
-        libname = "libsepolwrap" + SHARED_LIB_EXTENSION
-        libpath = os.path.join(temp_dir, libname)
-        with open(libpath, "wb") as lib:
-            blob = pkgutil.get_data("treble_labeling_tests", libname)
-            if not blob:
-                sys.exit("Error: libsepolwrap does not exist. Is this binary "
-                         "corrupted?\n")
-            lib.write(blob)
+        libpath = policy.ReadLibsepolwrap(temp_dir)
         do_main(libpath)

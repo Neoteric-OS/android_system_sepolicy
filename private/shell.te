@@ -300,6 +300,12 @@ get_prop(shell, build_attestation_prop)
 # TODO (b/350628688): Remove this once it's safe to do so.
 allow shell oatdump_exec:file rx_file_perms;
 
+# Allow shell to execute aflags.
+domain_auto_trans(shell, aflags_exec, aflags)
+
+# Allow shell to execute device_config
+allow shell device_config_exec:file rx_file_perms;
+
 # Create and use network sockets.
 net_domain(shell)
 
@@ -369,7 +375,7 @@ userdebug_or_eng(`
 
 # allow shell access to services
 allow shell servicemanager:service_manager list;
-# don't allow shell to access GateKeeper service
+# don't allow shell to access GateKeeper & other security HAL services.
 # TODO: why is this so broad? Tightening candidate? It needs at list:
 # - dumpstate_service (so it can receive dumpstate progress updates)
 allow shell {
@@ -381,6 +387,7 @@ allow shell {
   -hal_keymint_service
   -hal_secureclock_service
   -hal_sharedsecret_service
+  -hal_secretkeeper_service
   -incident_service
   -installd_service
   -mdns_service
@@ -391,6 +398,7 @@ allow shell {
   -vold_service
   -default_android_service
   -virtualization_service
+  -virtualization_maintenance_service
 }:service_manager find;
 allow shell dumpstate:binder call;
 
@@ -532,7 +540,9 @@ neverallow shell {
   hal_keymint_service
   hal_secureclock_service
   hal_sharedsecret_service
+  hal_secretkeeper_service
   virtualization_service
+  virtualization_maintenance_service
 }:service_manager find;
 
 # Do not allow shell to hard link to any files.

@@ -120,6 +120,7 @@ android.hardware.gatekeeper.IGatekeeper/default                      u:object_r:
 android.hardware.security.secureclock.ISecureClock/default             u:object_r:hal_secureclock_service:s0
 android.hardware.security.see.hwcrypto.IHwCryptoKey/default          u:object_r:hal_hwcrypto_service:s0
 android.hardware.security.sharedsecret.ISharedSecret/default             u:object_r:hal_sharedsecret_service:s0
+android.hardware.security.sharedsecret.ISharedSecret/security_vm         u:object_r:hal_sharedsecret_service:s0
 android.hardware.security.sharedsecret.ISharedSecret/hwcrypto        u:object_r:hal_hwcrypto_service:s0
 android.hardware.sensors.ISensors/default                            u:object_r:hal_sensors_service:s0
 android.hardware.soundtrigger3.ISoundTriggerHw/default               u:object_r:hal_audio_service:s0
@@ -200,6 +201,7 @@ android.widevine.trusty.commservice.ICommService/widevine_vm u:object_r:trusty_w
 android.os.IAccessor/IKeyMintProvisioningService/security_vm_keymint u:object_r:accessor_trusty_keymint_provisioning_service:s0
 com.android.trusty.rust.KeyMintProvisioningService.V1 u:object_r:accessor_trusty_keymint_provisioning_service:s0
 android.os.IAccessor/IProvisioning/security_vm_keymint u:object_r:accessor_trusty_keymint_provisioning_thal_service:s0
+android.trusty.provisioning.IProvisioning/security_vm_keymint   u:object_r:trusty_keymint_provisioning_thal_service:s0
 android.os.IAccessor/ISecureClock/security_vm_keymint u:object_r:accessor_trusty_keymint_secureclock_service:s0
 
 is_flag_enabled(RELEASE_AVF_ENABLE_DEVICE_ASSIGNMENT, `
@@ -217,6 +219,7 @@ is_flag_enabled(RELEASE_AVF_ENABLE_MICROFUCHSIA, `
 ')
 ambient_context                           u:object_r:ambient_context_service:s0
 anomaly_detector                          u:object_r:anomaly_detector_service:s0
+allowlist                                 u:object_r:allowlist_service:s0
 app_binding                               u:object_r:app_binding_service:s0
 app_function                              u:object_r:app_function_service:s0
 app_hibernation                           u:object_r:app_hibernation_service:s0
@@ -410,6 +413,7 @@ pac_proxy                                 u:object_r:pac_proxy_service:s0
 package                                   u:object_r:package_service:s0
 package_native                            u:object_r:package_native_service:s0
 pcc_sandbox                               u:object_r:pcc_sandbox_service:s0
+pcc_sandbox_native                        u:object_r:pcc_sandbox_native_service:s0
 people                                    u:object_r:people_service:s0
 performance_hint                          u:object_r:hint_service:s0
 permission                                u:object_r:permission_service:s0

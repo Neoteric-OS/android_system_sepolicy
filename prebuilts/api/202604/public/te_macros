@@ -301,6 +301,13 @@ typeattribute $1 isolated_app_all;
 ')
 
 #####################################
+# platform_app_domain(domain)
+# Allow a base set of permissions required for all apps signed with the platform key.
+define(`platform_app_domain', `
+typeattribute $1 platform_app_all;
+')
+
+#####################################
 # net_domain(domain)
 # Allow a base set of permissions required for network access.
 define(`net_domain', `

@@ -79,8 +79,22 @@ allow domain zero_device:chr_file rw_file_perms;
 # /dev/ashmem is being deprecated by means of constraining and eventually
 # removing all "open" permissions. We preserve the other permissions.
 allow domain ashmem_device:chr_file { getattr read ioctl lock map append write };
-# This device is used by libcutils, which is accessible to everyone.
-allow domain ashmem_libcutils_device:chr_file rw_file_perms;
+
+# Everyone can interact with ashmem, but it can only be opened as follows:
+#
+# If a device has vendor API level 202604 or higher, then only applications that
+# target SDK version 36 or older can open the ashmem character device that
+# libcutils uses, and thus allocate an ashmem buffer.
+#
+# If the device has vendor API level 202504 or lower, then the libcutils ashmem
+# device can be opened by anyone.
+#
+# This is achieved by modifying the vendor SELinux policy to include the correct
+# set of rules regarding "open" permissions based on the vendor API level.
+#
+# The relevant rules are located in the vendor/ashmem directory.
+#
+allow domain ashmem_libcutils_device:chr_file { getattr read ioctl lock map append write };
 
 allow domain self:memfd_file { create read write getattr map };
 
@@ -1650,25 +1664,18 @@ neverallow {
 
 neverallow {
   domain
-  -untrusted_app_25
-  -untrusted_app_27
-  -untrusted_app_29
-  -untrusted_app_30
-  -untrusted_app_32
-  -untrusted_app_34
-  -priv_app_36
+  -appdomain
+  -isolated_app_all
 } domain:memfd_file ioctl;
 
 neverallowxperm {
   domain
-  -untrusted_app_25
-  -untrusted_app_27
-  -untrusted_app_29
-  -untrusted_app_30
-  -untrusted_app_32
-  -untrusted_app_34
-  -priv_app_36
+  -appdomain
+  -isolated_app_all
 } domain:memfd_file ioctl ashmem_ioctls;
+
+neverallow { platform_app priv_app untrusted_app } domain:memfd_file ioctl;
+neverallowxperm { platform_app priv_app untrusted_app } domain:memfd_file ioctl ashmem_ioctls;
 
 neverallow { domain -traced_probes -init -vendor_init } debugfs_tracing_printk_formats:file *;
 
@@ -2390,3 +2397,17 @@ neverallow domain *:system x509_certificate_load;
 neverallow domain proc:filesystem associate;
 neverallow domain domain:dir { write add_name remove_name };
 neverallow domain domain:file create;
+
+# Only NPU manager, which runs inside of system_server, should be able
+# to interact with the wrapfd device node. This also prevents any other
+# domain from creating wrapfds.
+neverallow { domain -system_server } wrapfd_device:chr_file { open read write ioctl map };
+neverallowxperm { domain -system_server } wrapfd_device:chr_file ioctl wrapfd_dev_ioctls;
+
+# Only apps and the NPU manager should be able to interact with the wrapfds
+# produced by the NPU manager.
+neverallow {
+  domain
+  -appdomain
+  -system_server
+} system_server_wrapfd:anon_inode *;

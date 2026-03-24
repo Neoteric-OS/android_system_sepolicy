@@ -294,7 +294,6 @@
 /system/bin/netutils-wrapper-1\.0    u:object_r:netutils_wrapper_exec:s0
 /system/bin/vold	u:object_r:vold_exec:s0
 /system/bin/netd	u:object_r:netd_exec:s0
-/system/bin/wificond	u:object_r:wificond_exec:s0
 /system/bin/ot-ctl      u:object_r:ot_ctl_exec:s0
 /system/bin/audioserver	u:object_r:audioserver_exec:s0
 /system/bin/mediadrmserver	u:object_r:mediadrmserver_exec:s0
@@ -315,6 +314,8 @@
 /system/bin/keystore2	u:object_r:keystore_exec:s0
 /system/bin/fingerprintd u:object_r:fingerprintd_exec:s0
 /system/bin/gatekeeperd u:object_r:gatekeeperd_exec:s0
+/system/bin/crash_dump32 u:object_r:crash_dump_exec:s0
+/system/bin/crash_dump64 u:object_r:crash_dump_exec:s0
 /system/bin/tombstoned u:object_r:tombstoned_exec:s0
 /system/bin/recovery-persist     u:object_r:recovery_persist_exec:s0
 /system/bin/recovery-refresh     u:object_r:recovery_refresh_exec:s0
@@ -408,6 +409,8 @@
 /system/bin/bpfloader            u:object_r:bpfloader_platform_exec:s0
 /system/bin/watchdogd            u:object_r:watchdogd_exec:s0
 /system/bin/aconfigd-system      u:object_r:aconfigd_exec:s0
+/system/bin/aflags               u:object_r:aflags_exec:s0
+/system/bin/device_config        u:object_r:device_config_exec:s0
 /system/bin/apexd                u:object_r:apexd_exec:s0
 /system/bin/gsid                 u:object_r:gsid_exec:s0
 /system/bin/simpleperf           u:object_r:simpleperf_exec:s0
@@ -560,6 +563,7 @@
 /(system_ext|system/system_ext)/bin/hw/android\.hidl\.allocator@1\.0-service u:object_r:hal_allocator_default_exec:s0
 /(system_ext|system/system_ext)/bin/rkp_cert_processor       u:object_r:rkp_cert_processor_exec:s0
 /(system_ext|system/system_ext)/bin/serialservice            u:object_r:serialservice_exec:s0
+/(system_ext|system/system_ext)/bin/wificond                 u:object_r:wificond_exec:s0
 
 /(system_ext|system/system_ext)/bin/canhalconfigurator(-aidl)? u:object_r:canhalconfigurator_exec:s0
 

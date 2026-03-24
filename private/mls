@@ -62,7 +62,7 @@ mlsconstrain dir_file_class_set { create relabelfrom relabelto }
 #
 # To enforce that anonymous inodes are self contained in the application's process.
 mlsconstrain anon_inode { ioctl read write create getattr setattr lock relabelfrom relabelto append map unlink link rename execute open execmod }
-	     (l1 eq l2);
+	     (l1 eq l2 or t2 == mlstrustedobject);
 
 #
 # Constraints for app data files only.
