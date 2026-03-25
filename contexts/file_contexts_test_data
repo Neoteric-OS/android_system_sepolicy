@@ -408,6 +408,7 @@
 /system/bin/mmd                                                   mmd_exec
 /system/bin/mmd_setup                                             mmd_setup_exec
 /system/bin/pmgd                                                  pmgd_exec
+/system/bin/aoad                                                  aoad_exec
 /system/bin/usbd                                                  usbd_exec
 /system/bin/usbauthservice                                        usbauthservice_exec
 /system/bin/inputflinger                                          inputflinger_exec
@@ -833,6 +834,8 @@
 
 /system_ext/bin/serialservice                                     serialservice_exec
 /system/system_ext/bin/serialservice                              serialservice_exec
+
+/system/bin/hidservice                                            hidservice_exec
 
 /vendor_dlkm                                                      vendor_file
 /vendor_dlkm/does_not_exist                                       vendor_file

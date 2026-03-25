@@ -1397,11 +1397,18 @@ get_prop(system_server,system_jvmti_agent_prop)
 
 # UsbDeviceManager uses /dev/usb-ffs
 allow system_server functionfs:dir search;
-# UsbDeviceManager needs relabelfrom to change from functionfs to usbaccessory
-allow system_server functionfs:file { rw_file_perms relabelfrom };
-allow system_server usbaccessory_device:file { rw_file_perms relabelto };
-allowxperm system_server usbaccessory_device:file ioctl { FUNCTIONFS_ENDPOINT_DESC };
-allow usbaccessory_device functionfs:filesystem associate;
+allow system_server functionfs:file rw_file_perms;
+allow system_server usbaccessory_device:file rw_file_perms;
+
+# Allow system_server to find the aoad binder service
+allow system_server aoad_service:service_manager find;
+
+# Allow system_server to call aoad via binder
+binder_call(system_server, aoad)
+
+# Allow system_server to read/write the socket owned by 'aoad'.
+allow system_server aoad:unix_stream_socket { read write getattr getopt setattr lock append shutdown };
+
 # To resolve arbitrary sysfs paths from /sys/class/udc/* symlinks.
 allow system_server sysfs_type:dir search;
 r_dir_file(system_server, sysfs_udc)
@@ -1831,6 +1838,9 @@ allow system_server {
   odrefresh
   profman
 }:process sigkill;
+
+allow system_server hid_service:service_manager find;
+binder_call(system_server, hidservice)
 
 # Allow system_server to talk to native serial service to read metadata of and open serial ports.
 allow system_server native_serial_service:service_manager find;

@@ -99,6 +99,9 @@ wakelock_use(audioserver)
 # Allow wake from suspend
 allow audioserver self:capability2 wake_alarm;
 
+# Allow setting nice for thread priority
+allow audioserver self:capability sys_nice;
+
 # Allow reading audio config props, e.g. af.fast_track_multiplier
 get_prop(audioserver, audio_config_prop)
 get_prop(audioserver, system_audio_config_prop)

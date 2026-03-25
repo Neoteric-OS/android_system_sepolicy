@@ -147,6 +147,9 @@ set_prop(traced_probes, avf_vm_traced_relay_enabled_prop)
 # Allow traced_probes to run aflags to query flags status.
 domain_auto_trans(traced_probes, aflags_exec, aflags)
 
+# Allow traced_probes to kill aflags on timeout or termination.
+allow traced_probes aflags:process sigkill;
+
 ###
 ### Neverallow rules
 ###
