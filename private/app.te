@@ -38,10 +38,6 @@ userdebug_or_eng(`
 get_prop(appdomain, test_harness_prop)
 
 get_prop(appdomain, boot_status_prop)
-
-# Allow apps to read property of chipset that supports context hub for GTS purpose
-get_prop({ appdomain -isolated_app_all -ephemeral_app -pcc_component -sdk_sandbox_all }, context_hub_chipset_prop)
-
 get_prop(appdomain, dalvik_config_prop_type)
 get_prop(appdomain, media_config_prop)
 get_prop(appdomain, packagemanager_config_prop)
@@ -265,10 +261,6 @@ allow appdomain system_server:fd use;
 allow appdomain system_server:fifo_file rw_file_perms;
 allow appdomain system_server:unix_stream_socket { read write setopt getattr getopt shutdown };
 allow appdomain system_server:tcp_socket { read write getattr getopt shutdown };
-
-# Use pipes and sockets provided by aoad via binder or local socket.
-allow appdomain aoad:fd use;
-allow appdomain aoad:unix_stream_socket { read write getattr getopt setattr lock append shutdown };
 
 # For AppFuse.
 allow appdomain vold:fd use;
@@ -500,7 +492,6 @@ allow {appdomain -isolated_app_all} hal_tv_tuner_server:fd use;
 
 # Allow app to access shared memory created by PowerHAL for FMQ use
 allow { appdomain -isolated_app_all } hal_power_server:fd use;
-allow { appdomain -isolated_app_all } hal_power_server:memfd_file { getattr map read write };
 
 # RenderScript always-passthrough HAL
 allow { appdomain -isolated_app_all } hal_renderscript_hwservice:hwservice_manager find;

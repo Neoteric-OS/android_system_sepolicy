@@ -232,7 +232,6 @@ full_treble_only(`
     coredomain
     -adbd
     -adbd_tradeinmode
-    -aoad
     -init
     -mediaprovider
     -system_server

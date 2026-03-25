@@ -221,7 +221,6 @@ is_flag_enabled(RELEASE_AVF_ENABLE_MICROFUCHSIA, `
 ambient_context                           u:object_r:ambient_context_service:s0
 anomaly_detector                          u:object_r:anomaly_detector_service:s0
 allowlist                                 u:object_r:allowlist_service:s0
-aoad                                      u:object_r:aoad_service:s0
 app_binding                               u:object_r:app_binding_service:s0
 app_function                              u:object_r:app_function_service:s0
 app_hibernation                           u:object_r:app_hibernation_service:s0
@@ -331,7 +330,6 @@ hardware                                  u:object_r:hardware_service:s0
 hardware_properties                       u:object_r:hardware_properties_service:s0
 hdmi_control                              u:object_r:hdmi_control_service:s0
 healthconnect                             u:object_r:healthconnect_service:s0
-hid                                       u:object_r:hid_service:s0
 ions                                      u:object_r:radio_service:s0
 idmap                                     u:object_r:idmap_service:s0
 incident                                  u:object_r:incident_service:s0

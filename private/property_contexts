@@ -655,7 +655,6 @@ persist.bluetooth.bluetooth_audio_hal.disabled              u:object_r:bluetooth
 persist.bluetooth.btsnoopenable                             u:object_r:exported_bluetooth_prop:s0 exact bool
 persist.bluetooth.btsnoopdefaultmode                        u:object_r:bluetooth_prop:s0 exact enum empty disabled filtered full
 persist.bluetooth.btsnooplogmode                            u:object_r:bluetooth_prop:s0 exact enum empty disabled filtered full
-persist.bluetooth.btsnoopsocket.enabled                     u:object_r:bluetooth_prop:s0 exact bool
 persist.bluetooth.finder.supported                          u:object_r:bluetooth_finder_prop:s0 exact bool
 persist.bluetooth.sniff_offload.enabled                     u:object_r:bluetooth_config_prop:s0 exact bool
 persist.bluetooth.snooplogfilter.headers.enabled            u:object_r:bluetooth_prop:s0 exact bool
@@ -838,7 +837,6 @@ ro.config.system_vol_default  u:object_r:systemsound_config_prop:s0 exact int
 ro.config.system_vol_steps    u:object_r:systemsound_config_prop:s0 exact int
 ro.config.vc_call_vol_default u:object_r:systemsound_config_prop:s0 exact int
 
-ro.context_hub.chipset_supported u:object_r:context_hub_chipset_prop:s0 exact bool
 ro.control_privapp_permissions u:object_r:packagemanager_config_prop:s0 exact enum disable enforce log
 ro.cp_system_other_odex        u:object_r:packagemanager_config_prop:s0 exact bool
 

@@ -117,7 +117,6 @@ system_restricted_prop(thermal_profile_prop)
 # Properties which should only be written by vendor_init
 system_vendor_config_prop(arm64_memtag_bootctl_prop)
 system_vendor_config_prop(avf_virtualizationservice_prop)
-system_vendor_config_prop(context_hub_chipset_prop)
 system_vendor_config_prop(high_barometer_quality_prop)
 system_vendor_config_prop(mmd_prop)
 system_vendor_config_prop(mmd_shared_prop)
