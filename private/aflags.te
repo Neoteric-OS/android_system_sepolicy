@@ -25,6 +25,9 @@ r_dir_file(aflags, { system_aconfig_storage_file vendor_aconfig_storage_file })
 # Legacy DeviceConfig support via /system/bin/device_config
 allow aflags { shell_exec device_config_exec toolbox_exec }:file rx_file_perms;
 
+# Allow executing /system/bin/cmd to invoke device_config
+allow aflags system_file:file execute_no_trans;
+
 # Binder communication for legacy flag support
 binder_use(aflags)
 binder_call(aflags, system_server)

@@ -24,8 +24,22 @@ allow pmgd pmgd_data_file:file create_file_perms;
 # Allow pmgd to write to statsd socket.
 unix_socket_send(pmgd, statsdw, statsd)
 
-# Allow procfs access so pmgd can find the system_server process.
+# Allow procfs access so pmgd can find the equivalent of systemui_app
+# TODO(b/492554315): Remove this once systemui_app is available in platform
+r_dir_file(pmgd, {
+  appdomain
+  -ephemeral_app
+  -pcc_component
+  -isolated_app_all
+  -network_stack
+  -priv_app_all
+  -shell
+  -sdk_sandbox_all
+  -system_app
+  -untrusted_app_all
+})
 r_dir_file(pmgd, system_server)
+r_dir_file(pmgd, surfaceflinger)
 dontaudit pmgd domain:dir { open search read getattr };
 
 # Allow to exec the perfetto cmdline client and pass it the trace config on
