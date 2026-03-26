@@ -2423,7 +2423,6 @@ neverallow domain domain:file create;
 # to interact with the wrapfd device node. This also prevents any other
 # domain from creating wrapfds.
 neverallow { domain -system_server } wrapfd_device:chr_file { open read write ioctl map };
-neverallowxperm { domain -system_server } wrapfd_device:chr_file ioctl wrapfd_dev_ioctls;
 
 # Only apps and the NPU manager should be able to interact with the wrapfds
 # produced by the NPU manager.

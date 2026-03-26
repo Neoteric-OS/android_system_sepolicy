@@ -162,6 +162,12 @@ dontaudit surfaceflinger vendor_default_prop:file read;
 # Allow calling gpuservice
 binder_call(surfaceflinger, gpuservice)
 
+# Allow crosvm interact with surfaceflinger to update the VM surface directly
+# (like updating the position of the surface displaying the in-VM cursor)
+is_flag_enabled(RELEASE_AVF_SUPPORT_CUSTOM_VM_WITH_PARAVIRTUALIZED_DEVICES, `
+  binder_call(surfaceflinger, crosvm_domain)
+')
+
 ###
 ### Neverallow rules
 ###

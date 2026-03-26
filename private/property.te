@@ -110,6 +110,7 @@ system_restricted_prop(service_sf_present_timestamp_prop)
 system_restricted_prop(statsd_atoms_list_version_prop)
 system_restricted_prop(trusty_coverage_prop)
 system_restricted_prop(pcc_audit_mode_client_prop)
+system_restricted_prop(dumpstate_last_id_prop)
 
 # Device thermal property
 system_restricted_prop(thermal_profile_prop)
