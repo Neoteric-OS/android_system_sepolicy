@@ -183,7 +183,7 @@ allowxperm {
 control_logd({ appdomain -ephemeral_app -pcc_component -sdk_sandbox_all })
 
 # application inherit logd write socket (urge is to deprecate this long term)
-allow { appdomain -isolated_app_all -ephemeral_app -pcc_component -sdk_sandbox_all } keystore:keystore2_key { delete use get_info grant rebind update };
+allow { appdomain -isolated_app_all -ephemeral_app -sdk_sandbox_all } keystore:keystore2_key { delete use get_info grant rebind update };
 
 allow { appdomain -isolated_app_all -ephemeral_app -pcc_component -sdk_sandbox_all } keystore_maintenance_service:service_manager find;
 
@@ -899,5 +899,5 @@ allow appdomain trace_data_file:file { read write getattr };
 neverallow { appdomain -traceur_app -platform_app_all -system_app -shell } trace_data_file:file ~{ read write getattr };
 neverallow { appdomain -traceur_app -platform_app_all -system_app -shell } trace_data_file:dir *;
 
-# Apps only need to use the dma-buf ioctls on wrapfds, and not the wrapfd ioctls.
-neverallowxperm appdomain system_server_wrapfd:anon_inode ioctl wrapfd_ioctls;
+# Apps only need to use the dma-buf ioctls on wrapfds, and no other ioctls.
+neverallowxperm appdomain system_server_wrapfd:anon_inode ioctl ~{ dma_buf_ioctls };
