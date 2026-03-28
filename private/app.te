@@ -544,7 +544,7 @@ allow appdomain audioserver:memfd_file { getattr map read write };
 allow appdomain system_server:memfd_file { getattr map read write };
 allow appdomain zygote_tmpfs:file { map read };
 allow appdomain zygote:memfd_file { map read };
-allow appdomain mediaswcodec:memfd_file { getattr map read write };
+allow appdomain hal_codec2:memfd_file { getattr map read write };
 allow appdomain cameraserver:memfd_file { getattr map read write };
 # MediaBufferGroup access
 allow appdomain mediaextractor:memfd_file { getattr map read write };

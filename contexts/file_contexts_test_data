@@ -370,6 +370,7 @@
 /system/bin/mediaserver                                           mediaserver_exec
 /system/bin/mediaserver32                                         mediaserver_exec
 /system/bin/mediaserver64                                         mediaserver_exec
+/system/bin/mediacodeclist_generator                              mediacodeclist_generator_exec
 /system/bin/mediametrics                                          mediametrics_exec
 /system/bin/cameraserver                                          cameraserver_exec
 /system/bin/mediaextractor                                        mediaextractor_exec
