@@ -284,6 +284,7 @@ coverage                                  u:object_r:coverage_service:s0
 cpuinfo                                   u:object_r:cpuinfo_service:s0
 cpu_monitor                               u:object_r:cpu_monitor_service:s0
 crossprofileapps                          u:object_r:crossprofileapps_service:s0
+d2d_connectivity                          u:object_r:d2d_connectivity_service:s0
 dataloader_manager                        u:object_r:dataloader_manager_service:s0
 dbinfo                                    u:object_r:dbinfo_service:s0
 device_config                             u:object_r:device_config_service:s0
@@ -376,6 +377,7 @@ media.log                                 u:object_r:audioserver_service:s0
 media.player                              u:object_r:mediaserver_service:s0
 media.metrics                             u:object_r:mediametrics_service:s0
 media.extractor                           u:object_r:mediaextractor_service:s0
+media.codeclist.generator                 u:object_r:mediacodeclist_generator_service:s0
 media.transcoding                         u:object_r:mediatranscoding_service:s0
 media.resource_manager                    u:object_r:mediaserver_service:s0
 media.resource_observer                   u:object_r:mediaserver_service:s0
