@@ -30,60 +30,70 @@ def do_main(libpath):
     tertypes.add_argument("-A", "--allow", action="append_const",
                         const="allow", dest="tertypes",
                         help="Search allow rules.")
+    genfs = parser.add_argument_group("Genfscon Statements")
+    genfs.add_argument("--genfs", action="store_true",
+                        help="Display genfscon statements.")
     expr = parser.add_argument_group("Expressions")
     expr.add_argument("-s", "--source",
-                      help="Source type/role of the TE/RBAC rule.")
+                      help="Source type/attribute of the TE rule.")
     expr.add_argument("-t", "--target",
-                      help="Target type/role of the TE/RBAC rule.")
+                      help="Target type/attribute of the TE rule or genfscon.")
     expr.add_argument("-c", "--class", dest="tclass",
-                      help="Comma separated list of object classes")
+                      help="Comma separated list of object classes.")
     expr.add_argument("-p", "--perms", metavar="PERMS",
                       help="Comma separated list of permissions.")
+    expr.add_argument("-f", "--fs",
+                      help="Filesystem for genfscon statements.")
 
     args = parser.parse_args()
 
-    if not args.tertypes:
-        parser.error("Must specify \"--allow\"")
+    if not args.tertypes and not args.genfs:
+        parser.error("Must specify \"--allow\" or \"--genfs\"")
 
     if not args.policy:
         parser.error("Must include path to policy")
 
     pol = policy.Policy(args.policy, None, libpath)
 
-    if args.source:
-        scontext = {args.source}
-    else:
-        scontext = set()
-    if args.target:
-        tcontext = {args.target}
-    else:
-        tcontext = set()
-    if args.tclass:
-        tclass = set(args.tclass.split(","))
-    else:
-        tclass = set()
-    if args.perms:
-        perms = set(args.perms.split(","))
-    else:
-        perms = set()
+    if args.genfs:
+        for fs, path, context, _ in pol.QueryGenfs(fs=args.fs, target=args.target):
+            print("genfscon " + fs + " " + path + " " + context)
 
-    TERules = pol.QueryTERule(scontext=scontext,
-                           tcontext=tcontext,
-                           tclass=tclass,
-                           perms=perms)
-
-    # format rules for printing
-    rules = []
-    for r in TERules:
-        if len(r.perms) > 1:
-            rules.append("allow " + r.sctx + " " + r.tctx + ":" + r.tclass +
-                         " { " + " ".join(sorted(r.perms)) + " };")
+    if args.tertypes:
+        if args.source:
+            scontext = {args.source}
         else:
-            rules.append("allow " + r.sctx + " " + r.tctx + ":" + r.tclass +
-                         " " + " ".join(sorted(r.perms)) + ";")
+            scontext = set()
+        if args.target:
+            tcontext = {args.target}
+        else:
+            tcontext = set()
+        if args.tclass:
+            tclass = set(args.tclass.split(","))
+        else:
+            tclass = set()
+        if args.perms:
+            perms = set(args.perms.split(","))
+        else:
+            perms = set()
 
-    for r in sorted(rules):
-        print(r)
+        TERules = pol.QueryTERule(scontext=scontext,
+                               tcontext=tcontext,
+                               tclass=tclass,
+                               perms=perms)
+
+        # format rules for printing
+        rules = []
+        for r in TERules:
+            if len(r.perms) > 1:
+                rules.append("allow " + r.sctx + " " + r.tctx + ":" + r.tclass +
+                             " { " + " ".join(sorted(r.perms)) + " };")
+            else:
+                rules.append("allow " + r.sctx + " " + r.tctx + ":" + r.tclass +
+                             " " + " ".join(sorted(r.perms)) + ";")
+
+        for r in sorted(rules):
+            print(r)
 
 
 if __name__ == "__main__":

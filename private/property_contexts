@@ -324,7 +324,7 @@ persist.device_config.memory_safety_native_boot.    u:object_r:device_config_mem
 persist.device_config.memory_safety_native.         u:object_r:device_config_memory_safety_native_prop:s0
 persist.device_config.tethering_u_or_later_native.  u:object_r:device_config_tethering_u_or_later_native_prop:s0
 persist.device_config.mmd_native.                   u:object_r:device_config_mmd_native_prop:s0
-
+persist.device_config.memory_management_native_boot.  u:object_r:device_config_memory_management_native_boot_prop:s0
 # Prop indicates the apex that bundles input configuration files (*.idc,*.kl,*.kcm)
 input_device.config_file.apex    u:object_r:input_device_config_prop:s0 exact string
 

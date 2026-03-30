@@ -438,7 +438,8 @@ func (c *policyCil) compileConfToCil(ctx android.ModuleContext, conf android.Pat
 			Inputs(android.PathsForModuleSrc(ctx, c.properties.Filter_out)). // Also add cil files which are filtered out
 			Text(cil.String()).
 			FlagWithArg("-o ", os.DevNull).
-			FlagWithArg("-f ", os.DevNull)
+			FlagWithArg("-f ", os.DevNull).
+			Flag("-v")
 
 		if proptools.BoolDefault(c.properties.Ignore_neverallow, ctx.Config().SelinuxIgnoreNeverallows()) {
 			secilcCmd.Flag("-N")

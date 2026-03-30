@@ -44,6 +44,7 @@ allow mmd dumpstate:fifo_file { getattr write };
 
 # Allow mmd to issue the zram writeback ioctl.
 allowxperm mmd { ram_device swap_block_device }:blk_file ioctl ZRAM_ANDROID_IOC_PROCESS_WRITEBACK;
+neverallowxperm { domain -mmd } { ram_device swap_block_device }:blk_file ioctl ZRAM_ANDROID_IOC_PROCESS_WRITEBACK;
 
 # Necessary for zram writeback ioctl.
 allow mmd self:capability sys_nice;

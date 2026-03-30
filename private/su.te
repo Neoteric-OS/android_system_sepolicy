@@ -1,6 +1,9 @@
 userdebug_or_eng(`
   typeattribute su coredomain;
 
+  # Exempt userdebug-only coredomains from Treble labeling tests (b/493040969)
+  typeattribute su treble_labeling_violators;
+
   domain_auto_trans(shell, su_exec, su)
   # Allow dumpstate to call su on userdebug / eng builds to collect
   # additional information.
@@ -22,6 +25,10 @@ userdebug_or_eng(`
   # Allow accessing virtualization (e.g. via the vm command) - ensures virtmgr runs in its
   # own domain.
   virtualizationservice_use(su)
+
+  # Exempt userdebug-only coredomains from Treble labeling tests (b/493040969)
+  typeattribute su_virtualizationmanager treble_labeling_violators;
+  typeattribute su_virtmgr_crosvm treble_labeling_violators;
 
   # su is also permissive to permit setenforce.
   permissive su;

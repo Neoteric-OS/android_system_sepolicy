@@ -19,6 +19,12 @@ set_prop(compos, device_config_runtime_native_boot_prop)
 # Allow running odrefresh in its own domain
 domain_auto_trans(compos, odrefresh_exec, odrefresh)
 
+# Allow running dex2oat in its own domain
+domain_auto_trans(compos, dex2oat_exec, dex2oat)
+
+# Allow compos to monitor dex2oat child process in /proc
+r_dir_file(compos, dex2oat)
+
 # Allow running compos_key_helper in its own domain
 domain_auto_trans(compos, compos_key_helper_exec, compos_key_helper)
 # And killing it on error

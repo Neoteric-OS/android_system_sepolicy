@@ -20,6 +20,8 @@ allow traced self:global_capability_class_set { sys_nice };
 allow traced perfetto:fd use;
 allow traced shell:fd use;
 allow traced shell:fifo_file { read write };
+allow traced system_server:fifo_file {read write};
+allow traced adbd:fd use;
 
 # Allow the service to create new files within /data/misc/perfetto-traces.
 allow traced perfetto_traces_data_file:file create_file_perms;
