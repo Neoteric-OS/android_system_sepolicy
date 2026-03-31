@@ -2426,10 +2426,11 @@ neverallow domain domain:file create;
 # domain from creating wrapfds.
 neverallow { domain -system_server } wrapfd_device:chr_file { open read write ioctl map };
 
-# Only apps and the NPU manager should be able to interact with the wrapfds
+# Only apps, HALs, and the NPU manager should be able to interact with the wrapfds
 # produced by the NPU manager.
 neverallow {
   domain
   -appdomain
   -system_server
+  -wrapfd_hal_domain
 } system_server_wrapfd:anon_inode *;
