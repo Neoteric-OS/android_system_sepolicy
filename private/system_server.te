@@ -1306,6 +1306,7 @@ allow system_server {
   proc_meminfo
   proc_pagetypeinfo
   proc_pipe_conf
+  proc_slabinfo
   proc_stat
   proc_uid_cputime_showstat
   proc_uid_io_stats

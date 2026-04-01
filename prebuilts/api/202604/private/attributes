@@ -56,4 +56,8 @@ until_board_api(202604, `
 attribute crosvm_domain;
 ') # until_board_api(202604)
 
-
+until_board_api(202604, `
+# HALs that use wrapfds should use this attribute
+attribute wrapfd_hal_domain;
+expandattribute wrapfd_hal_domain false;
+') # until_board_api(202604)

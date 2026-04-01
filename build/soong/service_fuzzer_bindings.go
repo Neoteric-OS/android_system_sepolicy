@@ -56,6 +56,7 @@ var (
 		"android.hardware.bluetooth.IBluetoothHci/hci1":                                      EXCEPTION_NO_FUZZER,
 		"android.hardware.bluetooth.IBluetoothHci/hci2":                                      EXCEPTION_NO_FUZZER,
 		"android.hardware.bluetooth.IBluetoothHci/hci3":                                      EXCEPTION_NO_FUZZER,
+		"android.hardware.bluetooth.offload.a2dp.IHciProxy/default":                          EXCEPTION_NO_FUZZER,
 		"android.hardware.bluetooth.offload.leaudio.IHciProxy/default":                       EXCEPTION_NO_FUZZER,
 		"android.hardware.bluetooth.finder.IBluetoothFinder/default":                         EXCEPTION_NO_FUZZER,
 		"android.hardware.bluetooth.ranging.IBluetoothChannelSounding/default":               EXCEPTION_NO_FUZZER,

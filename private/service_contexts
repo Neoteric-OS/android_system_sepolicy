@@ -35,6 +35,7 @@ android.hardware.bluetooth.IBluetoothHci/default                     u:object_r:
 android.hardware.bluetooth.IBluetoothHci/hci1                        u:object_r:hal_bluetooth_service:s0
 android.hardware.bluetooth.IBluetoothHci/hci2                        u:object_r:hal_bluetooth_service:s0
 android.hardware.bluetooth.IBluetoothHci/hci3                        u:object_r:hal_bluetooth_service:s0
+android.hardware.bluetooth.offload.a2dp.IHciProxy/default            u:object_r:hal_bluetooth_service:s0
 android.hardware.bluetooth.offload.leaudio.IHciProxy/default         u:object_r:hal_bluetooth_service:s0
 android.hardware.bluetooth.finder.IBluetoothFinder/default           u:object_r:hal_bluetooth_service:s0
 is_flag_enabled(RELEASE_HARDWARE_BLUETOOTH_RANGING_SERVICE, `
