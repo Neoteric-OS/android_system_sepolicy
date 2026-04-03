@@ -35,3 +35,7 @@ allow aoad usbaccessory_device:file { rw_file_perms relabelto };
 
 allowxperm aoad usbaccessory_device:file ioctl { FUNCTIONFS_ENDPOINT_DESC };
 allow usbaccessory_device functionfs:filesystem associate;
+
+# Allow aoad to write its dump() output back into dumpstate's pipes
+allow aoad dumpstate:fd use;
+allow aoad dumpstate:fifo_file write;
