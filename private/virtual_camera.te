@@ -2,6 +2,9 @@
 
 init_daemon_domain(virtual_camera)
 
+# Allow virtual camera service to adjust its priority similar to a camera HAL.
+allow virtual_camera self:global_capability_class_set sys_nice;
+
 # Since virtual_camera is not a real HAL we don't set the
 # hal_server_domain(virtual_camera, hal_camera) macro but only the rules that
 # we actually need from halserverdomain and hal_camera_server:
@@ -56,3 +59,9 @@ allow virtual_camera shell:fifo_file { getattr read write };
 
 # Allow virtual_camera to access dmabuf_system_heap_device
 allow virtual_camera dmabuf_system_heap_device:chr_file { read open };
+
+# Mali GPU driver attempts to access various paths when looking for configuration.
+# These accesses are expected to fail and the denials should be ignored.
+# See envp_read_in_default_environment in vendor/arm/mali/valhall/env/src/mali_env.c
+dontaudit virtual_camera system_data_file:dir { search };
+dontaudit virtual_camera system_userdir_file:dir { search };

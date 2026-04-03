@@ -78,6 +78,8 @@ get_prop(system_app, enable_16k_pages_prop)
 # Allow developer settings to check virtualization capabilities
 get_prop(system_app, hypervisor_prop)
 
+get_prop(system_app, dumpstate_last_id_prop)
+
 # Create /data/anr/traces.txt.
 allow system_app anr_data_file:dir ra_dir_perms;
 allow system_app anr_data_file:file create_file_perms;

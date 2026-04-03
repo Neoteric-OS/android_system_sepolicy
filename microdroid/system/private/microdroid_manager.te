@@ -68,7 +68,7 @@ typeattribute microdroid_manager no_crash_dump_domain;
 # Allow microdroid_manager to do blkflsbuf on instance disk image. The ioctl
 # requires sys_admin cap as well.
 allowxperm microdroid_manager vd_device:blk_file ioctl BLKFLSBUF;
-allow microdroid_manager self:global_capability_class_set sys_admin;
+allow microdroid_manager self:global_capability_class_set { sys_admin chown };
 
 # microdroid_manager needs to adjust the priority of the payload process.
 # It requires the sys_nice cap as well.
@@ -93,6 +93,9 @@ domain_auto_trans(microdroid_manager, encryptedstore_exec, encryptedstore)
 # Microdroid Manager needs read related permission for syncing encrypted storage fs
 # Also microdroid manager creates the ce store folders
 allow microdroid_manager encryptedstore_file:dir create_dir_perms;
+
+# Microdroid Manager needs to be able to clean up encrypted store per user folders
+allow microdroid_manager encryptedstore_file:file unlink;
 
 # Allow microdroid_manager to run kexec to load crashkernel
 domain_auto_trans(microdroid_manager, kexec_exec, kexec)

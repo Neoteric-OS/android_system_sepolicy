@@ -301,6 +301,7 @@
 /system/bin/mediaserverwrapper u:object_r:mediaserverwrapper_exec:s0
 /system/bin/mediaserver32	u:object_r:mediaserver_exec:s0
 /system/bin/mediaserver64	u:object_r:mediaserver_exec:s0
+/system/bin/mediacodeclist_generator	u:object_r:mediacodeclist_generator_exec:s0
 /system/bin/mediametrics	u:object_r:mediametrics_exec:s0
 /system/bin/cameraserver	u:object_r:cameraserver_exec:s0
 /system/bin/mediaextractor	u:object_r:mediaextractor_exec:s0
@@ -353,6 +354,7 @@
 /system/bin/traced_relay        u:object_r:traced_exec:s0
 /system/bin/trace_redactor        u:object_r:trace_redactor_exec:s0
 /system/bin/heapprofd        u:object_r:heapprofd_exec:s0
+/system/bin/hidservice       u:object_r:hidservice_exec:s0
 /system/bin/uncrypt     u:object_r:uncrypt_exec:s0
 /system/bin/update_verifier u:object_r:update_verifier_exec:s0
 /system/bin/logwrapper  u:object_r:system_file:s0
@@ -429,6 +431,7 @@
 /system/bin/tradeinmode           u:object_r:tradeinmode_exec:s0
 /system/bin/prefetch              u:object_r:prefetch_exec:s0
 /system/bin/aisealhostservice     u:object_r:aisealhostservice_exec:s0
+/system/bin/aoad                  u:object_r:aoad_exec:s0
 
 #############################
 # Vendor files

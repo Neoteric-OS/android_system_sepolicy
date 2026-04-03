@@ -1,6 +1,7 @@
 type activity_structured_service,    system_api_service, system_server_service, service_manager_type;
 type allowlist_service,              app_api_service, system_server_service, service_manager_type;
 type ambient_context_service,        app_api_service, system_server_service, service_manager_type;
+type aoad_service,                   service_manager_type;
 type authentication_policy_service,  app_api_service, system_api_service, system_server_service, service_manager_type;
 
 type casefolding_remover_service,    service_manager_type;
@@ -11,6 +12,7 @@ type binder_stats_consumer_service,  system_server_service, service_manager_type
 type compos_service,                 service_manager_type;
 type communal_service,               app_api_service, system_server_service, service_manager_type;
 type content_restriction_service,    app_api_service, ephemeral_app_api_service, system_server_service, service_manager_type;
+type d2d_connectivity_service,       system_api_service, system_server_service, service_manager_type;
 type dynamic_system_service,         system_api_service, system_server_service, service_manager_type;
 type feature_flags_service,          app_api_service, system_server_service, service_manager_type;
 type file_service,                   app_api_service, ephemeral_app_api_service, system_server_service, service_manager_type;
@@ -19,6 +21,7 @@ type gsi_service,                    service_manager_type;
 type incidentcompanion_service,      app_api_service, system_api_service, system_server_service, service_manager_type;
 type logcat_service,                 system_server_service, service_manager_type;
 type logd_service,                   service_manager_type;
+type mediacodeclist_generator_service,  service_manager_type;
 type mediatuner_service,             app_api_service, service_manager_type;
 type mmd_service,                    service_manager_type;
 type on_device_intelligence_service, app_api_service, system_server_service, service_manager_type, isolated_compute_allowed_service;
@@ -94,6 +97,7 @@ is_flag_enabled(RELEASE_AISEAL_FRAMEWORK, `
 type theme_service,                     app_api_service, system_server_service, service_manager_type;
 
 type usb_auth_service,        service_manager_type;
+type hid_service,        app_api_service, service_manager_type;
 
 ###
 ### Neverallow rules
