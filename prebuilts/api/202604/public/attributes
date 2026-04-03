@@ -511,3 +511,9 @@ expandattribute early_virtmgr_domain false;
 attribute crosvm_domain;
 expandattribute crosvm_domain false;
 ') # starting_at_board_api(202604)
+
+starting_at_board_api(202604, `
+# HALs that use wrapfds should use this attribute
+attribute wrapfd_hal_domain;
+expandattribute wrapfd_hal_domain false;
+') # starting_at_board_api(202604)

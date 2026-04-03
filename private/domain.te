@@ -2318,12 +2318,14 @@ neverallow {
 # tool uses it for kernel fuzzing.
 # vendor_modprobe is also exempted since the kernel modules it loads may create
 # debugfs files in its context.
+# vendor_init is excluded in debug builds to allow for A/B experimentation.
 enforce_debugfs_restriction(`
   neverallow {
     domain
     -vendor_modprobe
     userdebug_or_eng(`
       -init
+      -vendor_init
       -hal_dumpstate
       -incidentd
     ')
@@ -2423,12 +2425,12 @@ neverallow domain domain:file create;
 # to interact with the wrapfd device node. This also prevents any other
 # domain from creating wrapfds.
 neverallow { domain -system_server } wrapfd_device:chr_file { open read write ioctl map };
-neverallowxperm { domain -system_server } wrapfd_device:chr_file ioctl wrapfd_dev_ioctls;
 
-# Only apps and the NPU manager should be able to interact with the wrapfds
+# Only apps, HALs, and the NPU manager should be able to interact with the wrapfds
 # produced by the NPU manager.
 neverallow {
   domain
   -appdomain
   -system_server
+  -wrapfd_hal_domain
 } system_server_wrapfd:anon_inode *;
