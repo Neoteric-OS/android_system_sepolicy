@@ -74,9 +74,6 @@ binder_call(dumpstate, mmd)
 # Allow dumpstate to talk to usbauthservice over binder
 binder_call(dumpstate, usbauthservice)
 
-# Allow dumpstate to make binder calls to the aoad service
-binder_call(dumpstate, aoad);
-
 # Collect metrics on boot time created by init
 get_prop(dumpstate, boottime_prop)
 

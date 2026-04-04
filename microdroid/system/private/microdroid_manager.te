@@ -68,7 +68,7 @@ typeattribute microdroid_manager no_crash_dump_domain;
 # Allow microdroid_manager to do blkflsbuf on instance disk image. The ioctl
 # requires sys_admin cap as well.
 allowxperm microdroid_manager vd_device:blk_file ioctl BLKFLSBUF;
-allow microdroid_manager self:global_capability_class_set { sys_admin chown };
+allow microdroid_manager self:global_capability_class_set sys_admin;
 
 # microdroid_manager needs to adjust the priority of the payload process.
 # It requires the sys_nice cap as well.
