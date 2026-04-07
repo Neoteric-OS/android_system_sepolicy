@@ -1684,6 +1684,16 @@ neverallowxperm {
 neverallow { platform_app priv_app untrusted_app } domain:memfd_file ioctl;
 neverallowxperm { platform_app priv_app untrusted_app } domain:memfd_file ioctl ashmem_ioctls;
 
+enforce_ashmem_restriction(`
+  neverallow {
+    domain
+    -appdomain
+    -isolated_app_all
+  } ashmem_libcutils_device:chr_file open;
+
+  neverallow { platform_app priv_app untrusted_app } ashmem_libcutils_device:chr_file open;
+')
+
 neverallow { domain -traced_probes -init -vendor_init } debugfs_tracing_printk_formats:file *;
 
 # No domains other than a select few can access the misc_block_device. This

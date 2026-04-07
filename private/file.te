@@ -144,6 +144,9 @@ type vm_data_file, file_type, core_data_file_type;
 # /data/system/environ
 type environ_system_data_file, file_type, data_file_type, core_data_file_type;
 
+# /data/system_ce/[0-9]+/audit_logs
+type pcc_auditlogs_data_file, file_type, data_file_type, core_data_file_type;
+
 # /data/misc/bootanim
 type bootanim_data_file, file_type, data_file_type, core_data_file_type;
 

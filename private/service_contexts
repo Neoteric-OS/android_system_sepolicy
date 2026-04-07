@@ -202,6 +202,7 @@ android.os.IAccessor/IKeyMintProvisioningService/security_vm_keymint u:object_r:
 com.android.trusty.rust.KeyMintProvisioningService.V1 u:object_r:accessor_trusty_keymint_provisioning_service:s0
 android.os.IAccessor/IProvisioning/security_vm_keymint u:object_r:accessor_trusty_keymint_provisioning_thal_service:s0
 android.trusty.provisioning.IProvisioning/security_vm_keymint   u:object_r:trusty_keymint_provisioning_thal_service:s0
+android.os.IAccessor/IRemotelyProvisionedComponent/security_vm_keymint u:object_r:accessor_trusty_keymint_remotelyprovisionedcomponent_service:s0
 android.os.IAccessor/ISecureClock/security_vm_keymint u:object_r:accessor_trusty_keymint_secureclock_service:s0
 
 is_flag_enabled(RELEASE_AVF_ENABLE_DEVICE_ASSIGNMENT, `
@@ -391,6 +392,7 @@ memtrack.proxy                            u:object_r:memtrackproxy_service:s0
 midi                                      u:object_r:midi_service:s0
 mmd                                       u:object_r:mmd_service:s0
 mount                                     u:object_r:mount_service:s0
+multisensory_manager                      u:object_r:multisensory_manager_service:s0
 music_recognition                         u:object_r:music_recognition_service:s0
 native_serial                             u:object_r:native_serial_service:s0
 nearby                                    u:object_r:nearby_service:s0

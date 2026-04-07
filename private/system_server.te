@@ -677,6 +677,10 @@ allow system_server backup_data_file:file create_file_perms;
 allow system_server appsearch_data_file:dir create_dir_perms;
 allow system_server appsearch_data_file:file create_file_perms;
 
+# Manage /data/system_ce/ID/audit_logs.
+allow system_server pcc_auditlogs_data_file:dir create_dir_perms;
+allow system_server pcc_auditlogs_data_file:file create_file_perms;
+
 # Write to /data/system/dropbox
 allow system_server dropbox_data_file:dir create_dir_perms;
 allow system_server dropbox_data_file:file create_file_perms;
@@ -888,6 +892,7 @@ set_prop(system_server, device_config_memory_safety_native_prop)
 set_prop(system_server, device_config_remote_key_provisioning_native_prop)
 set_prop(system_server, device_config_tethering_u_or_later_native_prop)
 set_prop(system_server, device_config_mmd_native_prop)
+set_prop(system_server, device_config_memory_management_native_boot_prop)
 set_prop(system_server, smart_idle_maint_enabled_prop)
 set_prop(system_server, arm64_memtag_prop)
 
@@ -1162,6 +1167,15 @@ allow system_server resume_on_reboot_key:keystore2_key {
 
 # Allow lock_settings service to manage locksettings keys (e.g. the synthetic password key).
 allow system_server locksettings_key:keystore2_key {
+	delete
+	get_info
+	rebind
+	update
+	use
+};
+
+# Allow KeychainSystemService to manage keychain keys.
+allow system_server keychain_key:keystore2_key {
 	delete
 	get_info
 	rebind
@@ -1512,6 +1526,7 @@ neverallow {
   device_config_window_manager_native_boot_prop
   device_config_tethering_u_or_later_native_prop
   device_config_mmd_native_prop
+  device_config_memory_management_native_boot_prop
   next_boot_prop
 }:property_service set;
 
