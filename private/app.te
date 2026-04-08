@@ -171,7 +171,7 @@ allow { appdomain -isolated_app_all -ephemeral_app -pcc_component -sdk_sandbox_a
 # Allow apps to use serial ports. The serial ports are opened by the native serial service and passed through system_server to apps.
 # Only allow IOCTL operations in ioctl_tty(2). Also exclude those that require CAP_SYS_ADMIN and those in "Controlling terminal",
 # "Process group and session ID" and "Pseudoterminal ioctls" sections.
-allow { appdomain -isolated_app_all -ephemeral_app -pcc_component -sdk_sandbox_all } serialservice:fd use;
+allow { appdomain -isolated_app_all -ephemeral_app -sdk_sandbox_all } serialservice:fd use;
 allow {
     appdomain -isolated_app_all -ephemeral_app -pcc_component -sdk_sandbox_all
 } { serial_device usb_serial_device }:chr_file { read write getattr ioctl };
