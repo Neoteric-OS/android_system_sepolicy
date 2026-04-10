@@ -12,6 +12,7 @@ define(`simpleperf_profileable_apps', `{
   platform_app_all
   priv_app_all
   untrusted_app_all
+  pcc_component
 }')
 
 domain_auto_trans(simpleperf_profileable_apps, simpleperf_exec, simpleperf)

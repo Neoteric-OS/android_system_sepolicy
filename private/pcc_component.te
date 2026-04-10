@@ -10,11 +10,10 @@ typeattribute pcc_component coredomain;
 net_domain(pcc_component)
 app_domain(pcc_component)
 
-# TODO: b/454229657 - Remove write access to external storage once debug mode stops relying on it
-# Allow pcc components to read files in visible storage. The write access to sdcard_type, fuse is temporary for debug mode functionality in AiAi.
-allow pcc_component { sdcard_type fuse }:file { read getattr write append ioctl lock };
-allow pcc_component media_rw_data_file:file { read getattr };
-allow pcc_component { sdcard_type fuse media_rw_data_file }:dir { open search read getattr };
+# Allow pcc components to read files in visible storage.
+allow pcc_component { sdcard_type fuse }:file r_without_open_file_perms;
+allow pcc_component media_rw_data_file:file r_without_open_file_perms;
+allow pcc_component { sdcard_type fuse media_rw_data_file }:dir r_dir_perms;
 
 # Required to read CTS tests data from the shell_data_file location.
 allow pcc_component shell_data_file:file r_file_perms;
@@ -24,6 +23,9 @@ allow pcc_component shell_data_file:dir r_dir_perms;
 allow pcc_component vendor_app_file:file r_file_perms;
 allow pcc_component vendor_app_file:dir r_dir_perms;
 
+allow pcc_component vendor_microdroid_file:file r_file_perms;
+allow pcc_component vendor_microdroid_file:dir r_dir_perms;
+
 # Some apps ship with shared libraries and binaries that they write out
 # to their sandbox directory and then execute.
 allow pcc_component privapp_data_file:file { r_file_perms execute };
@@ -32,12 +34,6 @@ allow pcc_component app_data_file:file     { r_file_perms execute };
 allow pcc_component pcc_data_file:dir create_dir_perms;
 allow pcc_component pcc_data_file:file create_file_perms;
 allow pcc_component pcc_data_file:lnk_file create_file_perms;
-
-# Follow priv-app symlinks. This is used for dynamite functionality.
-allow pcc_component privapp_data_file:lnk_file r_file_perms;
-
-# Do not allow untrusted apps to access PCC data
-neverallow untrusted_app_all pcc_data_file:dir_file_class_set *;
 
 # Allow loading and deleting shared libraries created by trusted system
 # components within an application home directory.
@@ -119,7 +115,9 @@ music_recognition_service
 netpolicy_service
 netstats_service
 network_management_service
+nfc_service
 notification_service
+npu_service
 package_native_service
 package_service
 permission_checker_service
@@ -166,6 +164,7 @@ vibrator_manager_service
 vibrator_service
 virtual_device_native_service
 voiceinteraction_service
+vr_manager_service
 webviewupdate_service
 wifi_service
 wifiaware_service
@@ -248,16 +247,52 @@ allow pcc_component system_server:udp_socket {
 allow pcc_component ashmem_device:chr_file { getattr read ioctl watch watch_reads append write lock map };
 
 # Reads from other apps fifos
-allow pcc_component appdomain:fifo_file { getattr open read map watch };
+allow pcc_component appdomain:fifo_file r_file_perms;
 
 # Communication with pcc_component via fifos
 allow pcc_component pcc_component:fifo_file rw_file_perms;
 
 # Read wallpaper file (opened by system).
-allow { appdomain -pcc_component } wallpaper_file:file { getattr read map };
+allow pcc_component wallpaper_file:file { getattr read map };
 
 # Read cached ringtones (opened by system).
 allow pcc_component ringtone_file:file { getattr read map };
+
+# Allow pcc_component to read from untrusted_app memfd_file
+allow pcc_component untrusted_app:memfd_file { getattr read };
+
+# Allow pcc_components to read from app data files (subject to mls restrictions)
+allow pcc_component {
+  app_data_file
+  privapp_data_file
+}:dir r_dir_perms;
+allow pcc_component {
+  app_data_file
+  privapp_data_file
+}:{ file fifo_file lnk_file sock_file } r_file_perms;
+
+# Allow read/write access to system apps via already open fds.
+allow pcc_component system_app_data_file:file { getattr map read write };
+
+# Allow to read staged apks.
+allow pcc_component { apk_private_tmp_file apk_tmp_file }:file { getattr read };
+
+# Allow pcc_components to view preloaded media content
+allow pcc_component preloads_media_file:dir r_dir_perms;
+allow pcc_component preloads_media_file:file r_file_perms;
+allow pcc_component preloads_data_file:dir search;
+
+# pcc_component needs to be able to send a SIGCHLD to runas_app
+# when running under a debugger (b/123612207)
+allow pcc_component runas_app:process sigchld;
+
+# Android Studio Instant Run has the application connect to a
+# runas_app socket listening in the abstract namespace.
+# https://developer.android.com/studio/run/
+allow pcc_component runas_app:unix_stream_socket connectto;
+
+allow pcc_component sysfs_hwrandom:dir search;
+allow pcc_component sysfs_hwrandom:file r_file_perms;
 
 ###
 ### neverallow rules
@@ -288,8 +323,8 @@ neverallow pcc_component sysfs:file *;
 neverallow pcc_component proc:file { no_rw_file_perms no_x_file_perms };
 
 # Avoid mutating external storage
-neverallow pcc_component { sdcard_type fuse media_rw_data_file }:file create;
-neverallow pcc_component { sdcard_type fuse media_rw_data_file }:dir {write add_name remove_name lock};
+neverallow pcc_component { sdcard_type fuse }:file no_w_file_perms;
+neverallow pcc_component { sdcard_type fuse }:dir no_w_dir_perms;
 
 # Avoid mutating shell files
 neverallow pcc_component shell_data_file:dir { write add_name remove_name create setattr };
@@ -304,22 +339,24 @@ neverallow pcc_component {
   app_data_file
   privapp_data_file
   is_flag_enabled(RELEASE_UNLOCKED_STORAGE_API, `storage_area_content_file')
-}:dir create_dir_perms;
+}:dir no_w_dir_perms;
 neverallow pcc_component {
   app_data_file
   privapp_data_file
   is_flag_enabled(RELEASE_UNLOCKED_STORAGE_API, `storage_area_content_file')
-}:file { create rename setattr unlink append write };
-neverallow pcc_component {
-  system_app_data_file
-}:file { getattr map read write };
+}:{ file fifo_file lnk_file sock_file } no_w_file_perms;
+
+# Never allow pcc components to write to untrusted_app dir/file
+neverallow pcc_component untrusted_app_all:dir no_w_dir_perms;
+neverallow pcc_component untrusted_app_all:lnk_file no_w_file_perms;
 
 # Never allow pcc component to write files in visible storage
-neverallow pcc_component media_rw_data_file:file { write append ioctl lock };
+neverallow pcc_component media_rw_data_file:dir no_w_dir_perms;
+neverallow pcc_component media_rw_data_file:file no_w_file_perms;
 
 # Never allow pcc component to write to other app fifo_files
 # su is allowed because of rule `allow domain su (fifo_file (write getattr))` in domain.te
-neverallow pcc_component { appdomain -pcc_component -su }:fifo_file { write append ioctl lock watch_reads };
+neverallow pcc_component { appdomain -pcc_component -su }:fifo_file no_w_file_perms;
 
 # Never allow pcc component to create tcp stream sockets
 neverallow pcc_component pcc_component:tcp_socket create_stream_socket_perms;
@@ -331,7 +368,31 @@ neverallow pcc_component pcc_component:{ icmp_socket udp_socket rawip_socket } c
 # Only allow stream socket comms between pcc components
 neverallow pcc_component { appdomain -pcc_component -su }:unix_stream_socket { getopt getattr read write shutdown };
 
-neverallow pcc_component wallpaper_file:file write;
+# Never allow pcc components to write to wallpaper/ringtone
+neverallow pcc_component wallpaper_file:file no_w_file_perms;
+neverallow pcc_component ringtone_file:file no_w_file_perms;
 
-neverallow pcc_component ringtone_file:file write;
+# Do not allow untrusted apps to access PCC data
+neverallow untrusted_app_all pcc_data_file:dir_file_class_set *;
 
+# Never allow pcc components to write to usb serial devices
+neverallow pcc_component { serial_device usb_serial_device usb_device usbaccessory_device }:chr_file { no_w_file_perms ioctl };
+
+# Never allow pcc components to write to vendor files
+neverallow pcc_component vendor_app_file:file { append write create rename setattr unlink };
+neverallow pcc_component vendor_app_file:dir { write add_name remove_name create reparent rename rmdir setattr };
+neverallow pcc_component vendor_app_file:lnk_file no_w_file_perms;
+neverallow pcc_component vendor_microdroid_file:file { append write create rename setattr unlink };
+neverallow pcc_component vendor_microdroid_file:dir { write add_name remove_name create reparent rename rmdir setattr };
+neverallow pcc_component vendor_microdroid_file:lnk_file no_w_file_perms;
+
+# Never allow pcc components to write to apk temp files
+neverallow pcc_component { apk_private_tmp_file apk_tmp_file }:file no_w_file_perms;
+
+# Never allow pcc_components to modify preloaded media content
+neverallow pcc_component preloads_media_file:dir no_w_dir_perms;
+neverallow pcc_component preloads_media_file:file no_w_file_perms;
+neverallow pcc_component preloads_data_file:dir no_w_file_perms;
+
+neverallow pcc_component sysfs_hwrandom:dir no_w_dir_perms;
+neverallow pcc_component sysfs_hwrandom:file no_w_file_perms;
