@@ -36,6 +36,8 @@ allow mediatranscoding media_rw_data_file:file { getattr read write };
 allow mediatranscoding apk_data_file:file { getattr read };
 allow mediatranscoding app_data_file:file { getattr read write };
 allow mediatranscoding shell_data_file:file { getattr read write };
+allow mediatranscoding mediaextractor:memfd_file { getattr map read write };
+
 
 # allow mediatranscoding service write permission to statsd socket
 unix_socket_send(mediatranscoding, statsdw, statsd)
