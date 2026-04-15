@@ -36,6 +36,7 @@ debug.db.               u:object_r:debuggerd_prop:s0
 debug.tracing.desktop_mode_visible_tasks u:object_r:debug_tracing_desktop_mode_visible_tasks_prop:s0 exact uint
 dumpstate.              u:object_r:dumpstate_prop:s0
 dumpstate.options       u:object_r:dumpstate_options_prop:s0
+dumpstate.last_id       u:object_r:dumpstate_last_id_prop:s0 exact int
 init.svc_debug_pid.     u:object_r:init_svc_debug_prop:s0
 llk.                    u:object_r:llkd_prop:s0
 khungtask.              u:object_r:llkd_prop:s0
@@ -655,6 +656,7 @@ persist.bluetooth.bluetooth_audio_hal.disabled              u:object_r:bluetooth
 persist.bluetooth.btsnoopenable                             u:object_r:exported_bluetooth_prop:s0 exact bool
 persist.bluetooth.btsnoopdefaultmode                        u:object_r:bluetooth_prop:s0 exact enum empty disabled filtered full
 persist.bluetooth.btsnooplogmode                            u:object_r:bluetooth_prop:s0 exact enum empty disabled filtered full
+persist.bluetooth.btsnoopsocket.enabled                     u:object_r:bluetooth_prop:s0 exact bool
 persist.bluetooth.finder.supported                          u:object_r:bluetooth_finder_prop:s0 exact bool
 persist.bluetooth.sniff_offload.enabled                     u:object_r:bluetooth_config_prop:s0 exact bool
 persist.bluetooth.snooplogfilter.headers.enabled            u:object_r:bluetooth_prop:s0 exact bool
@@ -837,6 +839,7 @@ ro.config.system_vol_default  u:object_r:systemsound_config_prop:s0 exact int
 ro.config.system_vol_steps    u:object_r:systemsound_config_prop:s0 exact int
 ro.config.vc_call_vol_default u:object_r:systemsound_config_prop:s0 exact int
 
+ro.context_hub.chipset_supported u:object_r:context_hub_chipset_prop:s0 exact bool
 ro.control_privapp_permissions u:object_r:packagemanager_config_prop:s0 exact enum disable enforce log
 ro.cp_system_other_odex        u:object_r:packagemanager_config_prop:s0 exact bool
 

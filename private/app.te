@@ -38,6 +38,10 @@ userdebug_or_eng(`
 get_prop(appdomain, test_harness_prop)
 
 get_prop(appdomain, boot_status_prop)
+
+# Allow apps to read property of chipset that supports context hub for GTS purpose
+get_prop({ appdomain -isolated_app_all -ephemeral_app -pcc_component -sdk_sandbox_all }, context_hub_chipset_prop)
+
 get_prop(appdomain, dalvik_config_prop_type)
 get_prop(appdomain, media_config_prop)
 get_prop(appdomain, packagemanager_config_prop)
@@ -179,7 +183,7 @@ allowxperm {
 control_logd({ appdomain -ephemeral_app -pcc_component -sdk_sandbox_all })
 
 # application inherit logd write socket (urge is to deprecate this long term)
-allow { appdomain -isolated_app_all -ephemeral_app -pcc_component -sdk_sandbox_all } keystore:keystore2_key { delete use get_info grant rebind update };
+allow { appdomain -isolated_app_all -ephemeral_app -sdk_sandbox_all } keystore:keystore2_key { delete use get_info grant rebind update };
 
 allow { appdomain -isolated_app_all -ephemeral_app -pcc_component -sdk_sandbox_all } keystore_maintenance_service:service_manager find;
 
@@ -261,6 +265,10 @@ allow appdomain system_server:fd use;
 allow appdomain system_server:fifo_file rw_file_perms;
 allow appdomain system_server:unix_stream_socket { read write setopt getattr getopt shutdown };
 allow appdomain system_server:tcp_socket { read write getattr getopt shutdown };
+
+# Use pipes and sockets provided by aoad via binder or local socket.
+allow appdomain aoad:fd use;
+allow appdomain aoad:unix_stream_socket { read write getattr getopt setattr lock append shutdown };
 
 # For AppFuse.
 allow appdomain vold:fd use;
@@ -492,6 +500,7 @@ allow {appdomain -isolated_app_all} hal_tv_tuner_server:fd use;
 
 # Allow app to access shared memory created by PowerHAL for FMQ use
 allow { appdomain -isolated_app_all } hal_power_server:fd use;
+allow { appdomain -isolated_app_all } hal_power_server:memfd_file { getattr map read write };
 
 # RenderScript always-passthrough HAL
 allow { appdomain -isolated_app_all } hal_renderscript_hwservice:hwservice_manager find;
@@ -535,7 +544,7 @@ allow appdomain audioserver:memfd_file { getattr map read write };
 allow appdomain system_server:memfd_file { getattr map read write };
 allow appdomain zygote_tmpfs:file { map read };
 allow appdomain zygote:memfd_file { map read };
-allow appdomain mediaswcodec:memfd_file { getattr map read write };
+allow appdomain hal_codec2:memfd_file { getattr map read write };
 allow appdomain cameraserver:memfd_file { getattr map read write };
 # MediaBufferGroup access
 allow appdomain mediaextractor:memfd_file { getattr map read write };
@@ -890,5 +899,5 @@ allow appdomain trace_data_file:file { read write getattr };
 neverallow { appdomain -traceur_app -platform_app_all -system_app -shell } trace_data_file:file ~{ read write getattr };
 neverallow { appdomain -traceur_app -platform_app_all -system_app -shell } trace_data_file:dir *;
 
-# Apps only need to use the dma-buf ioctls on wrapfds, and not the wrapfd ioctls.
-neverallowxperm appdomain system_server_wrapfd:anon_inode ioctl wrapfd_ioctls;
+# Apps only need to use the dma-buf ioctls on wrapfds, and no other ioctls.
+neverallowxperm appdomain system_server_wrapfd:anon_inode ioctl ~{ dma_buf_ioctls };

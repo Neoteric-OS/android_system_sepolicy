@@ -39,6 +39,10 @@ binder_call(mediaserver, statsd)
 # by virtual camera.
 binder_call(mediaserver, virtual_camera)
 
+# Allow mediaserver to find and call mediacodeclist_generator
+allow mediaserver mediacodeclist_generator_service:service_manager find;
+binder_call(mediaserver, mediacodeclist_generator)
+
 typeattribute mediaserver mlstrustedsubject;
 
 net_domain(mediaserver)

@@ -22,6 +22,9 @@ allow hal_evs_default hidl_token_hwservice:hwservice_manager find;
 # allow to access data from surfaceflinger
 allow hal_evs_default surfaceflinger:fd use;
 
+# Needed for libgui/libbinder init to ensure camera starts correctly.
+get_prop(hal_evs_default, zygote_config_prop);
+
 # allow to access EGL
 gpu_sphal_use(hal_evs_default)
 

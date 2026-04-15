@@ -115,6 +115,7 @@ func (m *macPermissionsModule) GenerateAndroidBuildActions(ctx android.ModuleCon
 	rule.Command().Text("DEFAULT_SYSTEM_DEV_CERTIFICATE="+ctx.Config().DefaultAppCertificateDir(ctx).String()).
 		Text("MAINLINE_SEPOLICY_DEV_CERTIFICATES="+ctx.Config().MainlineSepolicyDevCertificatesDir(ctx).String()).
 		Text("MAINLINE_BLUETOOTH_SEPOLICY_DEV_CERTIFICATES="+ctx.Config().MainlineBluetoothSepolicyDevCertificatesDir(ctx).String()).
+		Text("MAINLINE_NFC_SEPOLICY_DEV_CERTIFICATES="+ctx.Config().MainlineNfcSepolicyDevCertificatesDir(ctx).String()).
 		BuiltTool("insertkeys").
 		FlagWithArg("-t ", buildVariant(ctx)).
 		Input(m4Keys).

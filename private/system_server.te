@@ -273,12 +273,12 @@ allow system_server dmabuf_heap_device:dir r_dir_perms;
 
 # Allow NpuManager to access /dev/wrapfd
 allow system_server wrapfd_device:chr_file r_file_perms;
-allowxperm system_server wrapfd_device:chr_file ioctl wrapfd_dev_ioctls;
+allowxperm system_server wrapfd_device:chr_file ioctl WRAPFD_DEV_IOC_WRAP;
 
 # Allow NpuManager to utilize wrapfds
 type_transition system_server system_server:anon_inode system_server_wrapfd "[wrapfd]";
 allow system_server system_server_wrapfd:anon_inode { create ioctl read write getattr map };
-allowxperm system_server system_server_wrapfd:anon_inode ioctl wrapfd_ioctls;
+allowxperm system_server system_server_wrapfd:anon_inode ioctl { dma_buf_ioctls wrapfd_ioctls };
 
 # Allow reading /proc/vmstat for the oom kill count
 allow system_server proc_vmstat:file r_file_perms;
@@ -1178,6 +1178,7 @@ allow system_server locksettings_key:keystore2_key {
 allow system_server keychain_key:keystore2_key {
 	delete
 	get_info
+	grant
 	rebind
 	update
 	use
@@ -1305,6 +1306,7 @@ allow system_server {
   proc_meminfo
   proc_pagetypeinfo
   proc_pipe_conf
+  proc_slabinfo
   proc_stat
   proc_uid_cputime_showstat
   proc_uid_io_stats
@@ -1397,11 +1399,18 @@ get_prop(system_server,system_jvmti_agent_prop)
 
 # UsbDeviceManager uses /dev/usb-ffs
 allow system_server functionfs:dir search;
-# UsbDeviceManager needs relabelfrom to change from functionfs to usbaccessory
-allow system_server functionfs:file { rw_file_perms relabelfrom };
-allow system_server usbaccessory_device:file { rw_file_perms relabelto };
-allowxperm system_server usbaccessory_device:file ioctl { FUNCTIONFS_ENDPOINT_DESC };
-allow usbaccessory_device functionfs:filesystem associate;
+allow system_server functionfs:file rw_file_perms;
+allow system_server usbaccessory_device:file rw_file_perms;
+
+# Allow system_server to find the aoad binder service
+allow system_server aoad_service:service_manager find;
+
+# Allow system_server to call aoad via binder
+binder_call(system_server, aoad)
+
+# Allow system_server to read/write the socket owned by 'aoad'.
+allow system_server aoad:unix_stream_socket { read write getattr getopt setattr lock append shutdown };
+
 # To resolve arbitrary sysfs paths from /sys/class/udc/* symlinks.
 allow system_server sysfs_type:dir search;
 r_dir_file(system_server, sysfs_udc)
@@ -1832,6 +1841,9 @@ allow system_server {
   profman
 }:process sigkill;
 
+allow system_server hid_service:service_manager find;
+binder_call(system_server, hidservice)
+
 # Allow system_server to talk to native serial service to read metadata of and open serial ports.
 allow system_server native_serial_service:service_manager find;
 binder_call(system_server, serialservice)
@@ -1842,6 +1854,8 @@ binder_call(system_server, usbauthservice)
 # Allow system_server to access AiSeal VM
 is_flag_enabled(RELEASE_AISEAL_FRAMEWORK, `
     aiseal_use(system_server)
+
+    # Allow system server to AiSeal internal service to notify of user add/lock/unlock/remove events
     allow system_server aiseal_internal_service:service_manager find;
 ')
 
@@ -1898,3 +1912,8 @@ allow system_server proc_swaps:file { read open getattr };
 
 # Allow system_server to write the thermal profile property.
 set_prop(system_server, thermal_profile_prop)
+
+# Ensure system_server can only use the defined set of ioctl commands on the
+# wrapfd device node and the wrapfds.
+neverallowxperm system_server wrapfd_device:chr_file ioctl ~{ WRAPFD_DEV_IOC_WRAP };
+neverallowxperm system_server system_server_wrapfd:anon_inode ioctl ~{ dma_buf_ioctls wrapfd_ioctls };

@@ -15,11 +15,16 @@ allow uprobestats self:capability2 perfmon;
 # required to attache uprobes on newer kernels
 allow uprobestats self:global_capability_class_set sys_admin;
 allow uprobestats self:perf_event { cpu open write };
-allow uprobestats sysfs_uprobe:file { open read };
+allow uprobestats sysfs_uprobe:file r_file_perms;
 allow uprobestats sysfs_uprobe:dir { search };
 
 allow uprobestats { apex_art_data_file apex_module_data_file }:dir r_dir_perms;
 allow uprobestats { apex_art_data_file apex_module_data_file }:file r_file_perms;
+
+# Allow uprobestats to access app odex files to attach uprobes
+allow uprobestats { apk_data_file dalvikcache_data_file }:dir search;
+allow uprobestats { dalvikcache_data_file }:file r_file_perms;
+
 allow uprobestats packages_list_file:file r_file_perms;
 
 # Allow uprobestats to popen oatdump.

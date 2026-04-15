@@ -42,10 +42,19 @@ binder_call(mmd, statsd)
 allow mmd dumpstate:fd use;
 allow mmd dumpstate:fifo_file { getattr write };
 
-# Allow mmd to issue the zram writeback ioctl, and make sure that
-# nothing else can use it.
-allowxperm mmd { ram_device swap_block_device }:blk_file ioctl ZRAM_ANDROID_IOC_PROCESS_WRITEBACK;
-neverallowxperm { domain -mmd } { ram_device swap_block_device }:blk_file ioctl ZRAM_ANDROID_IOC_PROCESS_WRITEBACK;
+# Allow mmd to issue the zram ioctls, and make sure that
+# nothing else can use them.
+allowxperm mmd { ram_device swap_block_device }:blk_file ioctl {
+    ZRAM_ANDROID_IOC_VERSION
+    ZRAM_ANDROID_IOC_PROCESS_WRITEBACK_RANGE
+    ZRAM_ANDROID_IOC_PROCESS_PREFETCH
+};
+neverallowxperm { domain -mmd } { ram_device swap_block_device }:blk_file ioctl {
+    ZRAM_ANDROID_IOC_VERSION
+    ZRAM_ANDROID_IOC_PROCESS_WRITEBACK_RANGE
+    ZRAM_ANDROID_IOC_PROCESS_PREFETCH
+};
+neverallowxperm domain { ram_device swap_block_device }:blk_file ioctl ZRAM_ANDROID_IOC_PROCESS_WRITEBACK;
 
 # Necessary for zram writeback ioctl.
 allow mmd self:capability sys_nice;
