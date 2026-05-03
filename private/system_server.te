@@ -271,9 +271,13 @@ allow system_server fs_bpf_dmabuf:file { getattr open read };
 # for dumpsys meminfo
 allow system_server dmabuf_heap_device:dir r_dir_perms;
 
-# Allow NpuManager to access /dev/wrapfd
-allow system_server wrapfd_device:chr_file r_file_perms;
-allowxperm system_server wrapfd_device:chr_file ioctl WRAPFD_DEV_IOC_WRAP;
+# Allow NpuManager to access /dev/wrapfd only on userdebug and eng builds. These
+# rules can be allowed on user builds once the wrapfd driver is ready to be used
+# in those environments.
+userdebug_or_eng(`
+  allow system_server wrapfd_device:chr_file r_file_perms;
+  allowxperm system_server wrapfd_device:chr_file ioctl WRAPFD_DEV_IOC_WRAP;
+')
 
 # Allow NpuManager to utilize wrapfds
 type_transition system_server system_server:anon_inode system_server_wrapfd "[wrapfd]";
