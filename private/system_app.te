@@ -26,7 +26,9 @@ allow system_app misc_user_data_file:file create_file_perms;
 # files located in the assets/ directory.
 allow system_app apex_data_file:dir search;
 allow system_app staging_data_file:file r_file_perms;
-# data APEXes are moved to device-mapped block files
+# Since data APEXes are moved to device-mapped block files (e.g. /dev/block/dm-1)
+# system_app now needs `search` to the parent dir(/dev/block) and `read` for the blk_file
+allow system_app block_device:dir search;
 allow system_app apex_dm_device:blk_file r_file_perms;
 
 # Read wallpaper file.

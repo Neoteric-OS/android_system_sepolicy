@@ -54,6 +54,7 @@ allow crosvm_domain {
 }:file { getattr read ioctl lock };
 
 # Updated APEXes are accessed via apex_dm_device
+allow crosvm_domain block_device:dir search;
 allow crosvm_domain apex_dm_device:blk_file r_file_perms;
 
 # Allow searching the directory where the composite disk images are.

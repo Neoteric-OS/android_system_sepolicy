@@ -183,6 +183,7 @@ allow priv_app_all staging_data_file:file r_file_perms;
 # Required for Phonesky to be able to read staged files under /data/app-staging.
 allow priv_app_all staging_data_file:dir r_dir_perms;
 # data APEXes are moved to device-mapped block files
+allow priv_app_all block_device:dir search;
 allow priv_app_all apex_dm_device:blk_file r_file_perms;
 
 # Allow com.android.vending to access files under vendor/apex as well as system apex files.
