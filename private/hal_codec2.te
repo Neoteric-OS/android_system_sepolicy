@@ -27,3 +27,6 @@ allow { hal_codec2_client -isolated_app_all } surfaceflinger_service:service_man
 allow hal_codec2_server su:fifo_file read;
 allow hal_codec2_server hal_codec2_client:fifo_file read;
 allow hal_codec2_server { appdomain -isolated_app_all }:fifo_file read;
+
+# codec2 can communicate with apps via FMQ
+allow hal_codec2_server { appdomain -isolated_app_all }:memfd_file { read write getattr map };
